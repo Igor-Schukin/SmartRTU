@@ -1,0 +1,70 @@
+{
+"DEFAULT":{
+	"paravalue": 4,
+	"1":{
+		"begin": 8.30,
+		"breakbegin": 9.15,
+		"breakend": 9.20,
+		"end": 10.05
+	},
+	"2":{
+		"begin": 10.15,
+		"breakbegin": 11.00,
+		"breakend": 11.05,
+		"end": 11.50
+	},
+	"3":{
+		"begin": 12.30,
+		"breakbegin": 13.15,
+		"breakend": 13.20,
+		"end": 14.05
+	},
+	"4":{
+		"begin": 14.15,
+		"breakbegin": 15.00,
+		"breakend": 15.05,
+		"end": 15.50
+	}
+},
+"EXCEPTION":{
+	"value": false,
+	"1":{
+		"start": 19.04,
+		"finish": 21.04,
+	    "paravalue": 4,
+		"1":{
+			"isdefault": false,
+			"begin": 8.00,
+			"breakbegin": 8.30,
+			"breakend": 8.35,
+			"end": 9.00
+		},
+		"2":{
+			"isdefault": true
+		},
+		"3":{
+			"isdefault": true
+		},
+		"4":{
+			"isdefault": true
+		}
+	},
+	"2":{
+		"start": 29.04,
+		"finish": 29.04,
+	    "paravalue": 4,
+		"1":{
+			"isdefault": true
+		},
+		"2":{
+			"isdefault": true
+		},
+		"3":{
+			"isdefault": true
+		},
+		"4":{
+			"isdefault": true
+		}
+	}
+}
+}
