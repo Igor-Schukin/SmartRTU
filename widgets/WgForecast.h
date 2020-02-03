@@ -52,7 +52,8 @@
 	}]
 */
 
-#include "curl/curl.h"
+//include "curl/curl.h"
+#include<curl/curl.h>
 
 // git: github.com/curl/curl
 // Some basic information at the russian: http://www.programmersforum.ru/showthread.php?t=60338

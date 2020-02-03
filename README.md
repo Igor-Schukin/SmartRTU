@@ -1,2 +1,2 @@
 # SmartRTU
-Cmake brunch of testing cmake
+RTU Project

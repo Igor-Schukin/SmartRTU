@@ -1,0 +1,2 @@
+/usr/bin/ar qc liblib.a  CMakeFiles/lib.dir/json.cpp.o CMakeFiles/lib.dir/Picture.cpp.o
+/usr/bin/ranlib liblib.a

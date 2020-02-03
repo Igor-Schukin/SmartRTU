@@ -1,11 +1,15 @@
 #pragma once
 #include "png.h"
+extern "C"{
 #include "VG/openvg.h"
 #include "VG/vgu.h"
-#include <jpeglib.h>
-#include <stdlib.h>
 #include "fontinfo.h"
 #include "shapes.h"
+}
+
+#include <jpeglib.h>
+#include <stdlib.h>
+
 #include <string.h> //+
 
 //#define ONDEBUG
