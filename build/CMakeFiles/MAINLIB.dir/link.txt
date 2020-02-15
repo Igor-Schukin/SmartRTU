@@ -1,2 +1,0 @@
-/usr/bin/ar qc libMAINLIB.a  CMakeFiles/MAINLIB.dir/CPicturesStorage.cpp.o CMakeFiles/MAINLIB.dir/CFontStorage.cpp.o CMakeFiles/MAINLIB.dir/timetable.cpp.o CMakeFiles/MAINLIB.dir/desktop.cpp.o CMakeFiles/MAINLIB.dir/Engine.cpp.o CMakeFiles/MAINLIB.dir/Timer.cpp.o CMakeFiles/MAINLIB.dir/board.cpp.o
-/usr/bin/ranlib libMAINLIB.a

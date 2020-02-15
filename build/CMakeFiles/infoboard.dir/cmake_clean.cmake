@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/infoboard.dir/main.cpp.o"
-  "infoboard.pdb"
-  "infoboard"
+  "CMakeFiles/infoboard.dir/src/main.cpp.o"
+  "../infoboard.pdb"
+  "../infoboard"
 )
 
 # Per-language clean rules from dependency scanning.

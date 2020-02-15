@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/projects/SmartRTU
+CMAKE_SOURCE_DIR = "/home/pi/projects/C'monBoard"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/projects/SmartRTU/build
+CMAKE_BINARY_DIR = "/home/pi/projects/C'monBoard/build"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -81,7 +81,7 @@ test/fast: test
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	/usr/bin/cpack --config ./CPackSourceConfig.cmake /home/pi/projects/SmartRTU/build/CPackSourceConfig.cmake
+	/usr/bin/cpack --config ./CPackSourceConfig.cmake /home/pi/projects/C'monBoard/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -113,9 +113,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/projects/SmartRTU/build/CMakeFiles /home/pi/projects/SmartRTU/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/pi/projects/C'monBoard/build/CMakeFiles" "/home/pi/projects/C'monBoard/build/CMakeFiles/progress.marks"
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/projects/SmartRTU/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/pi/projects/C'monBoard/build/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -155,19 +155,6 @@ infoboard: cmake_check_build_system
 infoboard/fast:
 	$(MAKE) -f CMakeFiles/infoboard.dir/build.make CMakeFiles/infoboard.dir/build
 .PHONY : infoboard/fast
-
-#=============================================================================
-# Target rules for targets named MAINLIB
-
-# Build rule for target.
-MAINLIB: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 MAINLIB
-.PHONY : MAINLIB
-
-# fast build rule for target.
-MAINLIB/fast:
-	$(MAKE) -f CMakeFiles/MAINLIB.dir/build.make CMakeFiles/MAINLIB.dir/build
-.PHONY : MAINLIB/fast
 
 #=============================================================================
 # Target rules for targets named ContinuousSubmit
@@ -534,30 +521,30 @@ ExperimentalConfigure/fast:
 .PHONY : ExperimentalConfigure/fast
 
 #=============================================================================
-# Target rules for targets named widgets
+# Target rules for targets named BoardLib
 
 # Build rule for target.
-widgets: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 widgets
-.PHONY : widgets
+BoardLib: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 BoardLib
+.PHONY : BoardLib
 
 # fast build rule for target.
-widgets/fast:
-	$(MAKE) -f widgets/CMakeFiles/widgets.dir/build.make widgets/CMakeFiles/widgets.dir/build
-.PHONY : widgets/fast
+BoardLib/fast:
+	$(MAKE) -f src/lib/CMakeFiles/BoardLib.dir/build.make src/lib/CMakeFiles/BoardLib.dir/build
+.PHONY : BoardLib/fast
 
 #=============================================================================
-# Target rules for targets named lib
+# Target rules for targets named json
 
 # Build rule for target.
-lib: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 lib
-.PHONY : lib
+json: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 json
+.PHONY : json
 
 # fast build rule for target.
-lib/fast:
-	$(MAKE) -f lib/CMakeFiles/lib.dir/build.make lib/CMakeFiles/lib.dir/build
-.PHONY : lib/fast
+json/fast:
+	$(MAKE) -f src/lib/json/CMakeFiles/json.dir/build.make src/lib/json/CMakeFiles/json.dir/build
+.PHONY : json/fast
 
 #=============================================================================
 # Target rules for targets named TFont
@@ -569,224 +556,74 @@ TFont: cmake_check_build_system
 
 # fast build rule for target.
 TFont/fast:
-	$(MAKE) -f lib/TFont/CMakeFiles/TFont.dir/build.make lib/TFont/CMakeFiles/TFont.dir/build
+	$(MAKE) -f src/lib/fonts/CMakeFiles/TFont.dir/build.make src/lib/fonts/CMakeFiles/TFont.dir/build
 .PHONY : TFont/fast
 
-CFontStorage.o: CFontStorage.cpp.o
+#=============================================================================
+# Target rules for targets named BoardPic
 
-.PHONY : CFontStorage.o
+# Build rule for target.
+BoardPic: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 BoardPic
+.PHONY : BoardPic
 
-# target to build an object file
-CFontStorage.cpp.o:
-	$(MAKE) -f CMakeFiles/MAINLIB.dir/build.make CMakeFiles/MAINLIB.dir/CFontStorage.cpp.o
-.PHONY : CFontStorage.cpp.o
+# fast build rule for target.
+BoardPic/fast:
+	$(MAKE) -f src/lib/pictures/CMakeFiles/BoardPic.dir/build.make src/lib/pictures/CMakeFiles/BoardPic.dir/build
+.PHONY : BoardPic/fast
 
-CFontStorage.i: CFontStorage.cpp.i
+#=============================================================================
+# Target rules for targets named Boardwidgets
 
-.PHONY : CFontStorage.i
+# Build rule for target.
+Boardwidgets: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Boardwidgets
+.PHONY : Boardwidgets
 
-# target to preprocess a source file
-CFontStorage.cpp.i:
-	$(MAKE) -f CMakeFiles/MAINLIB.dir/build.make CMakeFiles/MAINLIB.dir/CFontStorage.cpp.i
-.PHONY : CFontStorage.cpp.i
+# fast build rule for target.
+Boardwidgets/fast:
+	$(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/build
+.PHONY : Boardwidgets/fast
 
-CFontStorage.s: CFontStorage.cpp.s
+#=============================================================================
+# Target rules for targets named BoardEngine
 
-.PHONY : CFontStorage.s
+# Build rule for target.
+BoardEngine: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 BoardEngine
+.PHONY : BoardEngine
 
-# target to generate assembly for a file
-CFontStorage.cpp.s:
-	$(MAKE) -f CMakeFiles/MAINLIB.dir/build.make CMakeFiles/MAINLIB.dir/CFontStorage.cpp.s
-.PHONY : CFontStorage.cpp.s
+# fast build rule for target.
+BoardEngine/fast:
+	$(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/build
+.PHONY : BoardEngine/fast
 
-CPicturesStorage.o: CPicturesStorage.cpp.o
+src/main.o: src/main.cpp.o
 
-.PHONY : CPicturesStorage.o
-
-# target to build an object file
-CPicturesStorage.cpp.o:
-	$(MAKE) -f CMakeFiles/MAINLIB.dir/build.make CMakeFiles/MAINLIB.dir/CPicturesStorage.cpp.o
-.PHONY : CPicturesStorage.cpp.o
-
-CPicturesStorage.i: CPicturesStorage.cpp.i
-
-.PHONY : CPicturesStorage.i
-
-# target to preprocess a source file
-CPicturesStorage.cpp.i:
-	$(MAKE) -f CMakeFiles/MAINLIB.dir/build.make CMakeFiles/MAINLIB.dir/CPicturesStorage.cpp.i
-.PHONY : CPicturesStorage.cpp.i
-
-CPicturesStorage.s: CPicturesStorage.cpp.s
-
-.PHONY : CPicturesStorage.s
-
-# target to generate assembly for a file
-CPicturesStorage.cpp.s:
-	$(MAKE) -f CMakeFiles/MAINLIB.dir/build.make CMakeFiles/MAINLIB.dir/CPicturesStorage.cpp.s
-.PHONY : CPicturesStorage.cpp.s
-
-Engine.o: Engine.cpp.o
-
-.PHONY : Engine.o
+.PHONY : src/main.o
 
 # target to build an object file
-Engine.cpp.o:
-	$(MAKE) -f CMakeFiles/MAINLIB.dir/build.make CMakeFiles/MAINLIB.dir/Engine.cpp.o
-.PHONY : Engine.cpp.o
+src/main.cpp.o:
+	$(MAKE) -f CMakeFiles/infoboard.dir/build.make CMakeFiles/infoboard.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
 
-Engine.i: Engine.cpp.i
+src/main.i: src/main.cpp.i
 
-.PHONY : Engine.i
-
-# target to preprocess a source file
-Engine.cpp.i:
-	$(MAKE) -f CMakeFiles/MAINLIB.dir/build.make CMakeFiles/MAINLIB.dir/Engine.cpp.i
-.PHONY : Engine.cpp.i
-
-Engine.s: Engine.cpp.s
-
-.PHONY : Engine.s
-
-# target to generate assembly for a file
-Engine.cpp.s:
-	$(MAKE) -f CMakeFiles/MAINLIB.dir/build.make CMakeFiles/MAINLIB.dir/Engine.cpp.s
-.PHONY : Engine.cpp.s
-
-Timer.o: Timer.cpp.o
-
-.PHONY : Timer.o
-
-# target to build an object file
-Timer.cpp.o:
-	$(MAKE) -f CMakeFiles/MAINLIB.dir/build.make CMakeFiles/MAINLIB.dir/Timer.cpp.o
-.PHONY : Timer.cpp.o
-
-Timer.i: Timer.cpp.i
-
-.PHONY : Timer.i
+.PHONY : src/main.i
 
 # target to preprocess a source file
-Timer.cpp.i:
-	$(MAKE) -f CMakeFiles/MAINLIB.dir/build.make CMakeFiles/MAINLIB.dir/Timer.cpp.i
-.PHONY : Timer.cpp.i
+src/main.cpp.i:
+	$(MAKE) -f CMakeFiles/infoboard.dir/build.make CMakeFiles/infoboard.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
 
-Timer.s: Timer.cpp.s
+src/main.s: src/main.cpp.s
 
-.PHONY : Timer.s
-
-# target to generate assembly for a file
-Timer.cpp.s:
-	$(MAKE) -f CMakeFiles/MAINLIB.dir/build.make CMakeFiles/MAINLIB.dir/Timer.cpp.s
-.PHONY : Timer.cpp.s
-
-board.o: board.cpp.o
-
-.PHONY : board.o
-
-# target to build an object file
-board.cpp.o:
-	$(MAKE) -f CMakeFiles/MAINLIB.dir/build.make CMakeFiles/MAINLIB.dir/board.cpp.o
-.PHONY : board.cpp.o
-
-board.i: board.cpp.i
-
-.PHONY : board.i
-
-# target to preprocess a source file
-board.cpp.i:
-	$(MAKE) -f CMakeFiles/MAINLIB.dir/build.make CMakeFiles/MAINLIB.dir/board.cpp.i
-.PHONY : board.cpp.i
-
-board.s: board.cpp.s
-
-.PHONY : board.s
+.PHONY : src/main.s
 
 # target to generate assembly for a file
-board.cpp.s:
-	$(MAKE) -f CMakeFiles/MAINLIB.dir/build.make CMakeFiles/MAINLIB.dir/board.cpp.s
-.PHONY : board.cpp.s
-
-desktop.o: desktop.cpp.o
-
-.PHONY : desktop.o
-
-# target to build an object file
-desktop.cpp.o:
-	$(MAKE) -f CMakeFiles/MAINLIB.dir/build.make CMakeFiles/MAINLIB.dir/desktop.cpp.o
-.PHONY : desktop.cpp.o
-
-desktop.i: desktop.cpp.i
-
-.PHONY : desktop.i
-
-# target to preprocess a source file
-desktop.cpp.i:
-	$(MAKE) -f CMakeFiles/MAINLIB.dir/build.make CMakeFiles/MAINLIB.dir/desktop.cpp.i
-.PHONY : desktop.cpp.i
-
-desktop.s: desktop.cpp.s
-
-.PHONY : desktop.s
-
-# target to generate assembly for a file
-desktop.cpp.s:
-	$(MAKE) -f CMakeFiles/MAINLIB.dir/build.make CMakeFiles/MAINLIB.dir/desktop.cpp.s
-.PHONY : desktop.cpp.s
-
-main.o: main.cpp.o
-
-.PHONY : main.o
-
-# target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/infoboard.dir/build.make CMakeFiles/infoboard.dir/main.cpp.o
-.PHONY : main.cpp.o
-
-main.i: main.cpp.i
-
-.PHONY : main.i
-
-# target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/infoboard.dir/build.make CMakeFiles/infoboard.dir/main.cpp.i
-.PHONY : main.cpp.i
-
-main.s: main.cpp.s
-
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/infoboard.dir/build.make CMakeFiles/infoboard.dir/main.cpp.s
-.PHONY : main.cpp.s
-
-timetable.o: timetable.cpp.o
-
-.PHONY : timetable.o
-
-# target to build an object file
-timetable.cpp.o:
-	$(MAKE) -f CMakeFiles/MAINLIB.dir/build.make CMakeFiles/MAINLIB.dir/timetable.cpp.o
-.PHONY : timetable.cpp.o
-
-timetable.i: timetable.cpp.i
-
-.PHONY : timetable.i
-
-# target to preprocess a source file
-timetable.cpp.i:
-	$(MAKE) -f CMakeFiles/MAINLIB.dir/build.make CMakeFiles/MAINLIB.dir/timetable.cpp.i
-.PHONY : timetable.cpp.i
-
-timetable.s: timetable.cpp.s
-
-.PHONY : timetable.s
-
-# target to generate assembly for a file
-timetable.cpp.s:
-	$(MAKE) -f CMakeFiles/MAINLIB.dir/build.make CMakeFiles/MAINLIB.dir/timetable.cpp.s
-.PHONY : timetable.cpp.s
+src/main.cpp.s:
+	$(MAKE) -f CMakeFiles/infoboard.dir/build.make CMakeFiles/infoboard.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
 # Help Target
 help:
@@ -797,7 +634,6 @@ help:
 	@echo "... package"
 	@echo "... test"
 	@echo "... infoboard"
-	@echo "... MAINLIB"
 	@echo "... ContinuousSubmit"
 	@echo "... ContinuousBuild"
 	@echo "... ExperimentalSubmit"
@@ -829,33 +665,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... ExperimentalUpdate"
 	@echo "... ExperimentalConfigure"
-	@echo "... widgets"
-	@echo "... lib"
+	@echo "... BoardLib"
+	@echo "... json"
 	@echo "... TFont"
-	@echo "... CFontStorage.o"
-	@echo "... CFontStorage.i"
-	@echo "... CFontStorage.s"
-	@echo "... CPicturesStorage.o"
-	@echo "... CPicturesStorage.i"
-	@echo "... CPicturesStorage.s"
-	@echo "... Engine.o"
-	@echo "... Engine.i"
-	@echo "... Engine.s"
-	@echo "... Timer.o"
-	@echo "... Timer.i"
-	@echo "... Timer.s"
-	@echo "... board.o"
-	@echo "... board.i"
-	@echo "... board.s"
-	@echo "... desktop.o"
-	@echo "... desktop.i"
-	@echo "... desktop.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
-	@echo "... timetable.o"
-	@echo "... timetable.i"
-	@echo "... timetable.s"
+	@echo "... BoardPic"
+	@echo "... Boardwidgets"
+	@echo "... BoardEngine"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 .PHONY : help
 
 

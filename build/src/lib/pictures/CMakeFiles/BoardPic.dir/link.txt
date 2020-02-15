@@ -1,0 +1,2 @@
+/usr/bin/ar qc libBoardPic.a  CMakeFiles/BoardPic.dir/Picture.cpp.o
+/usr/bin/ranlib libBoardPic.a

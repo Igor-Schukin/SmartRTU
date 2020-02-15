@@ -1,2 +1,0 @@
-# SmartRTU
-RTU Project

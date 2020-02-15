@@ -1,2 +1,0 @@
-/usr/bin/ar qc libInfoboard.a  CMakeFiles/Infoboard.dir/CPicturesStorage.cpp.o CMakeFiles/Infoboard.dir/CFontStorage.cpp.o CMakeFiles/Infoboard.dir/timetable.cpp.o CMakeFiles/Infoboard.dir/desktop.cpp.o CMakeFiles/Infoboard.dir/Engine.cpp.o
-/usr/bin/ranlib libInfoboard.a
