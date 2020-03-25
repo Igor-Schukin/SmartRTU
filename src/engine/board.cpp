@@ -10,6 +10,8 @@
 #include "WgWatchdog.h"
 #include "desktop.h"
 
+#include"WgHtmlAds.h"
+
 #define MAX_WIDGETS 50
 
 Board::Board()
@@ -18,6 +20,9 @@ Board::Board()
 	current = NULL;
 
 	addWidget(new WgAds(0, 8, md3x8));         // 1, 8
+	
+	addWidget(new WgHtmlAds(0, 8, md3x8));
+	
 	addWidget(new WgForecast(3, 8, md1x2));
 	addWidget(new WgClock(3, 6, md1x3));
 	addWidget(new WgCalendar(3, 3, md1x3));

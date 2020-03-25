@@ -17,10 +17,10 @@ CMakeFiles/infoboard.dir/src/main.cpp.o
  ../src/widgets/IWidget.h
  ../src/widgets/WgBackground.h
  ../src/widgets/WgClock.h
+ /home/pi/Desktop/Projects/SmartRTU/src/config.h
+ /home/pi/Desktop/Projects/SmartRTU/src/main.cpp
  /home/pi/openvg/fontinfo.h
  /home/pi/openvg/shapes.h
- /home/pi/projects/C'monBoard/src/config.h
- /home/pi/projects/C'monBoard/src/main.cpp
  /opt/vc/include/KHR/khrplatform.h
  /opt/vc/include/VG/openvg.h
  /opt/vc/include/VG/vgplatform.h

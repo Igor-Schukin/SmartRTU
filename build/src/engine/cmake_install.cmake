@@ -1,4 +1,4 @@
-# Install script for directory: /home/pi/projects/C'monBoard/src/engine
+# Install script for directory: /home/pi/Desktop/Projects/SmartRTU/src/engine
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

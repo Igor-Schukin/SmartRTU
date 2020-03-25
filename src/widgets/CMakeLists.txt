@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.0.0)
 
 set(SRC IWidget.cpp
     WgAds.cpp
+    WgHtmlAds.cpp
     WgBackground.cpp
     WgCalendar.cpp 
     WgClock.cpp 

@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Boardwidgets.dir/IWidget.cpp.o"
   "CMakeFiles/Boardwidgets.dir/WgAds.cpp.o"
+  "CMakeFiles/Boardwidgets.dir/WgHtmlAds.cpp.o"
   "CMakeFiles/Boardwidgets.dir/WgBackground.cpp.o"
   "CMakeFiles/Boardwidgets.dir/WgCalendar.cpp.o"
   "CMakeFiles/Boardwidgets.dir/WgClock.cpp.o"

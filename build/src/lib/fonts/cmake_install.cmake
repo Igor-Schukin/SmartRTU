@@ -1,4 +1,4 @@
-# Install script for directory: /home/pi/projects/C'monBoard/src/lib/fonts
+# Install script for directory: /home/pi/Desktop/Projects/SmartRTU/src/lib/fonts
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

@@ -6,5 +6,5 @@ CXX_FLAGS = -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -ls
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I"/home/pi/projects/C'monBoard/src/lib/pictures" -I/../fonts -I/opt/vc/include -I/opt/vc/include/interface/vmcs_host/linux -I/opt/vc/include/interface/vcos/pthreads -I/home/pi/openvg -I/opt/vc/include/VG 
+CXX_INCLUDES = -I/home/pi/Desktop/Projects/SmartRTU/src/lib/pictures -I/../fonts -I/opt/vc/include -I/opt/vc/include/interface/vmcs_host/linux -I/opt/vc/include/interface/vcos/pthreads -I/home/pi/openvg -I/opt/vc/include/VG 
 

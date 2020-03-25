@@ -11,6 +11,7 @@
 #include "config.h"
 
 
+
 void termSignalHandler(int signal)
 {
   if (engine) engine->terminate();
@@ -22,6 +23,7 @@ int main()
 
 	try {
 		printf( "%s\t***** INFOBORAD engine is started\n", strNow() );
+		printf("crap");
 
 		try {
 			timetable = new Timetable;

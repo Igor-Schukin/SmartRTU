@@ -1,4 +1,4 @@
-# Install script for directory: /home/pi/projects/C'monBoard/src/lib/json
+# Install script for directory: /home/pi/Desktop/Projects/SmartRTU/src/lib/json
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

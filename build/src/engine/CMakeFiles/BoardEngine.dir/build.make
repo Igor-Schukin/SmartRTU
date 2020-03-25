@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/pi/projects/C'monBoard"
+CMAKE_SOURCE_DIR = /home/pi/Desktop/Projects/SmartRTU
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/pi/projects/C'monBoard/build"
+CMAKE_BINARY_DIR = /home/pi/Desktop/Projects/SmartRTU/build
 
 # Include any dependencies generated for this target.
 include src/engine/CMakeFiles/BoardEngine.dir/depend.make
@@ -59,94 +59,94 @@ include src/engine/CMakeFiles/BoardEngine.dir/flags.make
 
 src/engine/CMakeFiles/BoardEngine.dir/CPicturesStorage.cpp.o: src/engine/CMakeFiles/BoardEngine.dir/flags.make
 src/engine/CMakeFiles/BoardEngine.dir/CPicturesStorage.cpp.o: ../src/engine/CPicturesStorage.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/pi/projects/C'monBoard/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/engine/CMakeFiles/BoardEngine.dir/CPicturesStorage.cpp.o"
-	cd "/home/pi/projects/C'monBoard/build/src/engine" && /usr/bin/g++-8  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BoardEngine.dir/CPicturesStorage.cpp.o -c "/home/pi/projects/C'monBoard/src/engine/CPicturesStorage.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/engine/CMakeFiles/BoardEngine.dir/CPicturesStorage.cpp.o"
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/engine && /usr/bin/g++-8  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BoardEngine.dir/CPicturesStorage.cpp.o -c /home/pi/Desktop/Projects/SmartRTU/src/engine/CPicturesStorage.cpp
 
 src/engine/CMakeFiles/BoardEngine.dir/CPicturesStorage.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BoardEngine.dir/CPicturesStorage.cpp.i"
-	cd "/home/pi/projects/C'monBoard/build/src/engine" && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/pi/projects/C'monBoard/src/engine/CPicturesStorage.cpp" > CMakeFiles/BoardEngine.dir/CPicturesStorage.cpp.i
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/engine && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Desktop/Projects/SmartRTU/src/engine/CPicturesStorage.cpp > CMakeFiles/BoardEngine.dir/CPicturesStorage.cpp.i
 
 src/engine/CMakeFiles/BoardEngine.dir/CPicturesStorage.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BoardEngine.dir/CPicturesStorage.cpp.s"
-	cd "/home/pi/projects/C'monBoard/build/src/engine" && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/pi/projects/C'monBoard/src/engine/CPicturesStorage.cpp" -o CMakeFiles/BoardEngine.dir/CPicturesStorage.cpp.s
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/engine && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Desktop/Projects/SmartRTU/src/engine/CPicturesStorage.cpp -o CMakeFiles/BoardEngine.dir/CPicturesStorage.cpp.s
 
 src/engine/CMakeFiles/BoardEngine.dir/CFontStorage.cpp.o: src/engine/CMakeFiles/BoardEngine.dir/flags.make
 src/engine/CMakeFiles/BoardEngine.dir/CFontStorage.cpp.o: ../src/engine/CFontStorage.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/pi/projects/C'monBoard/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/engine/CMakeFiles/BoardEngine.dir/CFontStorage.cpp.o"
-	cd "/home/pi/projects/C'monBoard/build/src/engine" && /usr/bin/g++-8  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BoardEngine.dir/CFontStorage.cpp.o -c "/home/pi/projects/C'monBoard/src/engine/CFontStorage.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/engine/CMakeFiles/BoardEngine.dir/CFontStorage.cpp.o"
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/engine && /usr/bin/g++-8  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BoardEngine.dir/CFontStorage.cpp.o -c /home/pi/Desktop/Projects/SmartRTU/src/engine/CFontStorage.cpp
 
 src/engine/CMakeFiles/BoardEngine.dir/CFontStorage.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BoardEngine.dir/CFontStorage.cpp.i"
-	cd "/home/pi/projects/C'monBoard/build/src/engine" && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/pi/projects/C'monBoard/src/engine/CFontStorage.cpp" > CMakeFiles/BoardEngine.dir/CFontStorage.cpp.i
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/engine && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Desktop/Projects/SmartRTU/src/engine/CFontStorage.cpp > CMakeFiles/BoardEngine.dir/CFontStorage.cpp.i
 
 src/engine/CMakeFiles/BoardEngine.dir/CFontStorage.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BoardEngine.dir/CFontStorage.cpp.s"
-	cd "/home/pi/projects/C'monBoard/build/src/engine" && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/pi/projects/C'monBoard/src/engine/CFontStorage.cpp" -o CMakeFiles/BoardEngine.dir/CFontStorage.cpp.s
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/engine && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Desktop/Projects/SmartRTU/src/engine/CFontStorage.cpp -o CMakeFiles/BoardEngine.dir/CFontStorage.cpp.s
 
 src/engine/CMakeFiles/BoardEngine.dir/timetable.cpp.o: src/engine/CMakeFiles/BoardEngine.dir/flags.make
 src/engine/CMakeFiles/BoardEngine.dir/timetable.cpp.o: ../src/engine/timetable.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/pi/projects/C'monBoard/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/engine/CMakeFiles/BoardEngine.dir/timetable.cpp.o"
-	cd "/home/pi/projects/C'monBoard/build/src/engine" && /usr/bin/g++-8  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BoardEngine.dir/timetable.cpp.o -c "/home/pi/projects/C'monBoard/src/engine/timetable.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/engine/CMakeFiles/BoardEngine.dir/timetable.cpp.o"
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/engine && /usr/bin/g++-8  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BoardEngine.dir/timetable.cpp.o -c /home/pi/Desktop/Projects/SmartRTU/src/engine/timetable.cpp
 
 src/engine/CMakeFiles/BoardEngine.dir/timetable.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BoardEngine.dir/timetable.cpp.i"
-	cd "/home/pi/projects/C'monBoard/build/src/engine" && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/pi/projects/C'monBoard/src/engine/timetable.cpp" > CMakeFiles/BoardEngine.dir/timetable.cpp.i
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/engine && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Desktop/Projects/SmartRTU/src/engine/timetable.cpp > CMakeFiles/BoardEngine.dir/timetable.cpp.i
 
 src/engine/CMakeFiles/BoardEngine.dir/timetable.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BoardEngine.dir/timetable.cpp.s"
-	cd "/home/pi/projects/C'monBoard/build/src/engine" && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/pi/projects/C'monBoard/src/engine/timetable.cpp" -o CMakeFiles/BoardEngine.dir/timetable.cpp.s
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/engine && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Desktop/Projects/SmartRTU/src/engine/timetable.cpp -o CMakeFiles/BoardEngine.dir/timetable.cpp.s
 
 src/engine/CMakeFiles/BoardEngine.dir/desktop.cpp.o: src/engine/CMakeFiles/BoardEngine.dir/flags.make
 src/engine/CMakeFiles/BoardEngine.dir/desktop.cpp.o: ../src/engine/desktop.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/pi/projects/C'monBoard/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/engine/CMakeFiles/BoardEngine.dir/desktop.cpp.o"
-	cd "/home/pi/projects/C'monBoard/build/src/engine" && /usr/bin/g++-8  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BoardEngine.dir/desktop.cpp.o -c "/home/pi/projects/C'monBoard/src/engine/desktop.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/engine/CMakeFiles/BoardEngine.dir/desktop.cpp.o"
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/engine && /usr/bin/g++-8  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BoardEngine.dir/desktop.cpp.o -c /home/pi/Desktop/Projects/SmartRTU/src/engine/desktop.cpp
 
 src/engine/CMakeFiles/BoardEngine.dir/desktop.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BoardEngine.dir/desktop.cpp.i"
-	cd "/home/pi/projects/C'monBoard/build/src/engine" && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/pi/projects/C'monBoard/src/engine/desktop.cpp" > CMakeFiles/BoardEngine.dir/desktop.cpp.i
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/engine && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Desktop/Projects/SmartRTU/src/engine/desktop.cpp > CMakeFiles/BoardEngine.dir/desktop.cpp.i
 
 src/engine/CMakeFiles/BoardEngine.dir/desktop.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BoardEngine.dir/desktop.cpp.s"
-	cd "/home/pi/projects/C'monBoard/build/src/engine" && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/pi/projects/C'monBoard/src/engine/desktop.cpp" -o CMakeFiles/BoardEngine.dir/desktop.cpp.s
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/engine && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Desktop/Projects/SmartRTU/src/engine/desktop.cpp -o CMakeFiles/BoardEngine.dir/desktop.cpp.s
 
 src/engine/CMakeFiles/BoardEngine.dir/Engine.cpp.o: src/engine/CMakeFiles/BoardEngine.dir/flags.make
 src/engine/CMakeFiles/BoardEngine.dir/Engine.cpp.o: ../src/engine/Engine.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/pi/projects/C'monBoard/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/engine/CMakeFiles/BoardEngine.dir/Engine.cpp.o"
-	cd "/home/pi/projects/C'monBoard/build/src/engine" && /usr/bin/g++-8  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BoardEngine.dir/Engine.cpp.o -c "/home/pi/projects/C'monBoard/src/engine/Engine.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/engine/CMakeFiles/BoardEngine.dir/Engine.cpp.o"
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/engine && /usr/bin/g++-8  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BoardEngine.dir/Engine.cpp.o -c /home/pi/Desktop/Projects/SmartRTU/src/engine/Engine.cpp
 
 src/engine/CMakeFiles/BoardEngine.dir/Engine.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BoardEngine.dir/Engine.cpp.i"
-	cd "/home/pi/projects/C'monBoard/build/src/engine" && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/pi/projects/C'monBoard/src/engine/Engine.cpp" > CMakeFiles/BoardEngine.dir/Engine.cpp.i
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/engine && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Desktop/Projects/SmartRTU/src/engine/Engine.cpp > CMakeFiles/BoardEngine.dir/Engine.cpp.i
 
 src/engine/CMakeFiles/BoardEngine.dir/Engine.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BoardEngine.dir/Engine.cpp.s"
-	cd "/home/pi/projects/C'monBoard/build/src/engine" && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/pi/projects/C'monBoard/src/engine/Engine.cpp" -o CMakeFiles/BoardEngine.dir/Engine.cpp.s
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/engine && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Desktop/Projects/SmartRTU/src/engine/Engine.cpp -o CMakeFiles/BoardEngine.dir/Engine.cpp.s
 
 src/engine/CMakeFiles/BoardEngine.dir/Timer.cpp.o: src/engine/CMakeFiles/BoardEngine.dir/flags.make
 src/engine/CMakeFiles/BoardEngine.dir/Timer.cpp.o: ../src/engine/Timer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/pi/projects/C'monBoard/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/engine/CMakeFiles/BoardEngine.dir/Timer.cpp.o"
-	cd "/home/pi/projects/C'monBoard/build/src/engine" && /usr/bin/g++-8  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BoardEngine.dir/Timer.cpp.o -c "/home/pi/projects/C'monBoard/src/engine/Timer.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/engine/CMakeFiles/BoardEngine.dir/Timer.cpp.o"
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/engine && /usr/bin/g++-8  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BoardEngine.dir/Timer.cpp.o -c /home/pi/Desktop/Projects/SmartRTU/src/engine/Timer.cpp
 
 src/engine/CMakeFiles/BoardEngine.dir/Timer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BoardEngine.dir/Timer.cpp.i"
-	cd "/home/pi/projects/C'monBoard/build/src/engine" && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/pi/projects/C'monBoard/src/engine/Timer.cpp" > CMakeFiles/BoardEngine.dir/Timer.cpp.i
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/engine && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Desktop/Projects/SmartRTU/src/engine/Timer.cpp > CMakeFiles/BoardEngine.dir/Timer.cpp.i
 
 src/engine/CMakeFiles/BoardEngine.dir/Timer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BoardEngine.dir/Timer.cpp.s"
-	cd "/home/pi/projects/C'monBoard/build/src/engine" && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/pi/projects/C'monBoard/src/engine/Timer.cpp" -o CMakeFiles/BoardEngine.dir/Timer.cpp.s
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/engine && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Desktop/Projects/SmartRTU/src/engine/Timer.cpp -o CMakeFiles/BoardEngine.dir/Timer.cpp.s
 
 src/engine/CMakeFiles/BoardEngine.dir/board.cpp.o: src/engine/CMakeFiles/BoardEngine.dir/flags.make
 src/engine/CMakeFiles/BoardEngine.dir/board.cpp.o: ../src/engine/board.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/pi/projects/C'monBoard/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/engine/CMakeFiles/BoardEngine.dir/board.cpp.o"
-	cd "/home/pi/projects/C'monBoard/build/src/engine" && /usr/bin/g++-8  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BoardEngine.dir/board.cpp.o -c "/home/pi/projects/C'monBoard/src/engine/board.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/engine/CMakeFiles/BoardEngine.dir/board.cpp.o"
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/engine && /usr/bin/g++-8  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BoardEngine.dir/board.cpp.o -c /home/pi/Desktop/Projects/SmartRTU/src/engine/board.cpp
 
 src/engine/CMakeFiles/BoardEngine.dir/board.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BoardEngine.dir/board.cpp.i"
-	cd "/home/pi/projects/C'monBoard/build/src/engine" && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/pi/projects/C'monBoard/src/engine/board.cpp" > CMakeFiles/BoardEngine.dir/board.cpp.i
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/engine && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Desktop/Projects/SmartRTU/src/engine/board.cpp > CMakeFiles/BoardEngine.dir/board.cpp.i
 
 src/engine/CMakeFiles/BoardEngine.dir/board.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BoardEngine.dir/board.cpp.s"
-	cd "/home/pi/projects/C'monBoard/build/src/engine" && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/pi/projects/C'monBoard/src/engine/board.cpp" -o CMakeFiles/BoardEngine.dir/board.cpp.s
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/engine && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Desktop/Projects/SmartRTU/src/engine/board.cpp -o CMakeFiles/BoardEngine.dir/board.cpp.s
 
 # Object files for target BoardEngine
 BoardEngine_OBJECTS = \
@@ -170,9 +170,9 @@ src/engine/libBoardEngine.a: src/engine/CMakeFiles/BoardEngine.dir/Timer.cpp.o
 src/engine/libBoardEngine.a: src/engine/CMakeFiles/BoardEngine.dir/board.cpp.o
 src/engine/libBoardEngine.a: src/engine/CMakeFiles/BoardEngine.dir/build.make
 src/engine/libBoardEngine.a: src/engine/CMakeFiles/BoardEngine.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/pi/projects/C'monBoard/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libBoardEngine.a"
-	cd "/home/pi/projects/C'monBoard/build/src/engine" && $(CMAKE_COMMAND) -P CMakeFiles/BoardEngine.dir/cmake_clean_target.cmake
-	cd "/home/pi/projects/C'monBoard/build/src/engine" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/BoardEngine.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libBoardEngine.a"
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/engine && $(CMAKE_COMMAND) -P CMakeFiles/BoardEngine.dir/cmake_clean_target.cmake
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/engine && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/BoardEngine.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 src/engine/CMakeFiles/BoardEngine.dir/build: src/engine/libBoardEngine.a
@@ -180,10 +180,10 @@ src/engine/CMakeFiles/BoardEngine.dir/build: src/engine/libBoardEngine.a
 .PHONY : src/engine/CMakeFiles/BoardEngine.dir/build
 
 src/engine/CMakeFiles/BoardEngine.dir/clean:
-	cd "/home/pi/projects/C'monBoard/build/src/engine" && $(CMAKE_COMMAND) -P CMakeFiles/BoardEngine.dir/cmake_clean.cmake
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/engine && $(CMAKE_COMMAND) -P CMakeFiles/BoardEngine.dir/cmake_clean.cmake
 .PHONY : src/engine/CMakeFiles/BoardEngine.dir/clean
 
 src/engine/CMakeFiles/BoardEngine.dir/depend:
-	cd "/home/pi/projects/C'monBoard/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/pi/projects/C'monBoard" "/home/pi/projects/C'monBoard/src/engine" "/home/pi/projects/C'monBoard/build" "/home/pi/projects/C'monBoard/build/src/engine" "/home/pi/projects/C'monBoard/build/src/engine/CMakeFiles/BoardEngine.dir/DependInfo.cmake" --color=$(COLOR)
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/Desktop/Projects/SmartRTU /home/pi/Desktop/Projects/SmartRTU/src/engine /home/pi/Desktop/Projects/SmartRTU/build /home/pi/Desktop/Projects/SmartRTU/build/src/engine /home/pi/Desktop/Projects/SmartRTU/build/src/engine/CMakeFiles/BoardEngine.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : src/engine/CMakeFiles/BoardEngine.dir/depend
 

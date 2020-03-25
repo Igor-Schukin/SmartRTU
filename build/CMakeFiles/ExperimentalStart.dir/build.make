@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/pi/projects/C'monBoard"
+CMAKE_SOURCE_DIR = /home/pi/Desktop/Projects/SmartRTU
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/pi/projects/C'monBoard/build"
+CMAKE_BINARY_DIR = /home/pi/Desktop/Projects/SmartRTU/build
 
 # Utility rule file for ExperimentalStart.
 
@@ -71,6 +71,6 @@ CMakeFiles/ExperimentalStart.dir/clean:
 .PHONY : CMakeFiles/ExperimentalStart.dir/clean
 
 CMakeFiles/ExperimentalStart.dir/depend:
-	cd "/home/pi/projects/C'monBoard/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/pi/projects/C'monBoard" "/home/pi/projects/C'monBoard" "/home/pi/projects/C'monBoard/build" "/home/pi/projects/C'monBoard/build" "/home/pi/projects/C'monBoard/build/CMakeFiles/ExperimentalStart.dir/DependInfo.cmake" --color=$(COLOR)
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/Desktop/Projects/SmartRTU /home/pi/Desktop/Projects/SmartRTU /home/pi/Desktop/Projects/SmartRTU/build /home/pi/Desktop/Projects/SmartRTU/build /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/ExperimentalStart.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ExperimentalStart.dir/depend
 

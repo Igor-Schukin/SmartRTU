@@ -1,4 +1,4 @@
-# Install script for directory: /home/pi/projects/C'monBoard/src/widgets
+# Install script for directory: /home/pi/Desktop/Projects/SmartRTU/src/widgets
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

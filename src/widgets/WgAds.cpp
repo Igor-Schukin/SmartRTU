@@ -9,11 +9,24 @@ WgAds::WgAds(int Ax, int Ay, wgMode Amode):	WgBackground(Ax, Ay, Amode)
 	lineCount = 0;
 	fileTime = 0;
 
+	//std::string request="xvfb-run --server-args=\"-screen 0, 1920x1080x24\" cutycapt --url=file:/home/pi/Desktop/Projects/SmartRTU/res/tmp/temp.html --out=/home/pi/Desktop/Projects/SmartRTU/res/tmp/temp.png --min-width=1920 --min-height=1080";
+
+	//std::system(request.c_str());
+	//HtmlPic=new Picture("res/tmp/temp.png");
+	//printf("width: %i, height: %i\n", HtmlPic->getWidth(), HtmlPic->getHeight());
+
+
+
+
+
+
 	printf( "%s\tWgAds widget object is created\n", strNow() );
 }
 
 WgAds::~WgAds()
 {
+	delete HtmlPic;
+
 	if ( ads ) delete [] ads;
 	if ( adsPeace ) delete [] adsPeace;
 	printf( "%s\tWgAds widget object is deleted\n", strNow() );
@@ -100,17 +113,34 @@ bool WgAds::update()
 
 void WgAds::render()
 {
+	//TODO
+	//SHADOWS MUST BE ON FRONT OF HTML AD NOT ON BACK
+	
 	//~~~ render background
 
 	WgBackground::render();
-	
+
 	//~~~ render header
 
 	//renderHeader( "Sludinājums" );
 	renderHeader( "Par mums" );
-	
-	//~~~ calculate line count without last empy strings
 
+ /*
+	int width=(float) rectClient.width * 0.9;	
+	int height = (float) rectClient.height * 0.9;
+
+	float Dx=static_cast<float>(rectClient.width)/static_cast<float>(HtmlPic->getWidth());
+	float Dy=static_cast<float>(rectClient.height) /static_cast<float>(HtmlPic->getHeight());
+	std::cout<<"Dx-> "<<Dx<<" Dy-> "<<Dy<<std::endl;
+	HtmlPic->render(rectClient.left,rectClient.bottom,Dx,Dy,0,0,0);
+	
+	//~~~~~ render back shadows
+	WgBackground::renderOnlyShadows();
+*/
+
+
+	//~~~ calculate line count without last empy strings
+/*
 	int lc = lineCount;
 	for (int i = lc - 1; i >= 0; i--) {
 		if (  !adsPeace[i] || adsPeace[i][0] == '\0' ) lc--;
@@ -153,4 +183,5 @@ void WgAds::render()
 			rectClient.top - ofsY - lh * (i + 1)
 		);
 	}
+	*/
 }

@@ -27,6 +27,7 @@ protected:
 	struct { int left, right, top, bottom; } shadowSize;
 
 	void renderHeader( const char * headerText );
+	void renderOnlyShadows();//renders only all shadows
 public:
 	WgBackground(int AposX, int AposY, wgMode Amode);
     ~WgBackground();

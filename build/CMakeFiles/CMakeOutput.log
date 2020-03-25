@@ -1,4 +1,4 @@
-The system is: Linux - 4.19.93-v7+ - armv7l
+The system is: Linux - 4.19.97-v7+ - armv7l
 Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
 Compiler: /usr/bin/gcc-8 
 Build flags: 
@@ -10,7 +10,7 @@ The output was:
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
 
-The C compiler identification is GNU, found in "/home/pi/projects/C'monBoard/build/CMakeFiles/3.13.4/CompilerIdC/a.out"
+The C compiler identification is GNU, found in "/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/3.13.4/CompilerIdC/a.out"
 
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
 Compiler: /usr/bin/g++-8 
@@ -23,33 +23,33 @@ The output was:
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
 
-The CXX compiler identification is GNU, found in "/home/pi/projects/C'monBoard/build/CMakeFiles/3.13.4/CompilerIdCXX/a.out"
+The CXX compiler identification is GNU, found in "/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/3.13.4/CompilerIdCXX/a.out"
 
 Determining if the C compiler works passed with the following output:
-Change Dir: /home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp
+Change Dir: /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_770e3/fast"
-/usr/bin/make -f CMakeFiles/cmTC_770e3.dir/build.make CMakeFiles/cmTC_770e3.dir/build
-make[1]: Entering directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_770e3.dir/testCCompiler.c.o
-/usr/bin/gcc-8    -o CMakeFiles/cmTC_770e3.dir/testCCompiler.c.o   -c "/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp/testCCompiler.c"
-Linking C executable cmTC_770e3
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_770e3.dir/link.txt --verbose=1
-/usr/bin/gcc-8      -rdynamic CMakeFiles/cmTC_770e3.dir/testCCompiler.c.o  -o cmTC_770e3 
-make[1]: Leaving directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_699a3/fast"
+/usr/bin/make -f CMakeFiles/cmTC_699a3.dir/build.make CMakeFiles/cmTC_699a3.dir/build
+make[1]: Entering directory '/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_699a3.dir/testCCompiler.c.o
+/usr/bin/gcc-8    -o CMakeFiles/cmTC_699a3.dir/testCCompiler.c.o   -c /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_699a3
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_699a3.dir/link.txt --verbose=1
+/usr/bin/gcc-8      -rdynamic CMakeFiles/cmTC_699a3.dir/testCCompiler.c.o  -o cmTC_699a3 
+make[1]: Leaving directory '/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp'
 
 
 Detecting C compiler ABI info compiled with the following output:
-Change Dir: /home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp
+Change Dir: /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_83435/fast"
-/usr/bin/make -f CMakeFiles/cmTC_83435.dir/build.make CMakeFiles/cmTC_83435.dir/build
-make[1]: Entering directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_83435.dir/CMakeCCompilerABI.c.o
-/usr/bin/gcc-8    -o CMakeFiles/cmTC_83435.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.13/Modules/CMakeCCompilerABI.c
-Linking C executable cmTC_83435
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_83435.dir/link.txt --verbose=1
-/usr/bin/gcc-8     -v -rdynamic CMakeFiles/cmTC_83435.dir/CMakeCCompilerABI.c.o  -o cmTC_83435 
+Run Build Command:"/usr/bin/make" "cmTC_2b5a0/fast"
+/usr/bin/make -f CMakeFiles/cmTC_2b5a0.dir/build.make CMakeFiles/cmTC_2b5a0.dir/build
+make[1]: Entering directory '/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_2b5a0.dir/CMakeCCompilerABI.c.o
+/usr/bin/gcc-8    -o CMakeFiles/cmTC_2b5a0.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.13/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_2b5a0
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2b5a0.dir/link.txt --verbose=1
+/usr/bin/gcc-8     -v -rdynamic CMakeFiles/cmTC_2b5a0.dir/CMakeCCompilerABI.c.o  -o cmTC_2b5a0 
 Using built-in specs.
 COLLECT_GCC=/usr/bin/gcc-8
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper
@@ -59,24 +59,24 @@ Thread model: posix
 gcc version 8.3.0 (Raspbian 8.3.0-6+rpi1) 
 COMPILER_PATH=/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/:/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/
 LIBRARY_PATH=/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/:/usr/lib/gcc/arm-linux-gnueabihf/8/../../../:/lib/arm-linux-gnueabihf/:/lib/:/usr/lib/arm-linux-gnueabihf/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_83435'  '-mfloat-abi=hard' '-mfpu=vfp' '-mtls-dialect=gnu' '-marm' '-march=armv6+fp'
- /usr/lib/gcc/arm-linux-gnueabihf/8/collect2 -plugin /usr/lib/gcc/arm-linux-gnueabihf/8/liblto_plugin.so -plugin-opt=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper -plugin-opt=-fresolution=/tmp/ccI1HOqq.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -export-dynamic -dynamic-linker /lib/ld-linux-armhf.so.3 -X --hash-style=gnu -m armelf_linux_eabi -o cmTC_83435 /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crt1.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crti.o /usr/lib/gcc/arm-linux-gnueabihf/8/crtbegin.o -L/usr/lib/gcc/arm-linux-gnueabihf/8 -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../.. -L/lib/arm-linux-gnueabihf -L/usr/lib/arm-linux-gnueabihf CMakeFiles/cmTC_83435.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/arm-linux-gnueabihf/8/crtend.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crtn.o
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_83435'  '-mfloat-abi=hard' '-mfpu=vfp' '-mtls-dialect=gnu' '-marm' '-march=armv6+fp'
-make[1]: Leaving directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp'
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_2b5a0'  '-mfloat-abi=hard' '-mfpu=vfp' '-mtls-dialect=gnu' '-marm' '-march=armv6+fp'
+ /usr/lib/gcc/arm-linux-gnueabihf/8/collect2 -plugin /usr/lib/gcc/arm-linux-gnueabihf/8/liblto_plugin.so -plugin-opt=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper -plugin-opt=-fresolution=/tmp/ccKB9prP.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -export-dynamic -dynamic-linker /lib/ld-linux-armhf.so.3 -X --hash-style=gnu -m armelf_linux_eabi -o cmTC_2b5a0 /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crt1.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crti.o /usr/lib/gcc/arm-linux-gnueabihf/8/crtbegin.o -L/usr/lib/gcc/arm-linux-gnueabihf/8 -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../.. -L/lib/arm-linux-gnueabihf -L/usr/lib/arm-linux-gnueabihf CMakeFiles/cmTC_2b5a0.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/arm-linux-gnueabihf/8/crtend.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_2b5a0'  '-mfloat-abi=hard' '-mfpu=vfp' '-mtls-dialect=gnu' '-marm' '-march=armv6+fp'
+make[1]: Leaving directory '/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp'
 
 
 Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_83435/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_83435.dir/build.make CMakeFiles/cmTC_83435.dir/build]
-  ignore line: [make[1]: Entering directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_83435.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/bin/gcc-8    -o CMakeFiles/cmTC_83435.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.13/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTC_83435]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_83435.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/gcc-8     -v -rdynamic CMakeFiles/cmTC_83435.dir/CMakeCCompilerABI.c.o  -o cmTC_83435 ]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_2b5a0/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_2b5a0.dir/build.make CMakeFiles/cmTC_2b5a0.dir/build]
+  ignore line: [make[1]: Entering directory '/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp']
+  ignore line: [Building C object CMakeFiles/cmTC_2b5a0.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/gcc-8    -o CMakeFiles/cmTC_2b5a0.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.13/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_2b5a0]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2b5a0.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/gcc-8     -v -rdynamic CMakeFiles/cmTC_2b5a0.dir/CMakeCCompilerABI.c.o  -o cmTC_2b5a0 ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/gcc-8]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper]
@@ -86,13 +86,13 @@ Parsed C implicit link information from above output:
   ignore line: [gcc version 8.3.0 (Raspbian 8.3.0-6+rpi1) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/:/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/:/usr/lib/gcc/arm-linux-gnueabihf/8/../../../:/lib/arm-linux-gnueabihf/:/lib/:/usr/lib/arm-linux-gnueabihf/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_83435'  '-mfloat-abi=hard' '-mfpu=vfp' '-mtls-dialect=gnu' '-marm' '-march=armv6+fp']
-  link line: [ /usr/lib/gcc/arm-linux-gnueabihf/8/collect2 -plugin /usr/lib/gcc/arm-linux-gnueabihf/8/liblto_plugin.so -plugin-opt=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper -plugin-opt=-fresolution=/tmp/ccI1HOqq.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -export-dynamic -dynamic-linker /lib/ld-linux-armhf.so.3 -X --hash-style=gnu -m armelf_linux_eabi -o cmTC_83435 /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crt1.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crti.o /usr/lib/gcc/arm-linux-gnueabihf/8/crtbegin.o -L/usr/lib/gcc/arm-linux-gnueabihf/8 -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../.. -L/lib/arm-linux-gnueabihf -L/usr/lib/arm-linux-gnueabihf CMakeFiles/cmTC_83435.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/arm-linux-gnueabihf/8/crtend.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_2b5a0'  '-mfloat-abi=hard' '-mfpu=vfp' '-mtls-dialect=gnu' '-marm' '-march=armv6+fp']
+  link line: [ /usr/lib/gcc/arm-linux-gnueabihf/8/collect2 -plugin /usr/lib/gcc/arm-linux-gnueabihf/8/liblto_plugin.so -plugin-opt=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper -plugin-opt=-fresolution=/tmp/ccKB9prP.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -export-dynamic -dynamic-linker /lib/ld-linux-armhf.so.3 -X --hash-style=gnu -m armelf_linux_eabi -o cmTC_2b5a0 /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crt1.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crti.o /usr/lib/gcc/arm-linux-gnueabihf/8/crtbegin.o -L/usr/lib/gcc/arm-linux-gnueabihf/8 -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../.. -L/lib/arm-linux-gnueabihf -L/usr/lib/arm-linux-gnueabihf CMakeFiles/cmTC_2b5a0.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/arm-linux-gnueabihf/8/crtend.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crtn.o]
     arg [/usr/lib/gcc/arm-linux-gnueabihf/8/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/arm-linux-gnueabihf/8/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccI1HOqq.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccKB9prP.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -108,7 +108,7 @@ Parsed C implicit link information from above output:
     arg [-m] ==> ignore
     arg [armelf_linux_eabi] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_83435] ==> ignore
+    arg [cmTC_2b5a0] ==> ignore
     arg [/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crt1.o] ==> ignore
     arg [/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crti.o] ==> ignore
     arg [/usr/lib/gcc/arm-linux-gnueabihf/8/crtbegin.o] ==> ignore
@@ -117,7 +117,7 @@ Parsed C implicit link information from above output:
     arg [-L/usr/lib/gcc/arm-linux-gnueabihf/8/../../..] ==> dir [/usr/lib/gcc/arm-linux-gnueabihf/8/../../..]
     arg [-L/lib/arm-linux-gnueabihf] ==> dir [/lib/arm-linux-gnueabihf]
     arg [-L/usr/lib/arm-linux-gnueabihf] ==> dir [/usr/lib/arm-linux-gnueabihf]
-    arg [CMakeFiles/cmTC_83435.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_2b5a0.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [--push-state] ==> ignore
     arg [--as-needed] ==> ignore
@@ -144,17 +144,17 @@ Parsed C implicit link information from above output:
 
 
 Detecting C [-std=c11] compiler features compiled with the following output:
-Change Dir: /home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp
+Change Dir: /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_27a54/fast"
-/usr/bin/make -f CMakeFiles/cmTC_27a54.dir/build.make CMakeFiles/cmTC_27a54.dir/build
-make[1]: Entering directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_27a54.dir/feature_tests.c.o
-/usr/bin/gcc-8   -std=c11 -o CMakeFiles/cmTC_27a54.dir/feature_tests.c.o   -c "/home/pi/projects/C'monBoard/build/CMakeFiles/feature_tests.c"
-Linking C executable cmTC_27a54
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_27a54.dir/link.txt --verbose=1
-/usr/bin/gcc-8      -rdynamic CMakeFiles/cmTC_27a54.dir/feature_tests.c.o  -o cmTC_27a54 
-make[1]: Leaving directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_ba488/fast"
+/usr/bin/make -f CMakeFiles/cmTC_ba488.dir/build.make CMakeFiles/cmTC_ba488.dir/build
+make[1]: Entering directory '/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_ba488.dir/feature_tests.c.o
+/usr/bin/gcc-8   -std=c11 -o CMakeFiles/cmTC_ba488.dir/feature_tests.c.o   -c /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_ba488
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ba488.dir/link.txt --verbose=1
+/usr/bin/gcc-8      -rdynamic CMakeFiles/cmTC_ba488.dir/feature_tests.c.o  -o cmTC_ba488 
+make[1]: Leaving directory '/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp'
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -164,17 +164,17 @@ make[1]: Leaving directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeT
 
 
 Detecting C [-std=c99] compiler features compiled with the following output:
-Change Dir: /home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp
+Change Dir: /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_d299b/fast"
-/usr/bin/make -f CMakeFiles/cmTC_d299b.dir/build.make CMakeFiles/cmTC_d299b.dir/build
-make[1]: Entering directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_d299b.dir/feature_tests.c.o
-/usr/bin/gcc-8   -std=c99 -o CMakeFiles/cmTC_d299b.dir/feature_tests.c.o   -c "/home/pi/projects/C'monBoard/build/CMakeFiles/feature_tests.c"
-Linking C executable cmTC_d299b
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d299b.dir/link.txt --verbose=1
-/usr/bin/gcc-8      -rdynamic CMakeFiles/cmTC_d299b.dir/feature_tests.c.o  -o cmTC_d299b 
-make[1]: Leaving directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_ff8f3/fast"
+/usr/bin/make -f CMakeFiles/cmTC_ff8f3.dir/build.make CMakeFiles/cmTC_ff8f3.dir/build
+make[1]: Entering directory '/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_ff8f3.dir/feature_tests.c.o
+/usr/bin/gcc-8   -std=c99 -o CMakeFiles/cmTC_ff8f3.dir/feature_tests.c.o   -c /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_ff8f3
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ff8f3.dir/link.txt --verbose=1
+/usr/bin/gcc-8      -rdynamic CMakeFiles/cmTC_ff8f3.dir/feature_tests.c.o  -o cmTC_ff8f3 
+make[1]: Leaving directory '/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp'
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -184,17 +184,17 @@ make[1]: Leaving directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeT
 
 
 Detecting C [-std=c90] compiler features compiled with the following output:
-Change Dir: /home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp
+Change Dir: /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_85bc0/fast"
-/usr/bin/make -f CMakeFiles/cmTC_85bc0.dir/build.make CMakeFiles/cmTC_85bc0.dir/build
-make[1]: Entering directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_85bc0.dir/feature_tests.c.o
-/usr/bin/gcc-8   -std=c90 -o CMakeFiles/cmTC_85bc0.dir/feature_tests.c.o   -c "/home/pi/projects/C'monBoard/build/CMakeFiles/feature_tests.c"
-Linking C executable cmTC_85bc0
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_85bc0.dir/link.txt --verbose=1
-/usr/bin/gcc-8      -rdynamic CMakeFiles/cmTC_85bc0.dir/feature_tests.c.o  -o cmTC_85bc0 
-make[1]: Leaving directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_63b2e/fast"
+/usr/bin/make -f CMakeFiles/cmTC_63b2e.dir/build.make CMakeFiles/cmTC_63b2e.dir/build
+make[1]: Entering directory '/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_63b2e.dir/feature_tests.c.o
+/usr/bin/gcc-8   -std=c90 -o CMakeFiles/cmTC_63b2e.dir/feature_tests.c.o   -c /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_63b2e
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_63b2e.dir/link.txt --verbose=1
+/usr/bin/gcc-8      -rdynamic CMakeFiles/cmTC_63b2e.dir/feature_tests.c.o  -o cmTC_63b2e 
+make[1]: Leaving directory '/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp'
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -202,30 +202,30 @@ make[1]: Leaving directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeT
     Feature record: C_FEATURE:0c_static_assert
     Feature record: C_FEATURE:0c_variadic_macros
 Determining if the CXX compiler works passed with the following output:
-Change Dir: /home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp
+Change Dir: /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_66908/fast"
-/usr/bin/make -f CMakeFiles/cmTC_66908.dir/build.make CMakeFiles/cmTC_66908.dir/build
-make[1]: Entering directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_66908.dir/testCXXCompiler.cxx.o
-/usr/bin/g++-8     -o CMakeFiles/cmTC_66908.dir/testCXXCompiler.cxx.o -c "/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx"
-Linking CXX executable cmTC_66908
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_66908.dir/link.txt --verbose=1
-/usr/bin/g++-8       -rdynamic CMakeFiles/cmTC_66908.dir/testCXXCompiler.cxx.o  -o cmTC_66908 
-make[1]: Leaving directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_2e423/fast"
+/usr/bin/make -f CMakeFiles/cmTC_2e423.dir/build.make CMakeFiles/cmTC_2e423.dir/build
+make[1]: Entering directory '/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_2e423.dir/testCXXCompiler.cxx.o
+/usr/bin/g++-8     -o CMakeFiles/cmTC_2e423.dir/testCXXCompiler.cxx.o -c /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_2e423
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2e423.dir/link.txt --verbose=1
+/usr/bin/g++-8       -rdynamic CMakeFiles/cmTC_2e423.dir/testCXXCompiler.cxx.o  -o cmTC_2e423 
+make[1]: Leaving directory '/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX compiler ABI info compiled with the following output:
-Change Dir: /home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp
+Change Dir: /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_58c65/fast"
-/usr/bin/make -f CMakeFiles/cmTC_58c65.dir/build.make CMakeFiles/cmTC_58c65.dir/build
-make[1]: Entering directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_58c65.dir/CMakeCXXCompilerABI.cpp.o
-/usr/bin/g++-8     -o CMakeFiles/cmTC_58c65.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.13/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTC_58c65
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_58c65.dir/link.txt --verbose=1
-/usr/bin/g++-8      -v -rdynamic CMakeFiles/cmTC_58c65.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_58c65 
+Run Build Command:"/usr/bin/make" "cmTC_e9632/fast"
+/usr/bin/make -f CMakeFiles/cmTC_e9632.dir/build.make CMakeFiles/cmTC_e9632.dir/build
+make[1]: Entering directory '/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_e9632.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/g++-8     -o CMakeFiles/cmTC_e9632.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.13/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_e9632
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e9632.dir/link.txt --verbose=1
+/usr/bin/g++-8      -v -rdynamic CMakeFiles/cmTC_e9632.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_e9632 
 Using built-in specs.
 COLLECT_GCC=/usr/bin/g++-8
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper
@@ -235,24 +235,24 @@ Thread model: posix
 gcc version 8.3.0 (Raspbian 8.3.0-6+rpi1) 
 COMPILER_PATH=/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/:/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/
 LIBRARY_PATH=/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/:/usr/lib/gcc/arm-linux-gnueabihf/8/../../../:/lib/arm-linux-gnueabihf/:/lib/:/usr/lib/arm-linux-gnueabihf/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_58c65' '-shared-libgcc'  '-mfloat-abi=hard' '-mfpu=vfp' '-mtls-dialect=gnu' '-marm' '-march=armv6+fp'
- /usr/lib/gcc/arm-linux-gnueabihf/8/collect2 -plugin /usr/lib/gcc/arm-linux-gnueabihf/8/liblto_plugin.so -plugin-opt=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper -plugin-opt=-fresolution=/tmp/ccr7PWZQ.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -export-dynamic -dynamic-linker /lib/ld-linux-armhf.so.3 -X --hash-style=gnu -m armelf_linux_eabi -o cmTC_58c65 /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crt1.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crti.o /usr/lib/gcc/arm-linux-gnueabihf/8/crtbegin.o -L/usr/lib/gcc/arm-linux-gnueabihf/8 -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../.. -L/lib/arm-linux-gnueabihf -L/usr/lib/arm-linux-gnueabihf CMakeFiles/cmTC_58c65.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/arm-linux-gnueabihf/8/crtend.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crtn.o
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_58c65' '-shared-libgcc'  '-mfloat-abi=hard' '-mfpu=vfp' '-mtls-dialect=gnu' '-marm' '-march=armv6+fp'
-make[1]: Leaving directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp'
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_e9632' '-shared-libgcc'  '-mfloat-abi=hard' '-mfpu=vfp' '-mtls-dialect=gnu' '-marm' '-march=armv6+fp'
+ /usr/lib/gcc/arm-linux-gnueabihf/8/collect2 -plugin /usr/lib/gcc/arm-linux-gnueabihf/8/liblto_plugin.so -plugin-opt=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper -plugin-opt=-fresolution=/tmp/cc6YmpLv.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -export-dynamic -dynamic-linker /lib/ld-linux-armhf.so.3 -X --hash-style=gnu -m armelf_linux_eabi -o cmTC_e9632 /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crt1.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crti.o /usr/lib/gcc/arm-linux-gnueabihf/8/crtbegin.o -L/usr/lib/gcc/arm-linux-gnueabihf/8 -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../.. -L/lib/arm-linux-gnueabihf -L/usr/lib/arm-linux-gnueabihf CMakeFiles/cmTC_e9632.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/arm-linux-gnueabihf/8/crtend.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_e9632' '-shared-libgcc'  '-mfloat-abi=hard' '-mfpu=vfp' '-mtls-dialect=gnu' '-marm' '-march=armv6+fp'
+make[1]: Leaving directory '/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp'
 
 
 Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_58c65/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_58c65.dir/build.make CMakeFiles/cmTC_58c65.dir/build]
-  ignore line: [make[1]: Entering directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building CXX object CMakeFiles/cmTC_58c65.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/usr/bin/g++-8     -o CMakeFiles/cmTC_58c65.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.13/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTC_58c65]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_58c65.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/g++-8      -v -rdynamic CMakeFiles/cmTC_58c65.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_58c65 ]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_e9632/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_e9632.dir/build.make CMakeFiles/cmTC_e9632.dir/build]
+  ignore line: [make[1]: Entering directory '/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp']
+  ignore line: [Building CXX object CMakeFiles/cmTC_e9632.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/g++-8     -o CMakeFiles/cmTC_e9632.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.13/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_e9632]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e9632.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/g++-8      -v -rdynamic CMakeFiles/cmTC_e9632.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_e9632 ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/g++-8]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper]
@@ -262,13 +262,13 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 8.3.0 (Raspbian 8.3.0-6+rpi1) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/:/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/arm-linux-gnueabihf/8/:/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/:/usr/lib/gcc/arm-linux-gnueabihf/8/../../../:/lib/arm-linux-gnueabihf/:/lib/:/usr/lib/arm-linux-gnueabihf/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_58c65' '-shared-libgcc'  '-mfloat-abi=hard' '-mfpu=vfp' '-mtls-dialect=gnu' '-marm' '-march=armv6+fp']
-  link line: [ /usr/lib/gcc/arm-linux-gnueabihf/8/collect2 -plugin /usr/lib/gcc/arm-linux-gnueabihf/8/liblto_plugin.so -plugin-opt=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper -plugin-opt=-fresolution=/tmp/ccr7PWZQ.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -export-dynamic -dynamic-linker /lib/ld-linux-armhf.so.3 -X --hash-style=gnu -m armelf_linux_eabi -o cmTC_58c65 /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crt1.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crti.o /usr/lib/gcc/arm-linux-gnueabihf/8/crtbegin.o -L/usr/lib/gcc/arm-linux-gnueabihf/8 -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../.. -L/lib/arm-linux-gnueabihf -L/usr/lib/arm-linux-gnueabihf CMakeFiles/cmTC_58c65.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/arm-linux-gnueabihf/8/crtend.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_e9632' '-shared-libgcc'  '-mfloat-abi=hard' '-mfpu=vfp' '-mtls-dialect=gnu' '-marm' '-march=armv6+fp']
+  link line: [ /usr/lib/gcc/arm-linux-gnueabihf/8/collect2 -plugin /usr/lib/gcc/arm-linux-gnueabihf/8/liblto_plugin.so -plugin-opt=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper -plugin-opt=-fresolution=/tmp/cc6YmpLv.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -export-dynamic -dynamic-linker /lib/ld-linux-armhf.so.3 -X --hash-style=gnu -m armelf_linux_eabi -o cmTC_e9632 /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crt1.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crti.o /usr/lib/gcc/arm-linux-gnueabihf/8/crtbegin.o -L/usr/lib/gcc/arm-linux-gnueabihf/8 -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf -L/usr/lib/gcc/arm-linux-gnueabihf/8/../../.. -L/lib/arm-linux-gnueabihf -L/usr/lib/arm-linux-gnueabihf CMakeFiles/cmTC_e9632.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/arm-linux-gnueabihf/8/crtend.o /usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crtn.o]
     arg [/usr/lib/gcc/arm-linux-gnueabihf/8/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/arm-linux-gnueabihf/8/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/arm-linux-gnueabihf/8/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccr7PWZQ.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/cc6YmpLv.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -284,7 +284,7 @@ Parsed CXX implicit link information from above output:
     arg [-m] ==> ignore
     arg [armelf_linux_eabi] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_58c65] ==> ignore
+    arg [cmTC_e9632] ==> ignore
     arg [/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crt1.o] ==> ignore
     arg [/usr/lib/gcc/arm-linux-gnueabihf/8/../../../arm-linux-gnueabihf/crti.o] ==> ignore
     arg [/usr/lib/gcc/arm-linux-gnueabihf/8/crtbegin.o] ==> ignore
@@ -293,7 +293,7 @@ Parsed CXX implicit link information from above output:
     arg [-L/usr/lib/gcc/arm-linux-gnueabihf/8/../../..] ==> dir [/usr/lib/gcc/arm-linux-gnueabihf/8/../../..]
     arg [-L/lib/arm-linux-gnueabihf] ==> dir [/lib/arm-linux-gnueabihf]
     arg [-L/usr/lib/arm-linux-gnueabihf] ==> dir [/usr/lib/arm-linux-gnueabihf]
-    arg [CMakeFiles/cmTC_58c65.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_e9632.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -316,17 +316,17 @@ Parsed CXX implicit link information from above output:
 
 
 Detecting CXX [-std=c++2a] compiler features compiled with the following output:
-Change Dir: /home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp
+Change Dir: /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_566f2/fast"
-/usr/bin/make -f CMakeFiles/cmTC_566f2.dir/build.make CMakeFiles/cmTC_566f2.dir/build
-make[1]: Entering directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_566f2.dir/feature_tests.cxx.o
-/usr/bin/g++-8    -std=c++2a -o CMakeFiles/cmTC_566f2.dir/feature_tests.cxx.o -c "/home/pi/projects/C'monBoard/build/CMakeFiles/feature_tests.cxx"
-Linking CXX executable cmTC_566f2
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_566f2.dir/link.txt --verbose=1
-/usr/bin/g++-8       -rdynamic CMakeFiles/cmTC_566f2.dir/feature_tests.cxx.o  -o cmTC_566f2 
-make[1]: Leaving directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_53dc6/fast"
+/usr/bin/make -f CMakeFiles/cmTC_53dc6.dir/build.make CMakeFiles/cmTC_53dc6.dir/build
+make[1]: Entering directory '/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_53dc6.dir/feature_tests.cxx.o
+/usr/bin/g++-8    -std=c++2a -o CMakeFiles/cmTC_53dc6.dir/feature_tests.cxx.o -c /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_53dc6
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_53dc6.dir/link.txt --verbose=1
+/usr/bin/g++-8       -rdynamic CMakeFiles/cmTC_53dc6.dir/feature_tests.cxx.o  -o cmTC_53dc6 
+make[1]: Leaving directory '/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
@@ -389,17 +389,17 @@ make[1]: Leaving directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeT
 
 
 Detecting CXX [-std=c++17] compiler features compiled with the following output:
-Change Dir: /home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp
+Change Dir: /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_5fa1a/fast"
-/usr/bin/make -f CMakeFiles/cmTC_5fa1a.dir/build.make CMakeFiles/cmTC_5fa1a.dir/build
-make[1]: Entering directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_5fa1a.dir/feature_tests.cxx.o
-/usr/bin/g++-8    -std=c++17 -o CMakeFiles/cmTC_5fa1a.dir/feature_tests.cxx.o -c "/home/pi/projects/C'monBoard/build/CMakeFiles/feature_tests.cxx"
-Linking CXX executable cmTC_5fa1a
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5fa1a.dir/link.txt --verbose=1
-/usr/bin/g++-8       -rdynamic CMakeFiles/cmTC_5fa1a.dir/feature_tests.cxx.o  -o cmTC_5fa1a 
-make[1]: Leaving directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_6f012/fast"
+/usr/bin/make -f CMakeFiles/cmTC_6f012.dir/build.make CMakeFiles/cmTC_6f012.dir/build
+make[1]: Entering directory '/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_6f012.dir/feature_tests.cxx.o
+/usr/bin/g++-8    -std=c++17 -o CMakeFiles/cmTC_6f012.dir/feature_tests.cxx.o -c /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_6f012
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6f012.dir/link.txt --verbose=1
+/usr/bin/g++-8       -rdynamic CMakeFiles/cmTC_6f012.dir/feature_tests.cxx.o  -o cmTC_6f012 
+make[1]: Leaving directory '/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
@@ -462,17 +462,17 @@ make[1]: Leaving directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeT
 
 
 Detecting CXX [-std=c++14] compiler features compiled with the following output:
-Change Dir: /home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp
+Change Dir: /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_20151/fast"
-/usr/bin/make -f CMakeFiles/cmTC_20151.dir/build.make CMakeFiles/cmTC_20151.dir/build
-make[1]: Entering directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_20151.dir/feature_tests.cxx.o
-/usr/bin/g++-8    -std=c++14 -o CMakeFiles/cmTC_20151.dir/feature_tests.cxx.o -c "/home/pi/projects/C'monBoard/build/CMakeFiles/feature_tests.cxx"
-Linking CXX executable cmTC_20151
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_20151.dir/link.txt --verbose=1
-/usr/bin/g++-8       -rdynamic CMakeFiles/cmTC_20151.dir/feature_tests.cxx.o  -o cmTC_20151 
-make[1]: Leaving directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_bfb9a/fast"
+/usr/bin/make -f CMakeFiles/cmTC_bfb9a.dir/build.make CMakeFiles/cmTC_bfb9a.dir/build
+make[1]: Entering directory '/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_bfb9a.dir/feature_tests.cxx.o
+/usr/bin/g++-8    -std=c++14 -o CMakeFiles/cmTC_bfb9a.dir/feature_tests.cxx.o -c /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_bfb9a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bfb9a.dir/link.txt --verbose=1
+/usr/bin/g++-8       -rdynamic CMakeFiles/cmTC_bfb9a.dir/feature_tests.cxx.o  -o cmTC_bfb9a 
+make[1]: Leaving directory '/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
@@ -535,17 +535,17 @@ make[1]: Leaving directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeT
 
 
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
-Change Dir: /home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp
+Change Dir: /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_451cb/fast"
-/usr/bin/make -f CMakeFiles/cmTC_451cb.dir/build.make CMakeFiles/cmTC_451cb.dir/build
-make[1]: Entering directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_451cb.dir/feature_tests.cxx.o
-/usr/bin/g++-8    -std=c++11 -o CMakeFiles/cmTC_451cb.dir/feature_tests.cxx.o -c "/home/pi/projects/C'monBoard/build/CMakeFiles/feature_tests.cxx"
-Linking CXX executable cmTC_451cb
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_451cb.dir/link.txt --verbose=1
-/usr/bin/g++-8       -rdynamic CMakeFiles/cmTC_451cb.dir/feature_tests.cxx.o  -o cmTC_451cb 
-make[1]: Leaving directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_b6380/fast"
+/usr/bin/make -f CMakeFiles/cmTC_b6380.dir/build.make CMakeFiles/cmTC_b6380.dir/build
+make[1]: Entering directory '/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_b6380.dir/feature_tests.cxx.o
+/usr/bin/g++-8    -std=c++11 -o CMakeFiles/cmTC_b6380.dir/feature_tests.cxx.o -c /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_b6380
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b6380.dir/link.txt --verbose=1
+/usr/bin/g++-8       -rdynamic CMakeFiles/cmTC_b6380.dir/feature_tests.cxx.o  -o cmTC_b6380 
+make[1]: Leaving directory '/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
@@ -608,17 +608,17 @@ make[1]: Leaving directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeT
 
 
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
-Change Dir: /home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp
+Change Dir: /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_dc55e/fast"
-/usr/bin/make -f CMakeFiles/cmTC_dc55e.dir/build.make CMakeFiles/cmTC_dc55e.dir/build
-make[1]: Entering directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_dc55e.dir/feature_tests.cxx.o
-/usr/bin/g++-8    -std=c++98 -o CMakeFiles/cmTC_dc55e.dir/feature_tests.cxx.o -c "/home/pi/projects/C'monBoard/build/CMakeFiles/feature_tests.cxx"
-Linking CXX executable cmTC_dc55e
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_dc55e.dir/link.txt --verbose=1
-/usr/bin/g++-8       -rdynamic CMakeFiles/cmTC_dc55e.dir/feature_tests.cxx.o  -o cmTC_dc55e 
-make[1]: Leaving directory '/home/pi/projects/C'monBoard/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_3a464/fast"
+/usr/bin/make -f CMakeFiles/cmTC_3a464.dir/build.make CMakeFiles/cmTC_3a464.dir/build
+make[1]: Entering directory '/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_3a464.dir/feature_tests.cxx.o
+/usr/bin/g++-8    -std=c++98 -o CMakeFiles/cmTC_3a464.dir/feature_tests.cxx.o -c /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_3a464
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3a464.dir/link.txt --verbose=1
+/usr/bin/g++-8       -rdynamic CMakeFiles/cmTC_3a464.dir/feature_tests.cxx.o  -o cmTC_3a464 
+make[1]: Leaving directory '/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers

@@ -4,13 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/pi/projects/C'monBoard/src/engine/CFontStorage.cpp" "/home/pi/projects/C'monBoard/build/src/engine/CMakeFiles/BoardEngine.dir/CFontStorage.cpp.o"
-  "/home/pi/projects/C'monBoard/src/engine/CPicturesStorage.cpp" "/home/pi/projects/C'monBoard/build/src/engine/CMakeFiles/BoardEngine.dir/CPicturesStorage.cpp.o"
-  "/home/pi/projects/C'monBoard/src/engine/Engine.cpp" "/home/pi/projects/C'monBoard/build/src/engine/CMakeFiles/BoardEngine.dir/Engine.cpp.o"
-  "/home/pi/projects/C'monBoard/src/engine/Timer.cpp" "/home/pi/projects/C'monBoard/build/src/engine/CMakeFiles/BoardEngine.dir/Timer.cpp.o"
-  "/home/pi/projects/C'monBoard/src/engine/board.cpp" "/home/pi/projects/C'monBoard/build/src/engine/CMakeFiles/BoardEngine.dir/board.cpp.o"
-  "/home/pi/projects/C'monBoard/src/engine/desktop.cpp" "/home/pi/projects/C'monBoard/build/src/engine/CMakeFiles/BoardEngine.dir/desktop.cpp.o"
-  "/home/pi/projects/C'monBoard/src/engine/timetable.cpp" "/home/pi/projects/C'monBoard/build/src/engine/CMakeFiles/BoardEngine.dir/timetable.cpp.o"
+  "/home/pi/Desktop/Projects/SmartRTU/src/engine/CFontStorage.cpp" "/home/pi/Desktop/Projects/SmartRTU/build/src/engine/CMakeFiles/BoardEngine.dir/CFontStorage.cpp.o"
+  "/home/pi/Desktop/Projects/SmartRTU/src/engine/CPicturesStorage.cpp" "/home/pi/Desktop/Projects/SmartRTU/build/src/engine/CMakeFiles/BoardEngine.dir/CPicturesStorage.cpp.o"
+  "/home/pi/Desktop/Projects/SmartRTU/src/engine/Engine.cpp" "/home/pi/Desktop/Projects/SmartRTU/build/src/engine/CMakeFiles/BoardEngine.dir/Engine.cpp.o"
+  "/home/pi/Desktop/Projects/SmartRTU/src/engine/Timer.cpp" "/home/pi/Desktop/Projects/SmartRTU/build/src/engine/CMakeFiles/BoardEngine.dir/Timer.cpp.o"
+  "/home/pi/Desktop/Projects/SmartRTU/src/engine/board.cpp" "/home/pi/Desktop/Projects/SmartRTU/build/src/engine/CMakeFiles/BoardEngine.dir/board.cpp.o"
+  "/home/pi/Desktop/Projects/SmartRTU/src/engine/desktop.cpp" "/home/pi/Desktop/Projects/SmartRTU/build/src/engine/CMakeFiles/BoardEngine.dir/desktop.cpp.o"
+  "/home/pi/Desktop/Projects/SmartRTU/src/engine/timetable.cpp" "/home/pi/Desktop/Projects/SmartRTU/build/src/engine/CMakeFiles/BoardEngine.dir/timetable.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -33,14 +33,14 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/local/include"
   "/opt/vc/lib"
   "."
-  "//home/pi/projects/C'monBoard/src/engine"
+  "//home/pi/Desktop/Projects/SmartRTU/src/engine"
   "../src/engine/lib"
   "../src/engine/lib/TFont"
   "../src/engine/widgets"
   "../src/engine/resources"
   "../src/engine/resources/shadows"
   "../src/engine/resources/weather"
-  "//home/pi/projects/C'monBoard/build/src/engine"
+  "//home/pi/Desktop/Projects/SmartRTU/build/src/engine"
   "/home/pi/projects/SmartRTU"
   "../src/widgets"
   "../src/widgets/../engine"
@@ -53,7 +53,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/pi/projects/C'monBoard/build/src/widgets/CMakeFiles/Boardwidgets.dir/DependInfo.cmake"
+  "/home/pi/Desktop/Projects/SmartRTU/build/src/widgets/CMakeFiles/Boardwidgets.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

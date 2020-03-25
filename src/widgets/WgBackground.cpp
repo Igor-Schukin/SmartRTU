@@ -2,6 +2,8 @@
 #include "CPicturesStorage.h"
 #include "CFontStorage.h"
 
+#include<iostream>
+
 WgBackground::WgBackground(int AposX, int AposY, wgMode Amode)
 {
 	updateTime = 0; // never
@@ -155,4 +157,24 @@ void WgBackground::renderHeader( const char * headerText )
 		rectHeader.left + rectHeader.width / 2, 
 		rectHeader.bottom + ( rectHeader.height - fh ) / 2
 	);
+}
+
+void WgBackground::renderOnlyShadows(){
+
+	if (isShadows) // -- render widget shadows
+	{
+		//std::cout<<"Inside isShadow if\n";
+		// -- -- render top and bot
+		for (int i=0; i<rectWidget.width; i++){
+			PicStorage->WgShadows->t->render( rectWidget.left + i, rectWidget.top - shadowSize.top );
+			PicStorage->WgShadows->b->render( rectWidget.left + i, rectWidget.bottom );
+		}
+		
+		// -- -- render left and right
+		for (int i=0; i<rectWidget.height; i++){
+			PicStorage->WgShadows->l->render( rectWidget.left, rectWidget.top - i );
+			PicStorage->WgShadows->r->render( rectWidget.right - shadowSize.right, rectWidget.top - i );
+		}
+	}
+
 }

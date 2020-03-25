@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
-# Source directory: /home/pi/projects/C'monBoard/src/lib/json
-# Build directory: /home/pi/projects/C'monBoard/build/src/lib/json
+# Source directory: /home/pi/Desktop/Projects/SmartRTU/src/lib/json
+# Build directory: /home/pi/Desktop/Projects/SmartRTU/build/src/lib/json
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.

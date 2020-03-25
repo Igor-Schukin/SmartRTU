@@ -204,6 +204,26 @@ desktop.h
 Timer.h
 ../src/widgets/Timer.h
 
+/home/pi/Desktop/Projects/SmartRTU/src/config.h
+
+/home/pi/Desktop/Projects/SmartRTU/src/main.cpp
+cstdio
+-
+csignal
+-
+Engine.h
+/home/pi/Desktop/Projects/SmartRTU/src/Engine.h
+CPicturesStorage.h
+/home/pi/Desktop/Projects/SmartRTU/src/CPicturesStorage.h
+CFontStorage.h
+/home/pi/Desktop/Projects/SmartRTU/src/CFontStorage.h
+timetable.h
+/home/pi/Desktop/Projects/SmartRTU/src/timetable.h
+desktop.h
+/home/pi/Desktop/Projects/SmartRTU/src/desktop.h
+config.h
+/home/pi/Desktop/Projects/SmartRTU/src/config.h
+
 /home/pi/openvg/fontinfo.h
 
 /home/pi/openvg/shapes.h
@@ -213,26 +233,6 @@ VG/vgu.h
 -
 fontinfo.h
 /home/pi/openvg/fontinfo.h
-
-/home/pi/projects/C'monBoard/src/config.h
-
-/home/pi/projects/C'monBoard/src/main.cpp
-cstdio
--
-csignal
--
-Engine.h
-/home/pi/projects/C'monBoard/src/Engine.h
-CPicturesStorage.h
-/home/pi/projects/C'monBoard/src/CPicturesStorage.h
-CFontStorage.h
-/home/pi/projects/C'monBoard/src/CFontStorage.h
-timetable.h
-/home/pi/projects/C'monBoard/src/timetable.h
-desktop.h
-/home/pi/projects/C'monBoard/src/desktop.h
-config.h
-/home/pi/projects/C'monBoard/src/config.h
 
 /opt/vc/include/KHR/khrplatform.h
 stdint.h

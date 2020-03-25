@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/pi/projects/C'monBoard/src/lib/Dummy.cpp" "/home/pi/projects/C'monBoard/build/src/lib/CMakeFiles/BoardLib.dir/Dummy.cpp.o"
+  "/home/pi/Desktop/Projects/SmartRTU/src/lib/Dummy.cpp" "/home/pi/Desktop/Projects/SmartRTU/build/src/lib/CMakeFiles/BoardLib.dir/Dummy.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -17,9 +17,9 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/opt/vc/include/interface/vcos/pthreads"
   "/home/pi/openvg"
   "/opt/vc/include/VG"
-  "//home/pi/projects/C'monBoard/src/lib/json/TFont"
+  "//home/pi/Desktop/Projects/SmartRTU/src/lib/json/TFont"
   "../src/lib/json"
-  "//home/pi/projects/C'monBoard/src/lib/fonts/TFont"
+  "//home/pi/Desktop/Projects/SmartRTU/src/lib/fonts/TFont"
   "../src/lib/fonts"
   "/widgets"
   "/resources"
@@ -28,16 +28,16 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/include/freetype2"
   "/usr/local/include"
   "/opt/vc/lib"
-  "//home/pi/projects/C'monBoard/build"
-  "//home/pi/projects/C'monBoard/src/lib/fonts"
-  "//home/pi/projects/C'monBoard/build/src/lib/fonts"
+  "//home/pi/Desktop/Projects/SmartRTU/build"
+  "//home/pi/Desktop/Projects/SmartRTU/src/lib/fonts"
+  "//home/pi/Desktop/Projects/SmartRTU/build/src/lib/fonts"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/pi/projects/C'monBoard/build/src/lib/pictures/CMakeFiles/BoardPic.dir/DependInfo.cmake"
-  "/home/pi/projects/C'monBoard/build/src/lib/json/CMakeFiles/json.dir/DependInfo.cmake"
-  "/home/pi/projects/C'monBoard/build/src/lib/fonts/CMakeFiles/TFont.dir/DependInfo.cmake"
+  "/home/pi/Desktop/Projects/SmartRTU/build/src/lib/pictures/CMakeFiles/BoardPic.dir/DependInfo.cmake"
+  "/home/pi/Desktop/Projects/SmartRTU/build/src/lib/json/CMakeFiles/json.dir/DependInfo.cmake"
+  "/home/pi/Desktop/Projects/SmartRTU/build/src/lib/fonts/CMakeFiles/TFont.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

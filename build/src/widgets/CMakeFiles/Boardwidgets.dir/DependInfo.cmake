@@ -4,15 +4,16 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/pi/projects/C'monBoard/src/widgets/IWidget.cpp" "/home/pi/projects/C'monBoard/build/src/widgets/CMakeFiles/Boardwidgets.dir/IWidget.cpp.o"
-  "/home/pi/projects/C'monBoard/src/widgets/WgAds.cpp" "/home/pi/projects/C'monBoard/build/src/widgets/CMakeFiles/Boardwidgets.dir/WgAds.cpp.o"
-  "/home/pi/projects/C'monBoard/src/widgets/WgBackground.cpp" "/home/pi/projects/C'monBoard/build/src/widgets/CMakeFiles/Boardwidgets.dir/WgBackground.cpp.o"
-  "/home/pi/projects/C'monBoard/src/widgets/WgCalendar.cpp" "/home/pi/projects/C'monBoard/build/src/widgets/CMakeFiles/Boardwidgets.dir/WgCalendar.cpp.o"
-  "/home/pi/projects/C'monBoard/src/widgets/WgClock.cpp" "/home/pi/projects/C'monBoard/build/src/widgets/CMakeFiles/Boardwidgets.dir/WgClock.cpp.o"
-  "/home/pi/projects/C'monBoard/src/widgets/WgForecast.cpp" "/home/pi/projects/C'monBoard/build/src/widgets/CMakeFiles/Boardwidgets.dir/WgForecast.cpp.o"
-  "/home/pi/projects/C'monBoard/src/widgets/WgSockets.cpp" "/home/pi/projects/C'monBoard/build/src/widgets/CMakeFiles/Boardwidgets.dir/WgSockets.cpp.o"
-  "/home/pi/projects/C'monBoard/src/widgets/WgTimetable.cpp" "/home/pi/projects/C'monBoard/build/src/widgets/CMakeFiles/Boardwidgets.dir/WgTimetable.cpp.o"
-  "/home/pi/projects/C'monBoard/src/widgets/WgWatchdog.cpp" "/home/pi/projects/C'monBoard/build/src/widgets/CMakeFiles/Boardwidgets.dir/WgWatchdog.cpp.o"
+  "/home/pi/Desktop/Projects/SmartRTU/src/widgets/IWidget.cpp" "/home/pi/Desktop/Projects/SmartRTU/build/src/widgets/CMakeFiles/Boardwidgets.dir/IWidget.cpp.o"
+  "/home/pi/Desktop/Projects/SmartRTU/src/widgets/WgAds.cpp" "/home/pi/Desktop/Projects/SmartRTU/build/src/widgets/CMakeFiles/Boardwidgets.dir/WgAds.cpp.o"
+  "/home/pi/Desktop/Projects/SmartRTU/src/widgets/WgBackground.cpp" "/home/pi/Desktop/Projects/SmartRTU/build/src/widgets/CMakeFiles/Boardwidgets.dir/WgBackground.cpp.o"
+  "/home/pi/Desktop/Projects/SmartRTU/src/widgets/WgCalendar.cpp" "/home/pi/Desktop/Projects/SmartRTU/build/src/widgets/CMakeFiles/Boardwidgets.dir/WgCalendar.cpp.o"
+  "/home/pi/Desktop/Projects/SmartRTU/src/widgets/WgClock.cpp" "/home/pi/Desktop/Projects/SmartRTU/build/src/widgets/CMakeFiles/Boardwidgets.dir/WgClock.cpp.o"
+  "/home/pi/Desktop/Projects/SmartRTU/src/widgets/WgForecast.cpp" "/home/pi/Desktop/Projects/SmartRTU/build/src/widgets/CMakeFiles/Boardwidgets.dir/WgForecast.cpp.o"
+  "/home/pi/Desktop/Projects/SmartRTU/src/widgets/WgHtmlAds.cpp" "/home/pi/Desktop/Projects/SmartRTU/build/src/widgets/CMakeFiles/Boardwidgets.dir/WgHtmlAds.cpp.o"
+  "/home/pi/Desktop/Projects/SmartRTU/src/widgets/WgSockets.cpp" "/home/pi/Desktop/Projects/SmartRTU/build/src/widgets/CMakeFiles/Boardwidgets.dir/WgSockets.cpp.o"
+  "/home/pi/Desktop/Projects/SmartRTU/src/widgets/WgTimetable.cpp" "/home/pi/Desktop/Projects/SmartRTU/build/src/widgets/CMakeFiles/Boardwidgets.dir/WgTimetable.cpp.o"
+  "/home/pi/Desktop/Projects/SmartRTU/src/widgets/WgWatchdog.cpp" "/home/pi/Desktop/Projects/SmartRTU/build/src/widgets/CMakeFiles/Boardwidgets.dir/WgWatchdog.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

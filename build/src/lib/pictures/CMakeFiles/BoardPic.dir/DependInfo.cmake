@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/pi/projects/C'monBoard/src/lib/pictures/Picture.cpp" "/home/pi/projects/C'monBoard/build/src/lib/pictures/CMakeFiles/BoardPic.dir/Picture.cpp.o"
+  "/home/pi/Desktop/Projects/SmartRTU/src/lib/pictures/Picture.cpp" "/home/pi/Desktop/Projects/SmartRTU/build/src/lib/pictures/CMakeFiles/BoardPic.dir/Picture.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

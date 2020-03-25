@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/pi/projects/C'monBoard"
+CMAKE_SOURCE_DIR = /home/pi/Desktop/Projects/SmartRTU
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/pi/projects/C'monBoard/build"
+CMAKE_BINARY_DIR = /home/pi/Desktop/Projects/SmartRTU/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -70,7 +70,7 @@ test/fast: test
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd "/home/pi/projects/C'monBoard/build" && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/pi/projects/C'monBoard/build/CPackSourceConfig.cmake
+	cd /home/pi/Desktop/Projects/SmartRTU/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/pi/Desktop/Projects/SmartRTU/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -103,7 +103,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd "/home/pi/projects/C'monBoard/build" && /usr/bin/cpack --config ./CPackConfig.cmake
+	cd /home/pi/Desktop/Projects/SmartRTU/build && /usr/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -113,14 +113,14 @@ package/fast: package
 
 # The main all target
 all: cmake_check_build_system
-	cd "/home/pi/projects/C'monBoard/build" && $(CMAKE_COMMAND) -E cmake_progress_start "/home/pi/projects/C'monBoard/build/CMakeFiles" "/home/pi/projects/C'monBoard/build/src/engine/CMakeFiles/progress.marks"
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f CMakeFiles/Makefile2 src/engine/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/pi/projects/C'monBoard/build/CMakeFiles" 0
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles /home/pi/Desktop/Projects/SmartRTU/build/src/engine/CMakeFiles/progress.marks
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f CMakeFiles/Makefile2 src/engine/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f CMakeFiles/Makefile2 src/engine/clean
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f CMakeFiles/Makefile2 src/engine/clean
 .PHONY : clean
 
 # The main clean target
@@ -130,22 +130,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f CMakeFiles/Makefile2 src/engine/preinstall
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f CMakeFiles/Makefile2 src/engine/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f CMakeFiles/Makefile2 src/engine/preinstall
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f CMakeFiles/Makefile2 src/engine/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd "/home/pi/projects/C'monBoard/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/engine/CMakeFiles/BoardEngine.dir/rule:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f CMakeFiles/Makefile2 src/engine/CMakeFiles/BoardEngine.dir/rule
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f CMakeFiles/Makefile2 src/engine/CMakeFiles/BoardEngine.dir/rule
 .PHONY : src/engine/CMakeFiles/BoardEngine.dir/rule
 
 # Convenience name for target.
@@ -155,7 +155,7 @@ BoardEngine: src/engine/CMakeFiles/BoardEngine.dir/rule
 
 # fast build rule for target.
 BoardEngine/fast:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/build
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/build
 .PHONY : BoardEngine/fast
 
 CFontStorage.o: CFontStorage.cpp.o
@@ -164,7 +164,7 @@ CFontStorage.o: CFontStorage.cpp.o
 
 # target to build an object file
 CFontStorage.cpp.o:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/CFontStorage.cpp.o
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/CFontStorage.cpp.o
 .PHONY : CFontStorage.cpp.o
 
 CFontStorage.i: CFontStorage.cpp.i
@@ -173,7 +173,7 @@ CFontStorage.i: CFontStorage.cpp.i
 
 # target to preprocess a source file
 CFontStorage.cpp.i:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/CFontStorage.cpp.i
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/CFontStorage.cpp.i
 .PHONY : CFontStorage.cpp.i
 
 CFontStorage.s: CFontStorage.cpp.s
@@ -182,7 +182,7 @@ CFontStorage.s: CFontStorage.cpp.s
 
 # target to generate assembly for a file
 CFontStorage.cpp.s:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/CFontStorage.cpp.s
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/CFontStorage.cpp.s
 .PHONY : CFontStorage.cpp.s
 
 CPicturesStorage.o: CPicturesStorage.cpp.o
@@ -191,7 +191,7 @@ CPicturesStorage.o: CPicturesStorage.cpp.o
 
 # target to build an object file
 CPicturesStorage.cpp.o:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/CPicturesStorage.cpp.o
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/CPicturesStorage.cpp.o
 .PHONY : CPicturesStorage.cpp.o
 
 CPicturesStorage.i: CPicturesStorage.cpp.i
@@ -200,7 +200,7 @@ CPicturesStorage.i: CPicturesStorage.cpp.i
 
 # target to preprocess a source file
 CPicturesStorage.cpp.i:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/CPicturesStorage.cpp.i
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/CPicturesStorage.cpp.i
 .PHONY : CPicturesStorage.cpp.i
 
 CPicturesStorage.s: CPicturesStorage.cpp.s
@@ -209,7 +209,7 @@ CPicturesStorage.s: CPicturesStorage.cpp.s
 
 # target to generate assembly for a file
 CPicturesStorage.cpp.s:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/CPicturesStorage.cpp.s
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/CPicturesStorage.cpp.s
 .PHONY : CPicturesStorage.cpp.s
 
 Engine.o: Engine.cpp.o
@@ -218,7 +218,7 @@ Engine.o: Engine.cpp.o
 
 # target to build an object file
 Engine.cpp.o:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/Engine.cpp.o
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/Engine.cpp.o
 .PHONY : Engine.cpp.o
 
 Engine.i: Engine.cpp.i
@@ -227,7 +227,7 @@ Engine.i: Engine.cpp.i
 
 # target to preprocess a source file
 Engine.cpp.i:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/Engine.cpp.i
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/Engine.cpp.i
 .PHONY : Engine.cpp.i
 
 Engine.s: Engine.cpp.s
@@ -236,7 +236,7 @@ Engine.s: Engine.cpp.s
 
 # target to generate assembly for a file
 Engine.cpp.s:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/Engine.cpp.s
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/Engine.cpp.s
 .PHONY : Engine.cpp.s
 
 Timer.o: Timer.cpp.o
@@ -245,7 +245,7 @@ Timer.o: Timer.cpp.o
 
 # target to build an object file
 Timer.cpp.o:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/Timer.cpp.o
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/Timer.cpp.o
 .PHONY : Timer.cpp.o
 
 Timer.i: Timer.cpp.i
@@ -254,7 +254,7 @@ Timer.i: Timer.cpp.i
 
 # target to preprocess a source file
 Timer.cpp.i:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/Timer.cpp.i
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/Timer.cpp.i
 .PHONY : Timer.cpp.i
 
 Timer.s: Timer.cpp.s
@@ -263,7 +263,7 @@ Timer.s: Timer.cpp.s
 
 # target to generate assembly for a file
 Timer.cpp.s:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/Timer.cpp.s
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/Timer.cpp.s
 .PHONY : Timer.cpp.s
 
 board.o: board.cpp.o
@@ -272,7 +272,7 @@ board.o: board.cpp.o
 
 # target to build an object file
 board.cpp.o:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/board.cpp.o
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/board.cpp.o
 .PHONY : board.cpp.o
 
 board.i: board.cpp.i
@@ -281,7 +281,7 @@ board.i: board.cpp.i
 
 # target to preprocess a source file
 board.cpp.i:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/board.cpp.i
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/board.cpp.i
 .PHONY : board.cpp.i
 
 board.s: board.cpp.s
@@ -290,7 +290,7 @@ board.s: board.cpp.s
 
 # target to generate assembly for a file
 board.cpp.s:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/board.cpp.s
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/board.cpp.s
 .PHONY : board.cpp.s
 
 desktop.o: desktop.cpp.o
@@ -299,7 +299,7 @@ desktop.o: desktop.cpp.o
 
 # target to build an object file
 desktop.cpp.o:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/desktop.cpp.o
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/desktop.cpp.o
 .PHONY : desktop.cpp.o
 
 desktop.i: desktop.cpp.i
@@ -308,7 +308,7 @@ desktop.i: desktop.cpp.i
 
 # target to preprocess a source file
 desktop.cpp.i:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/desktop.cpp.i
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/desktop.cpp.i
 .PHONY : desktop.cpp.i
 
 desktop.s: desktop.cpp.s
@@ -317,7 +317,7 @@ desktop.s: desktop.cpp.s
 
 # target to generate assembly for a file
 desktop.cpp.s:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/desktop.cpp.s
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/desktop.cpp.s
 .PHONY : desktop.cpp.s
 
 timetable.o: timetable.cpp.o
@@ -326,7 +326,7 @@ timetable.o: timetable.cpp.o
 
 # target to build an object file
 timetable.cpp.o:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/timetable.cpp.o
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/timetable.cpp.o
 .PHONY : timetable.cpp.o
 
 timetable.i: timetable.cpp.i
@@ -335,7 +335,7 @@ timetable.i: timetable.cpp.i
 
 # target to preprocess a source file
 timetable.cpp.i:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/timetable.cpp.i
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/timetable.cpp.i
 .PHONY : timetable.cpp.i
 
 timetable.s: timetable.cpp.s
@@ -344,7 +344,7 @@ timetable.s: timetable.cpp.s
 
 # target to generate assembly for a file
 timetable.cpp.s:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/timetable.cpp.s
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/engine/CMakeFiles/BoardEngine.dir/build.make src/engine/CMakeFiles/BoardEngine.dir/timetable.cpp.s
 .PHONY : timetable.cpp.s
 
 # Help Target
@@ -391,6 +391,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd "/home/pi/projects/C'monBoard/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

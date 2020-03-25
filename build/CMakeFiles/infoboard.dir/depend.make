@@ -16,10 +16,10 @@ CMakeFiles/infoboard.dir/src/main.cpp.o: ../src/widgets/../engine/timetable.h
 CMakeFiles/infoboard.dir/src/main.cpp.o: ../src/widgets/IWidget.h
 CMakeFiles/infoboard.dir/src/main.cpp.o: ../src/widgets/WgBackground.h
 CMakeFiles/infoboard.dir/src/main.cpp.o: ../src/widgets/WgClock.h
-CMakeFiles/infoboard.dir/src/main.cpp.o: /home/pi/openvg/fontinfo.h
-CMakeFiles/infoboard.dir/src/main.cpp.o: /home/pi/openvg/shapes.h
 CMakeFiles/infoboard.dir/src/main.cpp.o: ../src/config.h
 CMakeFiles/infoboard.dir/src/main.cpp.o: ../src/main.cpp
+CMakeFiles/infoboard.dir/src/main.cpp.o: /home/pi/openvg/fontinfo.h
+CMakeFiles/infoboard.dir/src/main.cpp.o: /home/pi/openvg/shapes.h
 CMakeFiles/infoboard.dir/src/main.cpp.o: /opt/vc/include/KHR/khrplatform.h
 CMakeFiles/infoboard.dir/src/main.cpp.o: /opt/vc/include/VG/openvg.h
 CMakeFiles/infoboard.dir/src/main.cpp.o: /opt/vc/include/VG/vgplatform.h

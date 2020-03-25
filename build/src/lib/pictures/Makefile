@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/pi/projects/C'monBoard"
+CMAKE_SOURCE_DIR = /home/pi/Desktop/Projects/SmartRTU
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/pi/projects/C'monBoard/build"
+CMAKE_BINARY_DIR = /home/pi/Desktop/Projects/SmartRTU/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -70,7 +70,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd "/home/pi/projects/C'monBoard/build" && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/pi/projects/C'monBoard/build/CPackSourceConfig.cmake
+	cd /home/pi/Desktop/Projects/SmartRTU/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/pi/Desktop/Projects/SmartRTU/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -103,7 +103,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd "/home/pi/projects/C'monBoard/build" && /usr/bin/cpack --config ./CPackConfig.cmake
+	cd /home/pi/Desktop/Projects/SmartRTU/build && /usr/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -113,14 +113,14 @@ package/fast: package
 
 # The main all target
 all: cmake_check_build_system
-	cd "/home/pi/projects/C'monBoard/build" && $(CMAKE_COMMAND) -E cmake_progress_start "/home/pi/projects/C'monBoard/build/CMakeFiles" "/home/pi/projects/C'monBoard/build/src/lib/pictures/CMakeFiles/progress.marks"
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f CMakeFiles/Makefile2 src/lib/pictures/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/pi/projects/C'monBoard/build/CMakeFiles" 0
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles /home/pi/Desktop/Projects/SmartRTU/build/src/lib/pictures/CMakeFiles/progress.marks
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f CMakeFiles/Makefile2 src/lib/pictures/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f CMakeFiles/Makefile2 src/lib/pictures/clean
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f CMakeFiles/Makefile2 src/lib/pictures/clean
 .PHONY : clean
 
 # The main clean target
@@ -130,22 +130,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f CMakeFiles/Makefile2 src/lib/pictures/preinstall
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f CMakeFiles/Makefile2 src/lib/pictures/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f CMakeFiles/Makefile2 src/lib/pictures/preinstall
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f CMakeFiles/Makefile2 src/lib/pictures/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd "/home/pi/projects/C'monBoard/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/lib/pictures/CMakeFiles/BoardPic.dir/rule:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f CMakeFiles/Makefile2 src/lib/pictures/CMakeFiles/BoardPic.dir/rule
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f CMakeFiles/Makefile2 src/lib/pictures/CMakeFiles/BoardPic.dir/rule
 .PHONY : src/lib/pictures/CMakeFiles/BoardPic.dir/rule
 
 # Convenience name for target.
@@ -155,7 +155,7 @@ BoardPic: src/lib/pictures/CMakeFiles/BoardPic.dir/rule
 
 # fast build rule for target.
 BoardPic/fast:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/lib/pictures/CMakeFiles/BoardPic.dir/build.make src/lib/pictures/CMakeFiles/BoardPic.dir/build
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/lib/pictures/CMakeFiles/BoardPic.dir/build.make src/lib/pictures/CMakeFiles/BoardPic.dir/build
 .PHONY : BoardPic/fast
 
 Picture.o: Picture.cpp.o
@@ -164,7 +164,7 @@ Picture.o: Picture.cpp.o
 
 # target to build an object file
 Picture.cpp.o:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/lib/pictures/CMakeFiles/BoardPic.dir/build.make src/lib/pictures/CMakeFiles/BoardPic.dir/Picture.cpp.o
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/lib/pictures/CMakeFiles/BoardPic.dir/build.make src/lib/pictures/CMakeFiles/BoardPic.dir/Picture.cpp.o
 .PHONY : Picture.cpp.o
 
 Picture.i: Picture.cpp.i
@@ -173,7 +173,7 @@ Picture.i: Picture.cpp.i
 
 # target to preprocess a source file
 Picture.cpp.i:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/lib/pictures/CMakeFiles/BoardPic.dir/build.make src/lib/pictures/CMakeFiles/BoardPic.dir/Picture.cpp.i
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/lib/pictures/CMakeFiles/BoardPic.dir/build.make src/lib/pictures/CMakeFiles/BoardPic.dir/Picture.cpp.i
 .PHONY : Picture.cpp.i
 
 Picture.s: Picture.cpp.s
@@ -182,7 +182,7 @@ Picture.s: Picture.cpp.s
 
 # target to generate assembly for a file
 Picture.cpp.s:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/lib/pictures/CMakeFiles/BoardPic.dir/build.make src/lib/pictures/CMakeFiles/BoardPic.dir/Picture.cpp.s
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/lib/pictures/CMakeFiles/BoardPic.dir/build.make src/lib/pictures/CMakeFiles/BoardPic.dir/Picture.cpp.s
 .PHONY : Picture.cpp.s
 
 # Help Target
@@ -211,6 +211,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd "/home/pi/projects/C'monBoard/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

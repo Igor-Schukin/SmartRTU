@@ -4,8 +4,8 @@
 
 
 # Configuration directories and files
-SourceDirectory: /home/pi/projects/C'monBoard
-BuildDirectory: /home/pi/projects/C'monBoard/build
+SourceDirectory: /home/pi/Desktop/Projects/SmartRTU
+BuildDirectory: /home/pi/Desktop/Projects/SmartRTU/build
 
 # Where to place the cost data store
 CostDataFile: 
@@ -36,7 +36,7 @@ ScpCommand: /usr/bin/scp
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "/usr/bin/cmake" "/home/pi/projects/C'monBoard"
+ConfigureCommand: "/usr/bin/cmake" "/home/pi/Desktop/Projects/SmartRTU"
 MakeCommand: /usr/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}" -- -i
 DefaultCTestConfigurationType: Release
 

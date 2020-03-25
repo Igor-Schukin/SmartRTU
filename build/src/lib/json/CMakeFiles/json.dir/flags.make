@@ -6,5 +6,5 @@ CXX_FLAGS = -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -ls
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I"//home/pi/projects/C'monBoard/src/lib/json/TFont" -I"/home/pi/projects/C'monBoard/src/lib/json" 
+CXX_INCLUDES = -I//home/pi/Desktop/Projects/SmartRTU/src/lib/json/TFont -I/home/pi/Desktop/Projects/SmartRTU/src/lib/json 
 

@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/pi/projects/C'monBoard/src/lib/json/json.cpp
+/home/pi/Desktop/Projects/SmartRTU/src/lib/json/json.cpp
 json.h
-/home/pi/projects/C'monBoard/src/lib/json/json.h
+/home/pi/Desktop/Projects/SmartRTU/src/lib/json/json.h
 
-/home/pi/projects/C'monBoard/src/lib/json/json.h
+/home/pi/Desktop/Projects/SmartRTU/src/lib/json/json.h
 algorithm
 -
 array

@@ -6,6 +6,30 @@
 
 #IncludeRegexTransform: 
 
+/home/pi/Desktop/Projects/SmartRTU/src/lib/pictures/Picture.cpp
+Picture.h
+/home/pi/Desktop/Projects/SmartRTU/src/lib/pictures/Picture.h
+
+/home/pi/Desktop/Projects/SmartRTU/src/lib/pictures/Picture.h
+png.h
+/home/pi/Desktop/Projects/SmartRTU/src/lib/pictures/png.h
+VG/openvg.h
+/home/pi/Desktop/Projects/SmartRTU/src/lib/pictures/VG/openvg.h
+VG/vgu.h
+/home/pi/Desktop/Projects/SmartRTU/src/lib/pictures/VG/vgu.h
+fontinfo.h
+/home/pi/Desktop/Projects/SmartRTU/src/lib/pictures/fontinfo.h
+shapes.h
+/home/pi/Desktop/Projects/SmartRTU/src/lib/pictures/shapes.h
+jpeglib.h
+-
+stdlib.h
+-
+string.h
+-
+lib/Pictures.h
+/home/pi/Desktop/Projects/SmartRTU/src/lib/pictures/lib/Pictures.h
+
 /home/pi/openvg/fontinfo.h
 
 /home/pi/openvg/shapes.h
@@ -15,30 +39,6 @@ VG/vgu.h
 -
 fontinfo.h
 /home/pi/openvg/fontinfo.h
-
-/home/pi/projects/C'monBoard/src/lib/pictures/Picture.cpp
-Picture.h
-/home/pi/projects/C'monBoard/src/lib/pictures/Picture.h
-
-/home/pi/projects/C'monBoard/src/lib/pictures/Picture.h
-png.h
-/home/pi/projects/C'monBoard/src/lib/pictures/png.h
-VG/openvg.h
-/home/pi/projects/C'monBoard/src/lib/pictures/VG/openvg.h
-VG/vgu.h
-/home/pi/projects/C'monBoard/src/lib/pictures/VG/vgu.h
-fontinfo.h
-/home/pi/projects/C'monBoard/src/lib/pictures/fontinfo.h
-shapes.h
-/home/pi/projects/C'monBoard/src/lib/pictures/shapes.h
-jpeglib.h
--
-stdlib.h
--
-string.h
--
-lib/Pictures.h
-/home/pi/projects/C'monBoard/src/lib/pictures/lib/Pictures.h
 
 /opt/vc/include/KHR/khrplatform.h
 stdint.h

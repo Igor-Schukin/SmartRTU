@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
-# Source directory: /home/pi/projects/C'monBoard
-# Build directory: /home/pi/projects/C'monBoard/build
+# Source directory: /home/pi/Desktop/Projects/SmartRTU
+# Build directory: /home/pi/Desktop/Projects/SmartRTU/build
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.

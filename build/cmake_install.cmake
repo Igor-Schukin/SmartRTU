@@ -1,4 +1,4 @@
-# Install script for directory: /home/pi/projects/C'monBoard
+# Install script for directory: /home/pi/Desktop/Projects/SmartRTU
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,9 +39,9 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/pi/projects/C'monBoard/build/src/lib/cmake_install.cmake")
-  include("/home/pi/projects/C'monBoard/build/src/widgets/cmake_install.cmake")
-  include("/home/pi/projects/C'monBoard/build/src/engine/cmake_install.cmake")
+  include("/home/pi/Desktop/Projects/SmartRTU/build/src/lib/cmake_install.cmake")
+  include("/home/pi/Desktop/Projects/SmartRTU/build/src/widgets/cmake_install.cmake")
+  include("/home/pi/Desktop/Projects/SmartRTU/build/src/engine/cmake_install.cmake")
 
 endif()
 
@@ -53,5 +53,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/pi/projects/C'monBoard/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/pi/Desktop/Projects/SmartRTU/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

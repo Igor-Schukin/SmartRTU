@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/pi/projects/C'monBoard"
+CMAKE_SOURCE_DIR = /home/pi/Desktop/Projects/SmartRTU
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/pi/projects/C'monBoard/build"
+CMAKE_BINARY_DIR = /home/pi/Desktop/Projects/SmartRTU/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -81,7 +81,7 @@ test/fast: test
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	cd "/home/pi/projects/C'monBoard/build" && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/pi/projects/C'monBoard/build/CPackSourceConfig.cmake
+	cd /home/pi/Desktop/Projects/SmartRTU/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/pi/Desktop/Projects/SmartRTU/build/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -103,7 +103,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	cd "/home/pi/projects/C'monBoard/build" && /usr/bin/cpack --config ./CPackConfig.cmake
+	cd /home/pi/Desktop/Projects/SmartRTU/build && /usr/bin/cpack --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -113,14 +113,14 @@ package/fast: package
 
 # The main all target
 all: cmake_check_build_system
-	cd "/home/pi/projects/C'monBoard/build" && $(CMAKE_COMMAND) -E cmake_progress_start "/home/pi/projects/C'monBoard/build/CMakeFiles" "/home/pi/projects/C'monBoard/build/src/widgets/CMakeFiles/progress.marks"
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f CMakeFiles/Makefile2 src/widgets/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/pi/projects/C'monBoard/build/CMakeFiles" 0
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles /home/pi/Desktop/Projects/SmartRTU/build/src/widgets/CMakeFiles/progress.marks
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f CMakeFiles/Makefile2 src/widgets/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f CMakeFiles/Makefile2 src/widgets/clean
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f CMakeFiles/Makefile2 src/widgets/clean
 .PHONY : clean
 
 # The main clean target
@@ -130,22 +130,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f CMakeFiles/Makefile2 src/widgets/preinstall
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f CMakeFiles/Makefile2 src/widgets/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f CMakeFiles/Makefile2 src/widgets/preinstall
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f CMakeFiles/Makefile2 src/widgets/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd "/home/pi/projects/C'monBoard/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/widgets/CMakeFiles/Boardwidgets.dir/rule:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f CMakeFiles/Makefile2 src/widgets/CMakeFiles/Boardwidgets.dir/rule
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f CMakeFiles/Makefile2 src/widgets/CMakeFiles/Boardwidgets.dir/rule
 .PHONY : src/widgets/CMakeFiles/Boardwidgets.dir/rule
 
 # Convenience name for target.
@@ -155,7 +155,7 @@ Boardwidgets: src/widgets/CMakeFiles/Boardwidgets.dir/rule
 
 # fast build rule for target.
 Boardwidgets/fast:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/build
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/build
 .PHONY : Boardwidgets/fast
 
 IWidget.o: IWidget.cpp.o
@@ -164,7 +164,7 @@ IWidget.o: IWidget.cpp.o
 
 # target to build an object file
 IWidget.cpp.o:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/IWidget.cpp.o
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/IWidget.cpp.o
 .PHONY : IWidget.cpp.o
 
 IWidget.i: IWidget.cpp.i
@@ -173,7 +173,7 @@ IWidget.i: IWidget.cpp.i
 
 # target to preprocess a source file
 IWidget.cpp.i:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/IWidget.cpp.i
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/IWidget.cpp.i
 .PHONY : IWidget.cpp.i
 
 IWidget.s: IWidget.cpp.s
@@ -182,7 +182,7 @@ IWidget.s: IWidget.cpp.s
 
 # target to generate assembly for a file
 IWidget.cpp.s:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/IWidget.cpp.s
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/IWidget.cpp.s
 .PHONY : IWidget.cpp.s
 
 WgAds.o: WgAds.cpp.o
@@ -191,7 +191,7 @@ WgAds.o: WgAds.cpp.o
 
 # target to build an object file
 WgAds.cpp.o:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgAds.cpp.o
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgAds.cpp.o
 .PHONY : WgAds.cpp.o
 
 WgAds.i: WgAds.cpp.i
@@ -200,7 +200,7 @@ WgAds.i: WgAds.cpp.i
 
 # target to preprocess a source file
 WgAds.cpp.i:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgAds.cpp.i
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgAds.cpp.i
 .PHONY : WgAds.cpp.i
 
 WgAds.s: WgAds.cpp.s
@@ -209,7 +209,7 @@ WgAds.s: WgAds.cpp.s
 
 # target to generate assembly for a file
 WgAds.cpp.s:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgAds.cpp.s
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgAds.cpp.s
 .PHONY : WgAds.cpp.s
 
 WgBackground.o: WgBackground.cpp.o
@@ -218,7 +218,7 @@ WgBackground.o: WgBackground.cpp.o
 
 # target to build an object file
 WgBackground.cpp.o:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgBackground.cpp.o
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgBackground.cpp.o
 .PHONY : WgBackground.cpp.o
 
 WgBackground.i: WgBackground.cpp.i
@@ -227,7 +227,7 @@ WgBackground.i: WgBackground.cpp.i
 
 # target to preprocess a source file
 WgBackground.cpp.i:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgBackground.cpp.i
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgBackground.cpp.i
 .PHONY : WgBackground.cpp.i
 
 WgBackground.s: WgBackground.cpp.s
@@ -236,7 +236,7 @@ WgBackground.s: WgBackground.cpp.s
 
 # target to generate assembly for a file
 WgBackground.cpp.s:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgBackground.cpp.s
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgBackground.cpp.s
 .PHONY : WgBackground.cpp.s
 
 WgCalendar.o: WgCalendar.cpp.o
@@ -245,7 +245,7 @@ WgCalendar.o: WgCalendar.cpp.o
 
 # target to build an object file
 WgCalendar.cpp.o:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgCalendar.cpp.o
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgCalendar.cpp.o
 .PHONY : WgCalendar.cpp.o
 
 WgCalendar.i: WgCalendar.cpp.i
@@ -254,7 +254,7 @@ WgCalendar.i: WgCalendar.cpp.i
 
 # target to preprocess a source file
 WgCalendar.cpp.i:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgCalendar.cpp.i
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgCalendar.cpp.i
 .PHONY : WgCalendar.cpp.i
 
 WgCalendar.s: WgCalendar.cpp.s
@@ -263,7 +263,7 @@ WgCalendar.s: WgCalendar.cpp.s
 
 # target to generate assembly for a file
 WgCalendar.cpp.s:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgCalendar.cpp.s
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgCalendar.cpp.s
 .PHONY : WgCalendar.cpp.s
 
 WgClock.o: WgClock.cpp.o
@@ -272,7 +272,7 @@ WgClock.o: WgClock.cpp.o
 
 # target to build an object file
 WgClock.cpp.o:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgClock.cpp.o
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgClock.cpp.o
 .PHONY : WgClock.cpp.o
 
 WgClock.i: WgClock.cpp.i
@@ -281,7 +281,7 @@ WgClock.i: WgClock.cpp.i
 
 # target to preprocess a source file
 WgClock.cpp.i:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgClock.cpp.i
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgClock.cpp.i
 .PHONY : WgClock.cpp.i
 
 WgClock.s: WgClock.cpp.s
@@ -290,7 +290,7 @@ WgClock.s: WgClock.cpp.s
 
 # target to generate assembly for a file
 WgClock.cpp.s:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgClock.cpp.s
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgClock.cpp.s
 .PHONY : WgClock.cpp.s
 
 WgForecast.o: WgForecast.cpp.o
@@ -299,7 +299,7 @@ WgForecast.o: WgForecast.cpp.o
 
 # target to build an object file
 WgForecast.cpp.o:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgForecast.cpp.o
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgForecast.cpp.o
 .PHONY : WgForecast.cpp.o
 
 WgForecast.i: WgForecast.cpp.i
@@ -308,7 +308,7 @@ WgForecast.i: WgForecast.cpp.i
 
 # target to preprocess a source file
 WgForecast.cpp.i:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgForecast.cpp.i
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgForecast.cpp.i
 .PHONY : WgForecast.cpp.i
 
 WgForecast.s: WgForecast.cpp.s
@@ -317,8 +317,35 @@ WgForecast.s: WgForecast.cpp.s
 
 # target to generate assembly for a file
 WgForecast.cpp.s:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgForecast.cpp.s
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgForecast.cpp.s
 .PHONY : WgForecast.cpp.s
+
+WgHtmlAds.o: WgHtmlAds.cpp.o
+
+.PHONY : WgHtmlAds.o
+
+# target to build an object file
+WgHtmlAds.cpp.o:
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgHtmlAds.cpp.o
+.PHONY : WgHtmlAds.cpp.o
+
+WgHtmlAds.i: WgHtmlAds.cpp.i
+
+.PHONY : WgHtmlAds.i
+
+# target to preprocess a source file
+WgHtmlAds.cpp.i:
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgHtmlAds.cpp.i
+.PHONY : WgHtmlAds.cpp.i
+
+WgHtmlAds.s: WgHtmlAds.cpp.s
+
+.PHONY : WgHtmlAds.s
+
+# target to generate assembly for a file
+WgHtmlAds.cpp.s:
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgHtmlAds.cpp.s
+.PHONY : WgHtmlAds.cpp.s
 
 WgSockets.o: WgSockets.cpp.o
 
@@ -326,7 +353,7 @@ WgSockets.o: WgSockets.cpp.o
 
 # target to build an object file
 WgSockets.cpp.o:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgSockets.cpp.o
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgSockets.cpp.o
 .PHONY : WgSockets.cpp.o
 
 WgSockets.i: WgSockets.cpp.i
@@ -335,7 +362,7 @@ WgSockets.i: WgSockets.cpp.i
 
 # target to preprocess a source file
 WgSockets.cpp.i:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgSockets.cpp.i
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgSockets.cpp.i
 .PHONY : WgSockets.cpp.i
 
 WgSockets.s: WgSockets.cpp.s
@@ -344,7 +371,7 @@ WgSockets.s: WgSockets.cpp.s
 
 # target to generate assembly for a file
 WgSockets.cpp.s:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgSockets.cpp.s
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgSockets.cpp.s
 .PHONY : WgSockets.cpp.s
 
 WgTimetable.o: WgTimetable.cpp.o
@@ -353,7 +380,7 @@ WgTimetable.o: WgTimetable.cpp.o
 
 # target to build an object file
 WgTimetable.cpp.o:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgTimetable.cpp.o
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgTimetable.cpp.o
 .PHONY : WgTimetable.cpp.o
 
 WgTimetable.i: WgTimetable.cpp.i
@@ -362,7 +389,7 @@ WgTimetable.i: WgTimetable.cpp.i
 
 # target to preprocess a source file
 WgTimetable.cpp.i:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgTimetable.cpp.i
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgTimetable.cpp.i
 .PHONY : WgTimetable.cpp.i
 
 WgTimetable.s: WgTimetable.cpp.s
@@ -371,7 +398,7 @@ WgTimetable.s: WgTimetable.cpp.s
 
 # target to generate assembly for a file
 WgTimetable.cpp.s:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgTimetable.cpp.s
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgTimetable.cpp.s
 .PHONY : WgTimetable.cpp.s
 
 WgWatchdog.o: WgWatchdog.cpp.o
@@ -380,7 +407,7 @@ WgWatchdog.o: WgWatchdog.cpp.o
 
 # target to build an object file
 WgWatchdog.cpp.o:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgWatchdog.cpp.o
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgWatchdog.cpp.o
 .PHONY : WgWatchdog.cpp.o
 
 WgWatchdog.i: WgWatchdog.cpp.i
@@ -389,7 +416,7 @@ WgWatchdog.i: WgWatchdog.cpp.i
 
 # target to preprocess a source file
 WgWatchdog.cpp.i:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgWatchdog.cpp.i
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgWatchdog.cpp.i
 .PHONY : WgWatchdog.cpp.i
 
 WgWatchdog.s: WgWatchdog.cpp.s
@@ -398,7 +425,7 @@ WgWatchdog.s: WgWatchdog.cpp.s
 
 # target to generate assembly for a file
 WgWatchdog.cpp.s:
-	cd "/home/pi/projects/C'monBoard/build" && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgWatchdog.cpp.s
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(MAKE) -f src/widgets/CMakeFiles/Boardwidgets.dir/build.make src/widgets/CMakeFiles/Boardwidgets.dir/WgWatchdog.cpp.s
 .PHONY : WgWatchdog.cpp.s
 
 # Help Target
@@ -431,6 +458,9 @@ help:
 	@echo "... WgForecast.o"
 	@echo "... WgForecast.i"
 	@echo "... WgForecast.s"
+	@echo "... WgHtmlAds.o"
+	@echo "... WgHtmlAds.i"
+	@echo "... WgHtmlAds.s"
 	@echo "... WgSockets.o"
 	@echo "... WgSockets.i"
 	@echo "... WgSockets.s"
@@ -451,6 +481,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd "/home/pi/projects/C'monBoard/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

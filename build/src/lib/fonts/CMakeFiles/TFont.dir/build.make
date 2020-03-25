@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/pi/projects/C'monBoard"
+CMAKE_SOURCE_DIR = /home/pi/Desktop/Projects/SmartRTU
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/pi/projects/C'monBoard/build"
+CMAKE_BINARY_DIR = /home/pi/Desktop/Projects/SmartRTU/build
 
 # Include any dependencies generated for this target.
 include src/lib/fonts/CMakeFiles/TFont.dir/depend.make
@@ -59,29 +59,29 @@ include src/lib/fonts/CMakeFiles/TFont.dir/flags.make
 
 src/lib/fonts/CMakeFiles/TFont.dir/ftf.cpp.o: src/lib/fonts/CMakeFiles/TFont.dir/flags.make
 src/lib/fonts/CMakeFiles/TFont.dir/ftf.cpp.o: ../src/lib/fonts/ftf.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/pi/projects/C'monBoard/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/lib/fonts/CMakeFiles/TFont.dir/ftf.cpp.o"
-	cd "/home/pi/projects/C'monBoard/build/src/lib/fonts" && /usr/bin/g++-8  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TFont.dir/ftf.cpp.o -c "/home/pi/projects/C'monBoard/src/lib/fonts/ftf.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/lib/fonts/CMakeFiles/TFont.dir/ftf.cpp.o"
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/lib/fonts && /usr/bin/g++-8  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TFont.dir/ftf.cpp.o -c /home/pi/Desktop/Projects/SmartRTU/src/lib/fonts/ftf.cpp
 
 src/lib/fonts/CMakeFiles/TFont.dir/ftf.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TFont.dir/ftf.cpp.i"
-	cd "/home/pi/projects/C'monBoard/build/src/lib/fonts" && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/pi/projects/C'monBoard/src/lib/fonts/ftf.cpp" > CMakeFiles/TFont.dir/ftf.cpp.i
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/lib/fonts && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Desktop/Projects/SmartRTU/src/lib/fonts/ftf.cpp > CMakeFiles/TFont.dir/ftf.cpp.i
 
 src/lib/fonts/CMakeFiles/TFont.dir/ftf.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TFont.dir/ftf.cpp.s"
-	cd "/home/pi/projects/C'monBoard/build/src/lib/fonts" && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/pi/projects/C'monBoard/src/lib/fonts/ftf.cpp" -o CMakeFiles/TFont.dir/ftf.cpp.s
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/lib/fonts && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Desktop/Projects/SmartRTU/src/lib/fonts/ftf.cpp -o CMakeFiles/TFont.dir/ftf.cpp.s
 
 src/lib/fonts/CMakeFiles/TFont.dir/TFont.cpp.o: src/lib/fonts/CMakeFiles/TFont.dir/flags.make
 src/lib/fonts/CMakeFiles/TFont.dir/TFont.cpp.o: ../src/lib/fonts/TFont.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/pi/projects/C'monBoard/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/lib/fonts/CMakeFiles/TFont.dir/TFont.cpp.o"
-	cd "/home/pi/projects/C'monBoard/build/src/lib/fonts" && /usr/bin/g++-8  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TFont.dir/TFont.cpp.o -c "/home/pi/projects/C'monBoard/src/lib/fonts/TFont.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/lib/fonts/CMakeFiles/TFont.dir/TFont.cpp.o"
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/lib/fonts && /usr/bin/g++-8  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TFont.dir/TFont.cpp.o -c /home/pi/Desktop/Projects/SmartRTU/src/lib/fonts/TFont.cpp
 
 src/lib/fonts/CMakeFiles/TFont.dir/TFont.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TFont.dir/TFont.cpp.i"
-	cd "/home/pi/projects/C'monBoard/build/src/lib/fonts" && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/pi/projects/C'monBoard/src/lib/fonts/TFont.cpp" > CMakeFiles/TFont.dir/TFont.cpp.i
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/lib/fonts && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Desktop/Projects/SmartRTU/src/lib/fonts/TFont.cpp > CMakeFiles/TFont.dir/TFont.cpp.i
 
 src/lib/fonts/CMakeFiles/TFont.dir/TFont.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TFont.dir/TFont.cpp.s"
-	cd "/home/pi/projects/C'monBoard/build/src/lib/fonts" && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/pi/projects/C'monBoard/src/lib/fonts/TFont.cpp" -o CMakeFiles/TFont.dir/TFont.cpp.s
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/lib/fonts && /usr/bin/g++-8 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Desktop/Projects/SmartRTU/src/lib/fonts/TFont.cpp -o CMakeFiles/TFont.dir/TFont.cpp.s
 
 # Object files for target TFont
 TFont_OBJECTS = \
@@ -95,9 +95,9 @@ src/lib/fonts/libTFont.a: src/lib/fonts/CMakeFiles/TFont.dir/ftf.cpp.o
 src/lib/fonts/libTFont.a: src/lib/fonts/CMakeFiles/TFont.dir/TFont.cpp.o
 src/lib/fonts/libTFont.a: src/lib/fonts/CMakeFiles/TFont.dir/build.make
 src/lib/fonts/libTFont.a: src/lib/fonts/CMakeFiles/TFont.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/pi/projects/C'monBoard/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libTFont.a"
-	cd "/home/pi/projects/C'monBoard/build/src/lib/fonts" && $(CMAKE_COMMAND) -P CMakeFiles/TFont.dir/cmake_clean_target.cmake
-	cd "/home/pi/projects/C'monBoard/build/src/lib/fonts" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/TFont.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/Desktop/Projects/SmartRTU/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libTFont.a"
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/lib/fonts && $(CMAKE_COMMAND) -P CMakeFiles/TFont.dir/cmake_clean_target.cmake
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/lib/fonts && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/TFont.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 src/lib/fonts/CMakeFiles/TFont.dir/build: src/lib/fonts/libTFont.a
@@ -105,10 +105,10 @@ src/lib/fonts/CMakeFiles/TFont.dir/build: src/lib/fonts/libTFont.a
 .PHONY : src/lib/fonts/CMakeFiles/TFont.dir/build
 
 src/lib/fonts/CMakeFiles/TFont.dir/clean:
-	cd "/home/pi/projects/C'monBoard/build/src/lib/fonts" && $(CMAKE_COMMAND) -P CMakeFiles/TFont.dir/cmake_clean.cmake
+	cd /home/pi/Desktop/Projects/SmartRTU/build/src/lib/fonts && $(CMAKE_COMMAND) -P CMakeFiles/TFont.dir/cmake_clean.cmake
 .PHONY : src/lib/fonts/CMakeFiles/TFont.dir/clean
 
 src/lib/fonts/CMakeFiles/TFont.dir/depend:
-	cd "/home/pi/projects/C'monBoard/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/pi/projects/C'monBoard" "/home/pi/projects/C'monBoard/src/lib/fonts" "/home/pi/projects/C'monBoard/build" "/home/pi/projects/C'monBoard/build/src/lib/fonts" "/home/pi/projects/C'monBoard/build/src/lib/fonts/CMakeFiles/TFont.dir/DependInfo.cmake" --color=$(COLOR)
+	cd /home/pi/Desktop/Projects/SmartRTU/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/Desktop/Projects/SmartRTU /home/pi/Desktop/Projects/SmartRTU/src/lib/fonts /home/pi/Desktop/Projects/SmartRTU/build /home/pi/Desktop/Projects/SmartRTU/build/src/lib/fonts /home/pi/Desktop/Projects/SmartRTU/build/src/lib/fonts/CMakeFiles/TFont.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : src/lib/fonts/CMakeFiles/TFont.dir/depend
 
