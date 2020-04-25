@@ -12,24 +12,15 @@ set(SRC IWidget.cpp
     WgWatchdog.cpp
     )
 #set(INC "*.h")
-add_library(Boardwidgets ${SRC} )
+add_library(BoardWidgets ${SRC} )
 
-target_include_directories(Boardwidgets  PUBLIC ${CMAKE_CURRENT_LIST_DIR}
-                                        ../engine
-                                        ../lib/fonts
-                                            ../lib/json
-                                            ../lib/pictures
-                                            ../lib
-                                            ../../src
-                                          /opt/vc/include/VG
-                                          /opt/vc/include 
-                                        /opt/vc/include/VG
-                                        /opt/vc/include/interface/vmcs_host/linux 
-                                        /opt/vc/include/interface/vcos/pthreads 
-                                        /home/pi/openvg 
-                                        /usr/local/include/freetype2 
-                                        /usr/include/freetype2
-                                        /usr/local/include 
-                                        /usr/include
-                                        /opt/vc/lib
+target_include_directories(BoardWidgets  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
+					../engine					
+					../storage
+					../lib/fonts
+                                        ../../src
+                                        ../lib/pictures
+					../lib/json
+					/opt/vc/include
+					/usr/include/freetype2 
                                           )

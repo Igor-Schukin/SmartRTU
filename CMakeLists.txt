@@ -1,3 +1,4 @@
+
 cmake_minimum_required(VERSION 3.0.0)
 project(Smart_RTU VERSION 0.1.0)
 
@@ -5,6 +6,9 @@ project(Smart_RTU VERSION 0.1.0)
 set (CMAKE_CXX_STANDARD 11)
 #will work with 11 and above c++ standart otherwise sends error into console
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+#uncoment this to get reliese build by defoult it is in debug mode
+#set(CMAKE_BUILD_TYPE Release)
 
 #cmake debging stuff (something about testing)
 include(CTest)
@@ -14,14 +18,15 @@ enable_testing()
 set(OBJ /home/pi/openvg/libshapes.o /home/pi/openvg/oglinit.o)
 
 #for debug purpose added CXX flags
-set(CMAKE_CXX_FLAGS "-g -Wall")
+set(CMAKE_CXX_FLAGS "-g -Wall -Werxtra")
 
 #expand CXX flags with lib flags
 set(CMAKE_CXX_FLAGS "-L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl")
 
-#ADD SUBDIRS TO PROJECT
+#ADD SUBDIRS TO PROJECT 
 add_subdirectory(src/lib)
 add_subdirectory(src/widgets)
+add_subdirectory(src/storage)
 add_subdirectory(src/engine)
 
 #change EXE OUTPUT DIR 
@@ -32,24 +37,17 @@ add_executable(infoboard ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp )
 
 
 #link external .o and libs TO EXE
-target_link_libraries(infoboard ${OBJ} BoardLib Boardwidgets BoardEngine)
+#maybe '_' can rise an error need to check
+target_link_libraries(infoboard ${OBJ}  BoardLib 
+					BoardStorage 
+					BoardWidgets 
+					BoardEngine
+)
 
 #where compiler to search PATHS
-target_include_directories(infoboard PUBLIC /opt/vc/include 
-                                            /opt/vc/include/interface/vmcs_host/linux 
-                                            /opt/vc/include/interface/vcos/pthreads 
-                                            /home/pi/openvg
-                                            /res 
-                                            /resources 
-                                            /lib 
-                                            /usr/local/include/freetype2 
-                                            /usr/include/freetype2
-                                            /usr/local/include 
-                                            /usr/include
-                                            /opt/vc/lib
-                                            /${CMAKE_BINARY_DIR} 
-                                            /${CMAKE_CURRENT_SOURCE_DIR} 
-                                            /${CMAKE_CURRENT_BINARY_DIR}
+target_include_directories(infoboard PUBLIC  /src/engine
+	 				     /src/storage
+					     /src
                                             )
 
 #cmake stuff                                            

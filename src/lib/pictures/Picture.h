@@ -1,6 +1,7 @@
 #pragma once
 #include "png.h"
-extern "C"{
+extern "C"
+{
 #include "VG/openvg.h"
 #include "VG/vgu.h"
 #include "fontinfo.h"
@@ -70,32 +71,35 @@ extern "C"{
             delete image2;
 */
 
-enum PictureType { picJPG, picPNG, picUnknown };
+enum PictureType
+{
+    picJPG,
+    picPNG,
+    picUnknown
+};
 
 class Picture
 {
 private:
-
     int width, height;
     float scaleX, scaleY;
     float shearX, shearY;
     float rotate;
     VGImage finImg;
-    
-    PictureType GetPictureType(const char * Path);
-    
+
+    PictureType GetPictureType(const char *Path);
+
     VGImage createImageFromPNG(const char *path);
-	void createImageFromJPG(const char *path);
+    void createImageFromJPG(const char *path);
     VGImage createImageFromJpeg(const char *filename);
 
 public:
-
     Picture(const char *path);
     ~Picture();
 
     void render(int x, int y);
     void render(int x, int y, float scaleX, float scaleY, float shearX, float shearY, float rotate);
-//	
+    //
 
     int getWidth();
     int getHeight();
@@ -108,9 +112,7 @@ public:
     int getColor(float r, float g, float b, float alpha);
     int getColor(int r, int g, int b, int alpha);
     float getRed(int color);
-	float getGreen(int color);
-	float getBlue(int color);
-	float getAlpha(int color);
-
+    float getGreen(int color);
+    float getBlue(int color);
+    float getAlpha(int color);
 };
-

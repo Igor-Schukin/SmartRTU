@@ -10,14 +10,16 @@
 
 typedef unsigned long long int LongTimeMs;
 
-class Timer {
+class Timer
+{
 private:
 	timespec tmStart;
 	LongTimeMs TimeToMs(const timespec aTime);
+
 public:
 	LongTimeMs getTime();
 	Timer();
 };
 
 extern Timer timer;
-extern const char * strNow();
+extern const char *strNow();

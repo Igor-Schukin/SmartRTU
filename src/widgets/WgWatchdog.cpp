@@ -1,17 +1,17 @@
 #include "WgWatchdog.h"
 
-WgWatchdog::WgWatchdog() 
+WgWatchdog::WgWatchdog()
 {
-    printf( "%s\tWgWatchdog widget object is created\n", strNow() );
+    printf("%s\tWgWatchdog widget object is created\n", strNow());
 }
 
-WgWatchdog::~WgWatchdog() 
+WgWatchdog::~WgWatchdog()
 {
-    printf( "%s\tWgWatchdog widget object is deleted\n", strNow() );
+    printf("%s\tWgWatchdog widget object is deleted\n", strNow());
 }
 
 bool WgWatchdog::update()
 {
-    system( fmt( "rm -rf %s 2> /dev/null", WATCHDOG_FILES_NAME ) );
+    system(fmt("rm -rf %s 2> /dev/null", WATCHDOG_FILES_NAME));
     return false;
 }

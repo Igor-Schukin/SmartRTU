@@ -10,36 +10,38 @@
 
 #include "config.h"
 
-
-
 void termSignalHandler(int signal)
 {
-  if (engine) engine->terminate();
+	if (engine)
+		engine->terminate();
 }
 
 int main()
 {
 	std::signal(SIGTERM, termSignalHandler);
 
-	try {
-		printf( "%s\t***** INFOBORAD engine is started\n", strNow() );
+	try
+	{
+		printf("%s\t***** INFOBORAD engine is started\n", strNow());
 		printf("crap");
 
-		try {
+		try
+		{
 			timetable = new Timetable;
 		}
-		catch (...) { 
-			timetable = NULL; 
+		catch (...)
+		{
+			timetable = NULL;
 		}
 
 		int width, height;
 		init(&width, &height);
 
-		desktop = new Desktop( width, height );
+		desktop = new Desktop(width, height);
 
 		PicStorage = new CPicturesStorage();
 		FontStorage = new CFontStorage();
-		FontStorage->setFont((char*)"arialBold", FONT_PATH("ArialBold.ttf") );
+		FontStorage->setFont((char *)"arialBold", FONT_PATH("ArialBold.ttf"));
 
 		engine = new Engine;
 		engine->start();
@@ -50,10 +52,11 @@ int main()
 
 		finish();
 
-		printf( "%s\t***** INFOBORAD engine is finished\n", strNow() );
+		printf("%s\t***** INFOBORAD engine is finished\n", strNow());
 	}
-	catch (...) {
-		printf( "%s\t~~~~~ INFOBORAD engine is crashed\n", strNow() );
+	catch (...)
+	{
+		printf("%s\t~~~~~ INFOBORAD engine is crashed\n", strNow());
 		return 1; // need restart
 	}
 	return 0;

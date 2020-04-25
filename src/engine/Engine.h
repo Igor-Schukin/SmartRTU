@@ -1,4 +1,4 @@
-#pragma once 
+#pragma once
 
 //  basic
 #include <stdio.h>
@@ -21,19 +21,19 @@
 class Engine
 {
 private:
-	int frameCap; 
+	int frameCap;
 	bool isRunning;
 	bool terminated;
-	
+
 	Board *board;
 	IWidget *w;
-	
+
 	void run();
 	void update();
 	void render(bool All);
 	void showFrames();
 	//int kbhit(void);
-	
+
 public:
 	Engine();
 	~Engine();
@@ -42,5 +42,5 @@ public:
 	void forcedUpdate();
 };
 
-extern Engine * engine;
-extern const char * fmt (const char * f, const char * s1, const char * s2 = NULL, const char * s3 = NULL );
+extern Engine *engine;
+extern const char *fmt(const char *f, const char *s1, const char *s2 = NULL, const char *s3 = NULL);

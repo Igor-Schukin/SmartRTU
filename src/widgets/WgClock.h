@@ -27,16 +27,15 @@ class WgClock : public WgBackground
 private:
 	int hour, min, sec; // last update time
 	char strTime[10], strLect[20], strInfo[100], strTimer[15];
-	
+
 	void renderMode1();
 	void renderMode2();
 	void renderMode3();
-	
+
 public:
 	WgClock(int AposX, int AposY, wgMode Amode);
 	~WgClock();
-	
+
 	bool update();
 	void render();
 };
-

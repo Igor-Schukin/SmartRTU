@@ -10,5 +10,5 @@ add_subdirectory(pictures)
 #create library called BoardLib
 add_library(BoardLib Dummy.cpp)
 
-#
+#linking BoardPic.lib + json.lib + TFont.lib = Public BoardPic.lib
 target_link_libraries(BoardLib PUBLIC BoardPic json TFont)

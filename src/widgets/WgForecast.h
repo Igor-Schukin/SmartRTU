@@ -53,7 +53,7 @@
 */
 
 //include "curl/curl.h"
-#include<curl/curl.h>
+#include <curl/curl.h>
 
 // git: github.com/curl/curl
 // Some basic information at the russian: http://www.programmersforum.ru/showthread.php?t=60338
@@ -67,10 +67,10 @@
 
 //--CURLOPT_URL - очень важная опция, в параметре указывается строка - URL,
 //	с которым собираемся взаимодействовать. В строке параметра можно указать небходимый протокол,
-//	в виде стандартного префикса "http://" или "ftp://". 
+//	в виде стандартного префикса "http://" или "ftp://".
 
 //--CURLOPT_WRITEFUNCTION - данная опция позволяет задавать,
-//	в качестве параметра, указатель на функцию обратного вызова. 
+//	в качестве параметра, указатель на функцию обратного вызова.
 //	Эта функция вызывается библиотекой, каждый раз, когда принимаются какие либо данные,
 //	требующие дальнейшего использования или сохранения.
 
@@ -79,7 +79,6 @@
 
 //--void curl_easy_cleanup(CURL * handle) - Это функция должна вызываться самой последней
 //	и вызываться должна обязательно. Она выполняет завершение текущей сессии.
-
 
 #include "json.h"
 using json = nlohmann::json;
@@ -90,26 +89,26 @@ using namespace std;
 class WgForecast : public WgBackground
 {
 private:
-	Picture * weatherIcon;
+	Picture *weatherIcon;
 	std::string weatherIconName;
-	
-	char tempDegree[6]; //temperature 
+
+	char tempDegree[6]; //temperature
 	char windSpeed[10]; //wind speed
-	int windDegree; //wind degree
-	
+	int windDegree;		//wind degree
+
 	bool isConnection = true;
-		
+
 	static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp);
-	void getWeatherFromWeb(const char * site, json & weatherData);	
-		
+	void getWeatherFromWeb(const char *site, json &weatherData);
+
 	void renderMode1();
 	void renderMode2();
 	void renderMode3(); // need debugging
-	
+
 public:
 	WgForecast(int AposX, int AposY, wgMode Amode);
 	~WgForecast();
-	
+
 	bool update();
 	void render();
 };

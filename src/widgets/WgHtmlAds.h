@@ -17,15 +17,15 @@
 #include "CFontStorage.h"
 #include "config.h"
 
-class WgHtmlAds:public WgBackground
+class WgHtmlAds : public WgBackground
 {
 private:
     Picture *HtmlPic;
+
 public:
-    WgHtmlAds(int Ax,int Ay,wgMode Amode);
+    WgHtmlAds(int Ax, int Ay, wgMode Amode);
     ~WgHtmlAds();
     void render();
 };
-
 
 #endif /*WGHTMLADS_H*/

@@ -21,7 +21,7 @@
 #include "config.h"
 using namespace std;
 
-// #define ADS_FILES_PATH "./widgets/text/" 
+// #define ADS_FILES_PATH "./widgets/text/"
 #define ADS_FILE_NAME "text.txt"
 #define FLAG_FILE_NAME "flag"
 
@@ -32,20 +32,19 @@ private:
 	char **adsPeace;
 	int lineCount;
 	time_t fileTime;
-	
-	Picture *HtmlPic;
-	
 
-	int Separate( char * Src, char ** Dst = NULL );
+	Picture *HtmlPic;
+
+	int Separate(char *Src, char **Dst = NULL);
 	time_t getFileTime();
 	bool renewFlag();
 	bool needRenew();
-	bool readFile( char * & text );
+	bool readFile(char *&text);
 
 public:
 	WgAds(int AposX, int AposY, wgMode Amode);
 	~WgAds();
-	
+
 	bool update();
 	void render();
 };

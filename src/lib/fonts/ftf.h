@@ -16,21 +16,21 @@ public:
 	float y;
 };
 
-Vector2	operator+(const Vector2& a, const Vector2& b);
-Vector2	operator*(const Vector2& a, float b);
-float convFTFixed( const FT_Pos &x );
-Vector2 convFTVector( const FT_Vector &v );
-bool isOn( char b );
+Vector2 operator+(const Vector2 &a, const Vector2 &b);
+Vector2 operator*(const Vector2 &a, float b);
+float convFTFixed(const FT_Pos &x);
+Vector2 convFTVector(const FT_Vector &v);
+bool isOn(char b);
 
 bool LoadFTFont(const char *FileName,
-		int *&Pt,
-		int *&PtInd,
-		unsigned char *&Ins,
-		int *&InsInd,
-		int *&InsCnt,
-		int *&Adv,
-		short Map[],
-		int &Count,
-		int &FontHeight,
-		int &DescenderHeight);
-
+				int *&Pt,
+				int *&PtInd,
+				unsigned char *&Ins,
+				int *&InsInd,
+				int *&InsCnt,
+				int *&Adv,
+				short Map[],
+				int &Count,
+				int &FontHeight,
+				int &DescenderHeight
+				);
