@@ -381,6 +381,7 @@ Picture::Picture(const char *path)
 
 Picture::~Picture()
 {
+  // printf("Destroyed pic \n");
     if (finImg != VG_INVALID_HANDLE)
         vgDestroyImage(finImg);
 }

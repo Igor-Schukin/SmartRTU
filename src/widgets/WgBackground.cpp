@@ -124,6 +124,7 @@ void WgBackground::render()
 	// -- render widget background blocks
 
 	setFillColor(clWhite);
+	//setFillColor(clOrange);
 	Rect(rectClient.left, rectClient.bottom, rectClient.width, rectClient.height);
 	setFillColor(color);
 	Rect(rectHeader.left, rectHeader.bottom, rectHeader.width, rectHeader.height);

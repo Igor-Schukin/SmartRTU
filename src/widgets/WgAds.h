@@ -33,7 +33,6 @@ private:
 	int lineCount;
 	time_t fileTime;
 
-	Picture *HtmlPic;
 
 	int Separate(char *Src, char **Dst = NULL);
 	time_t getFileTime();

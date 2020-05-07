@@ -7,7 +7,17 @@
 #define BASE_FONT_PATH "res/fonts/"
 #define BASE_SHADOWS_PATH "res/pictures/shadows/"
 
-#define CUTYCAPT_REQUEST "xvfb-run --server-args=\"-screen 0, 1920x1080x24\" cutycapt --url=file:/home/pi/Desktop/Projects/SmartRTU/res/tmp/temp.html --out=/home/pi/Desktop/Projects/SmartRTU/res/tmp/temp.png --min-width=1920 --min-height=1080"
+//~~~~~~CutyCapt Requests
+//RUN_XVFB_SERVER +(INPUT_FILE_DEST+/+INPUT_FILE) +${cutycapt --output-} + (OUTPUT_FILE_DEST +/+OUTPUT_FILE) = html.page transofrmation into png image
+//btw realpath returns full path to exe 
+#define RUN_XVFB_SERVER "xvfb-run --server-args=\"-screen 0, 1920x1080x24\""
+#define INPUT_FILE_DEST "res/tmp/HtmlAd"
+#define INPUT_FILE "HtmlAd.html"
+//destination from exe file
+#define OUTPUT_FILE_DEST "res/tmp"
+#define OUTPUT_FILE "temp.png"
+
+//
 
 #define DEFAULT_PIC_PATH "res/pictures/"
 

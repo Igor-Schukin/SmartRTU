@@ -44,6 +44,7 @@ void Board::update(bool Forced)
 		int uprd = (int)w->widget->getUpdateTime();
 		if (Forced || uprd > 0 && (time - w->lastUpdate > uprd))
 		{
+			
 			w->needRender = w->widget->update();
 			w->lastUpdate = time;
 		}

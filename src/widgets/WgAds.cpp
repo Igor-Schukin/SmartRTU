@@ -20,17 +20,20 @@ WgAds::WgAds(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amode)
 
 WgAds::~WgAds()
 {
-	delete HtmlPic;
+	
 
-	if (ads)
+	if (ads){
 		delete[] ads;
-	if (adsPeace)
+	}
+	if (adsPeace){
 		delete[] adsPeace;
+	}
 	printf("%s\tWgAds widget object is deleted\n", strNow());
 }
 
 time_t WgAds::getFileTime()
 {
+	//printf("I am in getFileTime\n");
 	struct stat buff;
 	if (stat(fmt("%s%s", ADS_FILES_PATH, ADS_FILE_NAME), &buff) == 0)
 		return buff.st_mtime;
@@ -39,6 +42,7 @@ time_t WgAds::getFileTime()
 
 bool WgAds::renewFlag()
 {
+	//printf("I am in renewFlag\n");
 	struct dirent **namelist;
 	int n = scandir(ADS_FILES_PATH, &namelist, NULL, alphasort);
 	if (n < 0)
@@ -144,10 +148,6 @@ void WgAds::render()
 	int width=(float) rectClient.width * 0.9;	
 	int height = (float) rectClient.height * 0.9;
 
-	float Dx=static_cast<float>(rectClient.width)/static_cast<float>(HtmlPic->getWidth());
-	float Dy=static_cast<float>(rectClient.height) /static_cast<float>(HtmlPic->getHeight());
-	std::cout<<"Dx-> "<<Dx<<" Dy-> "<<Dy<<std::endl;
-	HtmlPic->render(rectClient.left,rectClient.bottom,Dx,Dy,0,0,0);
 	
 	//~~~~~ render back shadows
 	WgBackground::renderOnlyShadows();

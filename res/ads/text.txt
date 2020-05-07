@@ -1,4 +1,4 @@
 Nodarbību sarakstus var atrast:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  nodarbības:   nod.politeh.lv
-konsultācijas:   kons.politeh.lv
+kZZnsultācijas:   kons.politeh.lv

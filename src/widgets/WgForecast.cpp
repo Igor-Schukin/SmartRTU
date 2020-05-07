@@ -92,7 +92,8 @@ bool WgForecast::update()
 		if (iconName != weatherIconName)
 		{
 			std::string iconPath = std::string(WEATHER_ICONS_PATH) + iconName + ".png";
-			printf("%s\tNew weather icon is loaded from file %s\n", strNow(), iconPath.c_str());
+			//printf("%s\tNew weather icon is loaded from file %s\n", strNow(), iconPath.c_str());//ORIG
+			printf("%s\tNew weather icon is loaded \n", strNow());
 			if (weatherIcon)
 				delete weatherIcon;
 			weatherIcon = new Picture(iconPath.c_str());
