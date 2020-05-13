@@ -1,2 +1,0 @@
-/usr/bin/ar qc libTFont.a  CMakeFiles/TFont.dir/ftf.cpp.o CMakeFiles/TFont.dir/TFont.cpp.o
-/usr/bin/ranlib libTFont.a

@@ -1,2 +1,0 @@
-/usr/bin/ar qc libBoardConfig.a  CMakeFiles/BoardConfig.dir/configurator.cpp.o
-/usr/bin/ranlib libBoardConfig.a

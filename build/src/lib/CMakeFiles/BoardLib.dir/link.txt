@@ -1,2 +1,0 @@
-/usr/bin/ar qc libBoardLib.a  CMakeFiles/BoardLib.dir/Dummy.cpp.o
-/usr/bin/ranlib libBoardLib.a
