@@ -18,8 +18,9 @@ target_include_directories(BoardEngine PUBLIC  ${CMAKE_CURRENT_SOURCE_DIR}
                                             ../lib/json
                                             ../lib/pictures
                                             ../../src 
-					    ../storage 
+					    ../storage  
+                                            ../configurator
                                             )
 
 #linked to BoardENgine the Boardwidgets because uses objects from wisgets 
-target_link_libraries(BoardEngine  BoardWidgets )
+target_link_libraries(BoardEngine  BoardWidgets  )

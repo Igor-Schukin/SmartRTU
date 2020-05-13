@@ -1,0 +1,122 @@
+[
+{
+  "directory": "/home/pi/Desktop/PP/SmartRTU/build",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++-8   -I/src/engine -I/src/storage -I/src -I/src/configurator -I/home/pi/Desktop/PP/SmartRTU/src/lib/pictures -I/home/pi/openvg -I/opt/vc/include -I/home/pi/Desktop/PP/SmartRTU/src/lib/json -I/home/pi/Desktop/PP/SmartRTU/src/lib/fonts -I/usr/include/freetype2 -I/usr/local/include -I/home/pi/Desktop/PP/SmartRTU/src/storage -I/opt/vc/include/VG -I/home/pi/Desktop/PP/SmartRTU/src/storage/../lib/pictures -I/home/pi/Desktop/PP/SmartRTU/src/storage/../../src -I/home/pi/Desktop/PP/SmartRTU/src/storage/../lib/fonts -I/home/pi/Desktop/PP/SmartRTU/src/widgets -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../engine -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../storage -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/fonts -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../../src -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/pictures -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/json -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../configurator -I/home/pi/Desktop/PP/SmartRTU/src/engine -I/home/pi/Desktop/PP/SmartRTU/src/engine/../widgets -I/home/pi/Desktop/PP/SmartRTU/src/engine/../lib/fonts -I/home/pi/Desktop/PP/SmartRTU/src/engine/../lib/json -I/home/pi/Desktop/PP/SmartRTU/src/engine/../lib/pictures -I/home/pi/Desktop/PP/SmartRTU/src/engine/../../src -I/home/pi/Desktop/PP/SmartRTU/src/engine/../storage -I/home/pi/Desktop/PP/SmartRTU/src/engine/../configurator -I/home/pi/Desktop/PP/SmartRTU/src/configurator  -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl -g   -std=gnu++11 -o CMakeFiles/infoboard.dir/src/main.cpp.o -c /home/pi/Desktop/PP/SmartRTU/src/main.cpp",
+  "file": "/home/pi/Desktop/PP/SmartRTU/src/main.cpp"
+},
+{
+  "directory": "/home/pi/Desktop/PP/SmartRTU/build/src/configurator",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++-8   -I/home/pi/Desktop/PP/SmartRTU/src/configurator  -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl -g   -std=gnu++11 -o CMakeFiles/BoardConfig.dir/configurator.cpp.o -c /home/pi/Desktop/PP/SmartRTU/src/configurator/configurator.cpp",
+  "file": "/home/pi/Desktop/PP/SmartRTU/src/configurator/configurator.cpp"
+},
+{
+  "directory": "/home/pi/Desktop/PP/SmartRTU/build/src/lib",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++-8   -I/home/pi/Desktop/PP/SmartRTU/src/lib/pictures -I/home/pi/openvg -I/opt/vc/include -I/home/pi/Desktop/PP/SmartRTU/src/lib/json -I/home/pi/Desktop/PP/SmartRTU/src/lib/fonts -I/usr/include/freetype2 -I/usr/local/include  -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl -g   -std=gnu++11 -o CMakeFiles/BoardLib.dir/Dummy.cpp.o -c /home/pi/Desktop/PP/SmartRTU/src/lib/Dummy.cpp",
+  "file": "/home/pi/Desktop/PP/SmartRTU/src/lib/Dummy.cpp"
+},
+{
+  "directory": "/home/pi/Desktop/PP/SmartRTU/build/src/lib/json",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++-8   -I/home/pi/Desktop/PP/SmartRTU/src/lib/json  -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl -g   -std=gnu++11 -o CMakeFiles/json.dir/json.cpp.o -c /home/pi/Desktop/PP/SmartRTU/src/lib/json/json.cpp",
+  "file": "/home/pi/Desktop/PP/SmartRTU/src/lib/json/json.cpp"
+},
+{
+  "directory": "/home/pi/Desktop/PP/SmartRTU/build/src/lib/fonts",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++-8   -I/home/pi/Desktop/PP/SmartRTU/src/lib/fonts -I/opt/vc/include -I/home/pi/openvg -I/usr/include/freetype2 -I/usr/local/include  -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl -g   -std=gnu++11 -o CMakeFiles/TFont.dir/ftf.cpp.o -c /home/pi/Desktop/PP/SmartRTU/src/lib/fonts/ftf.cpp",
+  "file": "/home/pi/Desktop/PP/SmartRTU/src/lib/fonts/ftf.cpp"
+},
+{
+  "directory": "/home/pi/Desktop/PP/SmartRTU/build/src/lib/fonts",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++-8   -I/home/pi/Desktop/PP/SmartRTU/src/lib/fonts -I/opt/vc/include -I/home/pi/openvg -I/usr/include/freetype2 -I/usr/local/include  -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl -g   -std=gnu++11 -o CMakeFiles/TFont.dir/TFont.cpp.o -c /home/pi/Desktop/PP/SmartRTU/src/lib/fonts/TFont.cpp",
+  "file": "/home/pi/Desktop/PP/SmartRTU/src/lib/fonts/TFont.cpp"
+},
+{
+  "directory": "/home/pi/Desktop/PP/SmartRTU/build/src/lib/pictures",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++-8   -I/home/pi/Desktop/PP/SmartRTU/src/lib/pictures -I/home/pi/openvg -I/opt/vc/include  -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl -g   -std=gnu++11 -o CMakeFiles/BoardPic.dir/Picture.cpp.o -c /home/pi/Desktop/PP/SmartRTU/src/lib/pictures/Picture.cpp",
+  "file": "/home/pi/Desktop/PP/SmartRTU/src/lib/pictures/Picture.cpp"
+},
+{
+  "directory": "/home/pi/Desktop/PP/SmartRTU/build/src/widgets",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++-8   -I/home/pi/Desktop/PP/SmartRTU/src/widgets -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../engine -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../storage -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/fonts -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../../src -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/pictures -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/json -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../configurator -I/opt/vc/include -I/usr/include/freetype2  -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl -g   -std=gnu++11 -o CMakeFiles/BoardWidgets.dir/IWidget.cpp.o -c /home/pi/Desktop/PP/SmartRTU/src/widgets/IWidget.cpp",
+  "file": "/home/pi/Desktop/PP/SmartRTU/src/widgets/IWidget.cpp"
+},
+{
+  "directory": "/home/pi/Desktop/PP/SmartRTU/build/src/widgets",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++-8   -I/home/pi/Desktop/PP/SmartRTU/src/widgets -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../engine -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../storage -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/fonts -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../../src -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/pictures -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/json -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../configurator -I/opt/vc/include -I/usr/include/freetype2  -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl -g   -std=gnu++11 -o CMakeFiles/BoardWidgets.dir/WgAds.cpp.o -c /home/pi/Desktop/PP/SmartRTU/src/widgets/WgAds.cpp",
+  "file": "/home/pi/Desktop/PP/SmartRTU/src/widgets/WgAds.cpp"
+},
+{
+  "directory": "/home/pi/Desktop/PP/SmartRTU/build/src/widgets",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++-8   -I/home/pi/Desktop/PP/SmartRTU/src/widgets -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../engine -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../storage -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/fonts -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../../src -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/pictures -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/json -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../configurator -I/opt/vc/include -I/usr/include/freetype2  -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl -g   -std=gnu++11 -o CMakeFiles/BoardWidgets.dir/WgHtmlAds.cpp.o -c /home/pi/Desktop/PP/SmartRTU/src/widgets/WgHtmlAds.cpp",
+  "file": "/home/pi/Desktop/PP/SmartRTU/src/widgets/WgHtmlAds.cpp"
+},
+{
+  "directory": "/home/pi/Desktop/PP/SmartRTU/build/src/widgets",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++-8   -I/home/pi/Desktop/PP/SmartRTU/src/widgets -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../engine -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../storage -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/fonts -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../../src -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/pictures -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/json -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../configurator -I/opt/vc/include -I/usr/include/freetype2  -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl -g   -std=gnu++11 -o CMakeFiles/BoardWidgets.dir/WgBackground.cpp.o -c /home/pi/Desktop/PP/SmartRTU/src/widgets/WgBackground.cpp",
+  "file": "/home/pi/Desktop/PP/SmartRTU/src/widgets/WgBackground.cpp"
+},
+{
+  "directory": "/home/pi/Desktop/PP/SmartRTU/build/src/widgets",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++-8   -I/home/pi/Desktop/PP/SmartRTU/src/widgets -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../engine -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../storage -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/fonts -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../../src -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/pictures -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/json -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../configurator -I/opt/vc/include -I/usr/include/freetype2  -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl -g   -std=gnu++11 -o CMakeFiles/BoardWidgets.dir/WgCalendar.cpp.o -c /home/pi/Desktop/PP/SmartRTU/src/widgets/WgCalendar.cpp",
+  "file": "/home/pi/Desktop/PP/SmartRTU/src/widgets/WgCalendar.cpp"
+},
+{
+  "directory": "/home/pi/Desktop/PP/SmartRTU/build/src/widgets",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++-8   -I/home/pi/Desktop/PP/SmartRTU/src/widgets -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../engine -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../storage -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/fonts -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../../src -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/pictures -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/json -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../configurator -I/opt/vc/include -I/usr/include/freetype2  -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl -g   -std=gnu++11 -o CMakeFiles/BoardWidgets.dir/WgClock.cpp.o -c /home/pi/Desktop/PP/SmartRTU/src/widgets/WgClock.cpp",
+  "file": "/home/pi/Desktop/PP/SmartRTU/src/widgets/WgClock.cpp"
+},
+{
+  "directory": "/home/pi/Desktop/PP/SmartRTU/build/src/widgets",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++-8   -I/home/pi/Desktop/PP/SmartRTU/src/widgets -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../engine -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../storage -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/fonts -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../../src -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/pictures -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/json -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../configurator -I/opt/vc/include -I/usr/include/freetype2  -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl -g   -std=gnu++11 -o CMakeFiles/BoardWidgets.dir/WgForecast.cpp.o -c /home/pi/Desktop/PP/SmartRTU/src/widgets/WgForecast.cpp",
+  "file": "/home/pi/Desktop/PP/SmartRTU/src/widgets/WgForecast.cpp"
+},
+{
+  "directory": "/home/pi/Desktop/PP/SmartRTU/build/src/widgets",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++-8   -I/home/pi/Desktop/PP/SmartRTU/src/widgets -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../engine -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../storage -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/fonts -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../../src -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/pictures -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/json -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../configurator -I/opt/vc/include -I/usr/include/freetype2  -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl -g   -std=gnu++11 -o CMakeFiles/BoardWidgets.dir/WgSockets.cpp.o -c /home/pi/Desktop/PP/SmartRTU/src/widgets/WgSockets.cpp",
+  "file": "/home/pi/Desktop/PP/SmartRTU/src/widgets/WgSockets.cpp"
+},
+{
+  "directory": "/home/pi/Desktop/PP/SmartRTU/build/src/widgets",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++-8   -I/home/pi/Desktop/PP/SmartRTU/src/widgets -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../engine -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../storage -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/fonts -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../../src -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/pictures -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/json -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../configurator -I/opt/vc/include -I/usr/include/freetype2  -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl -g   -std=gnu++11 -o CMakeFiles/BoardWidgets.dir/WgTimetable.cpp.o -c /home/pi/Desktop/PP/SmartRTU/src/widgets/WgTimetable.cpp",
+  "file": "/home/pi/Desktop/PP/SmartRTU/src/widgets/WgTimetable.cpp"
+},
+{
+  "directory": "/home/pi/Desktop/PP/SmartRTU/build/src/widgets",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++-8   -I/home/pi/Desktop/PP/SmartRTU/src/widgets -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../engine -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../storage -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/fonts -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../../src -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/pictures -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/json -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../configurator -I/opt/vc/include -I/usr/include/freetype2  -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl -g   -std=gnu++11 -o CMakeFiles/BoardWidgets.dir/WgWatchdog.cpp.o -c /home/pi/Desktop/PP/SmartRTU/src/widgets/WgWatchdog.cpp",
+  "file": "/home/pi/Desktop/PP/SmartRTU/src/widgets/WgWatchdog.cpp"
+},
+{
+  "directory": "/home/pi/Desktop/PP/SmartRTU/build/src/storage",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++-8   -I/home/pi/Desktop/PP/SmartRTU/src/storage -I/home/pi/openvg -I/opt/vc/include/VG -I/opt/vc/include -I/usr/include/freetype2 -I/home/pi/Desktop/PP/SmartRTU/src/storage/../lib/pictures -I/home/pi/Desktop/PP/SmartRTU/src/storage/../../src -I/home/pi/Desktop/PP/SmartRTU/src/storage/../lib/fonts  -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl -g   -std=gnu++11 -o CMakeFiles/BoardStorage.dir/CPicturesStorage.cpp.o -c /home/pi/Desktop/PP/SmartRTU/src/storage/CPicturesStorage.cpp",
+  "file": "/home/pi/Desktop/PP/SmartRTU/src/storage/CPicturesStorage.cpp"
+},
+{
+  "directory": "/home/pi/Desktop/PP/SmartRTU/build/src/storage",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++-8   -I/home/pi/Desktop/PP/SmartRTU/src/storage -I/home/pi/openvg -I/opt/vc/include/VG -I/opt/vc/include -I/usr/include/freetype2 -I/home/pi/Desktop/PP/SmartRTU/src/storage/../lib/pictures -I/home/pi/Desktop/PP/SmartRTU/src/storage/../../src -I/home/pi/Desktop/PP/SmartRTU/src/storage/../lib/fonts  -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl -g   -std=gnu++11 -o CMakeFiles/BoardStorage.dir/CFontStorage.cpp.o -c /home/pi/Desktop/PP/SmartRTU/src/storage/CFontStorage.cpp",
+  "file": "/home/pi/Desktop/PP/SmartRTU/src/storage/CFontStorage.cpp"
+},
+{
+  "directory": "/home/pi/Desktop/PP/SmartRTU/build/src/engine",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++-8   -I/home/pi/Desktop/PP/SmartRTU/src/engine -I/home/pi/openvg -I/opt/vc/include/VG -I/home/pi/Desktop/PP/SmartRTU/src/engine/../widgets -I/home/pi/Desktop/PP/SmartRTU/src/engine/../lib/fonts -I/home/pi/Desktop/PP/SmartRTU/src/engine/../lib/json -I/home/pi/Desktop/PP/SmartRTU/src/engine/../lib/pictures -I/home/pi/Desktop/PP/SmartRTU/src/engine/../../src -I/home/pi/Desktop/PP/SmartRTU/src/engine/../storage -I/home/pi/Desktop/PP/SmartRTU/src/engine/../configurator -I/home/pi/Desktop/PP/SmartRTU/src/widgets -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../engine -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../storage -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/fonts -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../../src -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/pictures -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/json -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../configurator -I/opt/vc/include -I/usr/include/freetype2  -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl -g   -std=gnu++11 -o CMakeFiles/BoardEngine.dir/timetable.cpp.o -c /home/pi/Desktop/PP/SmartRTU/src/engine/timetable.cpp",
+  "file": "/home/pi/Desktop/PP/SmartRTU/src/engine/timetable.cpp"
+},
+{
+  "directory": "/home/pi/Desktop/PP/SmartRTU/build/src/engine",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++-8   -I/home/pi/Desktop/PP/SmartRTU/src/engine -I/home/pi/openvg -I/opt/vc/include/VG -I/home/pi/Desktop/PP/SmartRTU/src/engine/../widgets -I/home/pi/Desktop/PP/SmartRTU/src/engine/../lib/fonts -I/home/pi/Desktop/PP/SmartRTU/src/engine/../lib/json -I/home/pi/Desktop/PP/SmartRTU/src/engine/../lib/pictures -I/home/pi/Desktop/PP/SmartRTU/src/engine/../../src -I/home/pi/Desktop/PP/SmartRTU/src/engine/../storage -I/home/pi/Desktop/PP/SmartRTU/src/engine/../configurator -I/home/pi/Desktop/PP/SmartRTU/src/widgets -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../engine -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../storage -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/fonts -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../../src -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/pictures -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/json -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../configurator -I/opt/vc/include -I/usr/include/freetype2  -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl -g   -std=gnu++11 -o CMakeFiles/BoardEngine.dir/desktop.cpp.o -c /home/pi/Desktop/PP/SmartRTU/src/engine/desktop.cpp",
+  "file": "/home/pi/Desktop/PP/SmartRTU/src/engine/desktop.cpp"
+},
+{
+  "directory": "/home/pi/Desktop/PP/SmartRTU/build/src/engine",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++-8   -I/home/pi/Desktop/PP/SmartRTU/src/engine -I/home/pi/openvg -I/opt/vc/include/VG -I/home/pi/Desktop/PP/SmartRTU/src/engine/../widgets -I/home/pi/Desktop/PP/SmartRTU/src/engine/../lib/fonts -I/home/pi/Desktop/PP/SmartRTU/src/engine/../lib/json -I/home/pi/Desktop/PP/SmartRTU/src/engine/../lib/pictures -I/home/pi/Desktop/PP/SmartRTU/src/engine/../../src -I/home/pi/Desktop/PP/SmartRTU/src/engine/../storage -I/home/pi/Desktop/PP/SmartRTU/src/engine/../configurator -I/home/pi/Desktop/PP/SmartRTU/src/widgets -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../engine -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../storage -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/fonts -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../../src -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/pictures -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/json -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../configurator -I/opt/vc/include -I/usr/include/freetype2  -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl -g   -std=gnu++11 -o CMakeFiles/BoardEngine.dir/Engine.cpp.o -c /home/pi/Desktop/PP/SmartRTU/src/engine/Engine.cpp",
+  "file": "/home/pi/Desktop/PP/SmartRTU/src/engine/Engine.cpp"
+},
+{
+  "directory": "/home/pi/Desktop/PP/SmartRTU/build/src/engine",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++-8   -I/home/pi/Desktop/PP/SmartRTU/src/engine -I/home/pi/openvg -I/opt/vc/include/VG -I/home/pi/Desktop/PP/SmartRTU/src/engine/../widgets -I/home/pi/Desktop/PP/SmartRTU/src/engine/../lib/fonts -I/home/pi/Desktop/PP/SmartRTU/src/engine/../lib/json -I/home/pi/Desktop/PP/SmartRTU/src/engine/../lib/pictures -I/home/pi/Desktop/PP/SmartRTU/src/engine/../../src -I/home/pi/Desktop/PP/SmartRTU/src/engine/../storage -I/home/pi/Desktop/PP/SmartRTU/src/engine/../configurator -I/home/pi/Desktop/PP/SmartRTU/src/widgets -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../engine -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../storage -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/fonts -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../../src -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/pictures -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/json -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../configurator -I/opt/vc/include -I/usr/include/freetype2  -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl -g   -std=gnu++11 -o CMakeFiles/BoardEngine.dir/Timer.cpp.o -c /home/pi/Desktop/PP/SmartRTU/src/engine/Timer.cpp",
+  "file": "/home/pi/Desktop/PP/SmartRTU/src/engine/Timer.cpp"
+},
+{
+  "directory": "/home/pi/Desktop/PP/SmartRTU/build/src/engine",
+  "command": "/usr/bin/arm-linux-gnueabihf-g++-8   -I/home/pi/Desktop/PP/SmartRTU/src/engine -I/home/pi/openvg -I/opt/vc/include/VG -I/home/pi/Desktop/PP/SmartRTU/src/engine/../widgets -I/home/pi/Desktop/PP/SmartRTU/src/engine/../lib/fonts -I/home/pi/Desktop/PP/SmartRTU/src/engine/../lib/json -I/home/pi/Desktop/PP/SmartRTU/src/engine/../lib/pictures -I/home/pi/Desktop/PP/SmartRTU/src/engine/../../src -I/home/pi/Desktop/PP/SmartRTU/src/engine/../storage -I/home/pi/Desktop/PP/SmartRTU/src/engine/../configurator -I/home/pi/Desktop/PP/SmartRTU/src/widgets -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../engine -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../storage -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/fonts -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../../src -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/pictures -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../lib/json -I/home/pi/Desktop/PP/SmartRTU/src/widgets/../configurator -I/opt/vc/include -I/usr/include/freetype2  -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl -g   -std=gnu++11 -o CMakeFiles/BoardEngine.dir/board.cpp.o -c /home/pi/Desktop/PP/SmartRTU/src/engine/board.cpp",
+  "file": "/home/pi/Desktop/PP/SmartRTU/src/engine/board.cpp"
+}
+]

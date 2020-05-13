@@ -10,6 +10,7 @@
 #include "Timer.h"
 
 #include "config.h"
+#include "../configurator/configurator.h"
 
 using namespace std;
 using json = nlohmann::json;
@@ -203,7 +204,7 @@ public:
 
     int getHoliday(struct tm now = makeNow());
 
-    Timetable(const char *FileName = DEFAULT_TIMETABLE_FILE);
+    Timetable(const char *FileName = config->Get("TIME_TABLE").c_str());//const_cast<char*>(config->Get("TIME_TABLE").c_str()));
     ~Timetable();
 };
 

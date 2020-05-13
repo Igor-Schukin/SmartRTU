@@ -9,6 +9,8 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
+#include<string>//stored strings probably need to go into char pointers
+
 #include<thread> //thread stuff
 #include<future>//thread stuff
 #include <chrono> /*for milisecons */
@@ -27,39 +29,39 @@
 #include "CFontStorage.h"
 
 #include "config.h"
-//probably legacy crap
-#define FLAG_FILE_NAME "flag"
- 
+
 class WgHtmlAds : public WgBackground
 {
 public:
 
     WgHtmlAds(int Ax, int Ay, wgMode Amode);
     ~WgHtmlAds();
-    bool update();
-    void render();
+    bool update();//check if need update widget
+    void render();//renders advert into screen
 
 private:
+
+    //~~~stored strings
+    std::string m_HeaderText;//stores header text
+    std::string m_FullPath;//stores full path to exe
 
     void cutyCaptRequest();//run in another thread combining strings to make request and transform .html page into png
    
    //~~detect if advert.html file was changed
-   //Do not understand FLAG purpose
-    time_t getFileTime();
-	bool renewFlag();
-	bool needRenew();
-	//bool readFile(char *&text);
+    time_t getFileTime();//gets last edited time of .html
+	bool needRenew();//check if .html was changed/edited
 
     Picture *m_HtmlPic=NULL;//Pointer where image will be stored
     time_t fileTime=0;//last timestamp then file was edited
-    char *m_OutputFilePath=NULL;//full path + image name of output 
     float m_ScaleByX=0;//width Scale of image to fit into widget
     float m_ScaleByY=0;//height Scale of image to fit into widget
+    
     //~thread variables
-    std::future<void>future;//is handle of  new async thread 
-    std::future_status status; // stored status of thread //probably can avoid it
+    std::future<void>m_Future;//is handle of  new async thread 
+    std::future_status m_Status; // stored status of thread //probably can avoid it
    
-    bool m_alreadyUploadedPic=true; // Call Dainis to explain why I am exist
+    bool m_IsAdvertOnScreen=false; // 
+    bool m_StubDisplayedOnce=false;//to make stub appier once at the start of program //stub from english is zaglushka
 };
 
 #endif /*WGHTMLADS_H*/

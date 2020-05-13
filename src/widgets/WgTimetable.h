@@ -8,6 +8,8 @@
 #include "timetable.h"
 #include "Timer.h"
 
+#include"configurator.h"
+
 class WgTimetable : public IWidget
 {
 private:

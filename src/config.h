@@ -1,7 +1,7 @@
 //random config
 #define  RES_DIR "../res"
 
-#define DEFAULT_TIMETABLE_FILE "res/timetable.json"
+//#define DEFAULT_TIMETABLE_FILE "res/timetable.json"
 #define ADS_FILES_PATH "res/ads/" 
 #define WEATHER_ICONS_PATH "res/pictures/weather/" 
 #define BASE_FONT_PATH "res/fonts/"

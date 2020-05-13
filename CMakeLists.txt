@@ -24,6 +24,7 @@ set(CMAKE_CXX_FLAGS "-g -Wall -Werxtra")
 set(CMAKE_CXX_FLAGS "-L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl")
 
 #ADD SUBDIRS TO PROJECT 
+add_subdirectory(src/configurator)
 add_subdirectory(src/lib)
 add_subdirectory(src/widgets)
 add_subdirectory(src/storage)
@@ -42,12 +43,14 @@ target_link_libraries(infoboard ${OBJ}  BoardLib
 					BoardStorage 
 					BoardWidgets 
 					BoardEngine
+					BoardConfig
 )
 
 #where compiler to search PATHS
 target_include_directories(infoboard PUBLIC  /src/engine
 	 				     /src/storage
-					     /src
+						 /src
+						 /src/configurator
                                             )
 
 #cmake stuff                                            

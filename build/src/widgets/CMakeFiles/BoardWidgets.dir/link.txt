@@ -1,0 +1,2 @@
+/usr/bin/ar qc libBoardWidgets.a  CMakeFiles/BoardWidgets.dir/IWidget.cpp.o CMakeFiles/BoardWidgets.dir/WgAds.cpp.o CMakeFiles/BoardWidgets.dir/WgHtmlAds.cpp.o CMakeFiles/BoardWidgets.dir/WgBackground.cpp.o CMakeFiles/BoardWidgets.dir/WgCalendar.cpp.o CMakeFiles/BoardWidgets.dir/WgClock.cpp.o CMakeFiles/BoardWidgets.dir/WgForecast.cpp.o CMakeFiles/BoardWidgets.dir/WgSockets.cpp.o CMakeFiles/BoardWidgets.dir/WgTimetable.cpp.o CMakeFiles/BoardWidgets.dir/WgWatchdog.cpp.o
+/usr/bin/ranlib libBoardWidgets.a

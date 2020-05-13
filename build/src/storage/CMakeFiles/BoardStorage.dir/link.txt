@@ -1,0 +1,2 @@
+/usr/bin/ar qc libBoardStorage.a  CMakeFiles/BoardStorage.dir/CPicturesStorage.cpp.o CMakeFiles/BoardStorage.dir/CFontStorage.cpp.o
+/usr/bin/ranlib libBoardStorage.a

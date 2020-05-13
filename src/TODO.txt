@@ -1,4 +1,1 @@
-0.understand how update works
-1.thread in wg HtmlAds must return obj of type Picture 
-2.check on update of webpage like in wgAds timer is for updates
-3.Make Cutycapt transperent
+0.make config be everywhere

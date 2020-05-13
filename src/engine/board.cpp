@@ -19,7 +19,7 @@ Board::Board()
 	widgets = NULL;
 	current = NULL;
 
-	addWidget(new WgAds(0, 8, md3x8)); // 1, 8
+	//addWidget(new WgAds(0, 8, md3x8)); // 1, 8
 
 	addWidget(new WgHtmlAds(0, 8, md3x8));
 

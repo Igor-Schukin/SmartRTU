@@ -15,12 +15,13 @@ set(SRC IWidget.cpp
 add_library(BoardWidgets ${SRC} )
 
 target_include_directories(BoardWidgets  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
-					../engine					
-					../storage
-					../lib/fonts
-                                        ../../src
-                                        ../lib/pictures
-					../lib/json
-					/opt/vc/include
-					/usr/include/freetype2 
+					                            ../engine					
+					                            ../storage
+					                            ../lib/fonts
+                                                ../../src
+                                                ../lib/pictures
+                                                ../lib/json
+                                                ../configurator
+					                            /opt/vc/include
+					                            /usr/include/freetype2 
                                           )

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libBoardEngine.a  CMakeFiles/BoardEngine.dir/timetable.cpp.o CMakeFiles/BoardEngine.dir/desktop.cpp.o CMakeFiles/BoardEngine.dir/Engine.cpp.o CMakeFiles/BoardEngine.dir/Timer.cpp.o CMakeFiles/BoardEngine.dir/board.cpp.o
+/usr/bin/ranlib libBoardEngine.a

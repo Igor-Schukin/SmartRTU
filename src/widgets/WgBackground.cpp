@@ -131,8 +131,9 @@ void WgBackground::render()
 
 	if (isShadows) // -- render widget shadows
 	{
+		renderOnlyShadows();
 		// -- -- render top and bot
-		for (int i = 0; i < rectWidget.width; i++)
+	/*	for (int i = 0; i < rectWidget.width; i++)
 		{
 			PicStorage->WgShadows->t->render(rectWidget.left + i, rectWidget.top - shadowSize.top);
 			PicStorage->WgShadows->b->render(rectWidget.left + i, rectWidget.bottom);
@@ -143,7 +144,7 @@ void WgBackground::render()
 		{
 			PicStorage->WgShadows->l->render(rectWidget.left, rectWidget.top - i);
 			PicStorage->WgShadows->r->render(rectWidget.right - shadowSize.right, rectWidget.top - i);
-		}
+		}*/
 	}
 }
 
@@ -178,8 +179,8 @@ void WgBackground::renderHeader(const char *headerText)
 void WgBackground::renderOnlyShadows()
 {
 
-	if (isShadows) // -- render widget shadows
-	{
+//	if (isShadows) // -- render widget shadows
+//	{
 		//std::cout<<"Inside isShadow if\n";
 		// -- -- render top and bot
 		for (int i = 0; i < rectWidget.width; i++)
@@ -194,5 +195,5 @@ void WgBackground::renderOnlyShadows()
 			PicStorage->WgShadows->l->render(rectWidget.left, rectWidget.top - i);
 			PicStorage->WgShadows->r->render(rectWidget.right - shadowSize.right, rectWidget.top - i);
 		}
-	}
+	//}
 }
