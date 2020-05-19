@@ -2,7 +2,7 @@
 
 
 
-time_t WgHtmlAds::getFileTime()
+time_t WgHtmlAds::m_getFileTime()
 {
 	struct stat buff;
 	if (stat(fmt("%s/%s", INPUT_FILE_DEST, INPUT_FILE), &buff) == 0)
@@ -11,13 +11,13 @@ time_t WgHtmlAds::getFileTime()
 }
 
 
-bool WgHtmlAds::needRenew()
+bool WgHtmlAds::m_needRenew()
 {
-	time_t ft = WgHtmlAds::getFileTime();
-	if (ft != 0 && ft != fileTime)
+	time_t ft = WgHtmlAds::m_getFileTime();
+	if (ft != 0 && ft != m_file_time)
 	{
 		
-		fileTime = ft;
+		m_file_time = ft;
 		//printf("%s", asctime(gmtime(&fileTime))); //this is proof why two times thread cals at start
 		return true;
 	}
@@ -25,7 +25,7 @@ bool WgHtmlAds::needRenew()
 }
 
 
-void WgHtmlAds::cutyCaptRequest(){
+void WgHtmlAds::m_cutyCaptRequest(){
 	char buf[PATH_MAX];//buf for realpath result PATH_MAX is from <limit.h>
 
 	std::string request{RUN_XVFB_SERVER} ;
@@ -48,7 +48,9 @@ void WgHtmlAds::cutyCaptRequest(){
 	//m_OutputFilePath=buf;//asign buf  
 	std::system(request.c_str());//run request to Cutycapt do its bussines
 	
-	//cout<<"\t I am in thread \n";
+	#ifdef DEBUG_THREAD_MSG
+			std::cout<<"DEBUG_THREAD_MSG:~~~~~~CUTYCAPT THREAD FINISHED~~~~~~"<<'\n';
+	#endif //DEBUG_THREAD_MSG
 	
 }
 
@@ -56,41 +58,61 @@ WgHtmlAds::WgHtmlAds(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amode)
 {
 	char buf[PATH_MAX];
 	realpath(".",buf); //get full path to exe
-	m_FullPath=buf;
-	m_HeaderText=config->Get("HEADER_TEXT");//header text
-	isShadows=false; //default render of shadows off
-	updateTime = 3000;//3 seconds update time
+	m_full_path_to_exe=buf;//sets full path
+	m_header_text=config->Get("HEADER_TEXT");//header text
+	isShadows=false; //default render of shadows off 
+	updateTime = 3000;//sets 3 seconds update time  
+	
+	bool m_is_advert_on_screen=false; 
+    bool m_stub_displayed_once=false;
+
+	Picture *m_advert_pic=nullptr;
+	
+												
 	//run async cutycapt request
-	m_Future=std::async(std::launch::async,&WgHtmlAds::cutyCaptRequest,this);
-	std::cout << strNow() << "\t"<< "WgHtmlsAds widget object is created\n";
+	m_future=std::async(std::launch::async,&WgHtmlAds::m_cutyCaptRequest,this);
+
+	#ifdef DEBUG_THREAD_MSG
+		std::cout<<"DEBUG_THREAD_MSG:~~~~~~LAUNCHED CUTYCAPT THREAD IN CONSTRUCTOR OF WGHTMLADS~~~~~~"<<'\n';
+	#endif //DEBUG_THREAD_MSG
+
+	std::cout << strNow() << "\t"<< " WgHtmlsAds widget object is created\n";
 
 }
 
 WgHtmlAds::~WgHtmlAds()
 {
-	if(m_HtmlPic){
-	delete m_HtmlPic;
+	//if something inside delete it
+	if(m_advert_pic!=nullptr){
+		delete m_advert_pic;
+		m_advert_pic=nullptr;
 	}
 }
 
 bool WgHtmlAds::update(){
 	//get status of thread
-	m_Status = m_Future.wait_for(std::chrono::milliseconds(0));
+	m_status = m_future.wait_for(std::chrono::milliseconds(0));
 	//check if thread is still working
-	if (m_Status == std::future_status::ready) {
+	if (m_status == std::future_status::ready) {
 		//std::cout << "Thread finished" << std::endl;
-		
+
+		//HERE MUST BE THREAD INFO???????
+
 		//needed if thread done its job 
-		//but need to say render to RENDER advert what thread just did
-		if(m_IsAdvertOnScreen==false)return true;
+		//but need to say render to RERENDER advert what thread just did
+		if(m_is_advert_on_screen==false)return true;
 
 		//check if file need renew
-		if(needRenew()==true){
+		if(m_needRenew()==true){
 			//run Cytycapt stuff in async thread
-			m_Future=std::async(std::launch::async,&WgHtmlAds::cutyCaptRequest,this);
-			//printf("I am inside needRenew if \n");
+			m_future=std::async(std::launch::async,&WgHtmlAds::m_cutyCaptRequest,this);
+
+			#ifdef DEBUG_THREAD_MSG
+				std::cout<<"DEBUG_THREAD_MSG:~~~~~~NEEDRENEW() PASSED AND LAUNCHED CUTYCAPT REQUEST ASYNC THREAD~~~~~~"<<'\n';
+			#endif //DEBUG_THREAD_MSG
+
 			//in case thread finished fast
-			m_IsAdvertOnScreen==false;
+			m_is_advert_on_screen==false;
 			return true;
 		}
 		else{
@@ -105,81 +127,97 @@ bool WgHtmlAds::update(){
 void WgHtmlAds::render()
 {
 
-	
-	WgBackground::render(); //if commented header @ block @ is tranperent
+	WgBackground::render(); //if commented @ header and advert  block @ is tranperent
 
 	//~~~ render header
-
-	//renderHeader( "Sludinājums" );
-	renderHeader(m_HeaderText.c_str());
+	renderHeader(m_header_text.c_str());
 
 
 	// Use wait_for() with zero milliseconds to check thread status.
-	m_Status = m_Future.wait_for(std::chrono::milliseconds(0));//get status of thread
+	m_status = m_future.wait_for(std::chrono::milliseconds(0));//get status of thread
 
 	// check if thread finished.
-	if (m_Status == std::future_status::ready) {
+	if (m_status == std::future_status::ready) {
 		//std::cout << "Thread finished" << std::endl;
-		//cout<<"real thread"<<'\n';
+		#ifdef DEBUG_THREAD_MSG
+			std::cout<<"DEBUG_THREAD_MSG:~~~~~~PASSED THREAD STATUS CHECK IN RENDER()~~~~~~"<<'\n';
+		#endif //DEBUG_THREAD_MSG
 
 		//check if it was already uploaded advert 
-		if(m_IsAdvertOnScreen==false){
-			m_IsAdvertOnScreen=true;
+		if(m_is_advert_on_screen==false){
+			m_is_advert_on_screen=true;
 
-			//cleare m_HtmlPic
-			if(m_HtmlPic){
-			delete m_HtmlPic;
-			m_HtmlPic=NULL;
+			//cleare m_advert_pic
+			if(m_advert_pic!=nullptr){
+				delete m_advert_pic;
+				m_advert_pic=nullptr;
 			}
 
-			m_HtmlPic=new Picture(
+			//creates new Picture 
+			m_advert_pic=new Picture(
 				(config->Get("ADVERT_PATH")+"/"+config->Get("ADVERT_NAME")).c_str()
 				);//create advert 
-			//scale image
-			m_ScaleByX = static_cast<float>(rectClient.width) / static_cast<float>(m_HtmlPic->getWidth());//calc scale
-	 		m_ScaleByY = static_cast<float>(rectClient.height) / static_cast<float>(m_HtmlPic->getHeight());//calc scale
+
+			//calc scales of image
+			m_scale_by_x = static_cast<float>(rectClient.width) / static_cast<float>(m_advert_pic->getWidth());
+	 		m_scale_by_y = static_cast<float>(rectClient.height) / static_cast<float>(m_advert_pic->getHeight());
+			 
+			 
+			 //!!DEBUG STUFF!!
+			#ifdef DEBUG_ADVERTS_PRM_SHOW
+				std::cout<<'\n';
+				std::cout<<"DEBUG_ADVERTS_PRM_SHOW:~~~~~~INSIDE ADVERT SCOPE~~~~~~"<<'\n';
+				std::cout<<"Pictures original: width -> "<<m_advert_pic->getWidth()<<" \theigth -> "<<m_advert_pic->getHeight()<<'\n';
+				std::cout<<"Pictures scale by: width -> "<<m_scale_by_x<<" \theight -> "<<m_scale_by_y<<'\n';
+				std::cout<<"WgHtmlAds area     width -> "<<rectClient.width<<" \theight -> "<<rectClient.height<<'\n';
+				std::cout<<'\n';
+			#endif //DEBUG_ADVERTS_PRM_SHOW
+
 		}
 	}
 	else {
-		//std::cout<<"zagluska"<<'\n';
+
+		#ifdef DEBUG_THREAD_MSG
+			std::cout<<"DEBUG_THREAD_MSG:~~~~~~INSIDE STUB SCOPE~~~~~~"<<'\n';
+		#endif //DEBUG_THREAD_MSG
 
 		//check if it is advert and already uploaded into widget
 		//and checks if Stub was once Displayed 
-		if(m_IsAdvertOnScreen==false&& m_StubDisplayedOnce==false){
-			m_IsAdvertOnScreen=true;//change flag what it is not advert uploaded into widget
-			m_StubDisplayedOnce=true;
-
-			if(m_HtmlPic){
-			delete m_HtmlPic;
-			m_HtmlPic=NULL;
-			}
+		if(m_is_advert_on_screen==false&& m_stub_displayed_once==false){
+			m_is_advert_on_screen=true;//change flag what it is not advert uploaded into widget
+			m_stub_displayed_once=true; //sets what stub displayed once
 
 			//problem appiered i do not understand why derp.png will appier as lines
 			//but cnn.png works fine
 			//Pi have brain shortage?
 			//I run this from my vscode on windows maybe dats why?
-			m_HtmlPic=new Picture(
+			m_advert_pic=new Picture(
 				(config->Get("ADVERT_PATH")+"/"+config->Get("STUB_NAME")).c_str()
 				);//create advert //take stub in place of advert
-			m_ScaleByX = static_cast<float>(rectClient.width) / static_cast<float>(m_HtmlPic->getWidth());//calc scale
-	 		m_ScaleByY = static_cast<float>(rectClient.height) / static_cast<float>(m_HtmlPic->getHeight());//calc scale
+				
+			//calc scales of image
+			m_scale_by_x = static_cast<float>(rectClient.width) / static_cast<float>(m_advert_pic->getWidth());
+	 		m_scale_by_y = static_cast<float>(rectClient.height) / static_cast<float>(m_advert_pic->getHeight());
 			
-			//~~~why stringy pic testing tools
-			//std::cout<<"scale width "<<m_ScaleByX<<" heigth scale"<<m_ScaleByY<<'\n';
-			//std::cout<<" width "<<m_HtmlPic->getWidth()<<" heigth "<<m_HtmlPic->getHeight()<<'\n';
-			//with this render litle bit better cat.png
-			//m_HtmlPic->render(rectClient.left, rectClient.bottom, m_ScaleByX, m_ScaleByY, 0, 0, 0);//Render image
 
+			//~~~DEBUG STUFF
+			#ifdef DEBUG_ADVERTS_PRM_SHOW
+				std::cout<<'\n';
+				std::cout<<"DEBUG_ADVERTS_PRM_SHOW:~~~~~~INSIDE STUB SCOPE~~~~~~"<<'\n';
+				std::cout<<"Pictures original: width -> "<<m_advert_pic->getWidth()<<" \theigth -> "<<m_advert_pic->getHeight()<<'\n';
+				std::cout<<"Pictures scale by: width -> "<<m_scale_by_x<<" \theight -> "<<m_scale_by_y<<'\n';
+				std::cout<<"WgHtmlAds area     width -> "<<rectClient.width<<" \theight -> "<<rectClient.height<<'\n';
+				std::cout<<'\n';
+			#endif //DEBUG_ADVERTS_PRM_SHOW
 		}
 		else{
-			m_IsAdvertOnScreen=false;
+			m_is_advert_on_screen=false;
 		}
 	}
-
-	//std::cout<<fileTime<<'\n';
+	
 	//render Advert
-	m_HtmlPic->render(rectClient.left, rectClient.bottom, m_ScaleByX, m_ScaleByY, 0, 0, 0);//Render image
+	m_advert_pic->render(rectClient.left, rectClient.bottom, m_scale_by_x, m_scale_by_y, 0, 0, 0);
 
-	//~~~~~ render back shadows
+	//~~~~~ render shadows
 	WgBackground::renderOnlyShadows();
 }
