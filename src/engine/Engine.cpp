@@ -46,7 +46,7 @@ void Engine::run()
 	LongTimeMs lastRender = 0;
 	LongTimeMs lastDebug = 0;
 	LongTimeMs lastFlush = 0;
-	LongTimeMs t = 0;
+	//LongTimeMs t = 0; //not used variable
 	int fps = 0;
 
 	forcedUpdate();
@@ -62,7 +62,7 @@ void Engine::run()
 
 		update();
 
-		if (time - lastRender >= frameCap)
+		if ((time - lastRender) >= static_cast<long long unsigned int>(frameCap))
 		{
 			render(false);
 			lastRender = time;
@@ -71,7 +71,7 @@ void Engine::run()
 
 #ifdef DEBUG_OUTPUT_PRD
 
-		if (time - lastDebug >= DEBUG_OUTPUT_PRD)
+		if ((time - lastDebug) >= DEBUG_OUTPUT_PRD)
 		{
 			unsigned int tsec = (unsigned int)(time / 1000LLU);
 			unsigned int tm_d = tsec / (24 * 3600);

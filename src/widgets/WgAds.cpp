@@ -59,7 +59,7 @@ bool WgAds::renewFlag()
 bool WgAds::needRenew()
 {
 	time_t ft = getFileTime();
-	if (ft != 0 && ft != fileTime || renewFlag())
+	if ((ft != 0 && ft != fileTime )|| renewFlag())
 	{
 		system(fmt("rm -rf %s%s", ADS_FILES_PATH, FLAG_FILE_NAME));
 		fileTime = ft;

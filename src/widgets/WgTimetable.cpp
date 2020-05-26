@@ -3,7 +3,7 @@
 time_t WgTimetable::getFileTime()
 {
     struct stat buff;
-    if (stat(config->Get("TIME_TABLE").c_str(), &buff) == 0)
+    if (stat((config->Get("TIME_TABLE_DEST")+"/"+config->Get("TIME_TABLE_NAME")).c_str(), &buff) == 0)
         return buff.st_mtime;
     return 0;
 }

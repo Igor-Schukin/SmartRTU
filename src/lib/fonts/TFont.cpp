@@ -39,6 +39,8 @@ TFont::TFont(const char *FTFileName)
 
 TFont::TFont(TFont &BaseFont)
 {
+
+	//never ever used I assume // it means what this can be deleted
 	/*
 	GlyphsCount = BaseFont.GlyphsCount;
 	CharMap = new short int[NGLYPHS];

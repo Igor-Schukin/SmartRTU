@@ -204,7 +204,7 @@ public:
 
     int getHoliday(struct tm now = makeNow());
 
-    Timetable(const char *FileName = config->Get("TIME_TABLE").c_str());//const_cast<char*>(config->Get("TIME_TABLE").c_str()));
+    Timetable(const char *FileName = (config->Get("TIME_TABLE_DEST")+"/"+config->Get("TIME_TABLE_NAME")).c_str());//const_cast<char*>(config->Get("TIME_TABLE").c_str()));
     ~Timetable();
 };
 

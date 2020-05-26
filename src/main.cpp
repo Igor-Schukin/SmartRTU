@@ -1,15 +1,13 @@
+
 #include <cstdio>
 #include <csignal>
-#include "Engine.h"
-#include<iostream>
-//--Storages
+
 #include "CPicturesStorage.h"
 #include "CFontStorage.h"
+
+#include "Engine.h"
 #include "timetable.h"
 #include "desktop.h"
-
-//configs
-#include "config.h"
 
 #include"configurator.h"
 
@@ -32,16 +30,12 @@ int main()
 
 		//check if config loaded
 		if(config->Load("./res/config.cfg")==false){
-			printf("%s\t CONFIG DID NOT LOADED check your config.cfg destination or if file exist!\n", strNow());
+			printf("%s\t \033[1;31m CONFIG DID NOT LOADED check your config.cfg destination or if file exist!\033[0m\n", strNow());
 		}
 		else
 		{
-			printf("%s\t config loaded successfully\n", strNow());
+			printf("%s\tConfig loaded successfully\n", strNow());
 		}
-		//if(config->Contains("RUN_XVFB_SERVER")){
-			//printf("RUN_XVFB_SERVER exist\n");
-		//	std::cout<<config->Get("RUN_XVFB_SERVER","DEFAULT")<<'\n';
-		//	}
 
 		try
 		{

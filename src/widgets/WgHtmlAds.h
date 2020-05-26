@@ -1,65 +1,33 @@
 
 #pragma once
-#ifndef WGHTMLADS_H
-#define WGHTMLADS_H
+#ifndef SMART_RTU_SRC_WIDGETS_WGHTMLADS_H_
+#define SMART_RTU_SRC_WIDGETS_WGHTMLADS_H_
 
-#include <iostream>
+
+//C (more precisely: headers in angle brackets with the .h extension), e.g. <unistd.h>, <stdlib.h>
+
+
+//C++
 #include <string>
-#include <dirent.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-
-#include<string>//stored strings probably need to go into char pointers
-
 #include<thread> //thread stuff
 #include<future>//thread stuff
-#include <chrono> /*for milisecons */
+#include<ctime>// for time_t type
+//a11y libs
 
-//~ realPath funtion is in stdlib but PATH_MAX in limits.h
-#include <limits.h> /* PATH_MAX */
-#include <cstdio>
-#include <cstdlib>
+//my headers
+#include "WgBackground.h" //inheritance
+#include "CPicturesStorage.h" //for Picture type
 
-//our stuff
-#include "WgBackground.h"
-#include "Engine.h"// from here we need only fmt stuff
-//#include "desktop.h" //well i commented this and all is still working
-#include "Timer.h"
-#include "CPicturesStorage.h"
-#include "CFontStorage.h"
 
-#include "config.h" //legacy config what soon will be removed
-#include "configurator.h" //configurator
 
 //DEBUG PURPOSE UNCOMMENT NEEDED STUF AND RECOMPILE WIDGET
-//TODO: debug stuff must be on/off in config . do not need to recompile project
 
-//about threads what are curently working//dumps into console message about they status
+/*about threads what are curently working//dumps into console message about they status*/
 //#define DEBUG_THREAD_MSG
-//to get all data(width,height,scale,widget where will be rendered area) about advert
+
+/*to get all data(width,height,scale,widget where will be rendered area) about advert*/
 //#define DEBUG_ADVERTS_PRM_SHOW 
 
-
-
-
-//STYLE
-//avoid "using namespace " keep clean project from namespacing chaos 
-// variables_in_lower_snake_style // *
-//except geters and setters they starts with lower get or set word like so -> getSmile(); setX() etc  //sporno *
-//private methods/variables have prefix "m_"
-//methods style is lower first word othres starts with Upercase latter like so MyClass->mySmoothMethod(); //sporno * //maybe all uper? MyClass->MySmoothMethod
-//if method only have one word then it in loawercase like so MyClass->method(); //sporno *
-
-//* PROBABLY NEED TO GO FULL ON INTO PYTHON STYLE
-
-//class struct{
-    //public part first
-        //methods
-        //constructors
-    //private part last
-        //methods
-        //variables
-//};
 
 
 class WgHtmlAds : public WgBackground
@@ -72,16 +40,24 @@ public:
     ~WgHtmlAds();
 
 private:
-    void m_cutyCaptRequest();//run in another thread combining strings to make request and transform .html page into png
+    void m_CutyCaptRequest();//run in another thread combining strings to make request and transform .html page into png
    
    //~~detect if advert.html file was changed
-    time_t m_getFileTime();//gets last edited time of file(.html) 
-	bool m_needRenew();//check if file(.html) was changed/edited 
+    time_t m_GetFileTime();//gets last edited time of file(.html) 
+	bool m_NeedRenew();//check if file(.html) was changed/edited 
 
     //~~~stored strings
     std::string m_header_text;//stores header text
-    std::string m_full_path_to_exe;//stores full path to exe//need to change name to more understandable
-
+     
+    std::string m_html_input_file_dest;//stores  input .html  local string
+    std::string m_html_name;//html name
+    std::string m_ad_path;//local path where advert will be stored after cutycapt request
+    std::string m_ad_name;//adverts name
+    std::string m_stub_name;//stubs name
+    std::string m_stub_path;//local path to stub
+   
+    std::string m_full_path;//stores full path to exe
+ 
     Picture *m_advert_pic;//Pointer where image will be stored
     time_t m_file_time=0;//last timestamp then file was edited 
     float m_scale_by_x=0;//width Scale of image to fit into widget                                             
@@ -89,10 +65,12 @@ private:
     
     //~thread variables
     std::future<void>m_future;//is handle of  new async thread 
-    std::future_status m_status; // stored status of thread //probably can avoid it
+    std::future_status m_thread_status; // stored status of thread //probably can avoid it
    
-    bool m_is_advert_on_screen; // IsAdvertOnScreen flag
+    bool m_is_advert_on_screen; // purpose: 1. what Picture obj will not be killed and created itch time in render
+                                          //2.signal what need rerender advert in update() // if is false mean what new advert must be rerendered otherwise its ok
+                                          //3.signal what something(advert or stub is on the screen)
     bool m_stub_displayed_once;//to make stub appier once at the start of program //stub from english is zaglushka
 };
 
-#endif /*WGHTMLADS_H*/
+#endif /*SMART_RTU_SRC_WIDGETS_WGHTMLADS_H_*/

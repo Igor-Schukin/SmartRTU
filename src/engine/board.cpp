@@ -42,7 +42,7 @@ void Board::update(bool Forced)
 	for (WidgetInfo *w = widgets; w; w = w->next)
 	{
 		int uprd = (int)w->widget->getUpdateTime();
-		if (Forced || uprd > 0 && (time - w->lastUpdate > uprd))
+		if (Forced || ((uprd > 0) && ((time - w->lastUpdate) > static_cast<long long unsigned int>(uprd))))
 		{
 			
 			w->needRender = w->widget->update();
@@ -91,7 +91,7 @@ void Board::render(bool Forced)
 		logo->render(x, y, sc, sc, 0, 0, 0);
 	}
 
-	int i = 0;
+	
 	for (WidgetInfo *w = widgets; w; w = w->next)
 		if ((w->needRender || Forced) && w->widget->isVisible())
 		{

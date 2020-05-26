@@ -159,7 +159,7 @@ bool LoadFTFont(const char *FileName,
 				s = e;
 			}
 
-			for (int i = 0; i < pvec.size(); ++i)
+			for (std::size_t i = 0; i < pvec.size(); ++i) //changed int to std::size_t 
 			{
 				if (pvec[i].x < minx)
 					minx = pvec[i].x;
