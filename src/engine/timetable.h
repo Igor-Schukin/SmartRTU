@@ -183,7 +183,25 @@ extern struct tm makeNow();
 
 class Timetable
 {
+public:
+    TimeState getCurrentTimeState(int &secToEnd, int &lectNumber);
+    DateState getCurrentDateState(int &weekNumber);
+    bool getCurrentSocketState(int Socket);
+
+    int getHoliday(struct tm now = makeNow());
+
+    Timetable();//now loading in constructor timetable.json //I redone this //
+    // Timetable(const char *FileName = "./res/timetable.json");
+    ~Timetable();
 private:
+
+    int getWeekNumber(const TimetableDate &origin, struct tm now = makeNow());
+    int getWeeksCount(const TimetableDateRange *dates);
+
+    //all about desyianation/name of timetabl.json
+    std::string m_time_table_dest;
+    std::string m_time_table_name;
+
     TimetableWeekDay *Week[7];
     int SinglesCount;
     TimetableDay **Singles;
@@ -194,18 +212,6 @@ private:
     int SocketsCount;
     TimetableSocket **Sockets;
 
-    int getWeekNumber(const TimetableDate &origin, struct tm now = makeNow());
-    int getWeeksCount(const TimetableDateRange *dates);
-
-public:
-    TimeState getCurrentTimeState(int &secToEnd, int &lectNumber);
-    DateState getCurrentDateState(int &weekNumber);
-    bool getCurrentSocketState(int Socket);
-
-    int getHoliday(struct tm now = makeNow());
-
-    Timetable(const char *FileName = (config->Get("TIME_TABLE_DEST")+"/"+config->Get("TIME_TABLE_NAME")).c_str());//const_cast<char*>(config->Get("TIME_TABLE").c_str()));
-    ~Timetable();
 };
 
 extern Timetable *timetable;

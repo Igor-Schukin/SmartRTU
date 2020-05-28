@@ -2,12 +2,12 @@
 
 WgWatchdog::WgWatchdog()
 {
-    printf("%s\tWgWatchdog widget object is created\n", strNow());
+    fprintf(stdout,"%s\tWgWatchdog widget object is created\n", strNow());
 }
 
 WgWatchdog::~WgWatchdog()
 {
-    printf("%s\tWgWatchdog widget object is deleted\n", strNow());
+    fprintf(stdout,"%s\tWgWatchdog widget object is deleted\n", strNow());
 }
 
 bool WgWatchdog::update()

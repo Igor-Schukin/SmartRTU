@@ -9,12 +9,12 @@ WgCalendar::WgCalendar(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amod
 	strcpy(bufWeekDay, "-");
 	strcpy(bufWeekInfo, "- - -");
 	strcpy(bufWeek, "-");
-	printf("%s\tWgCalendar widget object is created\n", strNow());
+	fprintf(stdout,"%s\tWgCalendar widget object is created\n", strNow());
 }
 
 WgCalendar::~WgCalendar()
 {
-	printf("%s\tWgCalendar widget object is deleted\n", strNow());
+	fprintf(stdout,"%s\tWgCalendar widget object is deleted\n", strNow());
 }
 
 const char *WgCalendar::convertWeekDayFromInt(int wday)

@@ -2,6 +2,8 @@
 #include <cstdio>
 #include <csignal>
 
+#include<string>
+
 #include "CPicturesStorage.h"
 #include "CFontStorage.h"
 
@@ -19,22 +21,26 @@ void termSignalHandler(int signal)
 
 int main()
 {
-	std::signal(SIGTERM, termSignalHandler);
 
+	std::signal(SIGTERM, termSignalHandler);
+	//all about fonts
+	std::string base_font_name;
+	std::string base_font_path;
+	std::string base_font_full_name;
 	try
 	{
-		printf("%s\t***** INFOBORAD engine is started\n", strNow());
+		fprintf(stdout,"%s\t***** INFOBORAD engine is started\n", strNow());
 		
 		//create config
 		config=new Configuration;
 
 		//check if config loaded
 		if(config->Load("./res/config.cfg")==false){
-			printf("%s\t \033[1;31m CONFIG DID NOT LOADED check your config.cfg destination or if file exist!\033[0m\n", strNow());
+			fprintf(stderr,"%s\t \033[1;31m CONFIG DID NOT LOADED check your config.cfg destination or if file exist!\033[0m\n", strNow());
 		}
 		else
 		{
-			printf("%s\tConfig loaded successfully\n", strNow());
+			fprintf(stdout,"%s\tConfig loaded successfully\n", strNow());
 		}
 
 		try
@@ -46,6 +52,10 @@ int main()
 			timetable = NULL;
 		}
 
+		config->Get("BASE_FONT_NAME",base_font_name);
+		config->Get("BASE_FONT_PATH",base_font_path);
+		config->Get("BASE_FONT",base_font_full_name);
+
 		int width, height;
 		init(&width, &height);//get display/monitor width and height
 
@@ -56,10 +66,10 @@ int main()
 		//set MAIN font to project
 		FontStorage->setFont(
 			const_cast<char*>(
-				config->Get("BASE_FONT_NAME").c_str()
+				base_font_name.c_str()
 				),
 			const_cast<char*>(
-				(config->Get("BASE_FONT_PATH")+"/"+config->Get("BASE_FONT")).c_str()
+				(base_font_path+"/"+base_font_full_name).c_str()
 				)
 			 );
 
@@ -73,11 +83,11 @@ int main()
 		delete config;
 		finish();
 
-		printf("%s\t***** INFOBORAD engine is finished\n", strNow());
+		fprintf(stdout,"%s\t***** INFOBORAD engine is finished\n", strNow());
 	}
 	catch (...)
 	{
-		printf("%s\t~~~~~ INFOBORAD engine is crashed\n", strNow());
+		fprintf(stderr,"%s\t~~~~~ INFOBORAD engine is crashed\n", strNow());
 		return 1; // need restart
 	}
 	return 0;

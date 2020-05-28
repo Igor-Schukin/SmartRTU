@@ -1,6 +1,6 @@
 #include "CFontStorage.h"
 #include "iostream"
-#include "cstring"
+#include <cstring>
 using namespace std;
 
 CFontStorage *FontStorage;
@@ -38,13 +38,13 @@ int CFontStorage::findFontName(char *fontName)
 bool CFontStorage::setFont(char *fontName, char *fontFile)
 {
 #ifdef ONDEBUG
-	cout << "Loading font: name \"" << fontName << "\", file \"" << fontFile << "\" ..." << endl;
+	std::cout << "Loading font: name \"" << fontName << "\", file \"" << fontFile << "\" ..." << '\n';
 #endif
 
 	int fontId = findFontName(fontName); //fontId it is position in massive fonts[MAX_FONTS_COUNT];
 	if (fontId > -1)
 	{
-		cout << "-- ERROR: \"" << fontName << "\" font name already exist. Font not loaded." << endl;
+		std::cerr << "-- ERROR: \"" << fontName << "\" font name already exist. Font not loaded." << '\n';
 		return false;
 	}
 
@@ -55,30 +55,30 @@ bool CFontStorage::setFont(char *fontName, char *fontFile)
 			fonts[i] = new sFont(fontName, new TFont(fontFile));
 
 #ifdef ONDEBUG
-			cout << "-- OK: font loaded. Position: " << i << endl;
+			std::cout << "-- OK: font loaded. Position: " << i << endl;
 #endif
 			return true;
 		}
 	}
-	cout << "-- ERROR: font massive is full " << MAX_FONTS_COUNT << "/" << MAX_FONTS_COUNT << ". Font not loaded." << endl;
+	std::cerr << "-- ERROR: font massive is full " << MAX_FONTS_COUNT << "/" << MAX_FONTS_COUNT << ". Font not loaded." << '\n';
 	return false;
 }
 
 TFont *CFontStorage::getFont(char *fontName)
 {
 #ifdef ONDEBUG
-	cout << "Get font: name \"" << fontName << "\" ..." << endl;
+	std::cout << "Get font: name \"" << fontName << "\" ..." << endl;
 #endif
 
 	int fontId = findFontName(fontName); //fontId it is position in massive fonts[MAX_FONTS_COUNT];
 	if (fontId == -1)
 	{
-		cout << "-- ERROR: can't found font with name: " << fontName << endl;
-		cout << "		Try add font: setFont((char*)\"name\", (char*)\"path to .ttf file\");" << endl;
+		std::cerr << "-- ERROR: can't found font with name: " << fontName << endl;
+		std::cerr << "		Try add font: setFont((char*)\"name\", (char*)\"path to .ttf file\");" << endl;
 	}
 
 #ifdef ONDEBUG
-	cout << "-- OK: Font founded." << endl;
+	std::cout << "-- OK: Font founded." << endl;
 #endif
 	return fonts[fontId]->fontFile;
 }

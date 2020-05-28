@@ -3,6 +3,8 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
+#include<string>
+
 #include "Engine.h"
 #include "IWidget.h"
 #include "timetable.h"
@@ -16,6 +18,8 @@ private:
     int id;
     time_t fileTime;
     time_t getFileTime();
+    std::string m_timetable_dest;
+    std::string m_timetable_name;
 
 public:
     ~WgTimetable();

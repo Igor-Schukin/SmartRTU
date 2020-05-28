@@ -52,7 +52,7 @@ void Engine::run()
 	forcedUpdate();
 	render(true);
 
-	printf("%s\tEngine main circle is started\n", strNow());
+	fprintf(stdout,"%s\tEngine main circle is started\n", strNow());
 
 	while (isRunning && !terminated)
 	{
@@ -81,7 +81,7 @@ void Engine::run()
 			unsigned int tm_m = tsec / 60;
 			tsec %= 60;
 			unsigned int tm_s = tsec;
-			printf(
+			fprintf(stdout,
 				"%s\tStatus: on time: %u:%02u:%02u:%02u, idle: %llu%%, fps: %.0f\n",
 				strNow(), tm_d, tm_h, tm_m, tm_s,
 				idleTime * 100 / (time - lastDebug),
@@ -108,7 +108,7 @@ void Engine::run()
 		idleTime += 1;
 	}
 
-	printf("%s\tEngine main circle is finished\n", strNow());
+	fprintf(stdout,"%s\tEngine main circle is finished\n", strNow());
 }
 
 void Engine::update()

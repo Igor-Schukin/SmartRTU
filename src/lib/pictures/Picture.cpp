@@ -186,7 +186,7 @@ VGImage Picture::createImageFromJpeg(const char *filename)
     infile = fopen(filename, "rb");
     if (infile == NULL)
     {
-        printf("Failed opening '%s' for reading!\n", filename);
+        fprintf(stderr,"Failed opening '%s' for reading!\n", filename);
         return VG_INVALID_HANDLE;
     }
     // Setup default error handling

@@ -3,7 +3,7 @@
 time_t WgTimetable::getFileTime()
 {
     struct stat buff;
-    if (stat((config->Get("TIME_TABLE_DEST")+"/"+config->Get("TIME_TABLE_NAME")).c_str(), &buff) == 0)
+    if (stat((m_timetable_dest+"/"+m_timetable_name).c_str(), &buff) == 0)
         return buff.st_mtime;
     return 0;
 }
@@ -11,12 +11,16 @@ time_t WgTimetable::getFileTime()
 WgTimetable::WgTimetable()
 {
     fileTime = getFileTime();
-    printf("%s\tWgTimetable widget object is created\n", strNow());
+
+    config->Get("TIME_TABLE_DEST",m_timetable_dest);
+    config->Get("TIME_TABLE_NAME",m_timetable_name);
+
+    fprintf(stdout,"%s\tWgTimetable widget object is created\n", strNow());
 }
 
 WgTimetable::~WgTimetable()
 {
-    printf("%s\tWgTimetable widget object is deleted\n", strNow());
+    fprintf(stdout,"%s\tWgTimetable widget object is deleted\n", strNow());
 }
 
 bool WgTimetable::update()

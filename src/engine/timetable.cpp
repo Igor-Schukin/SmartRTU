@@ -139,10 +139,15 @@ bool TimeTableSocketTime::isSwitchedOn(struct tm time) { return time >= on && ti
 
 //~~~ constructor
 
-Timetable::Timetable(const char *FileName)
+//Timetable::Timetable(const char *FileName)
+Timetable::Timetable()
 {
-    for (int wd = 0; wd < 7; wd++)
+    config->Get("TIME_TABLE_DEST",m_time_table_dest);
+    config->Get("TIME_TABLE_NAME",m_time_table_name);
+
+    for (int wd = 0; wd < 7; wd++){
         Week[wd] = NULL;
+    }
     Singles = NULL;
     SinglesCount = 0;
     Holidays = NULL;
@@ -155,7 +160,7 @@ Timetable::Timetable(const char *FileName)
     try
     {
         json sch;
-        ifstream i(FileName);
+        std::ifstream i(m_time_table_dest+"/"+m_time_table_name);
         i >> sch;
 
         json &week = sch["week"];
@@ -212,16 +217,16 @@ Timetable::Timetable(const char *FileName)
                 }
         }
 
-        printf("%s\tTimetable is loaded from %s:\n", strNow(), FileName);
-        printf("\t\t\t\t%d date ranges of academic calendar\n", CalendarCount);
-        printf("\t\t\t\t%d holidays\n", HolidaysCount);
-        printf("\t\t\t\t7 lectures scheles for week days\n");
-        printf("\t\t\t\t%d lectures schedules for standalone dates\n", SinglesCount);
-        printf("\t\t\t\t%d schedules for power sockets control\n", SocketsCount);
+        fprintf(stdout,"%s\tTimetable is loaded from %s:\n", strNow(), (m_time_table_dest+"/"+m_time_table_name).c_str());
+        fprintf(stdout,"\t\t\t\t%d date ranges of academic calendar\n", CalendarCount);
+        fprintf(stdout,"\t\t\t\t%d holidays\n", HolidaysCount);
+        fprintf(stdout,"\t\t\t\t7 lectures scheles for week days\n");
+        fprintf(stdout,"\t\t\t\t%d lectures schedules for standalone dates\n", SinglesCount);
+        fprintf(stdout,"\t\t\t\t%d schedules for power sockets control\n", SocketsCount);
     }
     catch (...)
     {
-        printf("%s\tError loading timetable JSON from %s\n", strNow(), FileName);
+        fprintf(stderr,"%s\tError loading timetable JSON from %s\n", strNow(), (m_time_table_dest+"/"+m_time_table_name).c_str());
         throw;
     }
 }

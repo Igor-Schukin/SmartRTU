@@ -69,8 +69,9 @@ void WgHtmlAds::m_CutyCaptRequest(){
 WgHtmlAds::WgHtmlAds(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amode)
 {
 	isShadows=false; //default render of shadows off 
-	int update_time=atoi((config->Get("ADVERT_UPDATE_TIME")).c_str()); //converts string into int
-	if(update_time<0){
+	int update_time;
+	config->Get("ADVERT_UPDATE_TIME",update_time); //converts string into int
+	if(update_time<=0){
 		updateTime = 3000;//sets 3 seconds update time  //int data type
 	}
 	else{
@@ -78,16 +79,16 @@ WgHtmlAds::WgHtmlAds(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amode)
 	}
 
 	//string part
-	m_header_text=config->Get("HEADER_TEXT");
+	config->Get("HEADER_TEXT",m_header_text);
 	// .html part
-	m_html_input_file_dest = config->Get("ADVERT_INPUT_FILE_DEST");
-	m_html_name = config->Get("ADVERT_INPUT_FILE");
+	config->Get("ADVERT_INPUT_FILE_DEST",m_html_input_file_dest);
+	config->Get("ADVERT_INPUT_FILE",m_html_name);
 	//advert part
-	m_ad_path = config->Get("ADVERT_PATH");
-	m_ad_name = config->Get("ADVERT_NAME");
+	config->Get("ADVERT_PATH",m_ad_path);
+	config->Get("ADVERT_NAME",m_ad_name);
 	//stub part
-	m_stub_path = config->Get("ADVERT_PATH");// probably need diferent prm in config than ADVERT_PATH...
-    m_stub_name = config->Get("ADVERT_STUB_NAME");
+	config->Get("ADVERT_PATH",m_stub_path);// probably need diferent prm in config than ADVERT_PATH...
+    config->Get("ADVERT_STUB_NAME",m_stub_name);
 
 	
 	char buf[PATH_MAX];

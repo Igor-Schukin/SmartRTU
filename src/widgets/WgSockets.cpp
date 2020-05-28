@@ -8,12 +8,12 @@ WgSockets::WgSockets()
         curStates[i] = false;
         pinMode(socketsPins[i], OUTPUT);
     }
-    printf("%s\tWgSockets widget object is created\n", strNow());
+    fprintf(stdout,"%s\tWgSockets widget object is created\n", strNow());
 }
 
 WgSockets::~WgSockets()
 {
-    printf("%s\tWgSockets widget object is deleted\n", strNow());
+    fprintf(stdout,"%s\tWgSockets widget object is deleted\n", strNow());
 }
 
 bool WgSockets::update()
@@ -24,7 +24,7 @@ bool WgSockets::update()
         digitalWrite(socketsPins[i], state ? HIGH : LOW);
         if (state != curStates[i])
         {
-            printf("%s\tSocket %d is turned %s\n", strNow(), i + 1, state ? "on" : "off");
+            fprintf(stdout,"%s\tSocket %d is turned %s\n", strNow(), i + 1, state ? "on" : "off");
             curStates[i] = state;
         }
     }

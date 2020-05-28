@@ -27,7 +27,7 @@ Desktop::Desktop( int scr_width, int scr_height )
     colWidth = dwRect.width / colCount;
     rowHeight = dwRect.height / rowCount;
 
-    printf("%s\tDesktop size %d x %d, widgets area size %d x %d\n", strNow(), scrWidth, scrHeight, dwRect.width, dwRect.height);
+    fprintf(stdout,"%s\tDesktop size %d x %d, widgets area size %d x %d\n", strNow(), scrWidth, scrHeight, dwRect.width, dwRect.height);
 };
 
 Desktop::~Desktop() { }

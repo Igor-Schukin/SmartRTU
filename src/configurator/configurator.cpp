@@ -64,36 +64,88 @@ bool Configuration::Contains(const std::string& key) const
     return m_data.find(key) != m_data.end();
 }
  
-std::string Configuration::Get(const std::string& key) 
+bool Configuration::Get(const std::string& key,std::string &value) 
 {
     std::map<std::string,std::string>::const_iterator iter = m_data.find(key);
  
     if (iter != m_data.end())
     {
-        return iter->second;
+        value= iter->second;
+        return true;
     }
     else
     {
-        std::cerr << "\033[1;31m~~~~ not TEST faund \"" << key << "\" in config ~~~~~\033[0m" << '\n';
-        return "error" ;
+        std::cerr << "\033[1;31m~~~~ not faund \"" << key << "\" in config ~~~~~\033[0m" << '\n';
+        return false;
     }
 }
- 
-std::string Configuration::Get(const std::string & key, const std::string & default_val)
-{
-	std::map<std::string, std::string>::const_iterator iter = m_data.find(key);
 
-	if (iter != m_data.end())
-	{
-		return iter->second;
-	}
-	else
-	{
-		 std::cerr << "\033[1;31m~~~~ not faund \"" << key << "\" in config instead \""<<default_val<<"\" placed ~~~~~\033[0m" << '\n';
-		return default_val;
-	}
+bool Configuration::Get(const std::string& key,std::string &value,const std::string& default_value) 
+{
+    std::map<std::string,std::string>::const_iterator iter = m_data.find(key);
+ 
+    if (iter != m_data.end())
+    {
+        value= iter->second;
+        return true;
+    }
+    else
+    {
+        std::cerr << "\033[1;31m~~~~ not TEST faund \"" << key << "\" in config, replaced by default_value:"<<default_value<<" ~~~~~\033[0m" << '\n';
+        value=default_value;
+        return false;
+    }
 }
 
+bool Configuration::Get(const  std::string& key, int& value) 
+{
+    std::string str;
+ 
+    if (Get(key, str))
+    {
+        value = atoi(str.c_str());
+        return true;
+    }
+    else
+    {
+        std::cerr << "\033[1;31m~~~~ not faund \"" << key << "\" in config ~~~~~\033[0m" << '\n';
+        return false;
+    }
+}
+
+bool Configuration::Get(const std::string& key, int& value,int default_value) 
+{
+    std::string str;
+ 
+    if (Get(key, str))
+    {
+        value = atoi(str.c_str());
+        return true;
+    }
+    else
+    {
+        std::cerr << "\033[1;31m~~~~ not faund \"" << key << "\" in config, replaced by default_value:"<<default_value<<"~~~~~\033[0m" << '\n';
+        value=default_value;
+        return false;
+    }
+}
+
+
+bool Configuration::Get(const std::string& key, bool& value)
+{
+    std::string str;
+ 
+    if (Get(key, str))
+    {
+        value = (str == "true");
+        return true;
+    }
+    else
+    {
+        std::cerr << "\033[1;31m~~~~ not faund \"" << key << "\" in config~~~~~\033[0m" << '\n';
+        return false;
+    }
+}
 
 std::string Configuration::m_Trim(const std::string& str)
 {

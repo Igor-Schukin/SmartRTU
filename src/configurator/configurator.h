@@ -37,10 +37,18 @@ public:
     bool Contains(const std::string& key) const;
  
     // get value associated with given key
-    std::string Get(const std::string& key) ;
+    //string
+    bool Get(const std::string& key,std::string &value) ;
+    bool Get(const std::string& key,std::string &value,const std::string& default_value ) ;
+    //int
+    bool Get(const std::string& key, int& value);
+    bool Get(const std::string& key, int& value,int default_value);
+    //long
+    //double
+    //bool
+    bool Get(const std::string& key, bool& value);
+    bool Get(const std::string& key, bool& value,bool default_value);
 
-    // get value associated with given key or return default val
-    std::string Get(const std::string& key ,const std::string&default_val) ;
 
 private:
     // the container
