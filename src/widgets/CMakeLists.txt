@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.0.0)
 
+
+# WgAds.cpp was excluded form build for now
 set(SRC IWidget.cpp
-    WgAds.cpp
     WgHtmlAds.cpp
     WgBackground.cpp
     WgCalendar.cpp 

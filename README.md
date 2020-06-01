@@ -32,5 +32,7 @@ inf)if needed "reliese" build ,uncomment  in ${PROJECT_DIR}/CMakeLists.txt line 
 UNDER MIT [license](LICENSE)  
 
 # Contributors  
-year then left project...............Name...............deserts
+year then left project...............Name...............deserts  
 
+# Project_structure  
+<img src="https://imgur.com/b63PIkS.png" ></img> 

@@ -91,6 +91,7 @@ class WgForecast : public WgBackground
 private:
 	Picture *weatherIcon;
 	std::string weatherIconName;
+	std::string m_weather_icons_path;
 
 	char tempDegree[6]; //temperature
 	char windSpeed[10]; //wind speed

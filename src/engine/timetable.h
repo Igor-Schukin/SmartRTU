@@ -9,7 +9,6 @@
 #include "json.h"
 #include "Timer.h"
 
-#include "config.h"
 #include "../configurator/configurator.h"
 
 using namespace std;

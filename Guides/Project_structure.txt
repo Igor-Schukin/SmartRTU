@@ -1,0 +1,56 @@
+SMART_RTU  
+	|
+	|---- CMakeLists.txt
+	|
+	|---- LICENSE
+	|
+	|---- README.md
+	|
+	|---- .EXE
+	|  
+	|---- build  
+	|  
+	|---- guides  
+	|  
+	|---- res  
+	|		|
+	|		|----config.cfg 
+	|		|
+	|		|----timetable.json
+	|		|
+	|		|---- ads
+	|		|
+	|		|---- fonts
+	|		| 	 		
+	|		|---- tmp
+	|		|
+	|		|---- picture  
+	|		 		|  
+	|		 		|---- shadows  
+	|		 		|  
+	|		 		|---- weather  			
+	|  
+	|  
+	|---- src  
+	|		|  
+	|		|---- main.cpp  
+	|		|  
+	|		|---- configurator
+	|		|
+	|		|---- engine
+	|		|	
+	|		|---- storage
+	|		|
+	|		|---- widget
+	|		|
+	|		|---- lib
+	|		 		|
+	|		 		|---- fonts
+	|		 		|
+	|		 		|---- json
+	|		 		|
+	|		 		|---- pictures
+	|
+	|
+	|
+  

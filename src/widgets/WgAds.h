@@ -18,7 +18,6 @@
 #include "Timer.h"
 #include "CPicturesStorage.h"
 #include "CFontStorage.h"
-#include "config.h"
 using namespace std;
 
 // #define ADS_FILES_PATH "./widgets/text/"

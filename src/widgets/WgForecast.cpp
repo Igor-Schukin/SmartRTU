@@ -1,5 +1,5 @@
 #include "WgForecast.h"
-#include "config.h"
+#include "configurator.h"
 
 WgForecast::WgForecast(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amode)
 {
@@ -7,19 +7,21 @@ WgForecast::WgForecast(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amod
 	weatherIcon = NULL;
 	weatherIconName = "";
 
+	config->Get("PIC_WEATHER_ICONS_PATH",m_weather_icons_path);//get destination of weather icon
+
 	isConnection = false;
 
 	strcpy(tempDegree, "");
 	strcpy(windSpeed, "");
 	windDegree = 0;
-	printf("%s\tWgForecast widget object is created\n", strNow());
+	fprintf(stdout,"%s\tWgForecast widget object is created\n", strNow());
 }
 
 WgForecast::~WgForecast()
 {
 	if (weatherIcon)
 		delete weatherIcon;
-	printf("%s\tWgForecast widget object is deleted\n", strNow());
+	fprintf(stdout,"%s\tWgForecast widget object is deleted\n", strNow());
 }
 
 size_t WgForecast::WriteCallback(void *contents, size_t size, size_t nmemb, void *userp) //???
@@ -48,12 +50,12 @@ void WgForecast::getWeatherFromWeb(const char site[], json &weatherData)
 			isConnection = true;
 			auto buf = json::parse(readBuffer);
 			weatherData = buf;
-			printf("%s\tNew current weather state is received\n", strNow());
+			fprintf(stdout,"%s\tNew current weather state is received\n", strNow());
 		}
 		else
 		{
 			isConnection = false;
-			printf("%s\tError of current weather state receiving\n", strNow());
+			fprintf(stderr,"%s\tError of current weather state receiving\n", strNow());
 		}
 	}
 	curl_easy_cleanup(curl); //выполняем обязательное завершение сессии
@@ -91,7 +93,7 @@ bool WgForecast::update()
 		std::string iconName = weatherData["weather"][0]["icon"];
 		if (iconName != weatherIconName)
 		{
-			std::string iconPath = std::string(WEATHER_ICONS_PATH) + iconName + ".png";
+			std::string iconPath{ m_weather_icons_path+"/"+ iconName + ".png"};//probably need this put into 101 line without using local string iconPath
 			//printf("%s\tNew weather icon is loaded from file %s\n", strNow(), iconPath.c_str());//ORIG
 			fprintf(stdout,"%s\tNew weather icon is loaded \n", strNow());
 			if (weatherIcon)

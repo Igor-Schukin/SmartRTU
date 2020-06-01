@@ -1,1 +1,3 @@
-0.make config be everywhere
+//TODO
+figurout shadow problem moving ???
+multiple adverts| adverts roatating

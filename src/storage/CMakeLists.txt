@@ -15,5 +15,6 @@ target_include_directories(BoardStorage PUBLIC  ${CMAKE_CURRENT_SOURCE_DIR}
                                             ../lib/pictures
                                             ../../src  
 					   ../lib/fonts
-                                            )
+                                           ../configurator 
+                                           )
 

@@ -1,0 +1,18 @@
+libpng warning: iCCP: known incorrect sRGB profile
+libpng warning: iCCP: known incorrect sRGB profile
+libpng warning: iCCP: known incorrect sRGB profile
+libpng warning: iCCP: known incorrect sRGB profile
+libpng warning: iCCP: known incorrect sRGB profile
+libpng warning: iCCP: known incorrect sRGB profile
+libpng warning: iCCP: known incorrect sRGB profile
+libpng warning: iCCP: known incorrect sRGB profile
+qt5ct: using qt5ct plugin
+qt5ct: D-Bus system tray: no
+qt5ct: using qt5ct plugin
+qt5ct: D-Bus system tray: no
+qt5ct: using qt5ct plugin
+qt5ct: D-Bus system tray: no
+qt5ct: using qt5ct plugin
+qt5ct: D-Bus system tray: no
+qt5ct: using qt5ct plugin
+qt5ct: D-Bus system tray: no

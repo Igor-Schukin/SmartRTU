@@ -1,14 +1,20 @@
 #include "iostream"
 #include "CPicturesStorage.h"
 
-#include "config.h"
-
-using namespace std;
+#include "configurator.h"
+using namespace std; // brr
 
 CPicturesStorage *PicStorage;
 
 CPicturesStorage::CPicturesStorage()
 {
+	//adds needed paths
+	config->Get("PIC_SHADOW_PATH",m_shadows_path);
+	config->Get("PIC_PATH",m_pictures_path);
+	config->Get("PIC_BACKGROUND",m_background_pic_name);
+	config->Get("PIC_TITLE",m_title_pic_name);
+
+
 	this->addPic();
 	//arialBold = new TFont("lib/TFont/ArialBold.ttf");
 }
@@ -20,18 +26,18 @@ CPicturesStorage::~CPicturesStorage()
 
 void CPicturesStorage::addPic()
 {
-	Logo = new Picture(PIC_PATH("title.png"));
-	ScreenBackgroud = new Picture(PIC_PATH("Background.jpg"));
-	Arrow = new Picture(PIC_PATH("arrow_sm.png"));
+	Logo = new Picture((m_pictures_path+"/"+m_title_pic_name).c_str());
+	ScreenBackgroud = new Picture((m_pictures_path+"/"+m_background_pic_name).c_str());
+	Arrow = new Picture((m_pictures_path+"/"+"arrow_sm.png").c_str());
 	WgShadows = new wgShadowPictures;
-	WgShadows->t = new Picture(SHADOW_PATH("sTop.png"));
-	WgShadows->lt = new Picture(SHADOW_PATH("sLeftTop.png"));
-	WgShadows->rt = new Picture(SHADOW_PATH("sRightTop.png"));
-	WgShadows->b = new Picture(SHADOW_PATH("sBot.png"));
-	WgShadows->lb = new Picture(SHADOW_PATH("sLeftBot.png"));
-	WgShadows->rb = new Picture(SHADOW_PATH("sRightBot.png"));
-	WgShadows->l = new Picture(SHADOW_PATH("sLeft.png"));
-	WgShadows->r = new Picture(SHADOW_PATH("sRight.png"));
+	WgShadows->t = new Picture((m_shadows_path+"/"+"sTop.png").c_str());
+	WgShadows->lt = new Picture((m_shadows_path+"/"+"sLeftTop.png").c_str());
+	WgShadows->rt = new Picture((m_shadows_path+"/"+"sRightTop.png").c_str());
+	WgShadows->b = new Picture((m_shadows_path+"/"+"sBot.png").c_str());
+	WgShadows->lb = new Picture((m_shadows_path+"/"+"sLeftBot.png").c_str());
+	WgShadows->rb = new Picture((m_shadows_path+"/"+"sRightBot.png").c_str());
+	WgShadows->l = new Picture((m_shadows_path+"/"+"sLeft.png").c_str());
+	WgShadows->r = new Picture((m_shadows_path+"/"+"sRight.png").c_str());
 }
 
 void CPicturesStorage::cleanStorage()

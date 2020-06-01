@@ -7,6 +7,7 @@
  */
 #pragma once
 #include "Picture.h"
+#include<string>
 //#include "./lib/TFont/TFont.h"
 
 struct wgShadowPictures
@@ -30,6 +31,11 @@ private:
 public:
 	CPicturesStorage();
 	~CPicturesStorage();
+
+	std::string m_shadows_path;
+	std::string m_pictures_path;
+	std::string m_background_pic_name;
+	std::string m_title_pic_name;
 
 	//TFont *arialBold;
 	Picture *ScreenBackgroud;

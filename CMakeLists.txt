@@ -10,8 +10,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # uncoment 11 line for reliese build  and comment 12 line  by defoult build is in  debug mode
 # if build type was changed using IDE make sure what in main CmakeLists.txt build type is same
 # other wise will be broken exe 
-#set(CMAKE_BUILD_TYPE Release)
-set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_BUILD_TYPE Release)
+#set(CMAKE_BUILD_TYPE Debug)
 
 #cmake debging stuff (something about testing)
 include(CTest)
@@ -23,13 +23,15 @@ set(OBJ /home/pi/openvg/libshapes.o /home/pi/openvg/oglinit.o)
 # -g adds debuging info into exe 
 # -Wall will show most of the errors/warnings if compiler finds them
 # -Wextra ads even more warnings if compiler will found them
+# -03 means max level of compiler optimization
+# -DNDEBUG  needed stuff but I do not know why(change build type in IDE on Release and check build/compile_comamands.json)
 
 #diferent compiler flags for differnt builds
 if(CMAKE_BUILD_TYPE MATCHES Debug)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -Wextra")
 else(CMAKE_BUILD_TYPE MATCHES Debug)
 	# if it not in Debug build when adds only -Wall
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -O3 -DNDEBUG")
 endif(CMAKE_BUILD_TYPE MATCHES Debug)
 
 #expand CXX flags with lib flags
@@ -52,17 +54,17 @@ add_executable(infoboard ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp )
 #link external .o and libs TO EXE
 #maybe '_' can rise an error need to check
 target_link_libraries(infoboard ${OBJ}  BoardLib 
-										BoardStorage 
-										BoardWidgets 
-										BoardEngine
-										BoardConfig
+							BoardStorage 
+							BoardWidgets 
+							BoardEngine
+							BoardConfig
 )
 
 #where compiler to search PATHS
 target_include_directories(infoboard PUBLIC /src/engine
-	 				     					/src/storage
-						 					/src
-						 					/src/configurator
+	 				     	/src/storage
+						 	/src
+						 	/src/configurator
 )
 
 #cmake stuff                                            
