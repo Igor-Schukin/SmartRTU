@@ -20,7 +20,7 @@
 #include "configurator.h" //config 
 
 
-time_t WgHtmlAds::m_GetFileTime()
+std::time_t WgHtmlAds::m_GetFileTime()
 {
 	struct stat buff;
 	//check if it can touch file and read last edit time of file
@@ -38,8 +38,8 @@ time_t WgHtmlAds::m_GetFileTime()
 bool WgHtmlAds::m_NeedRenew()
 {
 	//get file time
-	time_t ft = WgHtmlAds::m_GetFileTime();
-	if (ft != 0 && ft != m_file_time)
+	std::time_t ft = WgHtmlAds::m_GetFileTime();
+	if ((ft != 0) && (ft != m_file_time))
 	{
 		m_file_time = ft;
 		//printf("%s", asctime(gmtime(&fileTime))); //this is proof why two times thread cals at start
@@ -91,9 +91,9 @@ WgHtmlAds::WgHtmlAds(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amode)
     config->Get("ADVERT_STUB_NAME",m_stub_name);
 
 	
-	char buf[PATH_MAX];
-	realpath(".",buf); //get full path to exe
-	m_full_path=buf;//sets full path
+	char buff[PATH_MAX];
+	realpath(".",buff); //get full path to exe
+	m_full_path=buff;//sets full path
 
 
 	m_is_advert_on_screen=false; 
@@ -109,13 +109,12 @@ WgHtmlAds::WgHtmlAds(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amode)
 	#endif //DEBUG_THREAD_MSG
 
 	std::cout << strNow() << "\t"<< "WgHtmlsAds widget object was created\n";
-
 }
 
 WgHtmlAds::~WgHtmlAds()
 {
 	//if something inside delete it
-	if(m_advert_pic!=nullptr){
+	if(m_advert_pic != nullptr){
 		delete m_advert_pic;
 		m_advert_pic=nullptr;
 	}
@@ -131,10 +130,15 @@ bool WgHtmlAds::update(){
 
 		//needed if thread done its job 
 		//but need to say render to RERENDER advert what thread just did
-		if(m_is_advert_on_screen==false)return true;
+		if(m_is_advert_on_screen==false){
+			return true;
+		}
 
 		//check if file was edited
 		if(m_NeedRenew()==true){
+
+			std::cout << strNow() << "\t"<< "Detected what advert must be updated,Cutycapt lauched\n";
+
 			//run Cytycapt stuff in async thread
 			m_future=std::async(std::launch::async,&WgHtmlAds::m_CutyCaptRequest,this);
 
@@ -169,6 +173,7 @@ void WgHtmlAds::render()
 
 	// check if thread finished.
 	if (m_thread_status == std::future_status::ready) {
+		std::cout << strNow() << "\t"<< "Cutycapt finished (Its thread)\n";
 		//std::cout << "Thread finished" << std::endl;
 		#ifdef DEBUG_THREAD_MSG
 			std::cout<<"DEBUG_THREAD_MSG:~~~~~~PASSED THREAD STATUS CHECK IN RENDER()~~~~~~"<<'\n';
@@ -178,12 +183,12 @@ void WgHtmlAds::render()
 		if(m_is_advert_on_screen==false){
 			m_is_advert_on_screen=true;
 
-		#ifdef DEBUG_THREAD_MSG
-			std::cout<<"DEBUG_THREAD_MSG:~~~~~~LOADED ADVERT PICTURE ~~~~~~"<<'\n';
-		#endif //DEBUG_THREAD_MSG
+			#ifdef DEBUG_THREAD_MSG
+				std::cout<<"DEBUG_THREAD_MSG:~~~~~~LOADED ADVERT PICTURE ~~~~~~"<<'\n';
+			#endif //DEBUG_THREAD_MSG
 
 			//cleare m_advert_pic
-			if(m_advert_pic!=nullptr){
+			if(m_advert_pic != nullptr){
 				delete m_advert_pic;
 				m_advert_pic=nullptr;
 			}
@@ -198,23 +203,25 @@ void WgHtmlAds::render()
 			}
 			catch(...)
 			{
+
+				std::cerr<< strNow() << "\t"<< "Something bad happened  with loading advert, STUB placed instead!!! \n";
+
 				//clean what migth be in m_advert_pic
-				if(m_advert_pic!=nullptr){
+				if(m_advert_pic != nullptr){
 					delete m_advert_pic;
 					m_advert_pic=nullptr;
 				}
-				
 				m_advert_pic=new Picture(
 					(m_stub_path+"/"+m_stub_name).c_str()
 				);//create advert //take stub in place of advert
-
 			}
 
 			//calc scales of image
 			m_scale_by_x = static_cast<float>(rectClient.width) / static_cast<float>(m_advert_pic->getWidth());
 	 		m_scale_by_y = static_cast<float>(rectClient.height) / static_cast<float>(m_advert_pic->getHeight());
 			 
-			 
+			std::cout << strNow() << "\t"<< "Advert is placed on the widget screen \n";
+
 			 //!!DEBUG STUFF!!
 			#ifdef DEBUG_ADVERTS_PRM_SHOW
 				std::cout<<'\n';
@@ -224,7 +231,6 @@ void WgHtmlAds::render()
 				std::cout<<"WgHtmlAds area     width -> "<<rectClient.width<<" \theight -> "<<rectClient.height<<'\n';
 				std::cout<<'\n';
 			#endif //DEBUG_ADVERTS_PRM_SHOW
-
 		}
 	}
 	else {
@@ -235,7 +241,7 @@ void WgHtmlAds::render()
 
 		//check if it is advert and already uploaded into widget
 		//and checks if Stub was once Displayed 
-		if(m_is_advert_on_screen==false&& m_stub_displayed_once==false){
+		if((m_is_advert_on_screen == false) and (m_stub_displayed_once==false)){
 			m_is_advert_on_screen=true;//change flag what it is not advert uploaded into widget
 			m_stub_displayed_once=true; //sets what stub displayed once
 
@@ -244,11 +250,9 @@ void WgHtmlAds::render()
 			//Pi have brain shortage?
 			//I run this from my vscode on windows maybe dats why?
 			//cleare m_advert_pic
-
-
-			
+		
 			//delete old stuff inside m_advert_pic
-			if(m_advert_pic!=nullptr){
+			if(m_advert_pic != nullptr){
 				delete m_advert_pic;
 				m_advert_pic=nullptr;
 			}
@@ -261,6 +265,7 @@ void WgHtmlAds::render()
 			m_scale_by_x = static_cast<float>(rectClient.width) / static_cast<float>(m_advert_pic->getWidth());
 	 		m_scale_by_y = static_cast<float>(rectClient.height) / static_cast<float>(m_advert_pic->getHeight());
 			
+			std::cout << strNow() << "\t"<< "Stub is placed on the widget screen \n";
 
 			//~~~DEBUG STUFF
 			#ifdef DEBUG_ADVERTS_PRM_SHOW

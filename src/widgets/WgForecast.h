@@ -7,6 +7,15 @@
 *			md1x1: show temperature
 */
 
+/*
+// THIS PART MUST BE REWRITEN USING CPR WRAPPER LIB INSTEAD PURE CURL!!!!!
+//
+//
+//
+*/
+
+
+
 #pragma once
 
 #include <iostream>
@@ -84,7 +93,7 @@
 using json = nlohmann::json;
 // examples and wiki: https://github.com/nlohmann/json
 
-using namespace std;
+//using namespace std;// stroustruup is mad!
 
 class WgForecast : public WgBackground
 {

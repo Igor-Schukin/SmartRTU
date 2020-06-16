@@ -3,6 +3,18 @@
 #ifndef SMART_RTU_SRC_WIDGETS_WGHTMLADS_H_
 #define SMART_RTU_SRC_WIDGETS_WGHTMLADS_H_
 
+/*
+// MAIN PURPOSE TO ASYNC WAY TO CONVERT HTML PAGE INTO PIC/ADVERT
+// SHOW IT ON THE WIDGET SCREEN
+// DETECT IF .HTML PAGE WAS EDITED ASYNC WAY CONVERT IT TO ADVERT AND REPLACE NEW ADVERT WITH NEW ONE
+//
+// btw example of new code style of project
+//
+//
+*/
+
+
+
 
 //C (more precisely: headers in angle brackets with the .h extension), e.g. <unistd.h>, <stdlib.h>
 
@@ -43,7 +55,7 @@ private:
     void m_CutyCaptRequest();//run in another thread combining strings to make request and transform .html page into png
    
    //~~detect if advert.html file was changed
-    time_t m_GetFileTime();//gets last edited time of file(.html) 
+    std::time_t m_GetFileTime();//gets last edited time of file(.html) 
 	bool m_NeedRenew();//check if file(.html) was changed/edited 
 
     //~~~stored strings
@@ -59,12 +71,12 @@ private:
     std::string m_full_path;//stores full path to exe
  
     Picture *m_advert_pic;//Pointer where image will be stored
-    time_t m_file_time=0;//last timestamp then file was edited 
-    float m_scale_by_x=0;//width Scale of image to fit into widget                                             
-    float m_scale_by_y=0;//height Scale of image to fit into widget
+    std::time_t m_file_time=0;//last timestamp then file was edited 
+    float m_scale_by_x=0;//width Scale of image/advert to fit into widget                                             
+    float m_scale_by_y=0;//height Scale of image/advert to fit into widget
     
     //~thread variables
-    std::future<void>m_future;//is handle of  new async thread 
+    std::future<void>m_future;//is handle of  new async thread //not so good to use void but....
     std::future_status m_thread_status; // stored status of thread //probably can avoid it
    
     bool m_is_advert_on_screen; // purpose: 1. what Picture obj will not be killed and created itch time in render

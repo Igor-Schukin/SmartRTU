@@ -1,7 +1,7 @@
 /*WgAds
  * Visual widget.
  * 	Show some ads and notifications.
- * 
+ *  FOR NOW THIS WIDGET IS DEPRICATED FROM INFOBOARD
  */
 
 #pragma once
@@ -18,7 +18,7 @@
 #include "Timer.h"
 #include "CPicturesStorage.h"
 #include "CFontStorage.h"
-using namespace std;
+using namespace std; //FIX ME //STRAUSTRUP IS MAD
 
 // #define ADS_FILES_PATH "./widgets/text/"
 #define ADS_FILE_NAME "text.txt"

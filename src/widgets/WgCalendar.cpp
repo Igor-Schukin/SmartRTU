@@ -1,6 +1,5 @@
 #include "WgCalendar.h"
 
-using namespace std;
 
 WgCalendar::WgCalendar(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amode)
 {
@@ -75,7 +74,7 @@ const char *WgCalendar::convertMounthFromInt(int mon)
 
 bool WgCalendar::update()
 {
-	time_t lt = time(NULL);
+	std::time_t lt = time(NULL);
 	struct tm *now = localtime(&lt);
 
 	sprintf(bufDate, "%i.%s", now->tm_mday, convertMounthFromInt(now->tm_mon));

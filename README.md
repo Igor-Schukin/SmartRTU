@@ -27,7 +27,7 @@ $ cd ..
 ```shell  
 $ ./infoboard
 ```  
-inf)if needed "reliese" build ,uncomment  in ${PROJECT_DIR}/CMakeLists.txt line 14 by default it is in debug mode  
+inf)if needed "reliese" build ,uncomment  in ${PROJECT_DIR}/CMakeLists.txt line 14 by default it is in reliese mode  
 # License  
 UNDER MIT [license](LICENSE)  
 

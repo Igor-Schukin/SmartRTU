@@ -11,7 +11,7 @@
 
 #include "../configurator/configurator.h"
 
-using namespace std;
+//using namespace std; //STRAUSTRUP IS MAD!!!
 using json = nlohmann::json;
 
 //#define DEFAULT_TIMETABLE_FILE (RES_DIR+"/timetable.json")
@@ -24,7 +24,7 @@ struct TimetableDate
         y = tt.value("y", 0);
         if (y <= 0)
         {
-            time_t t = time(NULL);
+            std::time_t t = time(NULL);
             struct tm *now = localtime(&t);
             y = now->tm_year + 1900;
         }

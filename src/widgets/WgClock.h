@@ -19,7 +19,7 @@
 #include "desktop.h"
 #include "Timer.h"
 
-using namespace std;
+//using namespace std;
 using json = nlohmann::json;
 
 class WgClock : public WgBackground

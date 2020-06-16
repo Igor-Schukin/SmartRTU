@@ -5,7 +5,7 @@
 #include FT_FREETYPE_H
 #include FT_OUTLINE_H
 #define NGLYPHS 2000
-using namespace std;
+//using namespace std; //straustrup is mad
 
 class Vector2
 {

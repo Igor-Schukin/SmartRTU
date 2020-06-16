@@ -45,7 +45,7 @@ WgClock::~WgClock()
 
 bool WgClock::update()
 {
-	time_t _now = time(NULL);
+	std::time_t _now = time(NULL);
 	struct tm *now = localtime(&_now);
 	if (now->tm_hour == hour && now->tm_min == min && now->tm_sec == sec)
 		return false;

@@ -1,6 +1,6 @@
 #include "TFont.h"
 #include <iostream>
-using namespace std;
+//using namespace std; //STRAUSTRUP IS MAD!!!
 
 bool TFont::CreateGlyphs(int *Pnt, int *PntInd, unsigned char *Ins, int *InsInd, int *InsCnt)
 {
