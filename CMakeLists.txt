@@ -36,7 +36,9 @@ else(CMAKE_BUILD_TYPE MATCHES Debug)
 endif(CMAKE_BUILD_TYPE MATCHES Debug)
 
 #expand CXX flags with lib flags
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -L/opt/vc/lib -lbrcmEGL -lbrcmGLESv2 -lbcm_host -lpthread -ljpeg -lshapes -lm -lpng -ljpeg")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -L/opt/vc/lib -fpermissive  -lstdc++ -lfreetype -lwiringPi -lbcm_host -lpthread -lcurl")
+
 
 #ADD SUBDIRS TO PROJECT 
 add_subdirectory(src/configurator)
@@ -52,8 +54,7 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 add_executable(infoboard ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp )
 
 
-#link external .o and libs TO EXE
-#maybe '_' can rise an error need to check
+#link external .o and own libs TO EXE
 target_link_libraries(infoboard ${OBJ}  BoardLib 
 							BoardStorage 
 							BoardWidgets 
