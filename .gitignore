@@ -1,2 +1,6 @@
 #build dir
-build/
+#exclude all except Dummy.txt
+/build/**
+!Dummy.txt
+
+#Normal exclude of dir is dirname/
