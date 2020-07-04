@@ -2,7 +2,7 @@
 #include "CPicturesStorage.h"
 
 #include "configurator.h"
-//using namespace std; //stroustrup is mad
+
 
 CPicturesStorage *PicStorage;
 

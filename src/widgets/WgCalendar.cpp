@@ -1,14 +1,26 @@
 #include "WgCalendar.h"
 
+#include <ctime>/*struct tm*/
+#include <iostream>/*cout*/
+#include <cstring>/*strcpy*/
 
-WgCalendar::WgCalendar(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amode)
+#include "CFontStorage.h"/*FontStorage obj*/
+#include "timetable.h"/*timetable obj*/
+#include "Timer.h"/*strNow()*/
+
+#include "configurator.h"/*configurator*/
+
+
+WgCalendar::WgCalendar(int Ax, int Ay, wgMode Amode) 
+: WgBackground(Ax, Ay, Amode)
 {
 	updateTime = 60 * 60 * 1000; // 1 hour
 	strcpy(bufDate, "- -");
 	strcpy(bufWeekDay, "-");
 	strcpy(bufWeekInfo, "- - -");
 	strcpy(bufWeek, "-");
-	fprintf(stdout,"%s\tWgCalendar widget object was created\n", strNow());
+	config->Get("BASE_FONT_NAME",m_base_font_name); 
+	std::cout<<strNow()<<"\tWgCalendar widget object was created\n";
 }
 
 WgCalendar::~WgCalendar()
@@ -16,7 +28,7 @@ WgCalendar::~WgCalendar()
 	fprintf(stdout,"%s\tWgCalendar widget object was deleted\n", strNow());
 }
 
-const char *WgCalendar::convertWeekDayFromInt(int wday)
+const char *WgCalendar::m_ConvertWeekDayFromInt(int wday)
 {
 	switch (wday)
 	{
@@ -39,7 +51,7 @@ const char *WgCalendar::convertWeekDayFromInt(int wday)
 	}
 }
 
-const char *WgCalendar::convertMounthFromInt(int mon)
+const char *WgCalendar::m_ConvertMonthFromInt(int mon)
 {
 	switch (mon)
 	{
@@ -77,9 +89,9 @@ bool WgCalendar::update()
 	std::time_t lt = time(NULL);
 	struct tm *now = localtime(&lt);
 
-	sprintf(bufDate, "%i.%s", now->tm_mday, convertMounthFromInt(now->tm_mon));
+	sprintf(bufDate, "%i.%s", now->tm_mday, m_ConvertMonthFromInt(now->tm_mon));
 
-	sprintf(bufWeekDay, "%s", convertWeekDayFromInt(now->tm_wday));
+	sprintf(bufWeekDay, "%s", m_ConvertWeekDayFromInt(now->tm_wday));
 
 	int week = 0;
 	switch (timetable->getCurrentDateState(week))
@@ -113,14 +125,16 @@ bool WgCalendar::update()
 	return true;
 }
 
-void WgCalendar::renderMode1()
+void WgCalendar::m_RenderMode1()
 {
 	RenderHeader(bufDate);
 }
 
-void WgCalendar::renderMode2()
+void WgCalendar::m_RenderMode2()
 {
-	TFont *font = FontStorage->getFont((char *)"arialBold");
+	TFont *font = FontStorage->getFont(
+		const_cast<char*>(m_base_font_name.c_str())
+		);
 	setTextColor(clHaki);
 	font->SetSize(desktop->rowHeight / 3);
 	font->TextMid(
@@ -129,9 +143,11 @@ void WgCalendar::renderMode2()
 		rectClient.top - desktop->rowHeight / 16 * 11);
 }
 
-void WgCalendar::renderMode3()
+void WgCalendar::m_RenderMode3()
 {
-	TFont *font = FontStorage->getFont((char *)"arialBold");
+	TFont *font = FontStorage->getFont(
+		const_cast<char*>(m_base_font_name.c_str())
+		);
 	font->SetSize(desktop->rowHeight / 4.5);
 	font->TextMid(
 		bufWeekInfo,
@@ -154,20 +170,20 @@ void WgCalendar::render()
 	{
 		case md1x1:
 		{
-			renderMode1();
+			m_RenderMode1();
 			break;
 		}
 		case md1x2:
 		{
-			renderMode1();
-			renderMode2();
+			m_RenderMode1();
+			m_RenderMode2();
 			break;
 		}
 		case md1x3:
 		{
-			renderMode1();
-			renderMode2();
-			renderMode3();
+			m_RenderMode1();
+			m_RenderMode2();
+			m_RenderMode3();
 			break;
 		}
 		case md3x8:

@@ -18,17 +18,48 @@
 
 #pragma once
 
-#include <iostream>
+
 #include "WgBackground.h"
-#include "Timer.h"
-#include "desktop.h"
-#include "Picture.h"
-#include "CPicturesStorage.h"
-#include "CFontStorage.h"
 
 // weather is taken from site http://openweathermap.org
-
 #define CURRENT_WEATHER_URL "http://api.openweathermap.org/data/2.5/weather?q=Daugavpils&units=metric&appid=a0a20199a69ae584fd1303a3152d92bc"
+
+#include "Picture.h"/*for creating Pics*/
+#include "json.h"
+using json = nlohmann::json;
+// examples and wiki: https://github.com/nlohmann/json
+
+
+class WgForecast : 
+public WgBackground
+{
+public:
+	WgForecast(int AposX, int AposY, wgMode Amode);
+	~WgForecast();
+
+	bool update();
+	void render();
+private:
+	Picture *m_weather_icon_picture;
+	std::string m_weather_icon_name;
+	std::string m_weather_icons_path;
+	std::string m_base_font_name;
+
+	char tempDegree[6]; //temperature
+	char windSpeed[10]; //wind speed
+	int windDegree;		//wind degree
+
+	bool isConnection = true;
+
+	//needed stuff for curl request
+	static size_t m_WriteCallback(void *contents, size_t size, size_t nmemb, void *userp);
+	//uses curl request to get from server weather data in json form
+	void m_GetWeatherFromWeb(const char *site, json &weatherData);
+
+	void renderMode1();
+	void renderMode2();
+	void renderMode3(); // need debugging
+};
 
 /* server response JSON example
 	[{
@@ -62,7 +93,7 @@
 */
 
 //include "curl/curl.h"
-#include <curl/curl.h>
+
 
 // git: github.com/curl/curl
 // Some basic information at the russian: http://www.programmersforum.ru/showthread.php?t=60338
@@ -88,37 +119,3 @@
 
 //--void curl_easy_cleanup(CURL * handle) - Это функция должна вызываться самой последней
 //	и вызываться должна обязательно. Она выполняет завершение текущей сессии.
-
-#include "json.h"
-using json = nlohmann::json;
-// examples and wiki: https://github.com/nlohmann/json
-
-//using namespace std;// stroustruup is mad!
-
-class WgForecast : public WgBackground
-{
-private:
-	Picture *weatherIcon;
-	std::string weatherIconName;
-	std::string m_weather_icons_path;
-
-	char tempDegree[6]; //temperature
-	char windSpeed[10]; //wind speed
-	int windDegree;		//wind degree
-
-	bool isConnection = true;
-
-	static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp);
-	void getWeatherFromWeb(const char *site, json &weatherData);
-
-	void renderMode1();
-	void renderMode2();
-	void renderMode3(); // need debugging
-
-public:
-	WgForecast(int AposX, int AposY, wgMode Amode);
-	~WgForecast();
-
-	bool update();
-	void render();
-};

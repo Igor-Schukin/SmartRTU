@@ -3,26 +3,12 @@
  * 
  */
 #pragma once
-#include <ctime>
-#include <iostream>
-#include <string.h>
+
 #include "WgBackground.h"
-#include "CFontStorage.h"
-#include "timetable.h"
-#include "desktop.h"
-#include "Timer.h"
+#include <string>
 
 class WgCalendar : public WgBackground
 {
-private:
-	char bufDate[32], bufWeekDay[32], bufWeekInfo[50], bufWeek[32];
-
-	const char *convertWeekDayFromInt(int wday);
-	const char *convertMounthFromInt(int mon);
-
-	void renderMode1();
-	void renderMode2();
-	void renderMode3();
 
 public:
 	WgCalendar(int AposX, int AposY, wgMode Amode);
@@ -30,4 +16,17 @@ public:
 
 	bool update();
 	void render();
+private:
+	char bufDate[32], bufWeekDay[32], bufWeekInfo[50], bufWeek[32];
+
+	const char *m_ConvertWeekDayFromInt(int wday);
+	const char *m_ConvertMonthFromInt(int mon);
+
+	std::string m_base_font_name;//mean name of font without extension
+
+
+	void m_RenderMode1();
+	void m_RenderMode2();
+	void m_RenderMode3();
+
 };

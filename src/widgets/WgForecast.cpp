@@ -1,36 +1,50 @@
 #include "WgForecast.h"
-#include "configurator.h"
 
-WgForecast::WgForecast(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amode)
+
+#include <curl/curl.h>
+
+#include <iostream>/*cout*/
+#include <string>
+
+#include "Timer.h"/*strNow()*/
+#include "desktop.h"/*desktop obj*/
+#include "CPicturesStorage.h"/*pict obj*/
+#include "CFontStorage.h"/*font obj*/
+#include "configurator.h"/*config*/
+
+WgForecast::WgForecast(int Ax, int Ay, wgMode Amode) 
+: WgBackground(Ax, Ay, Amode)
 {
 	updateTime = 60 * 60 * 1000; // 1 hour
-	weatherIcon = NULL;
-	weatherIconName = "";
+	m_weather_icon_picture = NULL;
+	m_weather_icon_name = "";
 
-	config->Get("PIC_WEATHER_ICONS_PATH",m_weather_icons_path);//get destination of weather icon
+	//get destination of weather icon
+	config->Get("PIC_WEATHER_ICONS_PATH",m_weather_icons_path);
+	config->Get("BASE_FONT_NAME",m_base_font_name);
 
 	isConnection = false;
 
 	strcpy(tempDegree, "");
 	strcpy(windSpeed, "");
 	windDegree = 0;
-	fprintf(stdout,"%s\tWgForecast widget object was created\n", strNow());
+	std::cout<<strNow()<<"\tWgForecast widget object was created\n";
 }
 
 WgForecast::~WgForecast()
 {
-	if (weatherIcon)
-		delete weatherIcon;
-	fprintf(stdout,"%s\tWgForecast widget object was deleted\n", strNow());
+	if (m_weather_icon_picture)
+		delete m_weather_icon_picture;
+	std::cout<<strNow()<<"\tWgForecast widget object was deleted\n";
 }
 
-size_t WgForecast::WriteCallback(void *contents, size_t size, size_t nmemb, void *userp) //???
+size_t WgForecast::m_WriteCallback(void *contents, size_t size, size_t nmemb, void *userp) //???
 {
 	((std::string *)userp)->append((char *)contents, size * nmemb); // ???
 	return size * nmemb;											// ???
 }
 
-void WgForecast::getWeatherFromWeb(const char site[], json &weatherData)
+void WgForecast::m_GetWeatherFromWeb(const char site[], json &weatherData)
 {
 	CURL *curl;				// object CURL tipa
 	std::string readBuffer; //буффур куда будем записывать принятые данные
@@ -42,7 +56,7 @@ void WgForecast::getWeatherFromWeb(const char site[], json &weatherData)
 		//задаем все необходимые опции
 		curl_easy_setopt(curl, CURLOPT_ERRORBUFFER, errorBuffer);	  //определяем, куда выводить ошибки
 		curl_easy_setopt(curl, CURLOPT_URL, site);					  //задаем опцию - получить страницу по адресу site
-		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback); //указываем функцию обратного вызова для записи получаемых данных
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, m_WriteCallback); //указываем функцию обратного вызова для записи получаемых данных
 		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);		  //указываем куда записывать принимаемые данные
 		res = curl_easy_perform(curl);								  //запускаем выполнение задачи
 		if (res == CURLE_OK)
@@ -50,7 +64,7 @@ void WgForecast::getWeatherFromWeb(const char site[], json &weatherData)
 			isConnection = true;
 			auto buf = json::parse(readBuffer);
 			weatherData = buf;
-			fprintf(stdout,"%s\tNew current weather state was received\n", strNow());
+			std::cout<<strNow()<<"\tNew current weather state was received\n";
 		}
 		else
 		{
@@ -64,7 +78,7 @@ void WgForecast::getWeatherFromWeb(const char site[], json &weatherData)
 bool WgForecast::update()
 {
 	json weatherData;
-	getWeatherFromWeb(CURRENT_WEATHER_URL, weatherData);
+	m_GetWeatherFromWeb(CURRENT_WEATHER_URL, weatherData);
 
 	if (isConnection && weatherData["main"]["temp"].is_number())
 	{
@@ -91,22 +105,22 @@ bool WgForecast::update()
 	if (isConnection && weatherData["weather"][0]["icon"].is_string())
 	{
 		std::string iconName = weatherData["weather"][0]["icon"];
-		if (iconName != weatherIconName)
+		if (iconName != m_weather_icon_name)
 		{
-			std::string iconPath{ m_weather_icons_path+"/"+ iconName + ".png"};//probably need this put into 101 line without using local string iconPath
-			//printf("%s\tNew weather icon is loaded from file %s\n", strNow(), iconPath.c_str());//ORIG
-			fprintf(stdout,"%s\tNew weather icon was loaded \n", strNow());
-			if (weatherIcon)
-				delete weatherIcon;
-			weatherIcon = new Picture(iconPath.c_str());
-			weatherIconName = iconName;
+			if (m_weather_icon_picture)
+				delete m_weather_icon_picture;
+			m_weather_icon_picture = new Picture(
+				(m_weather_icons_path+"/"+ iconName + ".png").c_str()
+									);
+			m_weather_icon_name = iconName;
+			std::cout<<strNow()<<"\tNew weather icon was loaded \n";
 		}
 	}
 	else
 	{
-		if (weatherIcon)
-			delete weatherIcon;
-		weatherIcon = NULL;
+		if (m_weather_icon_picture)
+			delete m_weather_icon_picture;
+		m_weather_icon_picture = NULL;
 	}
 
 	return true;
@@ -124,12 +138,12 @@ void WgForecast::renderMode2()
 	//~~ weather icon
 
 	int iw = 0, ih = 0;
-	if (weatherIcon)
+	if (m_weather_icon_picture)
 	{
-		float is = (float)rectClient.height * 1.0 / weatherIcon->getHeight();
-		iw = weatherIcon->getWidth() * is;
-		ih = weatherIcon->getHeight() * is;
-		weatherIcon->render(
+		float is = (float)rectClient.height * 1.0 / m_weather_icon_picture->getHeight();
+		iw = m_weather_icon_picture->getWidth() * is;
+		ih = m_weather_icon_picture->getHeight() * is;
+		m_weather_icon_picture->render(
 			rectClient.left + field,
 			rectClient.bottom + (rectClient.height - ih) / 2,
 			is, is, 0, 0, 0);
@@ -149,7 +163,9 @@ void WgForecast::renderMode2()
 	//~~~ wind speed
 
 	setTextColor(clHaki);
-	TFont *font = FontStorage->getFont((char *)"arialBold");
+	TFont *font = FontStorage->getFont(
+		const_cast<char *>(m_base_font_name.c_str())
+		);
 	font->SetSize(desktop->rowHeight / 3);
 	int ww = (int)font->TextWidth(windSpeed);
 	int wh = (int)font->TextHeight();

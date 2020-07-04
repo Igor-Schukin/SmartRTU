@@ -1,6 +1,6 @@
 /* Based on font2openvg. See http://developer.hybrid.fi for more information. */
 #include "ftf.h"
-using namespace std;
+
 
 Vector2::Vector2(){};
 Vector2::Vector2(float px, float py)

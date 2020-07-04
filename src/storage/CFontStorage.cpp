@@ -1,7 +1,6 @@
 #include "CFontStorage.h"
-#include "iostream"
+#include "iostream"/*cout*/
 #include <cstring>
-using namespace std;
 
 CFontStorage *FontStorage;
 
@@ -38,13 +37,15 @@ int CFontStorage::findFontName(char *fontName)
 bool CFontStorage::setFont(char *fontName, char *fontFile)
 {
 #ifdef ONDEBUG
-	std::cout << "Loading font: name \"" << fontName << "\", file \"" << fontFile << "\" ..." << '\n';
+	std::cout << "Loading font: name \"" << fontName 
+	<< "\", file \"" << fontFile << "\" ..." << '\n';
 #endif
 
 	int fontId = findFontName(fontName); //fontId it is position in massive fonts[MAX_FONTS_COUNT];
 	if (fontId > -1)
 	{
-		std::cerr << "-- ERROR: \"" << fontName << "\" font name already exist. Font not loaded." << '\n';
+		std::cerr << "-- ERROR: \"" << fontName 
+		<< "\" font name already exist. Font not loaded." << '\n';
 		return false;
 	}
 
@@ -55,7 +56,7 @@ bool CFontStorage::setFont(char *fontName, char *fontFile)
 			fonts[i] = new sFont(fontName, new TFont(fontFile));
 
 #ifdef ONDEBUG
-			std::cout << "-- OK: font loaded. Position: " << i << endl;
+			std::cout << "-- OK: font loaded. Position: " << i <<'\n';
 #endif
 			return true;
 		}
@@ -67,18 +68,19 @@ bool CFontStorage::setFont(char *fontName, char *fontFile)
 TFont *CFontStorage::getFont(char *fontName)
 {
 #ifdef ONDEBUG
-	std::cout << "Get font: name \"" << fontName << "\" ..." << endl;
+	std::cout << "Get font: name \"" << fontName << "\" ..." << '\n';
 #endif
 
-	int fontId = findFontName(fontName); //fontId it is position in massive fonts[MAX_FONTS_COUNT];
+	//fontId it is position in massive fonts[MAX_FONTS_COUNT];
+	int fontId = findFontName(fontName); 
 	if (fontId == -1)
 	{
-		std::cerr << "-- ERROR: can't found font with name: " << fontName << endl;
-		std::cerr << "		Try add font: setFont((char*)\"name\", (char*)\"path to .ttf file\");" << endl;
+		std::cerr << "-- ERROR: can't found font with name: " << fontName << '\n';
+		std::cerr << "		Try add font: setFont((char*)\"name\", (char*)\"path to .ttf file\");" <<'\n';
 	}
 
 #ifdef ONDEBUG
-	std::cout << "-- OK: Font founded." << endl;
+	std::cout << "-- OK: Font founded." << '\n';
 #endif
 	return fonts[fontId]->fontFile;
 }

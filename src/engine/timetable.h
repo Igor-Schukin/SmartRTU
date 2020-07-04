@@ -11,7 +11,7 @@
 
 #include "../configurator/configurator.h"
 
-//using namespace std; //STRAUSTRUP IS MAD!!!
+
 using json = nlohmann::json;
 
 //#define DEFAULT_TIMETABLE_FILE (RES_DIR+"/timetable.json")

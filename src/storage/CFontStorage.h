@@ -29,18 +29,19 @@ struct sFont
 
 class CFontStorage
 {
-private:
-	sFont *fonts[MAX_FONTS_COUNT];
-
-	int findFontName(char *fontName); //retunt font position in fonts massive; return -1 if name not found
-	sFont newFont(char *fontName, char *fontFile);
-
 public:
 	CFontStorage();
 	~CFontStorage();
 
 	bool setFont(char *fontName, char *fontFile);
 	TFont *getFont(char *fontName);
+private:
+	sFont *fonts[MAX_FONTS_COUNT];
+	
+ 	//retunt font position in fonts massive; return -1 if name not found
+	int findFontName(char *fontName);
+	sFont newFont(char *fontName, char *fontFile);
+
 };
 
 extern CFontStorage *FontStorage;

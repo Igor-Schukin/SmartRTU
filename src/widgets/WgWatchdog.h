@@ -4,9 +4,6 @@
 
 #include "IWidget.h"
 
-
-//#define WATCHDOG_FILES_NAME "./infoboard.watchdog"
-
 class WgWatchdog : public IWidget
 {
 public:

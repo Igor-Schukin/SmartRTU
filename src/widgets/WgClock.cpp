@@ -53,7 +53,7 @@ WgClock::~WgClock()
 	std::cout<<strNow()<<"\t"<<"WgClock widget object was deleted\n";
 }
 
-//~~~ update ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~ update ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 bool WgClock::update()
 {
@@ -136,7 +136,7 @@ bool WgClock::update()
 	return true;
 }
 
-//~~~ rendering  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~ rendering  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 void WgClock::m_RenderMode1()
 {
@@ -146,24 +146,45 @@ void WgClock::m_RenderMode1()
 void WgClock::m_RenderMode2()
 {
 	setTextColor(clHaki);
-	FontStorage->getFont(const_cast<char*>(m_base_font_name.c_str()))->SetSize(desktop->rowHeight / 3);
-	FontStorage->getFont(const_cast<char*>(m_base_font_name.c_str()))->TextMid(strLect, rectClient.left + (rectClient.width / 2),
-													   rectClient.top - desktop->rowHeight / 16 * 11 //?
+	FontStorage->getFont(
+		const_cast<char*>(m_base_font_name.c_str())
+						)->SetSize(desktop->rowHeight / 3);
+	
+	FontStorage->getFont(
+		const_cast<char*>(m_base_font_name.c_str())
+		)->TextMid(
+			strLect, 
+			rectClient.left + (rectClient.width / 2),
+			rectClient.top - desktop->rowHeight / 16 * 11 //?
 	);
 }
 
 void WgClock::m_RenderMode3()
 {
 	setTextColor(clHaki);
-	FontStorage->getFont(const_cast<char*>(m_base_font_name.c_str()))->SetSize(desktop->rowHeight / 4.5);
-	FontStorage->getFont(const_cast<char*>(m_base_font_name.c_str()))->TextMid(strInfo, rectClient.left + (rectClient.width / 2),
-													   rectClient.top - desktop->rowHeight - (desktop->rowHeight / 5 / 2) //?
+	FontStorage->getFont(
+			const_cast<char*>(m_base_font_name.c_str())
+		)->SetSize(desktop->rowHeight / 4.5);
+	
+	FontStorage->getFont(
+			const_cast<char*>(m_base_font_name.c_str()))
+		->TextMid(
+			strInfo, 
+			rectClient.left + (rectClient.width / 2),
+			rectClient.top - desktop->rowHeight - (desktop->rowHeight / 5 / 2) //?
 	);
 
 	setTextColor(color);
-	FontStorage->getFont(const_cast<char*>(m_base_font_name.c_str()))->SetSize(desktop->rowHeight / 2.2);
-	FontStorage->getFont(const_cast<char*>(m_base_font_name.c_str()))->TextMid(strTimer, rectClient.left + (rectClient.width / 2),
-													   rectClient.top - desktop->rowHeight - (desktop->rowHeight / 4) * 3 //?
+	FontStorage->getFont(
+		const_cast<char*>(m_base_font_name.c_str())
+		)->SetSize(desktop->rowHeight / 2.2);
+
+	FontStorage->getFont(
+			const_cast<char*>(m_base_font_name.c_str()))
+		->TextMid(
+			strTimer, 
+			rectClient.left + (rectClient.width / 2),
+			rectClient.top - desktop->rowHeight - (desktop->rowHeight / 4) * 3 //?
 	);
 }
 
@@ -201,7 +222,9 @@ void WgClock::render()
 			break;
 		}
 		default:{
-			std::cerr<<strNow()<<"\t"<<"Something bad happened in WgClock render mode  used default one\n";
+			std::cerr<<strNow()
+			<<"\t"
+			<<"Something bad happened in WgClock render mode used default one\n";
 			break;
 		}
 	}

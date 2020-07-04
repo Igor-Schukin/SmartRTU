@@ -1,39 +1,31 @@
-04.06.2020 12:10:59	***** INFOBORAD engine started
-04.06.2020 12:10:59	Config loaded successfully
-04.06.2020 12:10:59	Timetable is loaded from ./res/timetable.json:
+04.06.2020 19:23:51	***** INFOBORAD engine started
+04.06.2020 19:23:51	Config loaded successfully
+04.06.2020 19:23:51	Timetable is loaded from ./res/timetable.json:
 				5 date ranges of academic calendar
 				11 holidays
 				7 lectures scheles for week days
 				16 lectures schedules for standalone dates
 				1 schedules for power sockets control
-04.06.2020 12:10:59	Desktop size 1920 x 1080, widgets area size 1728 x 864
-04.06.2020 12:11:00	WgHtmlsAds widget object was created
-04.06.2020 12:11:00	WgForecast widget object was created
-04.06.2020 12:11:00	WgClock widget object was created
-04.06.2020 12:11:00	WgCalendar widget object was created
-04.06.2020 12:11:00	WgSockets widget object was created
-04.06.2020 12:11:00	WgTimetable widget object was created
-04.06.2020 12:11:00	WgWatchdog widget object was created
-04.06.2020 12:11:00	New current weather state was received
-04.06.2020 12:11:00	New weather icon was loaded 
-04.06.2020 12:11:00	Socket 1 is turned on 
-04.06.2020 12:11:00	Timetable is loaded from ./res/timetable.json:
+04.06.2020 19:23:52	Desktop size 1920 x 1080, widgets area size 1728 x 864
+04.06.2020 19:23:52	WgHtmlsAds widget object was created
+04.06.2020 19:23:52	WgForecast widget object was created
+04.06.2020 19:23:52	WgClock widget object was created
+04.06.2020 19:23:52	WgCalendar widget object was created
+04.06.2020 19:23:52	WgSockets widget object was created
+04.06.2020 19:23:52	WgTimetable widget object was created
+04.06.2020 19:23:52	WgWatchdog widget object was created
+04.06.2020 19:23:52	New current weather state was received
+04.06.2020 19:23:52	New weather icon was loaded 
+04.06.2020 19:23:52	Socket 1 is turned on 
+04.06.2020 19:23:52	Timetable is loaded from ./res/timetable.json:
 				5 date ranges of academic calendar
 				11 holidays
 				7 lectures scheles for week days
 				16 lectures schedules for standalone dates
 				1 schedules for power sockets control
-04.06.2020 12:11:00	New current weather state was received
-04.06.2020 12:11:00	Stub was placed on the widget screen 
-04.06.2020 12:11:00	Engine main circle  started
-04.06.2020 12:11:03	Detected what advert must be updated,Cutycapt lauched
-04.06.2020 12:11:09	Cutycapt finished its work
-04.06.2020 12:11:10	Advert was placed on the widget screen 
-04.06.2020 12:32:54	Detected what advert must be updated,Cutycapt lauched
-04.06.2020 12:32:57	Cutycapt finished its work
-04.06.2020 12:32:58	Advert was placed on the widget screen 
-04.06.2020 13:10:59	Status: on time: 0:01:00:00, idle: 87%, fps: 25
-04.06.2020 13:11:00	New current weather state was received
-04.06.2020 13:11:00	New weather icon was loaded 
-04.06.2020 14:10:59	Status: on time: 0:02:00:00, idle: 87%, fps: 25
-04.06.2020 14:11:00	New current weather state was received
+04.06.2020 19:23:52	New current weather state was received
+04.06.2020 19:23:52	Stub was placed on the widget screen 
+04.06.2020 19:23:53	Engine main circle  started
+04.06.2020 19:23:55	Detected what advert must be updated,Cutycapt lauched
+04.06.2020 19:23:58	Cutycapt finished its work
+04.06.2020 19:23:59	Advert was placed on the widget screen 
