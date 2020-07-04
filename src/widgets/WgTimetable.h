@@ -1,32 +1,21 @@
 #pragma once
+/*
+    restyled by RazdolbayOne
+*/
+#include <sys/stat.h>/*time_t*/
 
-#include <sys/stat.h>
-#include <sys/types.h>
+#include<string>/*string*/
 
-#include<string>
-
-#include "Engine.h"
 #include "IWidget.h"
-#include "timetable.h"
-#include "Timer.h"
-
-#include"configurator.h"
 
 class WgTimetable : public IWidget
 {
-private:
-    int id;
-    time_t fileTime;
-    time_t getFileTime();
-    std::string m_timetable_dest;
-    std::string m_timetable_name;
-
 public:
     ~WgTimetable();
     WgTimetable();
     bool update();
     void render() {}
-    bool isVisible() { return false; };
+    bool IsVisible()override { return false; };
     void getRect(int &x, int &y, int &w, int &h)
     {
         x = 0;
@@ -36,4 +25,10 @@ public:
     }
     void setId(int id) { this->id = id; }
     int getUpdateTime() { return 1000; } //1000ms = 1 time / sec
+private:
+    int id;
+    time_t fileTime;
+    time_t getFileTime();
+    std::string m_timetable_dest;
+    std::string m_timetable_name;
 };

@@ -1,5 +1,14 @@
 #include "WgClock.h"
-#include "CFontStorage.h"
+
+#include <iostream>/*cout*/
+#include <cstdio>/*sprintf*/
+#include <cstring>/*strcpy*/ //probably need to go to c++ string
+#include <ctime>/*time() e.t.c*/
+
+#include "timetable.h"/*need timetable obj*/
+#include "Timer.h"/*strNow()*/
+#include "CFontStorage.h"/*FontStorage obj*/
+#include "configurator.h"/*config*/
 
 #define STR_TIME_EMPTY "--:--"
 
@@ -33,12 +42,15 @@ WgClock::WgClock(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amode)
 	strcpy(strLect, STR_LECT_EMPTY);
 	strcpy(strInfo, STR_INFO_EMPTY);
 	strcpy(strTimer, STR_TIMER_EMPTY);
-	printf("%s\tWgClock widget object is created\n", strNow());
+
+	config->Get("BASE_FONT_NAME",m_base_font_name); 
+
+	std::cout<<strNow()<<"\t"<<"WgClock widget object was created\n";
 }
 
 WgClock::~WgClock()
 {
-	printf("%s\tWgClock widget object is deleted\n", strNow());
+	std::cout<<strNow()<<"\t"<<"WgClock widget object was deleted\n";
 }
 
 //~~~ update ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -126,31 +138,31 @@ bool WgClock::update()
 
 //~~~ rendering  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-void WgClock::renderMode1()
+void WgClock::m_RenderMode1()
 {
-	renderHeader(strTime);
+	RenderHeader(strTime);
 }
 
-void WgClock::renderMode2()
+void WgClock::m_RenderMode2()
 {
 	setTextColor(clHaki);
-	FontStorage->getFont((char *)"arialBold")->SetSize(desktop->rowHeight / 3);
-	FontStorage->getFont((char *)"arialBold")->TextMid(strLect, rectClient.left + (rectClient.width / 2),
+	FontStorage->getFont(const_cast<char*>(m_base_font_name.c_str()))->SetSize(desktop->rowHeight / 3);
+	FontStorage->getFont(const_cast<char*>(m_base_font_name.c_str()))->TextMid(strLect, rectClient.left + (rectClient.width / 2),
 													   rectClient.top - desktop->rowHeight / 16 * 11 //?
 	);
 }
 
-void WgClock::renderMode3()
+void WgClock::m_RenderMode3()
 {
 	setTextColor(clHaki);
-	FontStorage->getFont((char *)"arialBold")->SetSize(desktop->rowHeight / 4.5);
-	FontStorage->getFont((char *)"arialBold")->TextMid(strInfo, rectClient.left + (rectClient.width / 2),
+	FontStorage->getFont(const_cast<char*>(m_base_font_name.c_str()))->SetSize(desktop->rowHeight / 4.5);
+	FontStorage->getFont(const_cast<char*>(m_base_font_name.c_str()))->TextMid(strInfo, rectClient.left + (rectClient.width / 2),
 													   rectClient.top - desktop->rowHeight - (desktop->rowHeight / 5 / 2) //?
 	);
 
 	setTextColor(color);
-	FontStorage->getFont((char *)"arialBold")->SetSize(desktop->rowHeight / 2.2);
-	FontStorage->getFont((char *)"arialBold")->TextMid(strTimer, rectClient.left + (rectClient.width / 2),
+	FontStorage->getFont(const_cast<char*>(m_base_font_name.c_str()))->SetSize(desktop->rowHeight / 2.2);
+	FontStorage->getFont(const_cast<char*>(m_base_font_name.c_str()))->TextMid(strTimer, rectClient.left + (rectClient.width / 2),
 													   rectClient.top - desktop->rowHeight - (desktop->rowHeight / 4) * 3 //?
 	);
 }
@@ -160,23 +172,37 @@ void WgClock::render()
 	WgBackground::render();
 	switch (mode)
 	{
-	case md1x1:
-	{
-		renderMode1();
-		break;
-	}
-	case md1x2:
-	{
-		renderMode1();
-		renderMode2();
-		break;
-	}
-	case md1x3:
-	{
-		renderMode1();
-		renderMode2();
-		renderMode3();
-		break;
-	}
+		case md1x1:
+		{
+			m_RenderMode1();
+			break;
+		}
+		case md1x2:
+		{
+			m_RenderMode1();
+			m_RenderMode2();
+			break;
+		}
+		case md1x3:
+		{
+			m_RenderMode1();
+			m_RenderMode2();
+			m_RenderMode3();
+			break;
+		}
+		case md3x8:
+		{
+			//probably need to delete
+			break;
+		}
+		case mdCustom:
+		{
+			//probably need to delete
+			break;
+		}
+		default:{
+			std::cerr<<strNow()<<"\t"<<"Something bad happened in WgClock render mode  used default one\n";
+			break;
+		}
 	}
 }

@@ -8,7 +8,7 @@
 #pragma once
 #include "TFont.h"
 
-#define MAX_FONTS_COUNT 4
+constexpr auto MAX_FONTS_COUNT = 4;
 //#define ONDEBUG
 
 struct sFont

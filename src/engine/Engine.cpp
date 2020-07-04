@@ -28,8 +28,9 @@ Engine::Engine()
 Engine::~Engine()
 {
 	delete board;
-	if (timetable)
-		delete timetable;
+	//probably needed stuff
+	//if (timetable)
+	//	delete timetable;
 }
 
 void Engine::start()
@@ -52,7 +53,7 @@ void Engine::run()
 	forcedUpdate();
 	render(true);
 
-	fprintf(stdout,"%s\tEngine main circle is started\n", strNow());
+	fprintf(stdout,"%s\tEngine main circle  started\n", strNow());
 
 	while (isRunning && !terminated)
 	{
@@ -108,7 +109,7 @@ void Engine::run()
 		idleTime += 1;
 	}
 
-	fprintf(stdout,"%s\tEngine main circle is finished\n", strNow());
+	fprintf(stdout,"%s\tEngine main circle  finished\n", strNow());
 }
 
 void Engine::update()

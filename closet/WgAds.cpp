@@ -15,7 +15,7 @@ WgAds::WgAds(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amode)
 	//HtmlPic=new Picture("res/tmp/temp.png");
 	//printf("width: %i, height: %i\n", HtmlPic->getWidth(), HtmlPic->getHeight());
 
-	fprintf(stdout,"%s\tWgAds widget object is created\n", strNow());
+	fprintf(stdout,"%s\tWgAds widget object was created\n", strNow());
 }
 
 WgAds::~WgAds()
@@ -28,7 +28,7 @@ WgAds::~WgAds()
 	if (adsPeace){
 		delete[] adsPeace;
 	}
-	fprintf(stdout,"%s\tWgAds widget object is deleted\n", strNow());
+	fprintf(stdout,"%s\tWgAds widget object was deleted\n", strNow());
 }
 
 time_t WgAds::getFileTime()
@@ -142,7 +142,7 @@ void WgAds::render()
 	//~~~ render header
 
 	//renderHeader( "Sludinājums" );
-	renderHeader("Par mums");
+	RenderHeader("Par mums");
 
 	/*
 	int width=(float) rectClient.width * 0.9;	

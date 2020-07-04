@@ -1,5 +1,14 @@
 #include "WgTimetable.h"
 
+#include <sys/types.h>/*stat sctruct*/
+#include "Engine.h"/*engine obj*/
+#include "timetable.h"/*tiemtable obj*/
+
+#include "Timer.h"/*strNow()*/
+
+#include"configurator.h"/*config*/
+
+
 time_t WgTimetable::getFileTime()
 {
     struct stat buff;
@@ -15,12 +24,12 @@ WgTimetable::WgTimetable()
     config->Get("TIME_TABLE_DEST",m_timetable_dest);
     config->Get("TIME_TABLE_NAME",m_timetable_name);
 
-    fprintf(stdout,"%s\tWgTimetable widget object is created\n", strNow());
+    std::cout<<strNow()<<"\tWgTimetable widget object was created\n";
 }
 
 WgTimetable::~WgTimetable()
 {
-    fprintf(stdout,"%s\tWgTimetable widget object is deleted\n", strNow());
+    std::cout<<strNow()<<"\tWgTimetable widget object was deleted\n";
 }
 
 bool WgTimetable::update()

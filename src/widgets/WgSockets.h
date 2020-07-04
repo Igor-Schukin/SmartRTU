@@ -12,29 +12,32 @@ Socket  RPi      GPIO    WiringPi
 
 #pragma once
 
-#include <wiringPi.h>
-#include <unistd.h>
+#ifndef SMART_RTU_SRC_WIDGETS_WGSOCKETS_H_
+#define SMART_RTU_SRC_WIDGETS_WGSOCKETS_H_
+
 
 #include "IWidget.h"
-#include "timetable.h"
-#include "Timer.h"
+/*
+Restyled by RazdolbayOne
+*/
 
-#define SOCKETS_COUNT 4
+constexpr int SOCKETS_COUNT =  4;
 
-const int socketsPins[SOCKETS_COUNT] = {8, 9, 7, 0};
+//what pins are used for socket
+const int SOCKETS_PINS[SOCKETS_COUNT] = {8, 9, 7, 0}; 
 
 class WgSockets : public IWidget
 {
 private:
     int id;
-    bool curStates[SOCKETS_COUNT];
+    bool m_current_states[SOCKETS_COUNT]; //holds current state of pin(on/off )
 
 public:
     ~WgSockets();
     WgSockets();
     bool update();
     void render() {}
-    bool isVisible() { return false; };
+    bool IsVisible() override { return false; };
     void getRect(int &x, int &y, int &w, int &h)
     {
         x = 0;
@@ -45,3 +48,5 @@ public:
     void setId(int id) { this->id = id; }
     int getUpdateTime() { return 1000; } //1000ms = 1 time / sec
 };
+
+#endif /*SMART_RTU_SRC_WIDGETS_WGSOCKETS_H__*/

@@ -2,7 +2,6 @@
 #include "CPicturesStorage.h"
 #include "CFontStorage.h"
 
-#include <iostream>
 
 WgBackground::WgBackground(int AposX, int AposY, wgMode Amode)
 {
@@ -83,6 +82,7 @@ const struct
 
 void WgBackground::setTextColor(wgColor c)
 {
+	//FIXME maybe need to use configurator but definetly like this
 	FontStorage->getFont((char *)"arialBold")->SetColour(Colors[c].r, Colors[c].g, Colors[c].b);
 	/*	
 	if (c==clBlue) FontStorage->getFont((char*)"arialBold")->SetColour(0,121,194);
@@ -132,19 +132,6 @@ void WgBackground::render()
 	if (isShadows) // -- render widget shadows
 	{
 		renderOnlyShadows();
-		// -- -- render top and bot
-	/*	for (int i = 0; i < rectWidget.width; i++)
-		{
-			PicStorage->WgShadows->t->render(rectWidget.left + i, rectWidget.top - shadowSize.top);
-			PicStorage->WgShadows->b->render(rectWidget.left + i, rectWidget.bottom);
-		}
-
-		// -- -- render left and right
-		for (int i = 0; i < rectWidget.height; i++)
-		{
-			PicStorage->WgShadows->l->render(rectWidget.left, rectWidget.top - i);
-			PicStorage->WgShadows->r->render(rectWidget.right - shadowSize.right, rectWidget.top - i);
-		}*/
 	}
 }
 
@@ -156,44 +143,39 @@ void WgBackground::getRect(int &left, int &bottom, int &width, int &height)
 	height = rectWidget.height;
 }
 
-void WgBackground::renderHeader(const char *headerText)
+void WgBackground::RenderHeader(const char *header_text)
 {
 	int maxw = rectHeader.width * 0.8;
-
+	//FIXME this definetly must be different maybe use of configurator
 	TFont *font = FontStorage->getFont((char *)"arialBold");
 	font->SetColour(255, 255, 255);
 	int fh = rectHeader.height * 0.6;
 	font->SetSize(fh);
-	if (font->TextWidth(headerText) > maxw)
+	if (font->TextWidth(header_text) > maxw)
 	{
-		fh = (fh * maxw) / font->TextWidth(headerText);
+		fh = (fh * maxw) / font->TextWidth(header_text);
 		font->SetSize(fh);
 	}
 
 	font->TextMid(
-		headerText,
+		header_text,
 		rectHeader.left + rectHeader.width / 2,
 		rectHeader.bottom + (rectHeader.height - fh) / 2);
 }
 
 void WgBackground::renderOnlyShadows()
 {
-
-//	if (isShadows) // -- render widget shadows
-//	{
-		//std::cout<<"Inside isShadow if\n";
-		// -- -- render top and bot
+		// -- -- render horizontal shadows
 		for (int i = 0; i < rectWidget.width; i++)
 		{
 			PicStorage->WgShadows->t->render(rectWidget.left + i, rectWidget.top - shadowSize.top);
 			PicStorage->WgShadows->b->render(rectWidget.left + i, rectWidget.bottom);
 		}
 
-		// -- -- render left and right
+		// -- -- render vertical shadows
 		for (int i = 0; i < rectWidget.height; i++)
 		{
 			PicStorage->WgShadows->l->render(rectWidget.left, rectWidget.top - i);
 			PicStorage->WgShadows->r->render(rectWidget.right - shadowSize.right, rectWidget.top - i);
 		}
-	//}
 }

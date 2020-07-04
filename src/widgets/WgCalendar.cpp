@@ -8,12 +8,12 @@ WgCalendar::WgCalendar(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amod
 	strcpy(bufWeekDay, "-");
 	strcpy(bufWeekInfo, "- - -");
 	strcpy(bufWeek, "-");
-	fprintf(stdout,"%s\tWgCalendar widget object is created\n", strNow());
+	fprintf(stdout,"%s\tWgCalendar widget object was created\n", strNow());
 }
 
 WgCalendar::~WgCalendar()
 {
-	fprintf(stdout,"%s\tWgCalendar widget object is deleted\n", strNow());
+	fprintf(stdout,"%s\tWgCalendar widget object was deleted\n", strNow());
 }
 
 const char *WgCalendar::convertWeekDayFromInt(int wday)
@@ -96,6 +96,12 @@ bool WgCalendar::update()
 	case dsHoliday:
 		strcpy(bufWeekInfo, "svētki");
 		break;
+	case dsUnknown:
+		strcpy(bufWeekInfo, "Nezinams");
+		break;
+	default:
+		strcpy(bufWeekInfo, "...");
+		break;
 	}
 	week += 1;
 
@@ -109,7 +115,7 @@ bool WgCalendar::update()
 
 void WgCalendar::renderMode1()
 {
-	renderHeader(bufDate);
+	RenderHeader(bufDate);
 }
 
 void WgCalendar::renderMode2()
@@ -146,23 +152,32 @@ void WgCalendar::render()
 
 	switch (mode)
 	{
-	case md1x1:
-	{
-		renderMode1();
-		break;
-	}
-	case md1x2:
-	{
-		renderMode1();
-		renderMode2();
-		break;
-	}
-	case md1x3:
-	{
-		renderMode1();
-		renderMode2();
-		renderMode3();
-		break;
-	}
+		case md1x1:
+		{
+			renderMode1();
+			break;
+		}
+		case md1x2:
+		{
+			renderMode1();
+			renderMode2();
+			break;
+		}
+		case md1x3:
+		{
+			renderMode1();
+			renderMode2();
+			renderMode3();
+			break;
+		}
+		case md3x8:
+		{
+			//probably need to cut it all
+			break;
+		}
+		case mdCustom:{
+			//probably need to cut it all
+			break;
+		}
 	}
 }

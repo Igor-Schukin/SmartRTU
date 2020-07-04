@@ -1,17 +1,17 @@
 
-#include <cstdio>
 #include <csignal>
-
-#include<string>
+#include <string>
 
 #include "CPicturesStorage.h"
 #include "CFontStorage.h"
-
 #include "Engine.h"
 #include "timetable.h"
 #include "desktop.h"
-
 #include"configurator.h"
+
+
+#define CONFIG_DESTINATION "./res/config.cfg"
+
 
 void termSignalHandler(int signal)
 {
@@ -29,18 +29,17 @@ int main()
 	std::string base_font_full_name;
 	try
 	{
-		fprintf(stdout,"%s\t***** INFOBORAD engine is started\n", strNow());
-		
+		std::cout<<strNow()<<"\t"<<"***** INFOBORAD engine started\n";
 		//create config
 		config=new Configuration;
 
 		//check if config loaded
-		if(config->Load("./res/config.cfg")==false){
-			fprintf(stderr,"%s\t \033[1;31m CONFIG DID NOT LOADED check your config.cfg destination or if file exist!\033[0m\n", strNow());
+		if(config->Load(CONFIG_DESTINATION)==false){
+			std::cerr<<strNow()<<"\t"<<"\033[1;31m CONFIG DID NOT LOADED check your config.cfg destination or if file exist!\033[0m\n";
 		}
 		else
 		{
-			fprintf(stdout,"%s\tConfig loaded successfully\n", strNow());
+			std::cout<<strNow()<<"\t"<<"Config loaded successfully\n";
 		}
 
 		try
@@ -83,11 +82,12 @@ int main()
 		delete config;
 		finish();
 
-		fprintf(stdout,"%s\t***** INFOBORAD engine is finished\n", strNow());
+		std::cout<<strNow()<<"\t"<<"***** INFOBORAD engine has finished\n";
+
 	}
 	catch (...)
 	{
-		fprintf(stderr,"%s\t~~~~~ INFOBORAD engine is crashed\n", strNow());
+		std::cerr<<strNow()<<"\t"<<"\t~~~~~ INFOBORAD engine crashed!!!\n";
 		return 1; // need restart
 	}
 	return 0;

@@ -4,7 +4,7 @@
 #include "WgClock.h"
 #include "WgCalendar.h"
 #include "WgForecast.h"
-#include "WgAds.h"
+//#include "WgAds.h"
 #include "WgSockets.h"
 #include "WgTimetable.h"
 #include "WgWatchdog.h"
@@ -12,7 +12,8 @@
 
 #include "WgHtmlAds.h"
 
-#define MAX_WIDGETS 50
+//#define MAX_WIDGETS 50
+constexpr int MAX_WIDGETS = 50;
 
 Board::Board()
 {
@@ -57,10 +58,12 @@ void Board::render(bool Forced)
 	VGint clipRects[MAX_WIDGETS * 4]; // (left, bottom, width, height) x count
 	int count = 0, wx, wy, ww, wh;
 	for (WidgetInfo *w = widgets; w; w = w->next)
-		if ((w->needRender || Forced) && w->widget->isVisible())
+		if ((w->needRender || Forced) && w->widget->IsVisible())
 		{
-			if (!w->widget->isTransparent())
+			if (!w->widget->IsTransparent())
+			{
 				continue;
+			}
 			w->widget->getRect(wx, wy, ww, wh);
 			clipRects[count * 4 + 0] = (VGint)wx;
 			clipRects[count * 4 + 1] = (VGint)wy;
@@ -71,12 +74,14 @@ void Board::render(bool Forced)
 
 	vgSeti(VG_SCISSORING, VG_TRUE);
 
-	if (Forced || count != 0)
+	if (Forced || (count != 0))
 	{
-		if (Forced)
+		if (Forced){
 			vgSetiv(VG_SCISSOR_RECTS, 4, screenRect);
-		else
+		}
+		else{
 			vgSetiv(VG_SCISSOR_RECTS, count * 4, clipRects);
+		}
 
 		float sbx = (float)desktop->scrWidth / PicStorage->ScreenBackgroud->getWidth();
 		float sby = (float)desktop->scrHeight / PicStorage->ScreenBackgroud->getHeight();
@@ -93,7 +98,7 @@ void Board::render(bool Forced)
 
 	
 	for (WidgetInfo *w = widgets; w; w = w->next)
-		if ((w->needRender || Forced) && w->widget->isVisible())
+		if ((w->needRender || Forced) && (w->widget->IsVisible()))
 		{
 			// vgSetiv(VG_SCISSOR_RECTS, 4, clipRects + i++ * 4);
 

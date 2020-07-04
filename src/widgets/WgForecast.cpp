@@ -14,14 +14,14 @@ WgForecast::WgForecast(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amod
 	strcpy(tempDegree, "");
 	strcpy(windSpeed, "");
 	windDegree = 0;
-	fprintf(stdout,"%s\tWgForecast widget object is created\n", strNow());
+	fprintf(stdout,"%s\tWgForecast widget object was created\n", strNow());
 }
 
 WgForecast::~WgForecast()
 {
 	if (weatherIcon)
 		delete weatherIcon;
-	fprintf(stdout,"%s\tWgForecast widget object is deleted\n", strNow());
+	fprintf(stdout,"%s\tWgForecast widget object was deleted\n", strNow());
 }
 
 size_t WgForecast::WriteCallback(void *contents, size_t size, size_t nmemb, void *userp) //???
@@ -50,12 +50,12 @@ void WgForecast::getWeatherFromWeb(const char site[], json &weatherData)
 			isConnection = true;
 			auto buf = json::parse(readBuffer);
 			weatherData = buf;
-			fprintf(stdout,"%s\tNew current weather state is received\n", strNow());
+			fprintf(stdout,"%s\tNew current weather state was received\n", strNow());
 		}
 		else
 		{
 			isConnection = false;
-			fprintf(stderr,"%s\tError of current weather state receiving\n", strNow());
+			std::cerr<<strNow()<<"\tError of current weather state receiving!!!\n";
 		}
 	}
 	curl_easy_cleanup(curl); //выполняем обязательное завершение сессии
@@ -95,7 +95,7 @@ bool WgForecast::update()
 		{
 			std::string iconPath{ m_weather_icons_path+"/"+ iconName + ".png"};//probably need this put into 101 line without using local string iconPath
 			//printf("%s\tNew weather icon is loaded from file %s\n", strNow(), iconPath.c_str());//ORIG
-			fprintf(stdout,"%s\tNew weather icon is loaded \n", strNow());
+			fprintf(stdout,"%s\tNew weather icon was loaded \n", strNow());
 			if (weatherIcon)
 				delete weatherIcon;
 			weatherIcon = new Picture(iconPath.c_str());
@@ -114,7 +114,7 @@ bool WgForecast::update()
 
 void WgForecast::renderMode1()
 {
-	renderHeader(tempDegree);
+	RenderHeader(tempDegree);
 }
 
 void WgForecast::renderMode2()

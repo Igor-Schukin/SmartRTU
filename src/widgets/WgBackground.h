@@ -34,7 +34,18 @@ enum wgMode
 
 class WgBackground : public IWidget
 {
-private:
+public:
+	WgBackground(int AposX, int AposY, wgMode Amode);
+	~WgBackground();
+
+	void setFillColor(wgColor c); //set color of block with command Fill
+	void setTextColor(wgColor c); //set color of text
+
+	void getRect(int &left, int &bottom, int &width, int &height);
+	void render()override;
+	bool update() override { return false; };
+	bool IsVisible()override { return true; };
+
 protected:
 	int posX, posY;	  // position in the grid
 	wgMode mode;	  // widget mode
@@ -51,17 +62,6 @@ protected:
 		int left, right, top, bottom;
 	} shadowSize;
 
-	void renderHeader(const char *headerText);
-	void renderOnlyShadows(); //renders only all shadows
-public:
-	WgBackground(int AposX, int AposY, wgMode Amode);
-	~WgBackground();
-
-	void setFillColor(wgColor c); //set color of block with command Fill
-	void setTextColor(wgColor c); //set color of text
-
-	void getRect(int &left, int &bottom, int &width, int &height);
-	void render();
-	bool update() { return false; };
-	bool isVisible() { return true; };
+	void RenderHeader(const char *header_text);
+	void renderOnlyShadows(); //renders only all shadows //kastil
 };

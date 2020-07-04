@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.0.0)
 
 
-# WgAds.cpp was excluded form build for now
 set(SRC IWidget.cpp
     WgHtmlAds.cpp
     WgBackground.cpp
@@ -12,7 +11,7 @@ set(SRC IWidget.cpp
     WgTimetable.cpp 
     WgWatchdog.cpp
     )
-#set(INC "*.h")
+
 add_library(BoardWidgets ${SRC} )
 
 target_include_directories(BoardWidgets  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}

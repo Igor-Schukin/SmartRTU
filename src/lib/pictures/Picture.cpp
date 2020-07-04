@@ -70,11 +70,13 @@ VGImage Picture::createImageFromPNG(const char *path)
 
     png_uint_32 width1 = png_get_image_width(png_ptr, info_ptr);
     png_uint_32 height1 = png_get_image_height(png_ptr, info_ptr);
+
     int bit_depth = png_get_bit_depth(png_ptr, info_ptr);
     int color_type = png_get_color_type(png_ptr, info_ptr);
     int filter_method = png_get_filter_type(png_ptr, info_ptr);
     int compression_type = png_get_compression_type(png_ptr, info_ptr);
     int interlace_type = png_get_interlace_type(png_ptr, info_ptr);
+    
     png_get_IHDR(png_ptr, info_ptr, &width1, &height1, &bit_depth, &color_type, &interlace_type, NULL, NULL);
     width = (int)width1;
     height = (int)height1;
@@ -281,7 +283,10 @@ void Picture::render(int x, int y)
     }
 }
 
-void Picture::render(int x, int y, float scaleX, float scaleY, float shearX, float shearY, float rotate)
+void Picture::render(int x, int y, 
+                    float scaleX, float scaleY, 
+                    float shearX, float shearY, float rotate
+)
 {
     this->scaleX = scaleX;
     this->scaleY = scaleY;

@@ -1,5 +1,7 @@
 #include "desktop.h"
 
+#include <iostream>
+
 #define GRID_VERTICAL   8 //10
 #define GRID_HORIZONTAL 4 //6
 
@@ -27,7 +29,7 @@ Desktop::Desktop( int scr_width, int scr_height )
     colWidth = dwRect.width / colCount;
     rowHeight = dwRect.height / rowCount;
 
-    fprintf(stdout,"%s\tDesktop size %d x %d, widgets area size %d x %d\n", strNow(), scrWidth, scrHeight, dwRect.width, dwRect.height);
+    std::cout<<strNow()<<"\tDesktop size "<<scrWidth<<" x "<<scrHeight<<", widgets area size "<<dwRect.width<<" x "<<dwRect.height<<"\n";
 };
 
 Desktop::~Desktop() { }

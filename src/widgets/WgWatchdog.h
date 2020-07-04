@@ -1,22 +1,20 @@
 #pragma once
 
-#include "Engine.h"
-#include "IWidget.h"
-#include "Timer.h"
+#include<string>
 
-#define WATCHDOG_FILES_NAME "./infoboard.watchdog"
+#include "IWidget.h"
+
+
+//#define WATCHDOG_FILES_NAME "./infoboard.watchdog"
 
 class WgWatchdog : public IWidget
 {
-private:
-    int id;
-
 public:
     ~WgWatchdog();
     WgWatchdog();
     bool update();
     void render() {}
-    bool isVisible() { return false; };
+    bool IsVisible() override { return false; };
     void getRect(int &x, int &y, int &w, int &h)
     {
         x = 0;
@@ -26,4 +24,9 @@ public:
     }
     void setId(int id) { this->id = id; }
     int getUpdateTime() { return 10 * 60 * 1000; } //10min
+
+private:
+    int id;
+    std::string watchdog_name;
+    std::string watchdog_dest;
 };

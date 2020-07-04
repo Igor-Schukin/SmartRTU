@@ -165,14 +165,14 @@ void WgHtmlAds::render()
 	WgBackground::render(); //if commented @ header and advert  block @ is tranperent
 
 	//~~~ render header
-	renderHeader(m_header_text.c_str());
+	RenderHeader(m_header_text.c_str());
 
 	// Use wait_for() with zero milliseconds to check thread status.
 	m_thread_status = m_future.wait_for(std::chrono::milliseconds(0));//get status of thread
 
 	// check if thread finished.
 	if (m_thread_status == std::future_status::ready) {
-		std::cout << strNow() << "\t" << "Cutycapt finished \n";
+		std::cout << strNow() << "\t" << "Cutycapt finished its work\n";
 		//std::cout << "Thread finished" << std::endl;
 #ifdef DEBUG_THREAD_MSG
 		std::cout << "DEBUG_THREAD_MSG:~~~~~~PASSED THREAD STATUS CHECK IN RENDER()~~~~~~" << '\n';
@@ -220,7 +220,7 @@ void WgHtmlAds::render()
 			m_image_scale_by_width = static_cast<float>(rectClient.width) / static_cast<float>(m_advert_pic->getWidth());
 			m_image_scale_by_height = static_cast<float>(rectClient.height) / static_cast<float>(m_advert_pic->getHeight());
 
-			std::cout << strNow() << "\t" << "Advert is placed on the widget screen \n";
+			std::cout << strNow() << "\t" << "Advert was placed on the widget screen \n";
 
 			//!!DEBUG STUFF!!
 #ifdef DEBUG_ADVERTS_PRM_SHOW
@@ -266,7 +266,7 @@ void WgHtmlAds::render()
 			m_image_scale_by_width = static_cast<float>(rectClient.width) / static_cast<float>(m_advert_pic->getWidth());
 			m_image_scale_by_height = static_cast<float>(rectClient.height) / static_cast<float>(m_advert_pic->getHeight());
 
-			std::cout << strNow() << "\t" << "Stub is placed on the widget screen \n";
+			std::cout << strNow() << "\t" << "Stub was placed on the widget screen \n";
 
 			//~~~DEBUG STUFF
 #ifdef DEBUG_ADVERTS_PRM_SHOW
