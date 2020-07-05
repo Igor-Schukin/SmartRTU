@@ -9,6 +9,9 @@
 *			md1x3: show time, current lecture and show timer to the next lecture
 */
 #pragma once
+#ifndef SMART_RTU_SRC_WIDGETS_WGCLOCK_H_
+#define SMART_RTU_SRC_WIDGETS_WGCLOCK_H_
+
 #include <string>/*string*/
 
 #include "WgBackground.h"
@@ -32,3 +35,4 @@ private:
 	void m_RenderMode3();
 
 };
+#endif /*SMART_RTU_SRC_WIDGETS_WGCLOCK_H_*/

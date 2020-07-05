@@ -1,5 +1,7 @@
 #include "Timer.h"
-
+#include <cstdio>/*sprintf*/
+#include <cstdlib>//probably need to delete
+#include <ctime>/*tymespec*/
 Timer timer;
 
 Timer::Timer()
@@ -21,7 +23,7 @@ LongTimeMs Timer::getTime()
 
 const char *strNow()
 {
-	static char buf[25];
+	static char buf[75];//changed from 25
 	time_t time_now = std::time(nullptr);
 	struct tm *now = localtime(&time_now);
 	sprintf(
@@ -31,3 +33,4 @@ const char *strNow()
 		now->tm_hour, now->tm_min, now->tm_sec);
 	return buf;
 }
+

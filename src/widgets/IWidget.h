@@ -1,4 +1,7 @@
 #pragma once
+#ifndef SMART_RTU_SRC_WIDGETS_IWIDGET_H_
+#define SMART_RTU_SRC_WIDGETS_IWIDGET_H_
+
 
 class IWidget
 {
@@ -24,3 +27,5 @@ public:
 	virtual bool IsVisible() { return true; }; //isVisible 				//isVisible +
 	virtual bool IsTransparent() { return false; };						//isTransparent 
 };
+
+#endif /*SMART_RTU_SRC_WIDGETS_IWIDGET_H_*/

@@ -5,6 +5,8 @@
 */
 
 #pragma once
+#ifndef SMART_RTU_SRC_WIDGETS_WGBACKGROUND_H_
+#define SMART_RTU_SRC_WIDGETS_WGBACKGROUND_H_
 
 #include "IWidget.h"
 #include <string>
@@ -67,3 +69,5 @@ protected:
 	void RenderHeader(const char *header_text);
 	void RenderOnlyShadows(); //renders only all shadows //kastil
 };
+
+#endif /*SMART_RTU_SRC_WIDGETS_WGBACKGROUND_H__*/

@@ -4,6 +4,9 @@
  */
 #pragma once
 
+#ifndef SMART_RTU_SRC_WIDGETS_WGCALENDAR_H_
+#define SMART_RTU_SRC_WIDGETS_WGCALENDAR_H_
+
 #include "WgBackground.h"
 #include <string>/*string*/
 
@@ -31,3 +34,4 @@ private:
 	void m_RenderMode3();
 
 };
+#endif /*SMART_RTU_SRC_WIDGETS_WGCALENDAR_H_*/

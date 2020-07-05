@@ -1,8 +1,7 @@
 #pragma once
 
-#include <ctime>
-#include <cstdio>
-#include <cstdlib>
+#include <ctime>/*tymespec*/
+
 
 //***********************************************************************************************
 //*** Timer: getTime() returns time in ms from Timer object creation moment (period ~580 years)

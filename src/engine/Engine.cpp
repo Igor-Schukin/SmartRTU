@@ -29,8 +29,9 @@ Engine::~Engine()
 {
 	delete board;
 	//probably needed stuff //FIXME
-	//if (timetable)
-	//	delete timetable;
+	if (timetable){
+		delete timetable;
+	}
 }
 
 void Engine::start()

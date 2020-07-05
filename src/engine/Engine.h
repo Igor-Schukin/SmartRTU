@@ -10,6 +10,7 @@
 
 //  our classes
 #include "board.h"
+#include"timetable.h"//added by RazdolbayOne
 #include "Picture.h"
 #include "Timer.h"
 

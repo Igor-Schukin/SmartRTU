@@ -61,7 +61,7 @@ private:
    //~~detect if advert.html file was changed
 	std::time_t m_GetFileTime();//gets last edited time of file(.html) 
 	bool m_NeedRenew();//check if file(.html) was changed/edited 
-
+	void m_CleanPicture();//cleans what inside m_advert_pic and sets nullptr
 	//~~~stored strings
 	std::string m_header_text;//stores header text
 
@@ -84,10 +84,8 @@ private:
 	std::future<void>m_future;//is handle of  new async thread //not so good to use void but....
 	std::future_status m_thread_status; // stored status of thread //probably can avoid it
 
-	bool m_is_advert_on_screen; // purpose: 1. what Picture obj will not be killed and created itch time in render
-										  //2.signal what need rerender advert in update() // if is false mean what new advert must be rerendered otherwise its ok
-										  //3.signal what something(advert or stub is on the screen)
-	bool m_stub_displayed_once;//to make stub appier once at the start of program //stub from english is zaglushka
+	bool m_advert_on_screen;
+
 };
 
 #endif /*SMART_RTU_SRC_WIDGETS_WGHTMLADS_H_*/
