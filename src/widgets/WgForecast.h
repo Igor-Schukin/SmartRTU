@@ -31,6 +31,8 @@ using json = nlohmann::json;
 
 #define CURRENT_WEATHER_URL "http://api.openweathermap.org/data/2.5/weather?q=Daugavpils&units=metric&appid=a0a20199a69ae584fd1303a3152d92bc"
 
+#define TEMPERATURE_SYMBOL 'C'
+
 class WgForecast 
 : public WgBackground
 {
@@ -46,16 +48,16 @@ private:
 	std::string m_weather_icons_path;
 	std::string m_base_font_name;
 
-	char tempDegree[6]; //temperature
-	char windSpeed[10]; //wind speed
-	int windDegree;		//wind degree
+	char m_temp_degree[8]; //temperature string buf
+	char m_wind_speed[10]; //wind speed string buf
+	int m_wind_degree;	//wind degree
 
 	bool m_is_data_received; //flag about received or not data from web /*isConnection*/
 
 	//needed stuff for curl request
 	static size_t m_WriteCallback(void *contents, size_t size, size_t nmemb, void *userp);
 	//uses curl request to get from server weather data in json form
-	void m_GetWeatherFromWeb(const char *site, json &weatherData);
+	void m_GetWeatherFromWeb(const char *site, json &weather_data);
 
 	void m_RenderMode1();
 	void m_RenderMode2();
