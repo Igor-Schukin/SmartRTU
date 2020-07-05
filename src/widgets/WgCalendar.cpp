@@ -7,7 +7,7 @@
 #include "CFontStorage.h"/*FontStorage obj*/
 #include "timetable.h"/*timetable obj*/
 #include "Timer.h"/*strNow()*/
-
+#include "desktop.h"/*desktop obj*/
 #include "configurator.h"/*configurator*/
 
 
@@ -135,7 +135,7 @@ void WgCalendar::m_RenderMode2()
 	TFont *font = FontStorage->getFont(
 		const_cast<char*>(m_base_font_name.c_str())
 		);
-	setTextColor(clHaki);
+	SetTextColor(clHaki);
 	font->SetSize(desktop->rowHeight / 3);
 	font->TextMid(
 		bufWeekDay,
@@ -154,7 +154,7 @@ void WgCalendar::m_RenderMode3()
 		rectClient.left + rectClient.width / 2,
 		rectClient.top - desktop->rowHeight - desktop->rowHeight / 5 / 2);
 
-	setTextColor(color);
+	SetTextColor(color);
 	font->SetSize(desktop->rowHeight / 2.2);
 	font->TextMid(
 		bufWeek,

@@ -41,6 +41,7 @@ bool WgHtmlAds::m_NeedRenew()
 	
 	std::time_t ft = WgHtmlAds::m_GetFileTime();
 	if ((ft != 0) && (ft != m_file_time))
+	//if ((ft != 0) && (ft != m_file_time)&&(m_file_time!=0))
 	{
 		m_file_time = ft;
 		//printf("%s", asctime(gmtime(&fileTime))); //this is proof why two times thread cals at start
@@ -65,11 +66,13 @@ void WgHtmlAds::m_CutyCaptRequest() {
 #endif //DEBUG_THREAD_MSG
 }
 
-WgHtmlAds::WgHtmlAds(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amode)
+WgHtmlAds::WgHtmlAds(int Ax, int Ay, wgMode Amode) 
+: WgBackground(Ax, Ay, Amode)
 {
-	isShadows = false; //default render of shadows off 
+	shadows_on = false; //default render of shadows off 
 	int update_time;
 	config->Get("ADVERT_UPDATE_TIME", update_time); //converts string into int
+	
 	if (update_time <= 0) {
 		m_widget_update_time = 3000;//sets 3 seconds update time  //int data type
 	}
@@ -99,6 +102,7 @@ WgHtmlAds::WgHtmlAds(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amode)
 	m_stub_displayed_once = false;
 
 	m_advert_pic = nullptr;
+	m_file_time=m_GetFileTime();
 
 	//run async cutycapt request
 	m_future = std::async(std::launch::async, &WgHtmlAds::m_CutyCaptRequest, this);
@@ -124,11 +128,8 @@ bool WgHtmlAds::update() {
 	m_thread_status = m_future.wait_for(std::chrono::milliseconds(0));
 	//check if thread finished
 	if (m_thread_status == std::future_status::ready) {
-
-		//HERE MUST BE THREAD INFO???????
-
+		
 		//needed if thread done its job 
-		//but need to say render to RERENDER advert what thread just did
 		if (m_is_advert_on_screen == false) {
 			return true;
 		}
@@ -141,9 +142,9 @@ bool WgHtmlAds::update() {
 			//run Cytycapt stuff in async thread
 			m_future = std::async(std::launch::async, &WgHtmlAds::m_CutyCaptRequest, this);
 
-#ifdef DEBUG_THREAD_MSG
-			std::cout << "DEBUG_THREAD_MSG:~~~~~~NEEDRENEW() PASSED AND LAUNCHED CUTYCAPT REQUEST ASYNC THREAD~~~~~~" << '\n';
-#endif //DEBUG_THREAD_MSG
+			#ifdef DEBUG_THREAD_MSG
+						std::cout << "DEBUG_THREAD_MSG:~~~~~~NEEDRENEW() PASSED AND LAUNCHED CUTYCAPT REQUEST ASYNC THREAD~~~~~~" << '\n';
+			#endif //DEBUG_THREAD_MSG
 
 			//in case thread finished fast
 			m_is_advert_on_screen = false;
@@ -160,8 +161,6 @@ bool WgHtmlAds::update() {
 
 void WgHtmlAds::render()
 {
-	//std::cout<<"\033[1;31m RED TEXT \033[0m"<<'\n'; //for red text
-
 	WgBackground::render(); //if commented @ header and advert  block @ is tranperent
 
 	//~~~ render header
@@ -174,18 +173,18 @@ void WgHtmlAds::render()
 	if (m_thread_status == std::future_status::ready) {
 		std::cout << strNow() << "\t" << "Cutycapt finished its work\n";
 		//std::cout << "Thread finished" << std::endl;
-#ifdef DEBUG_THREAD_MSG
-		std::cout << "DEBUG_THREAD_MSG:~~~~~~PASSED THREAD STATUS CHECK IN RENDER()~~~~~~" << '\n';
-#endif //DEBUG_THREAD_MSG
+		#ifdef DEBUG_THREAD_MSG
+				std::cout << "DEBUG_THREAD_MSG:~~~~~~PASSED THREAD STATUS CHECK IN RENDER()~~~~~~" << '\n';
+		#endif //DEBUG_THREAD_MSG
 
 		//check if it was already uploaded advert 
 		if (m_is_advert_on_screen == false) {
 			m_is_advert_on_screen = true;
 			m_stub_displayed_once = true;
 
-#ifdef DEBUG_THREAD_MSG
-			std::cout << "DEBUG_THREAD_MSG:~~~~~~LOADED ADVERT PICTURE ~~~~~~" << '\n';
-#endif //DEBUG_THREAD_MSG
+			#ifdef DEBUG_THREAD_MSG
+						std::cout << "DEBUG_THREAD_MSG:~~~~~~LOADED ADVERT PICTURE ~~~~~~" << '\n';
+			#endif //DEBUG_THREAD_MSG
 
 			//cleare m_advert_pic
 			if (m_advert_pic != nullptr) {
@@ -223,26 +222,26 @@ void WgHtmlAds::render()
 			std::cout << strNow() << "\t" << "Advert was placed on the widget screen \n";
 
 			//!!DEBUG STUFF!!
-#ifdef DEBUG_ADVERTS_PRM_SHOW
-			std::cout << '\n';
-			std::cout << "DEBUG_ADVERTS_PRM_SHOW:~~~~~~INSIDE ADVERT SCOPE~~~~~~" << '\n';
-			std::cout << "Pictures original: width -> " << m_advert_pic->Get_width() << " \theigth -> " << m_advert_pic->Get_height() << '\n';
-			std::cout << "Pictures scale by: width -> " << m_scale_by_width << " \theight -> " << m_scale_by_height<< '\n';
-			std::cout << "WgHtmlAds area     width -> " << rectClient.width << " \theight -> " << rectClient.height << '\n';
-			std::cout << '\n';
-#endif //DEBUG_ADVERTS_PRM_SHOW
+			#ifdef DEBUG_ADVERTS_PRM_SHOW
+						std::cout << '\n';
+						std::cout << "DEBUG_ADVERTS_PRM_SHOW:~~~~~~INSIDE ADVERT SCOPE~~~~~~" << '\n';
+						std::cout << "Pictures original: width -> " << m_advert_pic->Get_width() << " \theigth -> " << m_advert_pic->Get_height() << '\n';
+						std::cout << "Pictures scale by: width -> " << m_scale_by_width << " \theight -> " << m_scale_by_height<< '\n';
+						std::cout << "WgHtmlAds area     width -> " << rectClient.width << " \theight -> " << rectClient.height << '\n';
+						std::cout << '\n';
+			#endif //DEBUG_ADVERTS_PRM_SHOW
 		}
 	}
 	else {
 
-#ifdef DEBUG_THREAD_MSG
-		std::cout << "DEBUG_THREAD_MSG:~~~~~~ASYNC THREAD IS STILL  RUNNING INSIDE STUB SCOPE NOW ~~~~~~" << '\n';
-#endif //DEBUG_THREAD_MSG
+		#ifdef DEBUG_THREAD_MSG
+				std::cout << "DEBUG_THREAD_MSG:~~~~~~ASYNC THREAD IS STILL  RUNNING INSIDE STUB SCOPE NOW ~~~~~~" << '\n';
+		#endif //DEBUG_THREAD_MSG
 
 		//check if it is advert and already uploaded into widget
 		//and checks if Stub was once Displayed 
-		if ((m_is_advert_on_screen == false) and (m_stub_displayed_once == false)) {
-			m_is_advert_on_screen = true;//change flag what it is not advert uploaded into widget
+		if ( (m_stub_displayed_once == false)) {
+			//m_is_advert_on_screen = true;//change flag what it is not advert uploaded into widget
 			m_stub_displayed_once = true; //sets what stub displayed once
 
 			//FIXME 
@@ -269,14 +268,14 @@ void WgHtmlAds::render()
 			std::cout << strNow() << "\t" << "Stub was placed on the widget screen \n";
 
 			//~~~DEBUG STUFF
-#ifdef DEBUG_ADVERTS_PRM_SHOW
-			std::cout << '\n';
-			std::cout << "DEBUG_ADVERTS_PRM_SHOW:~~~~~~INSIDE STUB SCOPE~~~~~~" << '\n';
-			std::cout << "Pictures original: width -> " << m_advert_pic->Get_width() << " \theigth -> " << m_advert_pic->Get_height() << '\n';
-			std::cout << "Pictures scale by: width -> " << m_scale_by_width << " \theight -> " << m_image_scale_by_height << '\n';
-			std::cout << "WgHtmlAds area     width -> " << rectClient.width << " \theight -> " << rectClient.height << '\n';
-			std::cout << '\n';
-#endif //DEBUG_ADVERTS_PRM_SHOW
+		#ifdef DEBUG_ADVERTS_PRM_SHOW
+					std::cout << '\n';
+					std::cout << "DEBUG_ADVERTS_PRM_SHOW:~~~~~~INSIDE STUB SCOPE~~~~~~" << '\n';
+					std::cout << "Pictures original: width -> " << m_advert_pic->Get_width() << " \theigth -> " << m_advert_pic->Get_height() << '\n';
+					std::cout << "Pictures scale by: width -> " << m_scale_by_width << " \theight -> " << m_image_scale_by_height << '\n';
+					std::cout << "WgHtmlAds area     width -> " << rectClient.width << " \theight -> " << rectClient.height << '\n';
+					std::cout << '\n';
+		#endif //DEBUG_ADVERTS_PRM_SHOW
 		}
 		else {
 			m_is_advert_on_screen = false;

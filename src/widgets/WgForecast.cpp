@@ -170,7 +170,7 @@ void WgForecast::m_RenderMode2()
 
 	//~~~ wind speed
 
-	setTextColor(clHaki);
+	SetTextColor(clHaki);
 	TFont *font = FontStorage->getFont(
 		const_cast<char *>(m_base_font_name.c_str())
 	);
@@ -189,7 +189,7 @@ void WgForecast::m_RenderMode3() // need to debug
 	FontStorage->getFont((char*)"arialBold")->SetSize(desktop->rowHeight/5);
 	FontStorage->getFont((char*)"arialBold")->TextMid("Veišs:", rectClient.left + (desktop->colWidth/2),
 		rectClient.top - desktop->rowHeight - (desktop->rowHeight/5/2));
-	setTextColor(color);
+	SetTextColor(color);
 	FontStorage->getFont((char*)"arialBold")->SetSize(desktop->rowHeight/2.8);
 	FontStorage->getFont((char*)"arialBold")->TextMid(m_wind_speed, rectClient.left + (desktop->colWidth/2.5),
 		rectClient.top - desktop->rowHeight - desktop->rowHeight/16*11);

@@ -9,6 +9,7 @@
 #include "Timer.h"/*strNow()*/
 #include "CFontStorage.h"/*FontStorage obj*/
 #include "configurator.h"/*config*/
+#include "desktop.h"/*desktop*/
 
 #define STR_TIME_EMPTY "--:--"
 
@@ -145,7 +146,7 @@ void WgClock::m_RenderMode1()
 
 void WgClock::m_RenderMode2()
 {
-	setTextColor(clHaki);
+	SetTextColor(clHaki);
 	FontStorage->getFont(
 		const_cast<char*>(m_base_font_name.c_str())
 						)->SetSize(desktop->rowHeight / 3);
@@ -161,7 +162,7 @@ void WgClock::m_RenderMode2()
 
 void WgClock::m_RenderMode3()
 {
-	setTextColor(clHaki);
+	SetTextColor(clHaki);
 	FontStorage->getFont(
 			const_cast<char*>(m_base_font_name.c_str())
 		)->SetSize(desktop->rowHeight / 4.5);
@@ -174,7 +175,7 @@ void WgClock::m_RenderMode3()
 			rectClient.top - desktop->rowHeight - (desktop->rowHeight / 5 / 2) //?
 	);
 
-	setTextColor(color);
+	SetTextColor(color);
 	FontStorage->getFont(
 		const_cast<char*>(m_base_font_name.c_str())
 		)->SetSize(desktop->rowHeight / 2.2);

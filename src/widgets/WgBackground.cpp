@@ -1,18 +1,18 @@
 #include "WgBackground.h"
-#include "CPicturesStorage.h"
-#include "CFontStorage.h"
-#include "configurator.h"
+#include "CPicturesStorage.h"/*picture storage obj*/
+#include "CFontStorage.h"/*font obj*/
+#include "configurator.h"/*config*/
+#include "../engine/desktop.h"/*desktop obj*/
 
-
-WgBackground::WgBackground(int AposX, int AposY, wgMode Amode)
+WgBackground::WgBackground(int pos_x, int pos_y, wgMode Amode)
 {
 	m_widget_update_time = 0; // never
-	posX = AposX;	// horizontal position in the grid
-	posY = AposY;	// vertical position in the grid
+	m_pos_x = pos_x;	// horizontal position in the grid
+	m_pos_y = pos_y;	// vertical position in the grid
 	mode = Amode;
 	color = wgColor(1 + rand() % 10);
 
-	isShadows = true; // shadows on
+	shadows_on = true; // shadows on
 	config->Get("BASE_FONT_NAME",m_base_font_name); 
 	// -- select widget size from mode
 
@@ -44,9 +44,9 @@ WgBackground::WgBackground(int AposX, int AposY, wgMode Amode)
 	shadowSize.top = PicStorage->WgShadows->t->Get_height();
 	shadowSize.bottom = PicStorage->WgShadows->b->Get_height();
 
-	rectWidget.left = desktop->dwRect.left + desktop->colWidth * posX;
+	rectWidget.left = desktop->dwRect.left + desktop->colWidth * m_pos_x;
 	rectWidget.right = rectWidget.left + desktop->colWidth * sizeX;
-	rectWidget.top = desktop->dwRect.bottom + desktop->rowHeight * posY;
+	rectWidget.top = desktop->dwRect.bottom + desktop->rowHeight * m_pos_y;
 	rectWidget.bottom = rectWidget.top - desktop->rowHeight * sizeY;
 	rectWidget.width = desktop->colWidth * sizeX;
 	rectWidget.height = desktop->rowHeight * sizeY;
@@ -81,7 +81,7 @@ const struct
 	{0, 85, 81}		 // clHaki
 };
 
-void WgBackground::setTextColor(wgColor c)
+void WgBackground::SetTextColor(wgColor c)
 {
 	//FIXME maybe need to use configurator but definetly like this
 	FontStorage->getFont(
@@ -101,7 +101,7 @@ void WgBackground::setTextColor(wgColor c)
 */
 }
 
-void WgBackground::setFillColor(wgColor c)
+void WgBackground::SetFillColor(wgColor c)
 {
 	Fill(
 		Colors[c].r,
@@ -126,13 +126,13 @@ void WgBackground::render()
 {
 	// -- render widget background blocks
 
-	setFillColor(clWhite);
-	//setFillColor(clOrange);
+	SetFillColor(clWhite);
+	//SetFillColor(clOrange);
 	Rect(rectClient.left, rectClient.bottom, rectClient.width, rectClient.height);
-	setFillColor(color);
+	SetFillColor(color);
 	Rect(rectHeader.left, rectHeader.bottom, rectHeader.width, rectHeader.height);
 
-	if (isShadows) // -- render widget shadows
+	if (shadows_on) // -- render widget shadows
 	{
 		RenderOnlyShadows();
 	}

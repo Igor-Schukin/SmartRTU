@@ -187,7 +187,7 @@ void WgAds::render()
 	}
 
 	int ofsY = ( rectClient.height - lh * lc - lh * lineSpacing ) / 2 - lh * 0.1;
-	setTextColor(clHaki);
+	SetTextColor(clHaki);
 	font->SetSize( fh )	;
 	for (int i = 0; i < lc; i++) 
 	{

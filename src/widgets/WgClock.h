@@ -13,7 +13,8 @@
 
 #include "WgBackground.h"
 
-class WgClock : public WgBackground
+class WgClock :
+public WgBackground
 {
 public:
 	WgClock(int AposX, int AposY, wgMode Amode);
