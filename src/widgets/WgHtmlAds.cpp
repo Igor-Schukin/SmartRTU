@@ -71,10 +71,10 @@ WgHtmlAds::WgHtmlAds(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amode)
 	int update_time;
 	config->Get("ADVERT_UPDATE_TIME", update_time); //converts string into int
 	if (update_time <= 0) {
-		updateTime = 3000;//sets 3 seconds update time  //int data type
+		m_widget_update_time = 3000;//sets 3 seconds update time  //int data type
 	}
 	else {
-		updateTime = (update_time * 1000);//sets update time in seconds
+		m_widget_update_time = (update_time * 1000);//sets update time in seconds
 	}
 
 	//string part
@@ -217,8 +217,8 @@ void WgHtmlAds::render()
 			}
 
 			
-			m_image_scale_by_width = static_cast<float>(rectClient.width) / static_cast<float>(m_advert_pic->getWidth());
-			m_image_scale_by_height = static_cast<float>(rectClient.height) / static_cast<float>(m_advert_pic->getHeight());
+			m_image_scale_by_width = static_cast<float>(rectClient.width) / static_cast<float>(m_advert_pic->Get_width());
+			m_image_scale_by_height = static_cast<float>(rectClient.height) / static_cast<float>(m_advert_pic->Get_height());
 
 			std::cout << strNow() << "\t" << "Advert was placed on the widget screen \n";
 
@@ -226,7 +226,7 @@ void WgHtmlAds::render()
 #ifdef DEBUG_ADVERTS_PRM_SHOW
 			std::cout << '\n';
 			std::cout << "DEBUG_ADVERTS_PRM_SHOW:~~~~~~INSIDE ADVERT SCOPE~~~~~~" << '\n';
-			std::cout << "Pictures original: width -> " << m_advert_pic->getWidth() << " \theigth -> " << m_advert_pic->getHeight() << '\n';
+			std::cout << "Pictures original: width -> " << m_advert_pic->Get_width() << " \theigth -> " << m_advert_pic->Get_height() << '\n';
 			std::cout << "Pictures scale by: width -> " << m_scale_by_width << " \theight -> " << m_scale_by_height<< '\n';
 			std::cout << "WgHtmlAds area     width -> " << rectClient.width << " \theight -> " << rectClient.height << '\n';
 			std::cout << '\n';
@@ -263,8 +263,8 @@ void WgHtmlAds::render()
 			);//create advert //take stub in place of advert
 
 			//calc scales of image
-			m_image_scale_by_width = static_cast<float>(rectClient.width) / static_cast<float>(m_advert_pic->getWidth());
-			m_image_scale_by_height = static_cast<float>(rectClient.height) / static_cast<float>(m_advert_pic->getHeight());
+			m_image_scale_by_width = static_cast<float>(rectClient.width) / static_cast<float>(m_advert_pic->Get_width());
+			m_image_scale_by_height = static_cast<float>(rectClient.height) / static_cast<float>(m_advert_pic->Get_height());
 
 			std::cout << strNow() << "\t" << "Stub was placed on the widget screen \n";
 
@@ -272,7 +272,7 @@ void WgHtmlAds::render()
 #ifdef DEBUG_ADVERTS_PRM_SHOW
 			std::cout << '\n';
 			std::cout << "DEBUG_ADVERTS_PRM_SHOW:~~~~~~INSIDE STUB SCOPE~~~~~~" << '\n';
-			std::cout << "Pictures original: width -> " << m_advert_pic->getWidth() << " \theigth -> " << m_advert_pic->getHeight() << '\n';
+			std::cout << "Pictures original: width -> " << m_advert_pic->Get_width() << " \theigth -> " << m_advert_pic->Get_height() << '\n';
 			std::cout << "Pictures scale by: width -> " << m_scale_by_width << " \theight -> " << m_image_scale_by_height << '\n';
 			std::cout << "WgHtmlAds area     width -> " << rectClient.width << " \theight -> " << rectClient.height << '\n';
 			std::cout << '\n';
@@ -287,5 +287,5 @@ void WgHtmlAds::render()
 	m_advert_pic->render(rectClient.left, rectClient.bottom, m_image_scale_by_width, m_image_scale_by_height, 0, 0, 0);
 
 	//~~~~~ render shadows
-	WgBackground::renderOnlyShadows();
+	WgBackground::RenderOnlyShadows();
 }

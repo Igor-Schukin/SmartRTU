@@ -3,6 +3,12 @@
 #ifndef SMART_RTU_SRC_WIDGETS_WGHTMLADS_H_
 #define SMART_RTU_SRC_WIDGETS_WGHTMLADS_H_
 
+
+/*
+Restyled by RazdolbayOne
+*/
+
+
 /*
 // MAIN PURPOSE TO ASYNC WAY TO CONVERT HTML PAGE INTO PIC/ADVERT
 // SHOW IT ON THE WIDGET SCREEN
@@ -43,8 +49,8 @@
 class WgHtmlAds : public WgBackground
 {
 public:
-	bool update();//check if need update widget
-	void render();//renders advert into screen
+	bool update()override;//check if need update widget
+	void render()override;//renders advert into screen
 
 	WgHtmlAds(int Ax, int Ay, wgMode Amode);
 	~WgHtmlAds();

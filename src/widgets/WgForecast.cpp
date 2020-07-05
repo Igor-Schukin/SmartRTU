@@ -12,10 +12,11 @@
 #include "CFontStorage.h"/*font obj*/
 #include "configurator.h"/*config*/
 
+
 WgForecast::WgForecast(int Ax, int Ay, wgMode Amode) 
 : WgBackground(Ax, Ay, Amode)
 {
-	updateTime = 60 * 60 * 1000; // 1 hour
+	m_widget_update_time = 60 * 60 * 1000; // 1 hour
 	m_weather_icon_picture = nullptr;
 	m_weather_icon_name = "";
 
@@ -23,7 +24,7 @@ WgForecast::WgForecast(int Ax, int Ay, wgMode Amode)
 	config->Get("PIC_WEATHER_ICONS_PATH",m_weather_icons_path);
 	config->Get("BASE_FONT_NAME",m_base_font_name);
 
-	isConnection = false;
+	m_is_data_received = false;
 
 	strcpy(tempDegree, "");
 	strcpy(windSpeed, "");
@@ -61,14 +62,14 @@ void WgForecast::m_GetWeatherFromWeb(const char site[], json &weatherData)
 		res = curl_easy_perform(curl);								  //запускаем выполнение задачи
 		if (res == CURLE_OK)
 		{
-			isConnection = true;
+			m_is_data_received = true;
 			auto buf = json::parse(readBuffer);
 			weatherData = buf;
 			std::cout<<strNow()<<"\tNew current weather state was received\n";
 		}
 		else
 		{
-			isConnection = false;
+			m_is_data_received = false;
 			std::cerr<<strNow()<<"\tError of current weather state receiving!!!\n";
 		}
 	}
@@ -80,7 +81,7 @@ bool WgForecast::update()
 	json weatherData;
 	m_GetWeatherFromWeb(CURRENT_WEATHER_URL, weatherData);
 
-	if (isConnection && weatherData["main"]["temp"].is_number())
+	if (m_is_data_received && weatherData["main"]["temp"].is_number())
 	{
 		int bufTemp = weatherData["main"]["temp"];
 		sprintf(tempDegree, "%+d°", bufTemp);
@@ -88,7 +89,7 @@ bool WgForecast::update()
 	else
 		sprintf(tempDegree, "---");
 
-	if (isConnection && weatherData["wind"]["deg"].is_number())
+	if (m_is_data_received && weatherData["wind"]["deg"].is_number())
 	{
 		windDegree = weatherData["wind"]["deg"];
 		float bufSpeed = weatherData["wind"]["speed"];
@@ -102,7 +103,7 @@ bool WgForecast::update()
 
 	//~~~ load weather icon
 
-	if (isConnection && weatherData["weather"][0]["icon"].is_string())
+	if (m_is_data_received && weatherData["weather"][0]["icon"].is_string())
 	{
 		std::string iconName = weatherData["weather"][0]["icon"];
 		if (iconName != m_weather_icon_name)
@@ -141,9 +142,9 @@ void WgForecast::m_RenderMode2()
 	int iw = 0, ih = 0;
 	if (m_weather_icon_picture)
 	{
-		float is = (float)rectClient.height * 1.0 / m_weather_icon_picture->getHeight();
-		iw = m_weather_icon_picture->getWidth() * is;
-		ih = m_weather_icon_picture->getHeight() * is;
+		float is = (float)rectClient.height * 1.0 / m_weather_icon_picture->Get_height();
+		iw = m_weather_icon_picture->Get_width() * is;
+		ih = m_weather_icon_picture->Get_height() * is;
 		m_weather_icon_picture->render(
 			rectClient.left + field,
 			rectClient.bottom + (rectClient.height - ih) / 2,
@@ -152,9 +153,9 @@ void WgForecast::m_RenderMode2()
 
 	//~~ wind arrow
 
-	float as = (float)rectClient.height * 0.35 / PicStorage->Arrow->getHeight();
-	int aw = PicStorage->Arrow->getWidth() * as * 1.75; // 1.4 = sqrt(2)
-	int ah = PicStorage->Arrow->getHeight() * as;
+	float as = (float)rectClient.height * 0.35 / PicStorage->Arrow->Get_height();
+	int aw = PicStorage->Arrow->Get_width() * as * 1.75; // 1.4 = sqrt(2)
+	int ah = PicStorage->Arrow->Get_height() * as;
 	PicStorage->Arrow->render(
 		rectClient.right - aw - field,
 		rectClient.bottom + (rectClient.height - ah) / 2,
@@ -192,7 +193,7 @@ void WgForecast::m_RenderMode3() // need to debug
 
 void WgForecast::render()
 {
-	if (isConnection)
+	if (m_is_data_received)
 	{
 		WgBackground::render();
 		switch (mode)

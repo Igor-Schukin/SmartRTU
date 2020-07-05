@@ -9,7 +9,7 @@
 #include"configurator.h"/*config*/
 
 
-time_t WgTimetable::getFileTime()
+time_t WgTimetable::m_GetFileTime()
 {
     struct stat buff;
     if (stat((m_timetable_dest+"/"+m_timetable_name).c_str(), &buff) == 0)
@@ -19,7 +19,7 @@ time_t WgTimetable::getFileTime()
 
 WgTimetable::WgTimetable()
 {
-    fileTime = getFileTime();
+    m_file_time = m_GetFileTime();
 
     config->Get("TIME_TABLE_DEST",m_timetable_dest);
     config->Get("TIME_TABLE_NAME",m_timetable_name);
@@ -34,7 +34,7 @@ WgTimetable::~WgTimetable()
 
 bool WgTimetable::update()
 {
-    if (fileTime != getFileTime())
+    if (m_file_time != m_GetFileTime())
     {
         if (timetable)
             delete timetable;
@@ -46,7 +46,7 @@ bool WgTimetable::update()
         {
             timetable = nullptr;
         }
-        fileTime = getFileTime();
+        m_file_time = m_GetFileTime();
         engine->forcedUpdate();
     }
     return false;

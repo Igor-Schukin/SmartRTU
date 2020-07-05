@@ -392,11 +392,11 @@ Picture::~Picture()
 }
 
 //Getters
-int Picture::getWidth()
+int Picture::Get_width()
 {
     return width;
 }
-int Picture::getHeight()
+int Picture::Get_height()
 {
     return height;
 }

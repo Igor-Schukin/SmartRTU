@@ -8,6 +8,7 @@
 
 #include "IWidget.h"
 #include "../engine/desktop.h"
+#include <string>
 
 enum wgColor
 {
@@ -41,7 +42,7 @@ public:
 	void setFillColor(wgColor c); //set color of block with command Fill
 	void setTextColor(wgColor c); //set color of text
 
-	void getRect(int &left, int &bottom, int &width, int &height);
+	void GetRect(int &left, int &bottom, int &width, int &height);
 	void render()override;
 	bool update() override { return false; };
 	bool IsVisible()override { return true; };
@@ -52,6 +53,7 @@ protected:
 	int sizeX, sizeY; // widget size in the grid, example: sizeX=1; sizeY=1; fill only one block in the grid
 	wgColor color;
 	bool isShadows; // on/off shadows
+	std::string m_base_font_name;//mean name of font without extension
 
 	struct
 	{
@@ -63,5 +65,5 @@ protected:
 	} shadowSize;
 
 	void RenderHeader(const char *header_text);
-	void renderOnlyShadows(); //renders only all shadows //kastil
+	void RenderOnlyShadows(); //renders only all shadows //kastil
 };

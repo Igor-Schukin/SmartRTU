@@ -33,7 +33,7 @@
 
 WgClock::WgClock(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amode)
 {
-	updateTime = 100; // 10 times per sec
+	m_widget_update_time = 100; // 10 times per sec
 
 	hour = -1;
 	min = -1;

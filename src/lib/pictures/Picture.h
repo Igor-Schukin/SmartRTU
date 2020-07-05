@@ -37,25 +37,25 @@ extern "C"
             #include "lib/Pictures.h"
 
             Picture *image1 = new Picture("png.png");
-            printf("width: %i, height: %i\n", image1->getWidth(), image1->getHeight());
+            printf("width: %i, height: %i\n", image1->Get_width(), image1->Get_height());
             Picture *image2 = new Picture("rad.jpg");
-            printf("width: %i, height: %i\n", image2->getWidth(), image2->getHeight());
+            printf("width: %i, height: %i\n", image2->Get_width(), image2->Get_height());
 
             //	if you want to use all pixels of image
-            unsigned int *pixels = new unsigned int[image2->getWidth() * image2->getHeight()];
-            image2->getPixels(0, 0, image2->getWidth(), image2->getHeight(), pixels);
+            unsigned int *pixels = new unsigned int[image2->Get_width() * image2->Get_height()];
+            image2->getPixels(0, 0, image2->Get_width(), image2->Get_height(), pixels);
 
             //	if just some part of image 150 X 150
             // unsigned int *pixels = new unsigned int[150 * 150];
             // image2->getPixels(0, 0, 150, 150, pixels);
 
             //	change some pixel color
-            for (int i = 0; i < image2->getWidth() * image2->getHeight(); i++)
+            for (int i = 0; i < image2->Get_width() * image2->Get_height(); i++)
             {
                 if (pixels[i] == Picture::getColor(252, 155, 16, 255)) pixels[i] = Picture::getColor(41, 128, 21, 255);
                 if (pixels[i] == Picture::getColor(255, 255, 255, 255)) pixels[i] = Picture::getColor(5, 32, 58, 255);
             }
-            image2->setPixels(0, 0, image2->getWidth(), image2->getHeight(), pixels);
+            image2->setPixels(0, 0, image2->Get_width(), image2->Get_height(), pixels);
             delete[] pixels;
 
 
@@ -101,8 +101,8 @@ public:
     void render(int x, int y, float scaleX, float scaleY, float shearX, float shearY, float rotate);
     //
 
-    int getWidth();
-    int getHeight();
+    int Get_width();
+    int Get_height();
 
     void getPixels(int x, int y, int w, int h, unsigned long *pixels);
     void setPixels(int x, int y, int w, int h, unsigned long *pixels);

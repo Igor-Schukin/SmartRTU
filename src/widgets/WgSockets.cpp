@@ -26,13 +26,15 @@ WgSockets::~WgSockets()
 
 bool WgSockets::update()
 {
+    bool state=false;
     for (int i = 0; i < SOCKETS_COUNT; i++)
     {
-        bool state = timetable->getCurrentSocketState(i + 1);
+        state = timetable->getCurrentSocketState(i + 1);
         digitalWrite(SOCKETS_PINS[i], state ? HIGH : LOW);
         if (state != m_current_states[i])
         {
-            std::cout<<strNow()<<"\tSocket "<<i + 1<<" is turned "<<(state ? "on" : "off")<<" \n";
+            std::cout<<strNow()<<"\tSocket "
+            <<i + 1<<" is turned "<<(state ? "on" : "off")<<" \n";
             m_current_states[i] = state;
         }
     }

@@ -19,6 +19,10 @@ WgWatchdog::~WgWatchdog()
     std::cout<<strNow()<<"\t"<<"WgWatchdog widget object was deleted\n";
 }
 
+void WgWatchdog::Set_widget_id(int m_widget_id){
+    this->m_widget_id = m_widget_id;
+}
+
 bool WgWatchdog::update()
 {
     system(fmt("rm -rf %s 2> /dev/null",(watchdog_dest+"/"+watchdog_name).c_str()));

@@ -42,7 +42,7 @@ void Board::update(bool Forced)
 	LongTimeMs time = timer.getTime();
 	for (WidgetInfo *w = widgets; w; w = w->next)
 	{
-		int uprd = (int)w->widget->getUpdateTime();
+		int uprd = (int)w->widget->Get_widget_update_time();
 		if (Forced || ((uprd > 0) && ((time - w->lastUpdate) > static_cast<long long unsigned int>(uprd))))
 		{
 			
@@ -64,7 +64,7 @@ void Board::render(bool Forced)
 			{
 				continue;
 			}
-			w->widget->getRect(wx, wy, ww, wh);
+			w->widget->GetRect(wx, wy, ww, wh);
 			clipRects[count * 4 + 0] = (VGint)wx;
 			clipRects[count * 4 + 1] = (VGint)wy;
 			clipRects[count * 4 + 2] = (VGint)ww;
@@ -83,8 +83,8 @@ void Board::render(bool Forced)
 			vgSetiv(VG_SCISSOR_RECTS, count * 4, clipRects);
 		}
 
-		float sbx = (float)desktop->scrWidth / PicStorage->ScreenBackgroud->getWidth();
-		float sby = (float)desktop->scrHeight / PicStorage->ScreenBackgroud->getHeight();
+		float sbx = (float)desktop->scrWidth / PicStorage->ScreenBackgroud->Get_width();
+		float sby = (float)desktop->scrHeight / PicStorage->ScreenBackgroud->Get_height();
 		PicStorage->ScreenBackgroud->render(0, 0, sbx, sby, 0, 0, 0);
 
 		float logo_scale = 0.9;
@@ -92,7 +92,7 @@ void Board::render(bool Forced)
 		int h = desktop->scrHeight - desktop->dwRect.top;
 		int x = desktop->dwRect.left;
 		int y = desktop->dwRect.top + h * (1 - logo_scale) / 2;
-		float sc = (float)h / logo->getHeight() * logo_scale;
+		float sc = (float)h / logo->Get_height() * logo_scale;
 		logo->render(x, y, sc, sc, 0, 0, 0);
 	}
 
@@ -102,7 +102,7 @@ void Board::render(bool Forced)
 		{
 			// vgSetiv(VG_SCISSOR_RECTS, 4, clipRects + i++ * 4);
 
-			w->widget->getRect(wx, wy, ww, wh);
+			w->widget->GetRect(wx, wy, ww, wh);
 			clipRects[0] = (VGint)wx;
 			clipRects[1] = (VGint)wy;
 			clipRects[2] = (VGint)ww;

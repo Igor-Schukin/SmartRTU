@@ -9,8 +9,7 @@
 *			md1x3: show time, current lecture and show timer to the next lecture
 */
 #pragma once
-/*Restyled by RazdolbayOne*/
-#include <string>
+#include <string>/*string*/
 
 #include "WgBackground.h"
 
@@ -20,8 +19,8 @@ public:
 	WgClock(int AposX, int AposY, wgMode Amode);
 	~WgClock();
 
-	bool update();
-	void render();
+	bool update()override;
+	void render()override;
 private:
 	int hour, min, sec; // last update time
 	char strTime[10], strLect[20], strInfo[100], strTimer[15];

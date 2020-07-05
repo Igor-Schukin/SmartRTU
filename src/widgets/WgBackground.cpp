@@ -1,18 +1,19 @@
 #include "WgBackground.h"
 #include "CPicturesStorage.h"
 #include "CFontStorage.h"
+#include "configurator.h"
 
 
 WgBackground::WgBackground(int AposX, int AposY, wgMode Amode)
 {
-	updateTime = 0; // never
+	m_widget_update_time = 0; // never
 	posX = AposX;	// horizontal position in the grid
 	posY = AposY;	// vertical position in the grid
 	mode = Amode;
 	color = wgColor(1 + rand() % 10);
 
 	isShadows = true; // shadows on
-
+	config->Get("BASE_FONT_NAME",m_base_font_name); 
 	// -- select widget size from mode
 
 	switch (mode)
@@ -34,14 +35,14 @@ WgBackground::WgBackground(int AposX, int AposY, wgMode Amode)
 		sizeY = 8;
 		break;
 	default:
-		sizeX = getWidth();
-		sizeY = getHeight();
+		sizeX = Get_width();
+		sizeY = Get_height();
 	}
 
-	shadowSize.left = PicStorage->WgShadows->l->getWidth();
-	shadowSize.right = PicStorage->WgShadows->r->getWidth();
-	shadowSize.top = PicStorage->WgShadows->t->getHeight();
-	shadowSize.bottom = PicStorage->WgShadows->b->getHeight();
+	shadowSize.left = PicStorage->WgShadows->l->Get_width();
+	shadowSize.right = PicStorage->WgShadows->r->Get_width();
+	shadowSize.top = PicStorage->WgShadows->t->Get_height();
+	shadowSize.bottom = PicStorage->WgShadows->b->Get_height();
 
 	rectWidget.left = desktop->dwRect.left + desktop->colWidth * posX;
 	rectWidget.right = rectWidget.left + desktop->colWidth * sizeX;
@@ -83,7 +84,9 @@ const struct
 void WgBackground::setTextColor(wgColor c)
 {
 	//FIXME maybe need to use configurator but definetly like this
-	FontStorage->getFont((char *)"arialBold")->SetColour(Colors[c].r, Colors[c].g, Colors[c].b);
+	FontStorage->getFont(
+		const_cast<char*>(m_base_font_name.c_str())
+	)->SetColour(Colors[c].r, Colors[c].g, Colors[c].b);
 	/*	
 	if (c==clBlue) FontStorage->getFont((char*)"arialBold")->SetColour(0,121,194);
 	else if (c==clCyan) FontStorage->getFont((char*)"arialBold")->SetColour(37,196,166);
@@ -131,11 +134,11 @@ void WgBackground::render()
 
 	if (isShadows) // -- render widget shadows
 	{
-		renderOnlyShadows();
+		RenderOnlyShadows();
 	}
 }
 
-void WgBackground::getRect(int &left, int &bottom, int &width, int &height)
+void WgBackground::GetRect(int &left, int &bottom, int &width, int &height)
 {
 	left = rectWidget.left;
 	bottom = rectWidget.bottom;
@@ -147,7 +150,9 @@ void WgBackground::RenderHeader(const char *header_text)
 {
 	int maxw = rectHeader.width * 0.8;
 	//FIXME this definetly must be different maybe use of configurator
-	TFont *font = FontStorage->getFont((char *)"arialBold");
+	TFont *font = FontStorage->getFont(
+		const_cast<char *>(m_base_font_name.c_str())
+		);
 	font->SetColour(255, 255, 255);
 	int fh = rectHeader.height * 0.6;
 	font->SetSize(fh);
@@ -163,7 +168,7 @@ void WgBackground::RenderHeader(const char *header_text)
 		rectHeader.bottom + (rectHeader.height - fh) / 2);
 }
 
-void WgBackground::renderOnlyShadows()
+void WgBackground::RenderOnlyShadows()
 {
 		// -- -- render horizontal shadows
 		for (int i = 0; i < rectWidget.width; i++)

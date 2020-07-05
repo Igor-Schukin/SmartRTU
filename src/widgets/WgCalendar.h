@@ -5,17 +5,18 @@
 #pragma once
 
 #include "WgBackground.h"
-#include <string>
+#include <string>/*string*/
 
-class WgCalendar : public WgBackground
+class WgCalendar 
+: public WgBackground
 {
 
 public:
 	WgCalendar(int AposX, int AposY, wgMode Amode);
 	~WgCalendar();
 
-	bool update();
-	void render();
+	bool update()override;
+	void render()override;
 private:
 	char bufDate[32], bufWeekDay[32], bufWeekInfo[50], bufWeek[32];
 

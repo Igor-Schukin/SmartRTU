@@ -18,24 +18,28 @@
 
 #pragma once
 
-#include<string>
+#ifndef SMART_RTU_SRC_WIDGETS_WGFORECAST_H_
+#define SMART_RTU_SRC_WIDGETS_WGFORECAST_H_
+
+
+#include<string>/*string*/
 
 #include "WgBackground.h"
 #include "Picture.h"/*for creating Pics*/
-#include "json.h"
+#include "json.h"/*parsing jsons*/
 using json = nlohmann::json;
 
 #define CURRENT_WEATHER_URL "http://api.openweathermap.org/data/2.5/weather?q=Daugavpils&units=metric&appid=a0a20199a69ae584fd1303a3152d92bc"
 
-class WgForecast : 
-public WgBackground
+class WgForecast 
+: public WgBackground
 {
 public:
 	WgForecast(int AposX, int AposY, wgMode Amode);
 	~WgForecast();
 
-	bool update();
-	void render();
+	bool update()override;
+	void render()override;
 private:
 	Picture *m_weather_icon_picture;
 	std::string m_weather_icon_name;
@@ -46,7 +50,7 @@ private:
 	char windSpeed[10]; //wind speed
 	int windDegree;		//wind degree
 
-	bool isConnection;
+	bool m_is_data_received; //flag about received or not data from web /*isConnection*/
 
 	//needed stuff for curl request
 	static size_t m_WriteCallback(void *contents, size_t size, size_t nmemb, void *userp);
@@ -57,6 +61,8 @@ private:
 	void m_RenderMode2();
 	void m_RenderMode3(); // need debugging
 };
+
+#endif /*SMART_RTU_SRC_WIDGETS_WGFORECAST_H_*/
 
 /* server response JSON example
 	[{

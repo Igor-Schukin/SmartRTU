@@ -3,7 +3,7 @@
 WgAds::WgAds(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amode)
 {
 	system(fmt("touch %s%s", ADS_FILES_PATH, FLAG_FILE_NAME));
-	updateTime = 1000; // 1s
+	m_widget_update_time = 1000; // 1s
 	ads = NULL;
 	adsPeace = NULL;
 	lineCount = 0;
@@ -13,7 +13,7 @@ WgAds::WgAds(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amode)
 
 	//std::system(request.c_str());
 	//HtmlPic=new Picture("res/tmp/temp.png");
-	//printf("width: %i, height: %i\n", HtmlPic->getWidth(), HtmlPic->getHeight());
+	//printf("width: %i, height: %i\n", HtmlPic->Get_width(), HtmlPic->Get_height());
 
 	fprintf(stdout,"%s\tWgAds widget object was created\n", strNow());
 }
@@ -150,7 +150,7 @@ void WgAds::render()
 
 	
 	//~~~~~ render back shadows
-	WgBackground::renderOnlyShadows();
+	WgBackground::RenderOnlyShadows();
 */
 
 	//~~~ calculate line count without last empy strings
