@@ -24,7 +24,7 @@ struct TimetableDate
         y = tt.value("y", 0);
         if (y <= 0)
         {
-            std::time_t t = time(NULL);
+            std::time_t t = time(nullptr);
             struct tm *now = localtime(&t);
             y = now->tm_year + 1900;
         }
@@ -138,15 +138,15 @@ struct TimetableSocket
         if (tt["weekdays"].size())
             weekdays = new TimeTableSocketTime(tt["weekdays"]);
         else
-            weekdays = NULL;
+            weekdays = nullptr;
         if (tt["sundays"].size())
             sundays = new TimeTableSocketTime(tt["sundays"]);
         else
-            sundays = NULL;
+            sundays = nullptr;
         if (tt["holidays"].size())
             holidays = new TimeTableSocketTime(tt["holidays"]);
         else
-            holidays = NULL;
+            holidays = nullptr;
     }
     ~TimetableSocket()
     {

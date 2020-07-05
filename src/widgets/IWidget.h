@@ -12,7 +12,7 @@ public:
 	virtual bool update() = 0; // true if need rerendering
 	virtual void render() = 0;
 	virtual void getRect(int &x, int &y, int &w, int &h) = 0; 			//getRect
-	virtual void setId(int id) { this->id = id; }	//setId
+	virtual void setId(int id) { this->id = id; }						//setId
 	virtual int getUpdateTime() { return this->updateTime; } 			//getUpdateTime
 	virtual int getWidth() { return 0; }  // for custom mode 			//getWidth
 	virtual int getHeight() { return 0; } // for custom mode 			//getHeight

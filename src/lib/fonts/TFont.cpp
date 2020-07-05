@@ -88,7 +88,7 @@ unsigned char *TFont::next_utf8_char(unsigned char *utf8, int *codepoint)
 
 	if (datalen < 1 || *utf8 == 0)
 	{
-		return NULL;
+		return nullptr;
 	}
 	if (!(utf8[0] & 0x80))
 	{
@@ -107,7 +107,7 @@ unsigned char *TFont::next_utf8_char(unsigned char *utf8, int *codepoint)
 	}
 	else
 	{
-		return NULL;
+		return nullptr;
 	}
 	p += seqlen;
 	return p;
@@ -122,7 +122,7 @@ void TFont::TextOut(const char *str, int x, int y)
 	vgGetMatrix(mm);
 	int character;
 	unsigned char *ss = (unsigned char *)str;
-	while ((ss = next_utf8_char(ss, &character)) != NULL)
+	while ((ss = next_utf8_char(ss, &character)) != nullptr)
 	{
 		int glyph = CharMap[character];
 		if (glyph == -1)
@@ -147,7 +147,7 @@ VGfloat TFont::TextWidth(const char *str)
 	VGfloat localsize = (VGfloat)Size;
 	int character;
 	unsigned char *ss = (unsigned char *)str;
-	while ((ss = next_utf8_char(ss, &character)) != NULL)
+	while ((ss = next_utf8_char(ss, &character)) != nullptr)
 	{
 		int glyph = CharMap[character];
 		if (glyph == -1)

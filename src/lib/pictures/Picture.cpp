@@ -25,7 +25,7 @@ VGImage Picture::createImageFromPNG(const char *path)
 #endif
         return VG_INVALID_HANDLE;
     }
-    png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+    png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
     if (!png_ptr)
     {
 #ifdef ONDEBUG
@@ -37,7 +37,7 @@ VGImage Picture::createImageFromPNG(const char *path)
     png_infop info_ptr = png_create_info_struct(png_ptr);
     if (!info_ptr)
     {
-        png_destroy_read_struct(&png_ptr, (png_infopp)NULL, (png_infopp)NULL);
+        png_destroy_read_struct(&png_ptr, (png_infopp)nullptr, (png_infopp)nullptr);
 #ifdef ONDEBUG
         printf("ONDEBUG: info_ptr error\n");
 #endif
@@ -57,7 +57,7 @@ VGImage Picture::createImageFromPNG(const char *path)
 #ifdef ONDEBUG
         printf("ONDEBUG: Error during init_io\n");
 #endif
-        png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
+        png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)nullptr);
         fclose(file);
         png_destroy_read_struct(&png_ptr, &info_ptr, &end_info);
         fclose(file);
@@ -77,7 +77,7 @@ VGImage Picture::createImageFromPNG(const char *path)
     int compression_type = png_get_compression_type(png_ptr, info_ptr);
     int interlace_type = png_get_interlace_type(png_ptr, info_ptr);
     
-    png_get_IHDR(png_ptr, info_ptr, &width1, &height1, &bit_depth, &color_type, &interlace_type, NULL, NULL);
+    png_get_IHDR(png_ptr, info_ptr, &width1, &height1, &bit_depth, &color_type, &interlace_type, nullptr, nullptr);
     width = (int)width1;
     height = (int)height1;
 
@@ -186,7 +186,7 @@ VGImage Picture::createImageFromJpeg(const char *filename)
 
     // Try to open image file
     infile = fopen(filename, "rb");
-    if (infile == NULL)
+    if (infile == nullptr)
     {
         fprintf(stderr,"Failed opening '%s' for reading!\n", filename);
         return VG_INVALID_HANDLE;

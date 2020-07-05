@@ -18,17 +18,14 @@
 
 #pragma once
 
+#include<string>
 
 #include "WgBackground.h"
-
-// weather is taken from site http://openweathermap.org
-#define CURRENT_WEATHER_URL "http://api.openweathermap.org/data/2.5/weather?q=Daugavpils&units=metric&appid=a0a20199a69ae584fd1303a3152d92bc"
-
 #include "Picture.h"/*for creating Pics*/
 #include "json.h"
 using json = nlohmann::json;
-// examples and wiki: https://github.com/nlohmann/json
 
+#define CURRENT_WEATHER_URL "http://api.openweathermap.org/data/2.5/weather?q=Daugavpils&units=metric&appid=a0a20199a69ae584fd1303a3152d92bc"
 
 class WgForecast : 
 public WgBackground
@@ -49,16 +46,16 @@ private:
 	char windSpeed[10]; //wind speed
 	int windDegree;		//wind degree
 
-	bool isConnection = true;
+	bool isConnection;
 
 	//needed stuff for curl request
 	static size_t m_WriteCallback(void *contents, size_t size, size_t nmemb, void *userp);
 	//uses curl request to get from server weather data in json form
 	void m_GetWeatherFromWeb(const char *site, json &weatherData);
 
-	void renderMode1();
-	void renderMode2();
-	void renderMode3(); // need debugging
+	void m_RenderMode1();
+	void m_RenderMode2();
+	void m_RenderMode3(); // need debugging
 };
 
 /* server response JSON example

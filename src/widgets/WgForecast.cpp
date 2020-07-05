@@ -16,7 +16,7 @@ WgForecast::WgForecast(int Ax, int Ay, wgMode Amode)
 : WgBackground(Ax, Ay, Amode)
 {
 	updateTime = 60 * 60 * 1000; // 1 hour
-	m_weather_icon_picture = NULL;
+	m_weather_icon_picture = nullptr;
 	m_weather_icon_name = "";
 
 	//get destination of weather icon
@@ -118,20 +118,21 @@ bool WgForecast::update()
 	}
 	else
 	{
-		if (m_weather_icon_picture)
+		if (m_weather_icon_picture){
 			delete m_weather_icon_picture;
-		m_weather_icon_picture = NULL;
+		}
+		m_weather_icon_picture = nullptr;
 	}
 
 	return true;
 }
 
-void WgForecast::renderMode1()
+void WgForecast::m_RenderMode1()
 {
 	RenderHeader(tempDegree);
 }
 
-void WgForecast::renderMode2()
+void WgForecast::m_RenderMode2()
 {
 	float field = rectClient.width * 0.07;
 
@@ -175,7 +176,7 @@ void WgForecast::renderMode2()
 		rectClient.bottom + (rectClient.height - wh) / 2);
 }
 
-void WgForecast::renderMode3() // need to debug
+void WgForecast::m_RenderMode3() // need to debug
 {
 	/*
 	FontStorage->getFont((char*)"arialBold")->SetSize(desktop->rowHeight/5);
@@ -198,20 +199,20 @@ void WgForecast::render()
 		{
 		case md1x1:
 		{
-			renderMode1();
+			m_RenderMode1();
 			break;
 		}
 		case md1x2:
 		{
-			renderMode1();
-			renderMode2();
+			m_RenderMode1();
+			m_RenderMode2();
 			break;
 		}
 		case md1x3:
 		{
-			renderMode1();
-			renderMode2();
-			renderMode3();
+			m_RenderMode1();
+			m_RenderMode2();
+			m_RenderMode3();
 			break;
 		}
 		}

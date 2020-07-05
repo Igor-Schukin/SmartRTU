@@ -15,7 +15,7 @@ const char *fmt(const char *f, const char *s1, const char *s2, const char *s3)
 #define DEBUG_OUTPUT_PRD (60 * 60 * 1000) // 1hour
 #define FLUSH_LOG_PRD 1000				  // 1sec
 
-Engine *engine = NULL;
+Engine *engine = nullptr;
 
 Engine::Engine()
 {
@@ -28,7 +28,7 @@ Engine::Engine()
 Engine::~Engine()
 {
 	delete board;
-	//probably needed stuff
+	//probably needed stuff //FIXME
 	//if (timetable)
 	//	delete timetable;
 }

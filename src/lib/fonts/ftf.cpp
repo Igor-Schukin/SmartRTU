@@ -40,8 +40,8 @@ bool LoadFTFont(const char *FileName,
 {
 	FT_Library library;
 	FT_Face face;
-	Pt = PtInd = InsInd = InsCnt = Adv = NULL;
-	Ins = NULL;
+	Pt = PtInd = InsInd = InsCnt = Adv = nullptr;
+	Ins = nullptr;
 	Count = FontHeight = DescenderHeight = 0;
 
 	if (FT_Init_FreeType(&library))

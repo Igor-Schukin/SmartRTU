@@ -22,7 +22,7 @@ LongTimeMs Timer::getTime()
 const char *strNow()
 {
 	static char buf[25];
-	time_t time_now = std::time(NULL);
+	time_t time_now = std::time(nullptr);
 	struct tm *now = localtime(&time_now);
 	sprintf(
 		buf,

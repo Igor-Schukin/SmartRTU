@@ -7,7 +7,7 @@ CFontStorage *FontStorage;
 CFontStorage::CFontStorage()
 {
 	for (int i = 0; i < MAX_FONTS_COUNT; i++)
-		fonts[i] = NULL;
+		fonts[i] = nullptr;
 }
 
 CFontStorage::~CFontStorage()
@@ -51,7 +51,7 @@ bool CFontStorage::setFont(char *fontName, char *fontFile)
 
 	for (int i = 0; i < MAX_FONTS_COUNT; i++)
 	{
-		if (fonts[i] == NULL)
+		if (fonts[i] == nullptr)
 		{
 			fonts[i] = new sFont(fontName, new TFont(fontFile));
 

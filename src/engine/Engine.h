@@ -43,4 +43,4 @@ public:
 };
 
 extern Engine *engine;
-extern const char *fmt(const char *f, const char *s1, const char *s2 = NULL, const char *s3 = NULL);
+extern const char *fmt(const char *f, const char *s1, const char *s2 = nullptr, const char *s3 = nullptr);

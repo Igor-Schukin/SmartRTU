@@ -17,8 +17,8 @@ constexpr int MAX_WIDGETS = 50;
 
 Board::Board()
 {
-	widgets = NULL;
-	current = NULL;
+	widgets = nullptr;
+	current = nullptr;
 
 	//addWidget(new WgAds(0, 8, md3x8)); // 1, 8
 

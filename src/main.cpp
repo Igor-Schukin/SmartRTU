@@ -48,7 +48,7 @@ int main()
 		}
 		catch (...)
 		{
-			timetable = NULL;
+			timetable = nullptr;
 		}
 
 		config->Get("BASE_FONT_NAME",base_font_name);

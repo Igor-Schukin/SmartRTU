@@ -86,7 +86,7 @@ const char *WgCalendar::m_ConvertMonthFromInt(int mon)
 
 bool WgCalendar::update()
 {
-	std::time_t lt = time(NULL);
+	std::time_t lt = time(nullptr);
 	struct tm *now = localtime(&lt);
 
 	sprintf(bufDate, "%i.%s", now->tm_mday, m_ConvertMonthFromInt(now->tm_mon));

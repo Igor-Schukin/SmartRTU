@@ -44,7 +44,7 @@ bool WgTimetable::update()
         }
         catch (...)
         {
-            timetable = NULL;
+            timetable = nullptr;
         }
         fileTime = getFileTime();
         engine->forcedUpdate();

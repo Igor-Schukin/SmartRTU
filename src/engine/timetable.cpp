@@ -1,6 +1,6 @@
 #include "timetable.h"
 
-Timetable *timetable = NULL;
+Timetable *timetable = nullptr;
 
 //~~~ itoa ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -43,7 +43,7 @@ TimetableWeekDay::TimetableWeekDay(json &tt, json &defs)
         }
     }
     else
-        lectures = NULL;
+        lectures = nullptr;
 }
 
 TimetableWeekDay::~TimetableWeekDay()
@@ -60,7 +60,7 @@ TimetableWeekDay::~TimetableWeekDay()
 struct tm makeTime(const time_t *time) { return *localtime(time); }
 struct tm makeNow()
 {
-    time_t now = time(NULL);
+    time_t now = time(nullptr);
     return *localtime(&now);
 }
 
@@ -146,16 +146,16 @@ Timetable::Timetable()
     config->Get("TIME_TABLE_NAME",m_time_table_name);
 
     for (int wd = 0; wd < 7; wd++){
-        Week[wd] = NULL;
+        Week[wd] = nullptr;
     }
-    Singles = NULL;
+    Singles = nullptr;
     SinglesCount = 0;
-    Holidays = NULL;
+    Holidays = nullptr;
     HolidaysCount = 0;
-    Calendar = NULL;
+    Calendar = nullptr;
     CalendarCount = 0;
     SocketsCount = 0;
-    Sockets = NULL;
+    Sockets = nullptr;
 
     try
     {
@@ -173,7 +173,7 @@ Timetable::Timetable()
         {
             Singles = new TimetableDay *[SinglesCount];
             for (int sd = 0; sd < SinglesCount; sd++)
-                Singles[sd] = NULL;
+                Singles[sd] = nullptr;
             for (int sd = 0; sd < SinglesCount; sd++)
                 Singles[sd] = new TimetableDay(singles[sd], sch["defaults"]);
         }
@@ -184,7 +184,7 @@ Timetable::Timetable()
         {
             Holidays = new TimetableDate *[HolidaysCount];
             for (int i = 0; i < HolidaysCount; i++)
-                Holidays[i] = NULL;
+                Holidays[i] = nullptr;
             for (int i = 0; i < HolidaysCount; i++)
                 Holidays[i] = new TimetableDate(holidays[i]);
         }
@@ -195,7 +195,7 @@ Timetable::Timetable()
         {
             Calendar = new TimetableDateRange *[CalendarCount];
             for (int i = 0; i < CalendarCount; i++)
-                Calendar[i] = NULL;
+                Calendar[i] = nullptr;
             for (int i = 0; i < CalendarCount; i++)
                 Calendar[i] = new TimetableDateRange(calendar[i]);
         }
@@ -209,7 +209,7 @@ Timetable::Timetable()
         {
             Sockets = new TimetableSocket *[SocketsCount];
             for (int i = 0; i < SocketsCount; i++)
-                Sockets[i] = NULL;
+                Sockets[i] = nullptr;
             for (int soc = 1, i = 0; soc <= 4; soc++)
                 if (sockets[std::to_string(soc).c_str()].size())
                 {
@@ -287,7 +287,7 @@ TimeState Timetable::getCurrentTimeState(int &secToEnd, int &lectNumber)
         return tsFree;
 
     int count = 0;
-    TimetableLecture **lectures = NULL;
+    TimetableLecture **lectures = nullptr;
 
     for (int i = 0; i < SinglesCount; i++)
     {
