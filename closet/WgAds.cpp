@@ -165,7 +165,7 @@ void WgAds::render()
 
 	if ( lc == 0 ) return;
 
-	TFont * font = FontStorage->getFont((char*)"arialBold");
+	TFont * font = FontStorage->GetFont((char*)"arialBold");
 	
 	const float lineSpacing = 0.4;
 	int width = (float) rectClient.width * 0.9;	
@@ -173,7 +173,7 @@ void WgAds::render()
 
 	float lh = (float) height / lc;
 	float fh = lh * (1. - lineSpacing);
-	font->SetSize( (int)fh );
+	font->Set_Size( (int)fh );
 
 	int tw = 0;
 	for (int i = 0; i < lc; i++) 
@@ -188,7 +188,7 @@ void WgAds::render()
 
 	int ofsY = ( rectClient.height - lh * lc - lh * lineSpacing ) / 2 - lh * 0.1;
 	SetTextColor(clHaki);
-	font->SetSize( fh )	;
+	font->Set_Size( fh )	;
 	for (int i = 0; i < lc; i++) 
 	{
 		font->TextMid(

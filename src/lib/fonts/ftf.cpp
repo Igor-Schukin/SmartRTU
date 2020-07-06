@@ -1,6 +1,9 @@
 /* Based on font2openvg. See http://developer.hybrid.fi for more information. */
 #include "ftf.h"
 
+#include <vector>
+#include <cfloat>
+#include <cstring>
 
 Vector2::Vector2(){};
 Vector2::Vector2(float px, float py)
@@ -11,17 +14,17 @@ Vector2::Vector2(float px, float py)
 Vector2 operator+(const Vector2 &a, const Vector2 &b) { return Vector2(a.x + b.x, a.y + b.y); }
 Vector2 operator*(const Vector2 &a, float b) { return Vector2(a.x * b, a.y * b); }
 
-float convFTFixed(const FT_Pos &x)
+float ConvertFTFixed(const FT_Pos &x)
 {
 	return (float)x / 4096.0f;
 }
 
-Vector2 convFTVector(const FT_Vector &v)
+Vector2 ConvertFTVector(const FT_Vector &v)
 {
-	return Vector2(convFTFixed(v.x), convFTFixed(v.y));
+	return Vector2(ConvertFTFixed(v.x), ConvertFTFixed(v.y));
 }
 
-bool isOn(char b)
+bool IsOn(char b)
 {
 	return b & 1 ? true : false;
 }
@@ -83,7 +86,7 @@ bool LoadFTFont(const char *FileName,
 
 		if (!FT_Load_Glyph(face, glyphIndex, FT_LOAD_NO_BITMAP | FT_LOAD_NO_HINTING | FT_LOAD_IGNORE_TRANSFORM))
 		{
-			float advance = convFTFixed(face->glyph->advance.x);
+			float advance = ConvertFTFixed(face->glyph->advance.x);
 			if (cc == ' ')
 			{ //space doesn't contain any data
 				gpvecindices.push_back(gpvec.size());
@@ -116,7 +119,7 @@ bool LoadFTFont(const char *FileName,
 			{
 				int pnts = 1;
 				e = outline.contours[con] + 1;
-				last = convFTVector(outline.points[s]);
+				last = ConvertFTVector(outline.points[s]);
 
 				//read the contour start point
 				ivec.push_back(2);
@@ -127,8 +130,8 @@ bool LoadFTFont(const char *FileName,
 				{
 					int c = (i == e) ? s : i;
 					int n = (i == e - 1) ? s : (i + 1);
-					v = convFTVector(outline.points[c]);
-					on = isOn(outline.tags[c]);
+					v = ConvertFTVector(outline.points[c]);
+					on = IsOn(outline.tags[c]);
 					if (on)
 					{ //line
 						++i;
@@ -138,14 +141,14 @@ bool LoadFTFont(const char *FileName,
 					}
 					else
 					{ //spline
-						if (isOn(outline.tags[n]))
+						if (IsOn(outline.tags[n]))
 						{ //next on
-							nv = convFTVector(outline.points[n]);
+							nv = ConvertFTVector(outline.points[n]);
 							i += 2;
 						}
 						else
 						{ //next off, use middle point
-							nv = (v + convFTVector(outline.points[n])) * 0.5f;
+							nv = (v + ConvertFTVector(outline.points[n])) * 0.5f;
 							++i;
 						}
 						ivec.push_back(10);

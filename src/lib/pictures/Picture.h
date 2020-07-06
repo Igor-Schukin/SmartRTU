@@ -1,5 +1,11 @@
 #pragma once
 #include "png.h"
+/*
+TODO 
+RESTYLE FULLY THIS MODULE
+*/
+
+
 extern "C"
 {
 #include "VG/openvg.h"
@@ -14,6 +20,53 @@ extern "C"
 #include <cstring> //+
 
 //#define ONDEBUG
+
+enum PictureType
+{
+    picJPG,
+    picPNG,
+    picUnknown
+};
+
+class Picture
+{
+public:
+    Picture(const char *path);
+    ~Picture();
+
+    void render(int x, int y);
+    void render(int x, int y, float scaleX, float scaleY, float shearX, float shearY, float rotate);
+    //
+
+    int Get_width();
+    int Get_height();
+
+    void getPixels(int x, int y, int w, int h, unsigned long *pixels);
+    void setPixels(int x, int y, int w, int h, unsigned long *pixels);
+
+    void setScale(float scaleX, float scaleY);
+
+    int getColor(float r, float g, float b, float alpha);
+    int getColor(int r, int g, int b, int alpha);
+    float getRed(int color);
+    float getGreen(int color);
+    float getBlue(int color);
+    float getAlpha(int color);
+private:
+    int width, height;
+    float scaleX, scaleY;
+    float shearX, shearY;
+    float rotate;
+    VGImage finImg;
+
+    PictureType GetPictureType(const char *Path);
+
+    VGImage createImageFromPNG(const char *path);
+    void createImageFromJPG(const char *path);
+    VGImage createImageFromJpeg(const char *filename);
+
+};
+
 /*
     Authors: Maksims Denisovs, Igors Sčukins.
     RTU.
@@ -70,49 +123,3 @@ extern "C"
             delete image1;
             delete image2;
 */
-
-enum PictureType
-{
-    picJPG,
-    picPNG,
-    picUnknown
-};
-
-class Picture
-{
-private:
-    int width, height;
-    float scaleX, scaleY;
-    float shearX, shearY;
-    float rotate;
-    VGImage finImg;
-
-    PictureType GetPictureType(const char *Path);
-
-    VGImage createImageFromPNG(const char *path);
-    void createImageFromJPG(const char *path);
-    VGImage createImageFromJpeg(const char *filename);
-
-public:
-    Picture(const char *path);
-    ~Picture();
-
-    void render(int x, int y);
-    void render(int x, int y, float scaleX, float scaleY, float shearX, float shearY, float rotate);
-    //
-
-    int Get_width();
-    int Get_height();
-
-    void getPixels(int x, int y, int w, int h, unsigned long *pixels);
-    void setPixels(int x, int y, int w, int h, unsigned long *pixels);
-
-    void setScale(float scaleX, float scaleY);
-
-    int getColor(float r, float g, float b, float alpha);
-    int getColor(int r, int g, int b, int alpha);
-    float getRed(int color);
-    float getGreen(int color);
-    float getBlue(int color);
-    float getAlpha(int color);
-};

@@ -1,7 +1,8 @@
 #pragma once
 
-#include <stdio.h>
-#include "Timer.h"
+#ifndef SMART_RTU_SRC_ENGINE_DESKTOP_H_
+#define SMART_RTU_SRC_ENGINE_DESKTOP_H_
+
 
 struct Desktop
 {
@@ -14,3 +15,5 @@ struct Desktop
 };
 
 extern Desktop * desktop;
+
+#endif /*SMART_RTU_SRC_ENGINE_DESKTOP_H_*/

@@ -1,6 +1,8 @@
 #include "desktop.h"
 
-#include <iostream>
+#include <iostream>/*cout*/
+
+#include "Timer.h"/*strNow*/
 
 #define GRID_VERTICAL   8 //10
 #define GRID_HORIZONTAL 4 //6

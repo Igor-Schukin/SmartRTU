@@ -132,11 +132,11 @@ void WgCalendar::m_RenderMode1()
 
 void WgCalendar::m_RenderMode2()
 {
-	TFont *font = FontStorage->getFont(
+	TFont *font = FontStorage->GetFont(
 		const_cast<char*>(m_base_font_name.c_str())
 		);
 	SetTextColor(clHaki);
-	font->SetSize(desktop->rowHeight / 3);
+	font->Set_Size(desktop->rowHeight / 3);
 	font->TextMid(
 		bufWeekDay,
 		rectClient.left + rectClient.width / 2,
@@ -145,17 +145,17 @@ void WgCalendar::m_RenderMode2()
 
 void WgCalendar::m_RenderMode3()
 {
-	TFont *font = FontStorage->getFont(
+	TFont *font = FontStorage->GetFont(
 		const_cast<char*>(m_base_font_name.c_str())
 		);
-	font->SetSize(desktop->rowHeight / 4.5);
+	font->Set_Size(desktop->rowHeight / 4.5);
 	font->TextMid(
 		bufWeekInfo,
 		rectClient.left + rectClient.width / 2,
 		rectClient.top - desktop->rowHeight - desktop->rowHeight / 5 / 2);
 
 	SetTextColor(color);
-	font->SetSize(desktop->rowHeight / 2.2);
+	font->Set_Size(desktop->rowHeight / 2.2);
 	font->TextMid(
 		bufWeek,
 		rectClient.left + rectClient.width / 2,

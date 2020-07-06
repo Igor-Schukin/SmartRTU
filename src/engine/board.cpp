@@ -1,5 +1,8 @@
 #include "board.h"
-#include "CPicturesStorage.h"
+
+#include "desktop.h"/*desktop obj*/
+
+#include "CPicturesStorage.h"/*picstorage obj*/
 
 #include "WgClock.h"
 #include "WgCalendar.h"
@@ -8,7 +11,6 @@
 #include "WgSockets.h"
 #include "WgTimetable.h"
 #include "WgWatchdog.h"
-#include "desktop.h"
 
 #include "WgHtmlAds.h"
 
@@ -20,21 +22,21 @@ Board::Board()
 	widgets = nullptr;
 	current = nullptr;
 
-	//addWidget(new WgAds(0, 8, md3x8)); // 1, 8
+	//AddWidget(new WgAds(0, 8, md3x8)); // 1, 8
 
-	addWidget(new WgHtmlAds(0, 8, md3x8));
+	AddWidget(new WgHtmlAds(0, 8, md3x8));
 
-	addWidget(new WgForecast(3, 8, md1x2));
-	addWidget(new WgClock(3, 6, md1x3));
-	addWidget(new WgCalendar(3, 3, md1x3));
-	addWidget(new WgSockets);
-	addWidget(new WgTimetable);
-	addWidget(new WgWatchdog);
+	AddWidget(new WgForecast(3, 8, md1x2));
+	AddWidget(new WgClock(3, 6, md1x3));
+	AddWidget(new WgCalendar(3, 3, md1x3));
+	AddWidget(new WgSockets);
+	AddWidget(new WgTimetable);
+	AddWidget(new WgWatchdog);
 }
 
 Board::~Board()
 {
-	cleanWidgets();
+	CleanWidgets();
 }
 
 void Board::update(bool Forced)

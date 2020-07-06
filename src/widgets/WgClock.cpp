@@ -147,11 +147,11 @@ void WgClock::m_RenderMode1()
 void WgClock::m_RenderMode2()
 {
 	SetTextColor(clHaki);
-	FontStorage->getFont(
+	FontStorage->GetFont(
 		const_cast<char*>(m_base_font_name.c_str())
-						)->SetSize(desktop->rowHeight / 3);
+						)->Set_Size(desktop->rowHeight / 3);
 	
-	FontStorage->getFont(
+	FontStorage->GetFont(
 		const_cast<char*>(m_base_font_name.c_str())
 		)->TextMid(
 			strLect, 
@@ -163,11 +163,11 @@ void WgClock::m_RenderMode2()
 void WgClock::m_RenderMode3()
 {
 	SetTextColor(clHaki);
-	FontStorage->getFont(
+	FontStorage->GetFont(
 			const_cast<char*>(m_base_font_name.c_str())
-		)->SetSize(desktop->rowHeight / 4.5);
+		)->Set_Size(desktop->rowHeight / 4.5);
 	
-	FontStorage->getFont(
+	FontStorage->GetFont(
 			const_cast<char*>(m_base_font_name.c_str()))
 		->TextMid(
 			strInfo, 
@@ -176,11 +176,11 @@ void WgClock::m_RenderMode3()
 	);
 
 	SetTextColor(color);
-	FontStorage->getFont(
+	FontStorage->GetFont(
 		const_cast<char*>(m_base_font_name.c_str())
-		)->SetSize(desktop->rowHeight / 2.2);
+		)->Set_Size(desktop->rowHeight / 2.2);
 
-	FontStorage->getFont(
+	FontStorage->GetFont(
 			const_cast<char*>(m_base_font_name.c_str()))
 		->TextMid(
 			strTimer, 

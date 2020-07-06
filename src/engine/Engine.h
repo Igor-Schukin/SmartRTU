@@ -9,7 +9,14 @@
 #define FRAMES_PER_SECOND 25
 
 class Engine
-{
+{	
+public:
+	Engine();
+	~Engine();
+	void start();
+	void terminate() { m_is_terminated = true; }
+	void ForceUpdate();
+	
 private:
 	int m_frame_capacity;
 	bool m_is_running;
@@ -23,13 +30,6 @@ private:
 	void render(bool All);
 	void ShowFrames();
 	//int kbhit(void);
-
-public:
-	Engine();
-	~Engine();
-	void start();
-	void terminate() { m_is_terminated = true; }
-	void ForceUpdate();
 };
 
 extern Engine *engine;

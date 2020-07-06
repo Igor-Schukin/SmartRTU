@@ -1,7 +1,7 @@
 #pragma once
 
 #include "WgClock.h"
-#include "IWidget.h"
+#include "IWidget.h"/*interface*/
 #include "Timer.h"
 
 struct WidgetInfo {
@@ -15,25 +15,26 @@ struct WidgetInfo {
 
 class Board
 {
-private:
-
-	WidgetInfo *widgets, *current;
-
-	void _addWidget(WidgetInfo* & list, IWidget * w) { if (list) _addWidget(list->next, w); else list = new WidgetInfo(w); }
-	void _freeWidgets(WidgetInfo* & list) { if (list) { _freeWidgets(list->next); delete(list); list = nullptr; } }
-	int _cntWidgets(WidgetInfo* list) { if (list) return _cntWidgets(list->next) + 1; return 0; }
-	
 public:	
 
 	Board();
 	~Board();
 	void update(bool Forced);
 	void render(bool Forced);
-	void cleanWidgets() { _freeWidgets( widgets ); }
-	void addWidget(IWidget *widget) { _addWidget( widgets, widget ); }
-	IWidget *findFirst() { 	current = widgets;	return current ? current->widget : nullptr; }
-	IWidget *findNext() { if ( current ) current = current->next; return current ? current->widget : nullptr; }
+	void CleanWidgets() { m_FreeWidgets( widgets ); }
+	void AddWidget(IWidget *widget) { m_AddWidget( widgets, widget ); }
+	IWidget *FindFirst() { 	current = widgets;	return current ? current->widget : nullptr; }
+	IWidget *FindNext() { if ( current ) current = current->next; return current ? current->widget : nullptr; }
 	WidgetInfo * currentWidget() { return current; }
-	int countWidgets() { return _cntWidgets( widgets ); }
+	int countWidgets() { return m_CntWidgets( widgets ); }
+
+private:
+
+	WidgetInfo *widgets, *current;
+	//m_AddWidget
+	void m_AddWidget(WidgetInfo* & list, IWidget * w) { if (list) m_AddWidget(list->next, w); else list = new WidgetInfo(w); }
+	void m_FreeWidgets(WidgetInfo* & list) { if (list) { m_FreeWidgets(list->next); delete(list); list = nullptr; } }
+	int m_CntWidgets(WidgetInfo* list) { if (list) return m_CntWidgets(list->next) + 1; return 0; }
+	
 	
 };

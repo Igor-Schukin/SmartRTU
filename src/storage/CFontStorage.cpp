@@ -1,6 +1,7 @@
 #include "CFontStorage.h"
-#include "iostream"/*cout*/
-#include <cstring>
+
+#include <iostream>/*cout*/
+#include <cstring>/*strcpy*/
 
 CFontStorage *FontStorage;
 
@@ -19,13 +20,13 @@ CFontStorage::~CFontStorage()
 	}
 }
 
-int CFontStorage::findFontName(char *fontName)
+int CFontStorage::m_FindFontName(char *font_name)
 {
 	for (int i = 0; i < MAX_FONTS_COUNT; i++)
 	{
 		if (fonts[i])
 		{
-			if (!strcmp(fontName, fonts[i]->fontName))
+			if (!strcmp(font_name, fonts[i]->font_name))
 			{
 				return i;
 			}
@@ -34,17 +35,17 @@ int CFontStorage::findFontName(char *fontName)
 	return -1;
 }
 
-bool CFontStorage::setFont(char *fontName, char *fontFile)
+bool CFontStorage::SetFont(char *font_name, char *font_file)
 {
 #ifdef ONDEBUG
-	std::cout << "Loading font: name \"" << fontName 
-	<< "\", file \"" << fontFile << "\" ..." << '\n';
+	std::cout << "Loading font: name \"" << font_name 
+	<< "\", file \"" << font_file << "\" ..." << '\n';
 #endif
 
-	int fontId = findFontName(fontName); //fontId it is position in massive fonts[MAX_FONTS_COUNT];
+	int fontId = m_FindFontName(font_name); //fontId it is position in massive fonts[MAX_FONTS_COUNT];
 	if (fontId > -1)
 	{
-		std::cerr << "-- ERROR: \"" << fontName 
+		std::cerr << "-- ERROR: \"" << font_name 
 		<< "\" font name already exist. Font not loaded." << '\n';
 		return false;
 	}
@@ -53,7 +54,7 @@ bool CFontStorage::setFont(char *fontName, char *fontFile)
 	{
 		if (fonts[i] == nullptr)
 		{
-			fonts[i] = new sFont(fontName, new TFont(fontFile));
+			fonts[i] = new sFont(font_name, new TFont(font_file));
 
 #ifdef ONDEBUG
 			std::cout << "-- OK: font loaded. Position: " << i <<'\n';
@@ -65,22 +66,22 @@ bool CFontStorage::setFont(char *fontName, char *fontFile)
 	return false;
 }
 
-TFont *CFontStorage::getFont(char *fontName)
+TFont *CFontStorage::GetFont(char *font_name)
 {
 #ifdef ONDEBUG
-	std::cout << "Get font: name \"" << fontName << "\" ..." << '\n';
+	std::cout << "Get font: name \"" << font_name << "\" ..." << '\n';
 #endif
 
 	//fontId it is position in massive fonts[MAX_FONTS_COUNT];
-	int fontId = findFontName(fontName); 
+	int fontId = m_FindFontName(font_name); 
 	if (fontId == -1)
 	{
-		std::cerr << "-- ERROR: can't found font with name: " << fontName << '\n';
-		std::cerr << "		Try add font: setFont((char*)\"name\", (char*)\"path to .ttf file\");" <<'\n';
+		std::cerr << "-- ERROR: can't found font with name: " << font_name << '\n';
+		std::cerr << "		Try add font: SetFont((char*)\"name\", (char*)\"path to .ttf file\");" <<'\n';
 	}
 
 #ifdef ONDEBUG
 	std::cout << "-- OK: Font founded." << '\n';
 #endif
-	return fonts[fontId]->fontFile;
+	return fonts[fontId]->font_file;
 }

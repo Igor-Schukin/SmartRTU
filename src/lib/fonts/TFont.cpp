@@ -1,20 +1,24 @@
 #include "TFont.h"
-#include <iostream>
 
-bool TFont::CreateGlyphs(int *Pnt, int *PntInd, unsigned char *Ins, int *InsInd, int *InsCnt)
+#include <cstring>/*strlen,memset e.tc*/
+
+
+#include "ftf.h"/*LoadFTFont()*/
+
+bool TFont::m_CreateGlyphs(int *Pnt, int *PntInd, unsigned char *Ins, int *InsInd, int *InsCnt)
 {
-	memset(Glyphs, 0, GlyphsCount * sizeof(VGPath));
-	for (int i = 0; i < GlyphsCount; i++)
+	memset(m_glyphs, 0, m_glyphs_count * sizeof(VGPath));
+	for (int i = 0; i < m_glyphs_count; i++)
 	{
 		const int *p = &Pnt[PntInd[i] * 2];
 		const unsigned char *instructions = &Ins[InsInd[i]];
 		int ic = InsCnt[i];
-		Glyphs[i] = vgCreatePath(VG_PATH_FORMAT_STANDARD, VG_PATH_DATATYPE_S_32,
+		m_glyphs[i] = vgCreatePath(VG_PATH_FORMAT_STANDARD, VG_PATH_DATATYPE_S_32,
 								 1.0f / 65536.0f, 0.0f, 0, 0,
 								 VG_PATH_CAPABILITY_ALL);
 		if (ic)
 		{
-			vgAppendPathData(Glyphs[i], ic, instructions, p);
+			vgAppendPathData(m_glyphs[i], ic, instructions, p);
 		}
 	}
 	return true;
@@ -24,16 +28,16 @@ TFont::TFont(const char *FTFileName)
 {
 	int *Pnt, *PntInd, *InsInd, *InsCnt;
 	unsigned char *Ins;
-	CharMap = new short[NGLYPHS];
-	LoadFTFont(FTFileName, Pnt, PntInd, Ins, InsInd, InsCnt, GlyphAdvances, CharMap, GlyphsCount, FontHeight, DescenderHeight);
-	Glyphs = new VGPath[GlyphsCount];
-	CreateGlyphs(Pnt, PntInd, Ins, InsInd, InsCnt);
+	m_char_map = new short[NGLYPHS];
+	LoadFTFont(FTFileName, Pnt, PntInd, Ins, InsInd, InsCnt, m_glyph_advances, m_char_map, m_glyphs_count, m_font_height, m_descender_height);
+	m_glyphs = new VGPath[m_glyphs_count];
+	m_CreateGlyphs(Pnt, PntInd, Ins, InsInd, InsCnt);
 	delete[] Pnt;
 	delete[] PntInd;
 	delete[] Ins;
 	delete[] InsInd;
 	delete[] InsCnt;
-	Size = R = G = B = 0;
+	m_font_size = R = G = B = 0;
 }
 
 TFont::TFont(TFont &BaseFont)
@@ -41,26 +45,26 @@ TFont::TFont(TFont &BaseFont)
 
 	//never ever used I assume // it means what this can be deleted
 	/*
-	GlyphsCount = BaseFont.GlyphsCount;
-	CharMap = new short int[NGLYPHS];
-	Glyphs = new VGPath[GlyphsCount];
-	memset(Glyphs, 0, GlyphsCount * sizeof(VGPath));
-	GlyphAdvances = new int[GlyphsCount];
+	m_glyphs_count = BaseFont.m_glyphs_count;
+	m_char_map = new short int[NGLYPHS];
+	m_glyphs = new VGPath[m_glyphs_count];
+	memset(m_glyphs, 0, m_glyphs_count * sizeof(VGPath));
+	m_glyph_advances = new int[m_glyphs_count];
 	for (int i = 0; i <= NGLYPHS; i++)
 	{
-		CharMap[i] = BaseFont.CharMap[i];
+		m_char_map[i] = BaseFont.m_char_map[i];
 	}
-	for (int i = 0; i <= BaseFont.GlyphsCount; i++)
+	for (int i = 0; i <= BaseFont.m_glyphs_count; i++)
 	{
-		Glyphs[i] = vgCreatePath(VG_PATH_FORMAT_STANDARD, VG_PATH_DATATYPE_S_32,
+		m_glyphs[i] = vgCreatePath(VG_PATH_FORMAT_STANDARD, VG_PATH_DATATYPE_S_32,
 						1.0f / 65536.0f, 0.0f, 0, 0,
 						VG_PATH_CAPABILITY_ALL);
-		vgAppendPath(Glyphs[i], BaseFont.Glyphs[i]);
-		GlyphAdvances[i] = BaseFont.GlyphAdvances[i];
+		vgAppendPath(m_glyphs[i], BaseFont.m_glyphs[i]);
+		m_glyph_advances[i] = BaseFont.m_glyph_advances[i];
 	}
-	FontHeight = BaseFont.FontHeight;
-	DescenderHeight = BaseFont.DescenderHeight;
-	Size = BaseFont.Size;
+	m_font_height = BaseFont.m_font_height;
+	m_descender_height = BaseFont.m_descender_height;
+	m_font_size = BaseFont.m_font_size;
 	R = BaseFont.R;
 	G = BaseFont.G;
 	B = BaseFont.B;
@@ -71,16 +75,16 @@ TFont::TFont(TFont &BaseFont)
 
 TFont::~TFont()
 {
-	delete[] CharMap;
-	for (int i = 0; i <= GlyphsCount; i++)
+	delete[] m_char_map;
+	for (int i = 0; i <= m_glyphs_count; i++)
 	{
-		vgDestroyPath(Glyphs[i]);
+		vgDestroyPath(m_glyphs[i]);
 	}
-	delete[] Glyphs;
-	delete[] GlyphAdvances;
+	delete[] m_glyphs;
+	delete[] m_glyph_advances;
 }
 
-unsigned char *TFont::next_utf8_char(unsigned char *utf8, int *codepoint)
+unsigned char *TFont::m_NextUtf8Char(unsigned char *utf8, int *codepoint)
 {
 	int seqlen;
 	int datalen = (int)strlen((const char *)utf8);
@@ -118,13 +122,13 @@ void TFont::TextOut(const char *str, int x, int y)
 
 	vgSeti(VG_MATRIX_MODE, VG_MATRIX_PATH_USER_TO_SURFACE);
 	Fill((int)R, (int)G, (int)B, A);
-	VGfloat localsize = (VGfloat)Size, xx = x, mm[9];
+	VGfloat localsize = (VGfloat)m_font_size, xx = x, mm[9];
 	vgGetMatrix(mm);
 	int character;
 	unsigned char *ss = (unsigned char *)str;
-	while ((ss = next_utf8_char(ss, &character)) != nullptr)
+	while ((ss = m_NextUtf8Char(ss, &character)) != nullptr)
 	{
-		int glyph = CharMap[character];
+		int glyph = m_char_map[character];
 		if (glyph == -1)
 		{
 			continue;
@@ -135,8 +139,8 @@ void TFont::TextOut(const char *str, int x, int y)
 			xx, (VGfloat)y, 1.0f};
 		vgLoadMatrix(mm);
 		vgMultMatrix(mat);
-		vgDrawPath(Glyphs[glyph], VG_FILL_PATH);
-		xx += localsize * GlyphAdvances[glyph] / 65536.0f;
+		vgDrawPath(m_glyphs[glyph], VG_FILL_PATH);
+		xx += localsize * m_glyph_advances[glyph] / 65536.0f;
 	}
 	vgLoadMatrix(mm);
 }
@@ -144,37 +148,38 @@ void TFont::TextOut(const char *str, int x, int y)
 VGfloat TFont::TextWidth(const char *str)
 {
 	VGfloat tw = 0.0;
-	VGfloat localsize = (VGfloat)Size;
+	VGfloat localsize = (VGfloat)m_font_size;
 	int character;
 	unsigned char *ss = (unsigned char *)str;
-	while ((ss = next_utf8_char(ss, &character)) != nullptr)
+	while ((ss = m_NextUtf8Char(ss, &character)) != nullptr)
 	{
-		int glyph = CharMap[character];
+		int glyph = m_char_map[character];
 		if (glyph == -1)
 		{
 			continue;
 		}
-		tw += localsize * GlyphAdvances[glyph] / 65536.0f;
+		tw += localsize * m_glyph_advances[glyph] / 65536.0f;
 	}
 	return tw;
 }
 
 VGfloat TFont::TextHeight()
 {
-	return (FontHeight * Size) / 65536;
+	return (m_font_height * m_font_size) / 65536;
 }
 
 VGfloat TFont::TextDepth()
 {
-	return (-DescenderHeight * Size) / 65536;
+	return (-m_descender_height * m_font_size) / 65536;
 }
 
-void TFont::SetSize(int localsize)
+void TFont::Set_Size(int localsize)
 {
-	Size = localsize;
+	m_font_size = localsize;
 }
 
-void TFont::SetColour(unsigned char local_R, unsigned char local_G, unsigned char local_B, VGfloat local_A)
+void TFont::Set_Color(unsigned char local_R, unsigned char local_G, unsigned char local_B, VGfloat local_A)
+
 {
 	R = local_R;
 	G = local_G;

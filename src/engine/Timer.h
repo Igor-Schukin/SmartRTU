@@ -11,13 +11,13 @@ typedef unsigned long long int LongTimeMs;
 
 class Timer
 {
+public:
+	LongTimeMs GetTime();
+	Timer();
 private:
 	timespec tmStart;
 	LongTimeMs TimeToMs(const timespec aTime);
 
-public:
-	LongTimeMs GetTime();
-	Timer();
 };
 
 extern Timer timer;

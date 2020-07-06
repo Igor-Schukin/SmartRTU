@@ -84,20 +84,20 @@ const struct
 void WgBackground::SetTextColor(wgColor c)
 {
 	//FIXME maybe need to use configurator but definetly like this
-	FontStorage->getFont(
+	FontStorage->GetFont(
 		const_cast<char*>(m_base_font_name.c_str())
-	)->SetColour(Colors[c].r, Colors[c].g, Colors[c].b);
+	)->Set_Color(Colors[c].r, Colors[c].g, Colors[c].b);
 	/*	
-	if (c==clBlue) FontStorage->getFont((char*)"arialBold")->SetColour(0,121,194);
-	else if (c==clCyan) FontStorage->getFont((char*)"arialBold")->SetColour(37,196,166);
-	else if (c==clGreen) FontStorage->getFont((char*)"arialBold")->SetColour(139,209,93);
-	else if (c==clHighBlue) FontStorage->getFont((char*)"arialBold")->SetColour(0,185,241);
-	else if (c==clHighPurple) FontStorage->getFont((char*)"arialBold")->SetColour(139,91,164);
-	else if (c==clLazyYellow) FontStorage->getFont((char*)"arialBold")->SetColour(201,208,34);
-	else if (c==clOrange) FontStorage->getFont((char*)"arialBold")->SetColour(240,115,30);
-	else if (c==clPurple) FontStorage->getFont((char*)"arialBold")->SetColour(183,46,145);
-	else if (c==clYellow) FontStorage->getFont((char*)"arialBold")->SetColour(255,200,50);
-	else if (c==clHaki) FontStorage->getFont((char*)"arialBold")->SetColour(0, 85, 81);
+	if (c==clBlue) FontStorage->GetFont((char*)"arialBold")->Set_Color(0,121,194);
+	else if (c==clCyan) FontStorage->GetFont((char*)"arialBold")->Set_Color(37,196,166);
+	else if (c==clGreen) FontStorage->GetFont((char*)"arialBold")->Set_Color(139,209,93);
+	else if (c==clHighBlue) FontStorage->GetFont((char*)"arialBold")->Set_Color(0,185,241);
+	else if (c==clHighPurple) FontStorage->GetFont((char*)"arialBold")->Set_Color(139,91,164);
+	else if (c==clLazyYellow) FontStorage->GetFont((char*)"arialBold")->Set_Color(201,208,34);
+	else if (c==clOrange) FontStorage->GetFont((char*)"arialBold")->Set_Color(240,115,30);
+	else if (c==clPurple) FontStorage->GetFont((char*)"arialBold")->Set_Color(183,46,145);
+	else if (c==clYellow) FontStorage->GetFont((char*)"arialBold")->Set_Color(255,200,50);
+	else if (c==clHaki) FontStorage->GetFont((char*)"arialBold")->Set_Color(0, 85, 81);
 */
 }
 
@@ -150,16 +150,16 @@ void WgBackground::RenderHeader(const char *header_text)
 {
 	int maxw = rectHeader.width * 0.8;
 	//FIXME this definetly must be different maybe use of configurator
-	TFont *font = FontStorage->getFont(
+	TFont *font = FontStorage->GetFont(
 		const_cast<char *>(m_base_font_name.c_str())
 		);
-	font->SetColour(255, 255, 255);
+	font->Set_Color(255, 255, 255);
 	int fh = rectHeader.height * 0.6;
-	font->SetSize(fh);
+	font->Set_Size(fh);
 	if (font->TextWidth(header_text) > maxw)
 	{
 		fh = (fh * maxw) / font->TextWidth(header_text);
-		font->SetSize(fh);
+		font->Set_Size(fh);
 	}
 
 	font->TextMid(

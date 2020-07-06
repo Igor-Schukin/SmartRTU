@@ -63,7 +63,7 @@ int main()
 		PicStorage = new CPicturesStorage();
 		FontStorage = new CFontStorage();
 		//set MAIN font to project
-		FontStorage->setFont(
+		FontStorage->SetFont(
 			const_cast<char*>(
 				base_font_name.c_str()
 				),

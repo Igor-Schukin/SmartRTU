@@ -171,10 +171,10 @@ void WgForecast::m_RenderMode2()
 	//~~~ wind speed
 
 	SetTextColor(clHaki);
-	TFont *font = FontStorage->getFont(
+	TFont *font = FontStorage->GetFont(
 		const_cast<char *>(m_base_font_name.c_str())
 	);
-	font->SetSize(desktop->rowHeight / 3);
+	font->Set_Size(desktop->rowHeight / 3);
 	int wind_width = static_cast<int>(font->TextWidth(m_wind_speed));
 	int wind_height = static_cast<int>(font->TextHeight());
 	font->TextMid(
@@ -186,12 +186,12 @@ void WgForecast::m_RenderMode2()
 void WgForecast::m_RenderMode3() // need to debug
 {
 	/*
-	FontStorage->getFont((char*)"arialBold")->SetSize(desktop->rowHeight/5);
-	FontStorage->getFont((char*)"arialBold")->TextMid("Veišs:", rectClient.left + (desktop->colWidth/2),
+	FontStorage->GetFont((char*)"arialBold")->Set_Size(desktop->rowHeight/5);
+	FontStorage->GetFont((char*)"arialBold")->TextMid("Veišs:", rectClient.left + (desktop->colWidth/2),
 		rectClient.top - desktop->rowHeight - (desktop->rowHeight/5/2));
 	SetTextColor(color);
-	FontStorage->getFont((char*)"arialBold")->SetSize(desktop->rowHeight/2.8);
-	FontStorage->getFont((char*)"arialBold")->TextMid(m_wind_speed, rectClient.left + (desktop->colWidth/2.5),
+	FontStorage->GetFont((char*)"arialBold")->Set_Size(desktop->rowHeight/2.8);
+	FontStorage->GetFont((char*)"arialBold")->TextMid(m_wind_speed, rectClient.left + (desktop->colWidth/2.5),
 		rectClient.top - desktop->rowHeight - desktop->rowHeight/16*11);
 	PicStorage->Arrow->render(rectClient.left + (desktop->colWidth/1.3), rectClient.top - desktop->rowHeight - desktop->rowHeight/1.4, 1, 1, 0,0,-m_wind_degree);
 	*/

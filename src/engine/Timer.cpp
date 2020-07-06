@@ -1,7 +1,6 @@
 #include "Timer.h"
 
 #include <cstdio>/*sprintf*/
-#include <cstdlib>//probably need to delete
 #include <ctime>/*tymespec*/
 
 Timer timer;
