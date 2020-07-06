@@ -6,13 +6,15 @@
 #include <cstdio>/*fprintf*/
 
 //libshape stuff probably can cut some not used
+/*OpenVG stuff like vgLoadIdenty*/
 extern "C"
 {
-#include "VG/openvg.h"/*OpenVG stuff like vgLoadIdenty*/
+#include "VG/openvg.h"
 #include "VG/vgu.h"
 #include "fontinfo.h"
 #include "shapes.h"
 }
+
 
 #include"timetable.h"//to delete timetable
 #include "board.h"/*to also delete board*/

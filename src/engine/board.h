@@ -1,8 +1,7 @@
 #pragma once
 
-#include "WgClock.h"
 #include "IWidget.h"/*interface*/
-#include "Timer.h"
+#include "Timer.h"/*LongTimeMs*/
 
 struct WidgetInfo {
 	IWidget * widget;
@@ -23,10 +22,12 @@ public:
 	void render(bool Forced);
 	void CleanWidgets() { m_FreeWidgets( widgets ); }
 	void AddWidget(IWidget *widget) { m_AddWidget( widgets, widget ); }
+	
 	IWidget *FindFirst() { 	current = widgets;	return current ? current->widget : nullptr; }
 	IWidget *FindNext() { if ( current ) current = current->next; return current ? current->widget : nullptr; }
-	WidgetInfo * currentWidget() { return current; }
-	int countWidgets() { return m_CntWidgets( widgets ); }
+	WidgetInfo * CurrentWidget() { return current; }
+	
+	int CountWidgets() { return m_CntWidgets( widgets ); }
 
 private:
 
@@ -34,6 +35,7 @@ private:
 	//m_AddWidget
 	void m_AddWidget(WidgetInfo* & list, IWidget * w) { if (list) m_AddWidget(list->next, w); else list = new WidgetInfo(w); }
 	void m_FreeWidgets(WidgetInfo* & list) { if (list) { m_FreeWidgets(list->next); delete(list); list = nullptr; } }
+	
 	int m_CntWidgets(WidgetInfo* list) { if (list) return m_CntWidgets(list->next) + 1; return 0; }
 	
 	

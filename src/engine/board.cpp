@@ -4,6 +4,8 @@
 
 #include "CPicturesStorage.h"/*picstorage obj*/
 
+#include "Timer.h"/*strnow*/
+
 #include "WgClock.h"
 #include "WgCalendar.h"
 #include "WgForecast.h"
@@ -23,7 +25,7 @@ Board::Board()
 	current = nullptr;
 
 	//AddWidget(new WgAds(0, 8, md3x8)); // 1, 8
-
+	//this part couses 26 line in engine CMakeList
 	AddWidget(new WgHtmlAds(0, 8, md3x8));
 
 	AddWidget(new WgForecast(3, 8, md1x2));

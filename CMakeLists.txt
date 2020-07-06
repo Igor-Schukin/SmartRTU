@@ -11,8 +11,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # if build type was changed using IDE make sure what in main CmakeLists.txt build type is same
 # other wise will be broken exe 
 
-#set(CMAKE_BUILD_TYPE Release)
-set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_BUILD_TYPE Release)
+#set(CMAKE_BUILD_TYPE Debug)
 
 #cmake debging stuff (something about testing)
 include(CTest)
@@ -66,7 +66,8 @@ target_link_libraries(infoboard ${OBJ}  BoardLib
 target_include_directories(infoboard PUBLIC /src/engine
 	 				     	/src/storage
 						 	/src
-						 	/src/configurator
+							 /src/configurator
+							 /src/widgets
 )
 
 #cmake stuff                                            
