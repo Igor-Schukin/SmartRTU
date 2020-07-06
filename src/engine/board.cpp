@@ -39,7 +39,7 @@ Board::~Board()
 
 void Board::update(bool Forced)
 {
-	LongTimeMs time = timer.getTime();
+	LongTimeMs time = timer.GetTime();
 	for (WidgetInfo *w = widgets; w; w = w->next)
 	{
 		int uprd = (int)w->widget->Get_widget_update_time();

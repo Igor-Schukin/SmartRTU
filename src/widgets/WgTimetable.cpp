@@ -4,7 +4,7 @@
 #include "Engine.h"/*engine obj*/
 #include "timetable.h"/*tiemtable obj*/
 
-#include "Timer.h"/*strNow()*/
+#include "Timer.h"/*StrNow()*/
 
 #include"configurator.h"/*config*/
 
@@ -24,12 +24,12 @@ WgTimetable::WgTimetable()
     config->Get("TIME_TABLE_DEST",m_timetable_dest);
     config->Get("TIME_TABLE_NAME",m_timetable_name);
 
-    std::cout<<strNow()<<"\tWgTimetable widget object was created\n";
+    std::cout<<StrNow()<<"\tWgTimetable widget object was created\n";
 }
 
 WgTimetable::~WgTimetable()
 {
-    std::cout<<strNow()<<"\tWgTimetable widget object was deleted\n";
+    std::cout<<StrNow()<<"\tWgTimetable widget object was deleted\n";
 }
 
 bool WgTimetable::update()
@@ -47,7 +47,7 @@ bool WgTimetable::update()
             timetable = nullptr;
         }
         m_file_time = m_GetFileTime();
-        engine->forcedUpdate();
+        engine->ForceUpdate();
     }
     return false;
 }

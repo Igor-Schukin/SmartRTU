@@ -2,7 +2,7 @@
 
 #include<iostream>/*cout*/
 
-#include "Timer.h"/*strNow()*/
+#include "Timer.h"/*StrNow()*/
 #include "Engine.h"/*fmt*/
 #include "configurator.h" //config 
 
@@ -11,12 +11,12 @@ WgWatchdog::WgWatchdog()
     config->Get("WATCHDOG_DEST",watchdog_dest);
     config->Get("WATCHDOG_NAME",watchdog_name);
 
-    std::cout<<strNow()<<"\t"<<"WgWatchdog widget object was created\n";
+    std::cout<<StrNow()<<"\t"<<"WgWatchdog widget object was created\n";
 }
 
 WgWatchdog::~WgWatchdog()
 {
-    std::cout<<strNow()<<"\t"<<"WgWatchdog widget object was deleted\n";
+    std::cout<<StrNow()<<"\t"<<"WgWatchdog widget object was deleted\n";
 }
 
 void WgWatchdog::Set_widget_id(int m_widget_id){

@@ -1,5 +1,24 @@
 #include "Engine.h"
-#include "VG/openvg.h"
+
+#include <unistd.h>/*usleep() e.tc*/
+
+// C++
+#include <cstdio>/*fprintf*/
+
+//libshape stuff probably can cut some not used
+extern "C"
+{
+#include "VG/openvg.h"/*OpenVG stuff like vgLoadIdenty*/
+#include "VG/vgu.h"
+#include "fontinfo.h"
+#include "shapes.h"
+}
+
+#include"timetable.h"//to delete timetable
+#include "board.h"/*to also delete board*/
+#include "Timer.h"/*StrNow()*/
+
+
 
 const char *fmt(const char *f, const char *s1, const char *s2, const char *s3)
 {
@@ -19,16 +38,18 @@ Engine *engine = nullptr;
 
 Engine::Engine()
 {
-	terminated = false;
+	m_is_terminated = false;
 	board = new Board;
-	isRunning = false;
-	frameCap = 1000 / FRAMES_PER_SECOND;
+	m_is_running = false;
+	m_frame_capacity = 1000 / FRAMES_PER_SECOND;
 }
 
 Engine::~Engine()
 {
-	delete board;
-	//probably needed stuff //FIXME
+	if (board){
+		delete board;
+	}
+	
 	if (timetable){
 		delete timetable;
 	}
@@ -36,13 +57,13 @@ Engine::~Engine()
 
 void Engine::start()
 {
-	if (!isRunning)
+	if (!m_is_running)
 		run();
 }
 
 void Engine::run()
 {
-	isRunning = true;
+	m_is_running = true;
 
 	LongTimeMs idleTime = 0;
 	LongTimeMs lastRender = 0;
@@ -51,20 +72,20 @@ void Engine::run()
 	//LongTimeMs t = 0; //not used variable
 	int fps = 0;
 
-	forcedUpdate();
+	this->ForceUpdate();
 	render(true);
 
-	fprintf(stdout,"%s\tEngine main circle  started\n", strNow());
+	fprintf(stdout,"%s\tEngine main circle  started\n", StrNow());
 
-	while (isRunning && !terminated)
+	while (m_is_running && !m_is_terminated)
 	{
-		LongTimeMs time = timer.getTime();
+		LongTimeMs time = timer.GetTime();
 
 		//kbhit();  //?
 
 		update();
 
-		if ((time - lastRender) >= static_cast<long long unsigned int>(frameCap))
+		if ((time - lastRender) >= static_cast<long long unsigned int>(m_frame_capacity))
 		{
 			render(false);
 			lastRender = time;
@@ -75,7 +96,7 @@ void Engine::run()
 
 		if ((time - lastDebug) >= DEBUG_OUTPUT_PRD)
 		{
-			unsigned int tsec = (unsigned int)(time / 1000LLU);
+			unsigned int tsec = static_cast<unsigned int>((time / 1000LLU));
 			unsigned int tm_d = tsec / (24 * 3600);
 			tsec %= (24 * 3600);
 			unsigned int tm_h = tsec / 3600;
@@ -85,7 +106,7 @@ void Engine::run()
 			unsigned int tm_s = tsec;
 			fprintf(stdout,
 				"%s\tStatus: on time: %u:%02u:%02u:%02u, idle: %llu%%, fps: %.0f\n",
-				strNow(), tm_d, tm_h, tm_m, tm_s,
+				StrNow(), tm_d, tm_h, tm_m, tm_s,
 				idleTime * 100 / (time - lastDebug),
 				(float)(fps)*1000 / (time - lastDebug));
 
@@ -110,7 +131,7 @@ void Engine::run()
 		idleTime += 1;
 	}
 
-	fprintf(stdout,"%s\tEngine main circle  finished\n", strNow());
+	fprintf(stdout,"%s\tEngine main circle  finished\n", StrNow());
 }
 
 void Engine::update()
@@ -118,7 +139,7 @@ void Engine::update()
 	board->update(false);
 }
 
-void Engine::forcedUpdate()
+void Engine::ForceUpdate()
 {
 	board->update(true);
 }
@@ -168,7 +189,7 @@ int Engine::kbhit(void)
 	if(ch != EOF)
 	{
 		ungetc(ch, stdin);	
-		isRunning = false;		
+		m_is_running = false;		
 		return 1;
 	}
 	return 0;

@@ -15,7 +15,7 @@
 //
 
 //
-// Probably need to add Timer class for strNow();
+// Probably need to add Timer class for StrNow();
 //
  
 class Configuration

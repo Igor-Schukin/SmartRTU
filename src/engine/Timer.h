@@ -1,10 +1,10 @@
 #pragma once
 
-#include <ctime>/*tymespec*/
+#include <ctime>/*timespec*/
 
 
 //***********************************************************************************************
-//*** Timer: getTime() returns time in ms from Timer object creation moment (period ~580 years)
+//*** Timer: GetTime() returns time in ms from Timer object creation moment (period ~580 years)
 //***********************************************************************************************
 
 typedef unsigned long long int LongTimeMs;
@@ -16,9 +16,9 @@ private:
 	LongTimeMs TimeToMs(const timespec aTime);
 
 public:
-	LongTimeMs getTime();
+	LongTimeMs GetTime();
 	Timer();
 };
 
 extern Timer timer;
-extern const char *strNow();
+extern const char *StrNow();

@@ -6,7 +6,7 @@
 
 #include "CFontStorage.h"/*FontStorage obj*/
 #include "timetable.h"/*timetable obj*/
-#include "Timer.h"/*strNow()*/
+#include "Timer.h"/*StrNow()*/
 #include "desktop.h"/*desktop obj*/
 #include "configurator.h"/*configurator*/
 
@@ -20,12 +20,12 @@ WgCalendar::WgCalendar(int Ax, int Ay, wgMode Amode)
 	strcpy(bufWeekInfo, "- - -");
 	strcpy(bufWeek, "-");
 	config->Get("BASE_FONT_NAME",m_base_font_name); 
-	std::cout<<strNow()<<"\tWgCalendar widget object was created\n";
+	std::cout<<StrNow()<<"\tWgCalendar widget object was created\n";
 }
 
 WgCalendar::~WgCalendar()
 {
-	fprintf(stdout,"%s\tWgCalendar widget object was deleted\n", strNow());
+	fprintf(stdout,"%s\tWgCalendar widget object was deleted\n", StrNow());
 }
 
 const char *WgCalendar::m_ConvertWeekDayFromInt(int wday)
@@ -94,7 +94,7 @@ bool WgCalendar::update()
 	sprintf(bufWeekDay, "%s", m_ConvertWeekDayFromInt(now->tm_wday));
 
 	int week = 0;
-	switch (timetable->getCurrentDateState(week))
+	switch (timetable->GetCurrentDateState(week))
 	{
 	case dsSemester:
 		strcpy(bufWeekInfo, "nedēļa semestrī");

@@ -1,20 +1,12 @@
 #pragma once
 
-#include <iostream>
-#include <fstream>
-#include <cstring>
 #include <string>
-#include <ctime>
+#include <ctime>/*time_t*/
 
-#include "json.h"
-#include "Timer.h"
-
-#include "../configurator/configurator.h"
-
+#include "json.h"//
 
 using json = nlohmann::json;
 
-//#define DEFAULT_TIMETABLE_FILE (RES_DIR+"/timetable.json")
 
 struct TimetableDate
 {
@@ -96,9 +88,9 @@ struct TimetableLecture
                                  endBreak(tt["end-break"])
     {
     }
-    bool isFinished(struct tm time);
+    bool IsFinished(struct tm time);
     bool isNotStarted(struct tm time);
-    bool isRunning(struct tm time);
+    bool IsRunning(struct tm time);
     bool isBreak(struct tm time);
     bool isFirstHour(struct tm time);
     bool isSecondHour(struct tm time);
@@ -150,12 +142,15 @@ struct TimetableSocket
     }
     ~TimetableSocket()
     {
-        if (weekdays)
+        if (weekdays){
             delete weekdays;
-        if (sundays)
+        }
+        if (sundays){
             delete sundays;
-        if (holidays)
+        }
+        if (holidays){
             delete holidays;
+        }
     }
 };
 
@@ -183,19 +178,18 @@ extern struct tm makeNow();
 class Timetable
 {
 public:
-    TimeState getCurrentTimeState(int &secToEnd, int &lectNumber);
-    DateState getCurrentDateState(int &weekNumber);
-    bool getCurrentSocketState(int Socket);
+    TimeState GetCurrentTimeState(int &secToEnd, int &lectNumber);
+    DateState GetCurrentDateState(int &weekNumber);
+    bool GetCurrentSocketState(int Socket);
 
     int getHoliday(struct tm now = makeNow());
 
-    Timetable();//now loading in constructor timetable.json //I redone this //
-    // Timetable(const char *FileName = "./res/timetable.json");
+    Timetable();
     ~Timetable();
 private:
 
-    int getWeekNumber(const TimetableDate &origin, struct tm now = makeNow());
-    int getWeeksCount(const TimetableDateRange *dates);
+    int m_GetWeekNumber(const TimetableDate &origin, struct tm now = makeNow());
+    int m_GetWeeksCount(const TimetableDateRange *dates);
 
     //all about desyianation/name of timetabl.json
     std::string m_time_table_dest;

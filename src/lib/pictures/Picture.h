@@ -9,9 +9,9 @@ extern "C"
 }
 
 #include <jpeglib.h>
-#include <stdlib.h>
+#include <cstdlib>
 
-#include <string.h> //+
+#include <cstring> //+
 
 //#define ONDEBUG
 /*

@@ -1,7 +1,9 @@
 #include "Timer.h"
+
 #include <cstdio>/*sprintf*/
 #include <cstdlib>//probably need to delete
 #include <ctime>/*tymespec*/
+
 Timer timer;
 
 Timer::Timer()
@@ -14,14 +16,14 @@ LongTimeMs Timer::TimeToMs(const timespec aTime)
 	return aTime.tv_sec * 1000LLU + aTime.tv_nsec / 1000000LLU;
 }
 
-LongTimeMs Timer::getTime()
+LongTimeMs Timer::GetTime()
 {
 	timespec now;
 	clock_gettime(CLOCK_REALTIME, &now);
 	return TimeToMs(now) - TimeToMs(tmStart);
 }
 
-const char *strNow()
+const char *StrNow()
 {
 	static char buf[75];//changed from 25
 	time_t time_now = std::time(nullptr);

@@ -29,17 +29,17 @@ int main()
 	std::string base_font_full_name;
 	try
 	{
-		std::cout<<strNow()<<"\t"<<"***** INFOBORAD engine started\n";
+		std::cout<<StrNow()<<"\t"<<"***** INFOBORAD engine started\n";
 		//create config
 		config=new Configuration;
 
 		//check if config loaded
 		if(config->Load(CONFIG_DESTINATION)==false){
-			std::cerr<<strNow()<<"\t"<<"\033[1;31m CONFIG DID NOT LOADED check your config.cfg destination or if file exist!\033[0m\n";
+			std::cerr<<StrNow()<<"\t"<<"\033[1;31m CONFIG DID NOT LOADED check your config.cfg destination or if file exist!\033[0m\n";
 		}
 		else
 		{
-			std::cout<<strNow()<<"\t"<<"Config loaded successfully\n";
+			std::cout<<StrNow()<<"\t"<<"Config loaded successfully\n";
 		}
 
 		try
@@ -82,12 +82,12 @@ int main()
 		delete config;
 		finish();
 
-		std::cout<<strNow()<<"\t"<<"***** INFOBORAD engine has finished\n";
+		std::cout<<StrNow()<<"\t"<<"***** INFOBORAD engine has finished\n";
 
 	}
 	catch (...)
 	{
-		std::cerr<<strNow()<<"\t"<<"\t~~~~~ INFOBORAD engine crashed!!!\n";
+		std::cerr<<StrNow()<<"\t"<<"\t~~~~~ INFOBORAD engine crashed!!!\n";
 		return 1; // need restart
 	}
 	return 0;

@@ -1,18 +1,7 @@
 #pragma once
 
-//  basic
-#include <stdio.h>
-#include <cstdlib>
-#include <ctime>
-#include <cmath>
-#include <unistd.h>
-#include <fcntl.h>
-
-//  our classes
-#include "board.h"
-#include"timetable.h"//added by RazdolbayOne
-#include "Picture.h"
-#include "Timer.h"
+#include "board.h"/*for board var*/
+#include "IWidget.h"/*for IWidget var*/
 
 //  includes to kbhit function
 // #include <termios.h>
@@ -22,9 +11,9 @@
 class Engine
 {
 private:
-	int frameCap;
-	bool isRunning;
-	bool terminated;
+	int m_frame_capacity;
+	bool m_is_running;
+	bool m_is_terminated;
 
 	Board *board;
 	IWidget *w;
@@ -32,15 +21,15 @@ private:
 	void run();
 	void update();
 	void render(bool All);
-	void showFrames();
+	void ShowFrames();
 	//int kbhit(void);
 
 public:
 	Engine();
 	~Engine();
 	void start();
-	void terminate() { terminated = true; }
-	void forcedUpdate();
+	void terminate() { m_is_terminated = true; }
+	void ForceUpdate();
 };
 
 extern Engine *engine;

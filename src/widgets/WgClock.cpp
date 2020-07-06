@@ -6,7 +6,7 @@
 #include <ctime>/*time() e.t.c*/
 
 #include "timetable.h"/*need timetable obj*/
-#include "Timer.h"/*strNow()*/
+#include "Timer.h"/*StrNow()*/
 #include "CFontStorage.h"/*FontStorage obj*/
 #include "configurator.h"/*config*/
 #include "desktop.h"/*desktop*/
@@ -46,12 +46,12 @@ WgClock::WgClock(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amode)
 
 	config->Get("BASE_FONT_NAME",m_base_font_name); 
 
-	std::cout<<strNow()<<"\t"<<"WgClock widget object was created\n";
+	std::cout<<StrNow()<<"\t"<<"WgClock widget object was created\n";
 }
 
 WgClock::~WgClock()
 {
-	std::cout<<strNow()<<"\t"<<"WgClock widget object was deleted\n";
+	std::cout<<StrNow()<<"\t"<<"WgClock widget object was deleted\n";
 }
 
 //~~~ update ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -71,7 +71,7 @@ bool WgClock::update()
 	int end, lect;
 	TimeState ts;
 	if (timetable)
-		ts = timetable->getCurrentTimeState(end, lect);
+		ts = timetable->GetCurrentTimeState(end, lect);
 	else
 	{
 		ts = tsUnknown;
@@ -223,7 +223,7 @@ void WgClock::render()
 			break;
 		}
 		default:{
-			std::cerr<<strNow()
+			std::cerr<<StrNow()
 			<<"\t"
 			<<"Something bad happened in WgClock render mode used default one\n";
 			break;

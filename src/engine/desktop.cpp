@@ -29,7 +29,7 @@ Desktop::Desktop( int scr_width, int scr_height )
     colWidth = dwRect.width / colCount;
     rowHeight = dwRect.height / rowCount;
 
-    std::cout<<strNow()<<"\tDesktop size "<<scrWidth<<" x "<<scrHeight<<", widgets area size "<<dwRect.width<<" x "<<dwRect.height<<"\n";
+    std::cout<<StrNow()<<"\tDesktop size "<<scrWidth<<" x "<<scrHeight<<", widgets area size "<<dwRect.width<<" x "<<dwRect.height<<"\n";
 };
 
 Desktop::~Desktop() { }

@@ -14,7 +14,7 @@
 
 //own headers
 #include "Engine.h"// from here we need only "fmt" stuff 
-#include "Timer.h" ///* strNow()*/
+#include "Timer.h" ///* StrNow()*/
 //#include "desktop.h" //well i commented this and all is still working
 
 #include "configurator.h" //config 
@@ -110,7 +110,7 @@ WgHtmlAds::WgHtmlAds(int Ax, int Ay, wgMode Amode)
 
 
 
-	std::cout << strNow() << "\t" << "WgHtmlsAds widget object was created\n";
+	std::cout << StrNow() << "\t" << "WgHtmlsAds widget object was created\n";
 }
 
 WgHtmlAds::~WgHtmlAds()
@@ -130,7 +130,7 @@ bool WgHtmlAds::update() {
 			return true;
 		}
 		else if (m_NeedRenew() == true) {
-			std::cout << strNow() << "\t" << "Detected what advert must be updated,Cutycapt lauched\n";
+			std::cout << StrNow() << "\t" << "Detected what advert must be updated,Cutycapt lauched\n";
 			
 			m_future = std::async(std::launch::async, &WgHtmlAds::m_CutyCaptRequest, this);
 			m_advert_on_screen = false;
@@ -158,9 +158,9 @@ void WgHtmlAds::render()
 
 	// check if thread finished.
 	if (m_thread_status == std::future_status::ready) {
-		std::cout << strNow() << "\t" << "Cutycapt finished its work\n";
+		std::cout << StrNow() << "\t" << "Cutycapt finished its work\n";
 		if(m_advert_on_screen!=true){
-			//std::cout << strNow() << "\t" << "Cutycapt finished its work\n";
+			//std::cout << StrNow() << "\t" << "Cutycapt finished its work\n";
 			this->m_CleanPicture();
 			try
 			{
@@ -170,7 +170,7 @@ void WgHtmlAds::render()
 			}
 			catch (...)
 			{
-				std::cerr << strNow() << "\t" << "Something bad happened  with loading advert, STUB placed instead!!! \n";
+				std::cerr << StrNow() << "\t" << "Something bad happened  with loading advert, STUB placed instead!!! \n";
 				this->m_CleanPicture();
 				//stub placed instead
 				m_advert_pic = new Picture(
@@ -182,7 +182,7 @@ void WgHtmlAds::render()
 			m_image_scale_by_height = static_cast<float>(rectClient.height) / static_cast<float>(m_advert_pic->Get_height());
 
 			m_advert_on_screen=true;
-			std::cout << strNow() << "\t" << "Advert was placed on the widget screen \n";
+			std::cout << StrNow() << "\t" << "Advert was placed on the widget screen \n";
 		
 		}
 	}
@@ -194,7 +194,7 @@ void WgHtmlAds::render()
 			m_image_scale_by_width = static_cast<float>(rectClient.width) / static_cast<float>(m_advert_pic->Get_width());
 			m_image_scale_by_height = static_cast<float>(rectClient.height) / static_cast<float>(m_advert_pic->Get_height());
 
-			std::cout << strNow() << "\t" << "Stub was placed on the widget screen \n";
+			std::cout << StrNow() << "\t" << "Stub was placed on the widget screen \n";
 		}
 	}
 

@@ -1,5 +1,15 @@
 #include "timetable.h"
 
+#include <iostream>/*cout*/
+#include <fstream>/*ifstream*/
+
+#include "Timer.h"///*StrNow*/
+
+#include "../configurator/configurator.h"//
+
+
+
+
 Timetable *timetable = nullptr;
 
 //~~~ itoa ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -79,28 +89,37 @@ bool operator>(const TimetableTime &t1, struct tm t2) { return secDay(t1) > secD
 bool operator<=(const TimetableTime &t1, struct tm t2) { return secDay(t1) <= secDay(t2); }
 bool operator>=(const TimetableTime &t1, struct tm t2) { return secDay(t1) >= secDay(t2); }
 
-bool TimetableLecture::isFinished(struct tm time) { return end < time; }
+bool TimetableLecture::IsFinished(struct tm time) { return end < time; }
 bool TimetableLecture::isNotStarted(struct tm time) { return begin > time; }
-bool TimetableLecture::isRunning(struct tm time) { return begin <= time && end >= time; }
+bool TimetableLecture::IsRunning(struct tm time) { return begin <= time && end >= time; }
 bool TimetableLecture::isBreak(struct tm time) { return beginBreak <= time && endBreak >= time; }
 bool TimetableLecture::isFirstHour(struct tm time) { return begin <= time && beginBreak > time; }
 bool TimetableLecture::isSecondHour(struct tm time) { return endBreak < time && end >= time; }
 
 int compareDate(int d1, int m1, int y1, int d2, int m2, int y2)
 {
-    if (y1 < y2)
+    if (y1 < y2){
         return -1;
-    else if (y1 > y2)
+    }
+    else if (y1 > y2){
         return 1;
-    else if (m1 < m2)
+    }
+    else if (m1 < m2){
         return -1;
-    else if (m1 > m2)
+    }
+    else if (m1 > m2){
         return 1;
-    else if (d1 < d2)
+    } 
+    else if (d1 < d2){
         return -1;
-    else if (d1 > d2)
+    }   
+    else if (d1 > d2){
         return 1;
-    return 0;
+    }
+    else{
+        return 0;
+    }    
+    
 }
 
 int compareDate(const TimetableDate &d1, struct tm d2)
@@ -216,17 +235,16 @@ Timetable::Timetable()
                     Sockets[i++] = new TimetableSocket(sockets[std::to_string(soc).c_str()], soc);
                 }
         }
-
-        fprintf(stdout,"%s\tTimetable is loaded from %s:\n", strNow(), (m_time_table_dest+"/"+m_time_table_name).c_str());
-        fprintf(stdout,"\t\t\t\t%d date ranges of academic calendar\n", CalendarCount);
-        fprintf(stdout,"\t\t\t\t%d holidays\n", HolidaysCount);
-        fprintf(stdout,"\t\t\t\t7 lectures scheles for week days\n");
-        fprintf(stdout,"\t\t\t\t%d lectures schedules for standalone dates\n", SinglesCount);
-        fprintf(stdout,"\t\t\t\t%d schedules for power sockets control\n", SocketsCount);
+        std::cout<<StrNow()<<"\tTimetable is loaded from "<<(m_time_table_dest+"/"+m_time_table_name)<<":\n";
+        std::cout<<"\t\t\t\t"<<CalendarCount<<" date ranges of academic calendar\n";
+        std::cout<<"\t\t\t\t"<<HolidaysCount<<" holidays\n";
+        std::cout<<"\t\t\t\t7 lectures scheles for week days\n";
+        std::cout<<"\t\t\t\t"<<SinglesCount<<" lectures schedules for standalone dates\n";
+        std::cout<<"\t\t\t\t"<<SocketsCount<<" schedules for power sockets control\n";
     }
     catch (...)
     {
-        fprintf(stderr,"%s\tError loading timetable JSON from %s\n", strNow(), (m_time_table_dest+"/"+m_time_table_name).c_str());
+        std::cerr<<StrNow()<<"\tError loading timetable JSON from "<<(m_time_table_dest+"/"+m_time_table_name)<<"\n";
         throw;
     }
 }
@@ -269,9 +287,9 @@ Timetable::~Timetable()
     }
 }
 
-//~~~ getCurrentTimeState
+//~~~ GetCurrentTimeState
 
-TimeState Timetable::getCurrentTimeState(int &secToEnd, int &lectNumber)
+TimeState Timetable::GetCurrentTimeState(int &secToEnd, int &lectNumber)
 {
     struct tm now = makeNow();
 
@@ -279,7 +297,7 @@ TimeState Timetable::getCurrentTimeState(int &secToEnd, int &lectNumber)
     lectNumber = -1; // unknown;
 
     int week;
-    DateState day = getCurrentDateState(week);
+    DateState day = GetCurrentDateState(week);
 
     if (day == dsSession)
         return tsSession;
@@ -308,7 +326,7 @@ TimeState Timetable::getCurrentTimeState(int &secToEnd, int &lectNumber)
 
     // Free day or last lecture is finished
 
-    if (count == 0 || lectures[count - 1]->isFinished(now))
+    if (count == 0 || lectures[count - 1]->IsFinished(now))
         return tsFree;
 
     // First lecture is not started
@@ -322,7 +340,7 @@ TimeState Timetable::getCurrentTimeState(int &secToEnd, int &lectNumber)
 
     for (int i = 0; i < count; i++)
     {
-        if (lectures[i]->isRunning(now))
+        if (lectures[i]->IsRunning(now))
         {
 
             //~~~ Short break inside lecture
@@ -355,7 +373,7 @@ TimeState Timetable::getCurrentTimeState(int &secToEnd, int &lectNumber)
 
         //~~~ Break between lectures
 
-        if (i != count - 1 && lectures[i]->isFinished(now) && lectures[i + 1]->isNotStarted(now))
+        if (i != count - 1 && lectures[i]->IsFinished(now) && lectures[i + 1]->isNotStarted(now))
         {
             lectNumber = i + 2;
             secToEnd = secDif(now, lectures[i + 1]->begin);
@@ -374,7 +392,7 @@ int Timetable::getHoliday(struct tm now)
     return -1;
 }
 
-int Timetable::getWeekNumber(const TimetableDate &origin, struct tm now)
+int Timetable::m_GetWeekNumber(const TimetableDate &origin, struct tm now)
 {
     struct tm org = {0};
     org.tm_year = origin.y - 1900;
@@ -388,7 +406,7 @@ int Timetable::getWeekNumber(const TimetableDate &origin, struct tm now)
     return (now.tm_yday - start.tm_yday) / 7;
 }
 
-int Timetable::getWeeksCount(const TimetableDateRange *dates)
+int Timetable::m_GetWeeksCount(const TimetableDateRange *dates)
 {
     time_t t;
 
@@ -411,7 +429,7 @@ int Timetable::getWeeksCount(const TimetableDateRange *dates)
     return (e.tm_yday - b.tm_yday + 1) / 7;
 }
 
-DateState Timetable::getCurrentDateState(int &weekNumber)
+DateState Timetable::GetCurrentDateState(int &weekNumber)
 {
     struct tm now = makeNow();
 
@@ -433,12 +451,12 @@ DateState Timetable::getCurrentDateState(int &weekNumber)
             if (Calendar[i]->type == TimetableDateRange::drUnknown)
                 continue;
 
-            weekNumber = getWeekNumber(Calendar[i]->begin, now);
+            weekNumber = m_GetWeekNumber(Calendar[i]->begin, now);
 
             for (int j = i - 1; j >= 0; j--)
                 if (Calendar[i]->type == Calendar[j]->type && Calendar[i]->number == Calendar[j]->number)
                 {
-                    weekNumber += getWeeksCount(Calendar[j]);
+                    weekNumber += m_GetWeeksCount(Calendar[j]);
                 }
 
             switch (Calendar[i]->type)
@@ -454,18 +472,18 @@ DateState Timetable::getCurrentDateState(int &weekNumber)
 
     if (CalendarCount > 0 && now > Calendar[CalendarCount - 1]->end)
     {
-        weekNumber = getWeekNumber(Calendar[CalendarCount - 1]->end, now);
+        weekNumber = m_GetWeekNumber(Calendar[CalendarCount - 1]->end, now);
     }
     else
         for (int i = 1; i < CalendarCount; i++)
             if (now > Calendar[i - 1]->end && now < Calendar[i]->begin)
             {
-                weekNumber = getWeekNumber(Calendar[i - 1]->end + 1, now);
+                weekNumber = m_GetWeekNumber(Calendar[i - 1]->end + 1, now);
             }
     return dsVacation;
 }
 
-bool Timetable::getCurrentSocketState(int Socket)
+bool Timetable::GetCurrentSocketState(int Socket)
 {
     if (!Sockets)
         return false;
@@ -474,7 +492,7 @@ bool Timetable::getCurrentSocketState(int Socket)
         {
             struct tm now = makeNow();
             int w;
-            if (getCurrentDateState(w) == dsHoliday)
+            if (GetCurrentDateState(w) == dsHoliday)
                 return Sockets[i]->holidays ? Sockets[i]->holidays->isSwitchedOn(now) : false;
             if (now.tm_wday == 0)
                 return Sockets[i]->sundays ? Sockets[i]->sundays->isSwitchedOn(now) : false;

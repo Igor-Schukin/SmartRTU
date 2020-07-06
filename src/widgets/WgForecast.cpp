@@ -6,7 +6,7 @@
 #include <iostream>/*cout*/
 #include <string>
 
-#include "Timer.h"/*strNow()*/
+#include "Timer.h"/*StrNow()*/
 #include "desktop.h"/*desktop obj*/
 #include "CPicturesStorage.h"/*pict obj*/
 #include "CFontStorage.h"/*font obj*/
@@ -29,14 +29,14 @@ WgForecast::WgForecast(int Ax, int Ay, wgMode Amode)
 	strcpy(m_temp_degree, "");
 	strcpy(m_wind_speed, "");
 	m_wind_degree = 0;
-	std::cout << strNow() << "\tWgForecast widget object was created\n";
+	std::cout << StrNow() << "\tWgForecast widget object was created\n";
 }
 
 WgForecast::~WgForecast()
 {
 	if (m_weather_icon_picture)
 		delete m_weather_icon_picture;
-	std::cout << strNow() << "\tWgForecast widget object was deleted\n";
+	std::cout << StrNow() << "\tWgForecast widget object was deleted\n";
 }
 
 size_t WgForecast::m_WriteCallback(void *contents, size_t size, size_t nmemb, void *userp) //???
@@ -65,12 +65,12 @@ void WgForecast::m_GetWeatherFromWeb(const char site[], json &weather_data)
 			m_is_data_received = true;
 			auto buf = json::parse(read_buffer);
 			weather_data = buf;
-			std::cout << strNow() << "\tNew current weather state was received\n";
+			std::cout << StrNow() << "\tNew current weather state was received\n";
 		}
 		else
 		{
 			m_is_data_received = false;
-			std::cerr << strNow() << "\tError of current weather state receiving!!!\n";
+			std::cerr << StrNow() << "\tError of current weather state receiving!!!\n";
 		}
 	}
 	curl_easy_cleanup(curl); //выполняем обязательное завершение сессии
@@ -117,7 +117,7 @@ bool WgForecast::update()
 				(m_weather_icons_path + "/" + icon_name + ".png").c_str()
 			);
 			m_weather_icon_name = icon_name;
-			std::cout << strNow() << "\tNew weather icon was loaded \n";
+			std::cout << StrNow() << "\tNew weather icon was loaded \n";
 		}
 	}
 	else
