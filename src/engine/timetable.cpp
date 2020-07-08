@@ -129,7 +129,7 @@ int compareDate(const TimetableDate &d1, struct tm d2)
 
 TimetableDate datePlusDays(const TimetableDate &date, int days)
 {
-    struct tm d = {0};
+    struct tm d = {};
     d.tm_year = date.y - 1900;
     d.tm_mon = date.m - 1;
     d.tm_mday = date.d;
@@ -394,7 +394,7 @@ int Timetable::getHoliday(struct tm now)
 
 int Timetable::m_GetWeekNumber(const TimetableDate &origin, struct tm now)
 {
-    struct tm org = {0};
+    struct tm org = {};
     org.tm_year = origin.y - 1900;
     org.tm_mon = origin.m - 1;
     org.tm_mday = origin.d;
@@ -410,7 +410,7 @@ int Timetable::m_GetWeeksCount(const TimetableDateRange *dates)
 {
     time_t t;
 
-    struct tm begin = {0};
+    struct tm begin = {};
     begin.tm_year = dates->begin.y - 1900;
     begin.tm_mon = dates->begin.m - 1;
     begin.tm_mday = dates->begin.d;
@@ -418,7 +418,7 @@ int Timetable::m_GetWeeksCount(const TimetableDateRange *dates)
     struct tm b = makeTime(&t);
     b.tm_yday -= (b.tm_wday + 6) % 7; // back to nearest monday
 
-    struct tm end = {0};
+    struct tm end = {};
     end.tm_year = dates->end.y - 1900;
     end.tm_mon = dates->end.m - 1;
     end.tm_mday = dates->end.d;
@@ -465,6 +465,8 @@ DateState Timetable::GetCurrentDateState(int &weekNumber)
                 return dsSemester;
             case TimetableDateRange::drSession:
                 return dsSession;
+            case TimetableDateRange::drUnknown:  //FIXME
+                return dsUnknown;
             }
         }
 

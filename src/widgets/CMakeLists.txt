@@ -12,7 +12,7 @@ set(SRC IWidget.cpp
     WgWatchdog.cpp
     )
 
-add_library(BoardWidgets ${SRC} )
+add_library(BoardWidgets ${SRC})
 
 target_include_directories(BoardWidgets  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
 					                            ../engine					

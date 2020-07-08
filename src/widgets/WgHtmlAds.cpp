@@ -48,7 +48,7 @@ bool WgHtmlAds::m_NeedRenew()
 
 void WgHtmlAds::m_CleanPicture()
 {
-	if (m_advert_pic != nullptr) {
+	if (m_advert_pic) {
 		delete m_advert_pic;
 		m_advert_pic = nullptr;
 	}
@@ -68,7 +68,7 @@ void WgHtmlAds::m_CutyCaptRequest() {
 
 }
 
-WgHtmlAds::WgHtmlAds(int Ax, int Ay, wgMode Amode) 
+WgHtmlAds::WgHtmlAds(int Ax, int Ay,wgMode Amode) 
 : WgBackground(Ax, Ay, Amode)
 {
 	shadows_on = false; //default render of shadows off 
@@ -130,9 +130,10 @@ bool WgHtmlAds::update() {
 			return true;
 		}
 		else if (m_NeedRenew() == true) {
-			std::cout << StrNow() << "\t" << "Detected what advert must be updated,Cutycapt lauched\n";
+			std::cout << StrNow() << "\t" << "Detected what advert must be updated\n";
 			
 			m_future = std::async(std::launch::async, &WgHtmlAds::m_CutyCaptRequest, this);
+			std::cout<<StrNow()<<"\t"<<"Cutycapt successfully lauched\n";
 			m_advert_on_screen = false;
 
 			return true;
@@ -182,7 +183,7 @@ void WgHtmlAds::render()
 			m_image_scale_by_height = static_cast<float>(rectClient.height) / static_cast<float>(m_advert_pic->Get_height());
 
 			m_advert_on_screen=true;
-			std::cout << StrNow() << "\t" << "Advert was placed on the widget screen \n";
+			std::cout << StrNow() << "\t" << "Advert was placed on the advert widget screen \n";
 		
 		}
 	}

@@ -73,8 +73,8 @@ VGImage Picture::createImageFromPNG(const char *path)
 
     int bit_depth = png_get_bit_depth(png_ptr, info_ptr);
     int color_type = png_get_color_type(png_ptr, info_ptr);
-    int filter_method = png_get_filter_type(png_ptr, info_ptr);
-    int compression_type = png_get_compression_type(png_ptr, info_ptr);
+   // int filter_method = png_get_filter_type(png_ptr, info_ptr); //UNUSED VAR  FIXME
+    //int compression_type = png_get_compression_type(png_ptr, info_ptr);//UNUSED VAR  FIXME
     int interlace_type = png_get_interlace_type(png_ptr, info_ptr);
     
     png_get_IHDR(png_ptr, info_ptr, &width1, &height1, &bit_depth, &color_type, &interlace_type, nullptr, nullptr);

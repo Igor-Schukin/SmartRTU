@@ -11,8 +11,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # if build type was changed using IDE make sure what in main CmakeLists.txt build type is same
 # other wise will be broken exe 
 
-set(CMAKE_BUILD_TYPE Release)
-#set(CMAKE_BUILD_TYPE Debug)
+#set(CMAKE_BUILD_TYPE Release)
+set(CMAKE_BUILD_TYPE Debug)
+
 
 #cmake debging stuff (something about testing)
 include(CTest)
@@ -55,11 +56,11 @@ add_executable(infoboard ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp )
 
 
 #link external .o and own libs TO EXE
-target_link_libraries(infoboard ${OBJ}  BoardLib 
-							BoardStorage 
-							BoardWidgets 
+target_link_libraries(infoboard ${OBJ} BoardConfig
+							BoardLib
+							BoardWidgets
+							BoardStorage  
 							BoardEngine
-							BoardConfig
 )
 
 #where compiler to search PATHS
@@ -67,7 +68,14 @@ target_include_directories(infoboard PUBLIC /src/engine
 	 				     	/src/storage
 						 	/src
 							 /src/configurator
-							 /src/widgets
+							 ./src/widgets
+							 /home/pi/openvg
+                            /opt/vc/include
+                            /opt/vc/include/VG
+                            /src/widgets
+                            /src/lib/fonts
+                            /src/lib/json
+                            /src/lib/pictures
 )
 
 #cmake stuff                                            

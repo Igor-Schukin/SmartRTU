@@ -11,7 +11,7 @@ protected:
 	int m_widget_id;
 
 public:
-	virtual ~IWidget() {}
+	virtual ~IWidget() {};
 	virtual bool update() = 0; // true if need rerendering
 	virtual void render() = 0;
 

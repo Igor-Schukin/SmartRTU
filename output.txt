@@ -1,34 +1,49 @@
-05.06.2020 19:49:46	***** INFOBORAD engine started
-05.06.2020 19:49:46	Config loaded successfully
-05.06.2020 19:49:46	Timetable is loaded from ./res/timetable.json:
+07.06.2020 16:49:02	***** INFOBORAD engine started
+07.06.2020 16:49:02	Config loaded successfully
+07.06.2020 16:49:02	Timetable is loaded from ./res/timetable.json:
 				5 date ranges of academic calendar
 				11 holidays
 				7 lectures scheles for week days
 				16 lectures schedules for standalone dates
 				1 schedules for power sockets control
-05.06.2020 19:49:46	Desktop size 1920 x 1080, widgets area size 1728 x 864
-05.06.2020 19:49:46	WgHtmlsAds widget object was created
-05.06.2020 19:49:46	WgForecast widget object was created
-05.06.2020 19:49:46	WgClock widget object was created
-05.06.2020 19:49:46	WgCalendar widget object was created
-05.06.2020 19:49:47	WgSockets widget object was created
-05.06.2020 19:49:47	WgTimetable widget object was created
-05.06.2020 19:49:47	WgWatchdog widget object was created
-05.06.2020 19:49:47	New current weather state was received
-05.06.2020 19:49:47	New weather icon was loaded 
-05.06.2020 19:49:47	Timetable is loaded from ./res/timetable.json:
+07.06.2020 16:49:03	Desktop size 1920 x 1080, widgets area size 1728 x 864
+07.06.2020 16:49:03	WgHtmlsAds widget object was created
+07.06.2020 16:49:03	WgForecast widget object was created
+07.06.2020 16:49:03	WgClock widget object was created
+07.06.2020 16:49:03	WgCalendar widget object was created
+07.06.2020 16:49:03	WgSockets widget object was created
+07.06.2020 16:49:03	WgTimetable widget object was created
+07.06.2020 16:49:03	WgWatchdog widget object was created
+07.06.2020 16:49:03	New current weather state was received
+07.06.2020 16:49:03	New weather icon was loaded 
+07.06.2020 16:49:03	Socket 1 is turned on 
+07.06.2020 16:49:03	Timetable is loaded from ./res/timetable.json:
 				5 date ranges of academic calendar
 				11 holidays
 				7 lectures scheles for week days
 				16 lectures schedules for standalone dates
 				1 schedules for power sockets control
-05.06.2020 19:49:47	New current weather state was received
-05.06.2020 19:49:47	Stub was placed on the widget screen 
-05.06.2020 19:49:47	Engine main circle  started
-05.06.2020 19:49:57	Cutycapt finished its work
-05.06.2020 19:49:58	Advert was placed on the widget screen 
-05.06.2020 19:50:15	Detected what advert must be updated,Cutycapt lauched
-05.06.2020 19:50:18	Cutycapt finished its work
-05.06.2020 19:50:19	Advert was placed on the widget screen 
-05.06.2020 20:49:46	Status: on time: 0:01:00:00, idle: 87%, fps: 25
-05.06.2020 20:49:47	New current weather state was received
+07.06.2020 16:49:03	New current weather state was received
+07.06.2020 16:49:03	Stub was placed on the widget screen 
+07.06.2020 16:49:04	Engine main circle  started
+07.06.2020 16:49:06	Cutycapt finished its work
+07.06.2020 16:49:07	Advert was placed on the widget screen 
+07.06.2020 17:49:02	Status: on time: 0:01:00:00, idle: 87%, fps: 25
+07.06.2020 17:49:03	New current weather state was received
+07.06.2020 18:49:02	Status: on time: 0:02:00:00, idle: 87%, fps: 25
+07.06.2020 18:49:03	New current weather state was received
+07.06.2020 19:28:46	Detected what advert must be updated,Cutycapt lauched
+07.06.2020 19:28:49	Cutycapt finished its work
+07.06.2020 19:28:50	Advert was placed on the widget screen 
+07.06.2020 19:28:55	Detected what advert must be updated,Cutycapt lauched
+07.06.2020 19:28:58	Cutycapt finished its work
+07.06.2020 19:28:59	Advert was placed on the widget screen 
+07.06.2020 19:29:19	Detected what advert must be updated,Cutycapt lauched
+07.06.2020 19:29:22	Cutycapt finished its work
+07.06.2020 19:29:23	Advert was placed on the widget screen 
+07.06.2020 19:30:34	Detected what advert must be updated,Cutycapt lauched
+07.06.2020 19:30:37	Cutycapt finished its work
+07.06.2020 19:30:38	Advert was placed on the widget screen 
+07.06.2020 19:30:46	Detected what advert must be updated,Cutycapt lauched
+07.06.2020 19:30:49	Cutycapt finished its work
+07.06.2020 19:30:50	Advert was placed on the widget screen 

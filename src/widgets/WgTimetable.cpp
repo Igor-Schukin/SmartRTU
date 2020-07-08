@@ -1,6 +1,10 @@
 #include "WgTimetable.h"
 
 #include <sys/types.h>/*stat sctruct*/
+
+#include<iostream>
+
+
 #include "Engine.h"/*engine obj*/
 #include "timetable.h"/*tiemtable obj*/
 

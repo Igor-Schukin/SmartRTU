@@ -175,7 +175,7 @@ void WgForecast::m_RenderMode2()
 		const_cast<char *>(m_base_font_name.c_str())
 	);
 	font->Set_Size(desktop->rowHeight / 3);
-	int wind_width = static_cast<int>(font->TextWidth(m_wind_speed));
+	//int wind_width = static_cast<int>(font->TextWidth(m_wind_speed));//not used var
 	int wind_height = static_cast<int>(font->TextHeight());
 	font->TextMid(
 		m_wind_speed,
@@ -220,6 +220,15 @@ void WgForecast::render()
 			m_RenderMode1();
 			m_RenderMode2();
 			m_RenderMode3();
+			break;
+		}
+		case md3x8:{
+			//FIXME
+			break;
+		}
+		case mdCustom:{
+
+			//FIXME
 			break;
 		}
 		}

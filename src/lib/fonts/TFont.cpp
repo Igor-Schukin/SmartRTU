@@ -40,8 +40,8 @@ TFont::TFont(const char *FTFileName)
 	m_font_size = R = G = B = 0;
 }
 
-TFont::TFont(TFont &BaseFont)
-{
+//TFont::TFont(TFont &BaseFont)
+//{
 
 	//never ever used I assume // it means what this can be deleted
 	/*
@@ -70,8 +70,8 @@ TFont::TFont(TFont &BaseFont)
 	B = BaseFont.B;
 	A = BaseFont.A;
 	*/
-	throw 0;
-}
+	//throw 0;
+//}
 
 TFont::~TFont()
 {
