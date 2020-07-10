@@ -13,7 +13,7 @@
 #include "configurator.h"/*config*/
 
 
-WgForecast::WgForecast(int Ax, int Ay, wgMode Amode)
+WgForecast::WgForecast(int Ax, int Ay, WgMode Amode)
 	: WgBackground(Ax, Ay, Amode)
 {
 	m_widget_update_time = 60 * 60 * 1000; // 1 hour
@@ -133,12 +133,12 @@ bool WgForecast::update()
 
 void WgForecast::m_RenderMode1()
 {
-	RenderHeader(m_temp_degree);
+	RenderWidgetHeader(m_temp_degree);
 }
 
 void WgForecast::m_RenderMode2()
 {
-	float field = rectClient.width * 0.07;
+	float field = RectClient.width * 0.07;
 
 	//~~ weather icon
 	//NEED RESTYLE IT
@@ -146,25 +146,25 @@ void WgForecast::m_RenderMode2()
 	if (m_weather_icon_picture)
 	{
 		//icon_scale
-		float icon_scale = (float)rectClient.height * 1.0 / m_weather_icon_picture->Get_height();
+		float icon_scale = (float)RectClient.height * 1.0 / m_weather_icon_picture->Get_height();
 		icon_width = m_weather_icon_picture->Get_width() * icon_scale;
 		icon_height = m_weather_icon_picture->Get_height() * icon_scale;
 		m_weather_icon_picture->render(
-			rectClient.left + field,
-			rectClient.bottom + (rectClient.height - icon_height) / 2,
+			RectClient.left + field,
+			RectClient.bottom + (RectClient.height - icon_height) / 2,
 			icon_scale, icon_scale, 0, 0, 0);
 	}
 
 	//~~ wind arrow
 	// as
-	float arrow_scale = (float)rectClient.height * 0.35 / PicStorage->Arrow->Get_height();
+	float arrow_scale = (float)RectClient.height * 0.35 / PicStorage->Arrow->Get_height();
 	// aw
 	int arrow_width = PicStorage->Arrow->Get_width() * arrow_scale * 1.75; // 1.4 = sqrt(2)
 	// ah
 	int arrow_height = PicStorage->Arrow->Get_height() * arrow_scale;
 	PicStorage->Arrow->render(
-		rectClient.right - arrow_width - field,
-		rectClient.bottom + (rectClient.height - arrow_height) / 2,
+		RectClient.right - arrow_width - field,
+		RectClient.bottom + (RectClient.height - arrow_height) / 2,
 		arrow_scale, arrow_scale, 0, 0,
 		-m_wind_degree);
 
@@ -174,26 +174,26 @@ void WgForecast::m_RenderMode2()
 	TFont *font = FontStorage->GetFont(
 		const_cast<char *>(m_base_font_name.c_str())
 	);
-	font->Set_Size(desktop->rowHeight / 3);
+	font->Set_Size(desktop->row_height / 3);
 	//int wind_width = static_cast<int>(font->TextWidth(m_wind_speed));//not used var
 	int wind_height = static_cast<int>(font->TextHeight());
 	font->TextMid(
 		m_wind_speed,
-		rectClient.left + icon_width + (rectClient.width - icon_width - arrow_width) / 2,
-		rectClient.bottom + (rectClient.height - wind_height) / 2);
+		RectClient.left + icon_width + (RectClient.width - icon_width - arrow_width) / 2,
+		RectClient.bottom + (RectClient.height - wind_height) / 2);
 }
 
 void WgForecast::m_RenderMode3() // need to debug
 {
 	/*
-	FontStorage->GetFont((char*)"arialBold")->Set_Size(desktop->rowHeight/5);
-	FontStorage->GetFont((char*)"arialBold")->TextMid("Veišs:", rectClient.left + (desktop->colWidth/2),
-		rectClient.top - desktop->rowHeight - (desktop->rowHeight/5/2));
-	SetTextColor(color);
-	FontStorage->GetFont((char*)"arialBold")->Set_Size(desktop->rowHeight/2.8);
-	FontStorage->GetFont((char*)"arialBold")->TextMid(m_wind_speed, rectClient.left + (desktop->colWidth/2.5),
-		rectClient.top - desktop->rowHeight - desktop->rowHeight/16*11);
-	PicStorage->Arrow->render(rectClient.left + (desktop->colWidth/1.3), rectClient.top - desktop->rowHeight - desktop->rowHeight/1.4, 1, 1, 0,0,-m_wind_degree);
+	FontStorage->GetFont((char*)"arialBold")->Set_Size(desktop->row_height/5);
+	FontStorage->GetFont((char*)"arialBold")->TextMid("Veišs:", RectClient.left + (desktop->colum_width/2),
+		RectClient.top - desktop->row_height - (desktop->row_height/5/2));
+	SetTextColor(m_color);
+	FontStorage->GetFont((char*)"arialBold")->Set_Size(desktop->row_height/2.8);
+	FontStorage->GetFont((char*)"arialBold")->TextMid(m_wind_speed, RectClient.left + (desktop->colum_width/2.5),
+		RectClient.top - desktop->row_height - desktop->row_height/16*11);
+	PicStorage->Arrow->render(RectClient.left + (desktop->colum_width/1.3), RectClient.top - desktop->row_height - desktop->row_height/1.4, 1, 1, 0,0,-m_wind_degree);
 	*/
 }
 
@@ -202,7 +202,7 @@ void WgForecast::render()
 	if (m_is_data_received)
 	{
 		WgBackground::render();
-		switch (mode)
+		switch (m_widget_mode)
 		{
 		case md1x1:
 		{

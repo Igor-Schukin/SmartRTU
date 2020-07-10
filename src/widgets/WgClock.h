@@ -20,7 +20,7 @@ class WgClock :
 public WgBackground
 {
 public:
-	WgClock(int AposX, int AposY, wgMode Amode);
+	WgClock(int AposX, int AposY, WgMode Amode);
 	~WgClock();
 
 	bool update()override;

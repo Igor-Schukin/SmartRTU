@@ -130,6 +130,42 @@ bool Configuration::Get(const std::string& key, int& value,int default_value)
     }
 }
 
+bool Configuration::Configuration::Get(const std::string& key, double& value) {
+      std::string str;
+ 
+    if (Get(key, str))
+    {
+        value = std::stod(str.c_str());
+        return true;
+    }
+    else
+    {
+        std::cerr << "\033[1;31m~~~~ not faund \"" << key 
+        << "\" in config ~~~~~\033[0m" 
+        << '\n';
+        return false;
+    }
+}
+
+bool Configuration::Configuration::Get(const std::string& key, double& value,double default_value) {
+    std::string str;
+ 
+    if (Get(key, str))
+    {
+        value = std::stod(str.c_str());
+        return true;
+    }
+    else
+    {
+        std::cerr << "\033[1;31m~~~~ not faund \"" 
+        << key << "\" in config, replaced by default_value:"
+        <<default_value<<"~~~~~\033[0m" << '\n';
+        
+        value=default_value;
+        return false;
+    }
+}
+
 
 bool Configuration::Get(const std::string& key, bool& value)
 {
@@ -147,6 +183,28 @@ bool Configuration::Get(const std::string& key, bool& value)
     }
 }
 
+bool Configuration::Get(const std::string& key, bool& value,bool default_value)
+{
+    std::string str;
+ 
+    if (Get(key, str))
+    {
+        value = (str == "true");
+        return true;
+    }
+    else
+    {
+        std::cerr << "\033[1;31m~~~~ not faund \"" << key 
+        << "\" in config, replaced by default_value:"
+        <<default_value<<"~~~~~\033[0m" << '\n'; 
+
+        value=default_value;
+        return false;
+    }
+
+}
+
+
 std::string Configuration::m_Trim(const std::string& str)
 {
      std::size_t first = str.find_first_not_of(" \t"); //int to size_t
@@ -162,3 +220,4 @@ std::string Configuration::m_Trim(const std::string& str)
         return "";
     }
 }
+

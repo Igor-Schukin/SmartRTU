@@ -1,6 +1,6 @@
 #include "WgAds.h"
 
-WgAds::WgAds(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amode)
+WgAds::WgAds(int Ax, int Ay, WgMode Amode) : WgBackground(Ax, Ay, Amode)
 {
 	system(fmt("touch %s%s", ADS_FILES_PATH, FLAG_FILE_NAME));
 	m_widget_update_time = 1000; // 1s
@@ -141,12 +141,12 @@ void WgAds::render()
 
 	//~~~ render header
 
-	//renderHeader( "Sludinājums" );
-	RenderHeader("Par mums");
+	//RenderWidgetHeader( "Sludinājums" );
+	RenderWidgetHeader("Par mums");
 
 	/*
-	int width=(float) rectClient.width * 0.9;	
-	int height = (float) rectClient.height * 0.9;
+	int width=(float) RectClient.width * 0.9;	
+	int height = (float) RectClient.height * 0.9;
 
 	
 	//~~~~~ render back shadows
@@ -168,8 +168,8 @@ void WgAds::render()
 	TFont * font = FontStorage->GetFont((char*)"arialBold");
 	
 	const float lineSpacing = 0.4;
-	int width = (float) rectClient.width * 0.9;	
-	int height = (float) rectClient.height * 0.9;
+	int width = (float) RectClient.width * 0.9;	
+	int height = (float) RectClient.height * 0.9;
 
 	float lh = (float) height / lc;
 	float fh = lh * (1. - lineSpacing);
@@ -186,15 +186,15 @@ void WgAds::render()
 		fh = lh * (1. - lineSpacing);
 	}
 
-	int ofsY = ( rectClient.height - lh * lc - lh * lineSpacing ) / 2 - lh * 0.1;
+	int ofsY = ( RectClient.height - lh * lc - lh * lineSpacing ) / 2 - lh * 0.1;
 	SetTextColor(clHaki);
 	font->Set_Size( fh )	;
 	for (int i = 0; i < lc; i++) 
 	{
 		font->TextMid(
 			adsPeace[i], 
-			rectClient.left + rectClient.width / 2, 
-			rectClient.top - ofsY - lh * (i + 1)
+			RectClient.left + RectClient.width / 2, 
+			RectClient.top - ofsY - lh * (i + 1)
 		);
 	}
 	*/

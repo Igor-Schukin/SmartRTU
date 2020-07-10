@@ -11,7 +11,7 @@
 WgSockets::WgSockets()
 {
     wiringPiSetup();
-    for (int i = 0; i < SOCKETS_COUNT; i++)
+    for (int i = 0; i < SOCKETS_COUNT; ++i)
     {
         m_current_states[i] = false;
         pinMode(SOCKETS_PINS[i], OUTPUT);
@@ -27,7 +27,7 @@ WgSockets::~WgSockets()
 bool WgSockets::update()
 {
     bool state=false;
-    for (int i = 0; i < SOCKETS_COUNT; i++)
+    for (int i = 0; i < SOCKETS_COUNT; ++i)
     {
         state = timetable->GetCurrentSocketState(i + 1);
         digitalWrite(SOCKETS_PINS[i], state ? HIGH : LOW);

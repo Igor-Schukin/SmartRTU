@@ -3,7 +3,8 @@
 #include <iostream>/*cout*/
 
 #include "Timer.h"/*strNow*/
-
+#include "configurator.h"//config
+/*
 #define GRID_VERTICAL   8 //10
 #define GRID_HORIZONTAL 4 //6
 
@@ -11,28 +12,44 @@
 #define BOTTOM_FIELD    0.05
 #define LEFT_FIELD      0.05
 #define RIGHT_FIELD     0.05
-
+*/
 Desktop * desktop;
 
 Desktop::Desktop( int scr_width, int scr_height )
+:screen_width(scr_width),screen_height(scr_height)
 {
-    scrWidth = scr_width;
-    scrHeight = scr_height;
+    //screen_width = scr_width;
+    //screen_height = scr_height;
 
-    dwRect.left = scrWidth * LEFT_FIELD; 
-    dwRect.bottom = scrHeight * BOTTOM_FIELD;
-    dwRect.right = scrWidth * ( 1 - RIGHT_FIELD );
-    dwRect.top = scrHeight * ( 1 - TOP_FIELD );
-    dwRect.width = dwRect.right - dwRect.left;
-    dwRect.height = dwRect.top - dwRect.bottom;
+    int grid_vertical,grid_horizontal;
+    double top_field,bottom_field,left_field,right_field;
 
-    rowCount = GRID_VERTICAL;
-    colCount = GRID_HORIZONTAL;
-    colWidth = dwRect.width / colCount;
-    rowHeight = dwRect.height / rowCount;
+    config->Get("DESKTOP_GRID_VERTICAL",grid_vertical);
+    config->Get("DESKTOP_GRID_HORIZONTAL",grid_horizontal);
 
-    std::cout<<StrNow()<<"\tDesktop size "<<scrWidth<<" x "<<scrHeight<<", widgets area size "<<dwRect.width<<" x "<<dwRect.height<<"\n";
+    config->Get("DESKTOP_TOP_FIELD",top_field);
+    config->Get("DESKTOP_BOTTOM_FIELD",bottom_field);
+    config->Get("DESKTOP_LEFT_FIELD",left_field);
+    config->Get("DESKTOP_RIGHT_FIELD",right_field);
+
+    DwRect.left = screen_width * left_field; 
+    DwRect.bottom = screen_height * bottom_field;
+    DwRect.right = screen_width * ( 1 - right_field );
+    DwRect.top = screen_height * ( 1 - top_field );
+    DwRect.width = DwRect.right - DwRect.left;
+    DwRect.height = DwRect.top - DwRect.bottom;
+
+    row_count = grid_vertical;
+    colum_count = grid_horizontal;
+    colum_width = DwRect.width / colum_count;
+    row_height = DwRect.height / row_count;
+
+    std::cout<<StrNow()<<"\tDesktop size "
+    <<screen_width<<" x "<<screen_height<<", widgets area size "
+    <<DwRect.width<<" x "<<DwRect.height<<"\n";
 };
 
-Desktop::~Desktop() { }
+Desktop::~Desktop() { 
+
+}
 

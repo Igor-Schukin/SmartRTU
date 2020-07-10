@@ -38,7 +38,7 @@
 
 
 
-WgClock::WgClock(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amode) {
+WgClock::WgClock(int Ax, int Ay, WgMode Amode) : WgBackground(Ax, Ay, Amode) {
   m_widget_update_time = 100; // 10 times per sec
 
   hour = -1;
@@ -154,45 +154,45 @@ bool WgClock::update() {
 //~~~ rendering  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 void WgClock::m_RenderMode1() { 
-  RenderHeader(strTime); 
+  RenderWidgetHeader(strTime); 
   }
 
 void WgClock::m_RenderMode2() {
   SetTextColor(clHaki);
   FontStorage->GetFont(const_cast<char *>(m_base_font_name.c_str()))
-      ->Set_Size(desktop->rowHeight / 3);
+      ->Set_Size(desktop->row_height / 3);
 
   FontStorage->GetFont(const_cast<char *>(m_base_font_name.c_str()))
-      ->TextMid(strLect, rectClient.left + (rectClient.width / 2),
-                rectClient.top - desktop->rowHeight / 16 * 11 //?
+      ->TextMid(strLect, RectClient.left + (RectClient.width / 2),
+                RectClient.top - desktop->row_height / 16 * 11 //?
       );
 }
 
 void WgClock::m_RenderMode3() {
   SetTextColor(clHaki);
   FontStorage->GetFont(const_cast<char *>(m_base_font_name.c_str()))
-      ->Set_Size(desktop->rowHeight / 4.5);
+      ->Set_Size(desktop->row_height / 4.5);
 
   FontStorage->GetFont(const_cast<char *>(m_base_font_name.c_str()))
       ->TextMid(
-          strInfo, rectClient.left + (rectClient.width / 2),
-          rectClient.top - desktop->rowHeight - (desktop->rowHeight / 5 / 2) //?
+          strInfo, RectClient.left + (RectClient.width / 2),
+          RectClient.top - desktop->row_height - (desktop->row_height / 5 / 2) //?
       );
 
-  SetTextColor(color);
+  SetTextColor(m_color);
   FontStorage->GetFont(const_cast<char *>(m_base_font_name.c_str()))
-      ->Set_Size(desktop->rowHeight / 2.2);
+      ->Set_Size(desktop->row_height / 2.2);
 
   FontStorage->GetFont(const_cast<char *>(m_base_font_name.c_str()))
       ->TextMid(
-          strTimer, rectClient.left + (rectClient.width / 2),
-          rectClient.top - desktop->rowHeight - (desktop->rowHeight / 4) * 3 //?
+          strTimer, RectClient.left + (RectClient.width / 2),
+          RectClient.top - desktop->row_height - (desktop->row_height / 4) * 3 //?
       );
 }
 
 void WgClock::render() {
   WgBackground::render();
-  switch (mode) {
+  switch (m_widget_mode) {
   case md1x1: {
     m_RenderMode1();
     break;
@@ -219,7 +219,7 @@ void WgClock::render() {
   default: {
     std::cerr
         << StrNow() << "\t"
-        << "Something bad happened in WgClock render mode used default one\n";
+        << "Something bad happened in WgClock render m_widget_mode used default one\n";
     break;
   }
   }

@@ -6,9 +6,9 @@
 
 struct Desktop
 {
-    int scrWidth, scrHeight;                                            // screen size
-    struct { int left, top, right, bottom, width, height; } dwRect;     // widgets area
-    int colCount, rowCount, colWidth, rowHeight;                        // grid
+    int screen_width, screen_height;                                            // screen size
+    struct { int left, top, right, bottom, width, height; } DwRect;     // widgets area
+    int colum_count, row_count, colum_width, row_height;                        // grid
 
     Desktop( int scr_width, int scr_height );
     ~Desktop();

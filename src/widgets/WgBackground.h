@@ -11,7 +11,7 @@
 #include "IWidget.h"
 #include <string>
 
-enum wgColor {
+enum WgColor {
   clWhite = 0,
   clBlue,
   clCyan,
@@ -24,15 +24,17 @@ enum wgColor {
   clYellow,
   clHaki
 };
-enum wgMode { md1x1 = 1, md1x2, md1x3, md3x8, mdCustom };
+enum WgMode { md1x1 = 1, md1x2, md1x3, md3x8, mdCustom };
 
-class WgBackground : public IWidget {
+class WgBackground :
+ public IWidget 
+ {
 public:
-  WgBackground(int pos_x, int pos_y, wgMode Amode);
+  WgBackground(int a_pos_x, int a_pos_y, WgMode Amode);
   ~WgBackground();
 
-  void SetFillColor(wgColor c); // set color of block with command Fill
-  void SetTextColor(wgColor c); // set color of text
+  void SetFillColor(WgColor c); // set m_color of block with command Fill
+  void SetTextColor(WgColor c); // set m_color of text
 
   void GetRect(int &left, int &bottom, int &width, int &height);
   void render() override;
@@ -41,21 +43,25 @@ public:
 
 protected:
   int m_pos_x, m_pos_y; // position in the grid
-  wgMode mode;          // widget mode
-  int sizeX, sizeY; // widget size in the grid, example: sizeX=1; sizeY=1;
-                    // fill only one block in the grid
-  wgColor color;
-  bool shadows_on;              // on/off shadows
+  WgMode m_widget_mode;          // widget_mode
+  WgColor m_color;
+  bool m_shadows_on;              // on/off shadows
+
+  // widget size in the grid, example: m_widget_width=1; m_widget_height=1;
+  // fill only one block in the grid
+  int m_widget_width, m_widget_height; 
+  
   std::string m_base_font_name; // mean name of font without extension
 
   struct {
     int left, right, top, bottom, width, height;
-  } rectWidget, rectHeader, rectClient;
+  } RectWidget, RectHeader, RectClient;
   struct {
     int left, right, top, bottom;
-  } shadowSize;
+  } ShadowSize;
 
-  void RenderHeader(const char *header_text);
+  //renders text at widget header
+  void RenderWidgetHeader(const char *header_text);
   void RenderOnlyShadows(); // renders only all shadows //kastil
 };
 

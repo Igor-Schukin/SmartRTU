@@ -75,7 +75,7 @@ void Board::update(bool Forced)
 
 void Board::render(bool Forced)
 {
-	VGint screenRect[4] = {0, 0, desktop->scrWidth, desktop->scrHeight};
+	VGint screenRect[4] = {0, 0, desktop->screen_width, desktop->screen_height};
 	VGint clipRects[MAX_WIDGETS * 4]; // (left, bottom, width, height) x count
 	int count = 0, wx, wy, ww, wh;
 	for (WidgetInfo *w = widgets; w; w = w->next)
@@ -104,15 +104,15 @@ void Board::render(bool Forced)
 			vgSetiv(VG_SCISSOR_RECTS, count * 4, clipRects);
 		}
 
-		float sbx = (float)desktop->scrWidth / PicStorage->ScreenBackgroud->Get_width();
-		float sby = (float)desktop->scrHeight / PicStorage->ScreenBackgroud->Get_height();
+		float sbx = (float)desktop->screen_width / PicStorage->ScreenBackgroud->Get_width();
+		float sby = (float)desktop->screen_height / PicStorage->ScreenBackgroud->Get_height();
 		PicStorage->ScreenBackgroud->render(0, 0, sbx, sby, 0, 0, 0);
 
 		float logo_scale = 0.9;
 		Picture *logo = PicStorage->Logo;
-		int h = desktop->scrHeight - desktop->dwRect.top;
-		int x = desktop->dwRect.left;
-		int y = desktop->dwRect.top + h * (1 - logo_scale) / 2;
+		int h = desktop->screen_height - desktop->DwRect.top;
+		int x = desktop->DwRect.left;
+		int y = desktop->DwRect.top + h * (1 - logo_scale) / 2;
 		float sc = (float)h / logo->Get_height() * logo_scale;
 		logo->render(x, y, sc, sc, 0, 0, 0);
 	}

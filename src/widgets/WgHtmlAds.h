@@ -49,7 +49,7 @@ public:
   bool update() override; // check if need update widget
   void render() override; // renders advert into screen
 
-  WgHtmlAds(int Ax, int Ay, wgMode Amode);
+  WgHtmlAds(int Ax, int Ay, WgMode Amode);
   ~WgHtmlAds();
 
 private:

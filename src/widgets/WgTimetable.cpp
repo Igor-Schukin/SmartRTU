@@ -40,8 +40,10 @@ bool WgTimetable::update()
 {
     if (m_file_time != m_GetFileTime())
     {
-        if (timetable)
+        if (timetable){
             delete timetable;
+        }
+        
         try
         {
             timetable = new Timetable;

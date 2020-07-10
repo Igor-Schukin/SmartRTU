@@ -1,49 +1,37 @@
-07.06.2020 16:49:02	***** INFOBORAD engine started
-07.06.2020 16:49:02	Config loaded successfully
-07.06.2020 16:49:02	Timetable is loaded from ./res/timetable.json:
+08.06.2020 19:04:59	***** INFOBORAD engine started
+08.06.2020 19:04:59	Config loaded successfully
+08.06.2020 19:04:59	Timetable is loaded from ./res/timetable.json:
 				5 date ranges of academic calendar
 				11 holidays
 				7 lectures scheles for week days
 				16 lectures schedules for standalone dates
 				1 schedules for power sockets control
-07.06.2020 16:49:03	Desktop size 1920 x 1080, widgets area size 1728 x 864
-07.06.2020 16:49:03	WgHtmlsAds widget object was created
-07.06.2020 16:49:03	WgForecast widget object was created
-07.06.2020 16:49:03	WgClock widget object was created
-07.06.2020 16:49:03	WgCalendar widget object was created
-07.06.2020 16:49:03	WgSockets widget object was created
-07.06.2020 16:49:03	WgTimetable widget object was created
-07.06.2020 16:49:03	WgWatchdog widget object was created
-07.06.2020 16:49:03	New current weather state was received
-07.06.2020 16:49:03	New weather icon was loaded 
-07.06.2020 16:49:03	Socket 1 is turned on 
-07.06.2020 16:49:03	Timetable is loaded from ./res/timetable.json:
+08.06.2020 19:05:00	Desktop size 1920 x 1080, widgets area size 1728 x 864
+08.06.2020 19:05:00	WgHtmlsAds widget object was created
+08.06.2020 19:05:00	WgForecast widget object was created
+08.06.2020 19:05:00	WgClock widget object was created
+08.06.2020 19:05:00	WgCalendar widget object was created
+08.06.2020 19:05:00	WgSockets widget object was created
+08.06.2020 19:05:00	WgTimetable widget object was created
+08.06.2020 19:05:00	WgWatchdog widget object was created
+08.06.2020 19:05:00	New current weather state was received
+08.06.2020 19:05:00	New weather icon was loaded 
+08.06.2020 19:05:00	Socket 1 is turned on 
+08.06.2020 19:05:00	Timetable is loaded from ./res/timetable.json:
 				5 date ranges of academic calendar
 				11 holidays
 				7 lectures scheles for week days
 				16 lectures schedules for standalone dates
 				1 schedules for power sockets control
-07.06.2020 16:49:03	New current weather state was received
-07.06.2020 16:49:03	Stub was placed on the widget screen 
-07.06.2020 16:49:04	Engine main circle  started
-07.06.2020 16:49:06	Cutycapt finished its work
-07.06.2020 16:49:07	Advert was placed on the widget screen 
-07.06.2020 17:49:02	Status: on time: 0:01:00:00, idle: 87%, fps: 25
-07.06.2020 17:49:03	New current weather state was received
-07.06.2020 18:49:02	Status: on time: 0:02:00:00, idle: 87%, fps: 25
-07.06.2020 18:49:03	New current weather state was received
-07.06.2020 19:28:46	Detected what advert must be updated,Cutycapt lauched
-07.06.2020 19:28:49	Cutycapt finished its work
-07.06.2020 19:28:50	Advert was placed on the widget screen 
-07.06.2020 19:28:55	Detected what advert must be updated,Cutycapt lauched
-07.06.2020 19:28:58	Cutycapt finished its work
-07.06.2020 19:28:59	Advert was placed on the widget screen 
-07.06.2020 19:29:19	Detected what advert must be updated,Cutycapt lauched
-07.06.2020 19:29:22	Cutycapt finished its work
-07.06.2020 19:29:23	Advert was placed on the widget screen 
-07.06.2020 19:30:34	Detected what advert must be updated,Cutycapt lauched
-07.06.2020 19:30:37	Cutycapt finished its work
-07.06.2020 19:30:38	Advert was placed on the widget screen 
-07.06.2020 19:30:46	Detected what advert must be updated,Cutycapt lauched
-07.06.2020 19:30:49	Cutycapt finished its work
-07.06.2020 19:30:50	Advert was placed on the widget screen 
+08.06.2020 19:05:00	New current weather state was received
+08.06.2020 19:05:01	Stub was placed on the widget screen 
+08.06.2020 19:05:01	Engine main circle  started
+08.06.2020 19:05:03	Cutycapt finished its work
+08.06.2020 19:05:04	Advert was placed on the advert widget screen 
+08.06.2020 19:05:55	Detected what advert must be updated
+08.06.2020 19:05:55	Cutycapt successfully lauched
+08.06.2020 19:05:58	Cutycapt finished its work
+08.06.2020 19:05:59	Advert was placed on the advert widget screen 
+08.06.2020 20:00:00	Socket 1 is turned off 
+08.06.2020 20:04:59	Status: on time: 0:01:00:00, idle: 87%, fps: 25
+08.06.2020 20:05:00	New current weather state was received

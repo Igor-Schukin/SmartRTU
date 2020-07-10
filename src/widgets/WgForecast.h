@@ -37,7 +37,7 @@ class WgForecast
 : public WgBackground
 {
 public:
-	WgForecast(int AposX, int AposY, wgMode Amode);
+	WgForecast(int AposX, int AposY, WgMode Amode);
 	~WgForecast();
 
 	bool update()override;

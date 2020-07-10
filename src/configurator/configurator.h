@@ -39,6 +39,8 @@ public:
     bool Get(const std::string& key, int& value,int default_value);
     //long
     //double
+    bool Get(const std::string& key, double& value);
+    bool Get(const std::string& key, double& value,double default_value);
     //bool
     bool Get(const std::string& key, bool& value);
     bool Get(const std::string& key, bool& value,bool default_value);

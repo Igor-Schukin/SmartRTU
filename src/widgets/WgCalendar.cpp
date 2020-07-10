@@ -11,7 +11,7 @@
 #include "configurator.h"/*configurator*/
 
 
-WgCalendar::WgCalendar(int Ax, int Ay, wgMode Amode) 
+WgCalendar::WgCalendar(int Ax, int Ay, WgMode Amode) 
 : WgBackground(Ax, Ay, Amode)
 {
 	m_widget_update_time = 60 * 60 * 1000; // 1 hour
@@ -127,7 +127,7 @@ bool WgCalendar::update()
 
 void WgCalendar::m_RenderMode1()
 {
-	RenderHeader(bufDate);
+	RenderWidgetHeader(bufDate);
 }
 
 void WgCalendar::m_RenderMode2()
@@ -136,11 +136,11 @@ void WgCalendar::m_RenderMode2()
 		const_cast<char*>(m_base_font_name.c_str())
 		);
 	SetTextColor(clHaki);
-	font->Set_Size(desktop->rowHeight / 3);
+	font->Set_Size(desktop->row_height / 3);
 	font->TextMid(
 		bufWeekDay,
-		rectClient.left + rectClient.width / 2,
-		rectClient.top - desktop->rowHeight / 16 * 11);
+		RectClient.left + RectClient.width / 2,
+		RectClient.top - desktop->row_height / 16 * 11);
 }
 
 void WgCalendar::m_RenderMode3()
@@ -148,25 +148,25 @@ void WgCalendar::m_RenderMode3()
 	TFont *font = FontStorage->GetFont(
 		const_cast<char*>(m_base_font_name.c_str())
 		);
-	font->Set_Size(desktop->rowHeight / 4.5);
+	font->Set_Size(desktop->row_height / 4.5);
 	font->TextMid(
 		bufWeekInfo,
-		rectClient.left + rectClient.width / 2,
-		rectClient.top - desktop->rowHeight - desktop->rowHeight / 5 / 2);
+		RectClient.left + RectClient.width / 2,
+		RectClient.top - desktop->row_height - desktop->row_height / 5 / 2);
 
-	SetTextColor(color);
-	font->Set_Size(desktop->rowHeight / 2.2);
+	SetTextColor(m_color);
+	font->Set_Size(desktop->row_height / 2.2);
 	font->TextMid(
 		bufWeek,
-		rectClient.left + rectClient.width / 2,
-		rectClient.top - desktop->rowHeight - desktop->rowHeight * 3 / 4);
+		RectClient.left + RectClient.width / 2,
+		RectClient.top - desktop->row_height - desktop->row_height * 3 / 4);
 }
 
 void WgCalendar::render()
 {
 	WgBackground::render();
 
-	switch (mode)
+	switch (m_widget_mode)
 	{
 		case md1x1:
 		{

@@ -13,7 +13,7 @@
 class WgCalendar : public WgBackground {
 
 public:
-  WgCalendar(int AposX, int AposY, wgMode Amode);
+  WgCalendar(int AposX, int AposY, WgMode Amode);
   ~WgCalendar();
 
   bool update() override;

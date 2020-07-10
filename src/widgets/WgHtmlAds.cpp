@@ -15,7 +15,6 @@
 //own headers
 #include "Engine.h"// from here we need only "fmt" stuff 
 #include "Timer.h" ///* StrNow()*/
-//#include "desktop.h" //well i commented this and all is still working
 
 #include "configurator.h" //config 
 
@@ -68,10 +67,10 @@ void WgHtmlAds::m_CutyCaptRequest() {
 
 }
 
-WgHtmlAds::WgHtmlAds(int Ax, int Ay,wgMode Amode) 
+WgHtmlAds::WgHtmlAds(int Ax, int Ay,WgMode Amode) 
 : WgBackground(Ax, Ay, Amode)
 {
-	shadows_on = false; //default render of shadows off 
+	m_shadows_on = false; //default render of shadows off 
 	int update_time;
 	config->Get("ADVERT_UPDATE_TIME", update_time); //converts string into int
 	
@@ -152,7 +151,7 @@ void WgHtmlAds::render()
 	WgBackground::render(); //if commented @ header and advert  block @ is tranperent
 
 	//~~~ render header
-	RenderHeader(m_header_text.c_str());
+	RenderWidgetHeader(m_header_text.c_str());
 
 	// Use wait_for() with zero milliseconds to check thread status.
 	m_thread_status = m_future.wait_for(std::chrono::milliseconds(0));//get status of thread
@@ -179,8 +178,8 @@ void WgHtmlAds::render()
 				);
 			}
 
-			m_image_scale_by_width = static_cast<float>(rectClient.width) / static_cast<float>(m_advert_pic->Get_width());
-			m_image_scale_by_height = static_cast<float>(rectClient.height) / static_cast<float>(m_advert_pic->Get_height());
+			m_image_scale_by_width = static_cast<float>(RectClient.width) / static_cast<float>(m_advert_pic->Get_width());
+			m_image_scale_by_height = static_cast<float>(RectClient.height) / static_cast<float>(m_advert_pic->Get_height());
 
 			m_advert_on_screen=true;
 			std::cout << StrNow() << "\t" << "Advert was placed on the advert widget screen \n";
@@ -192,15 +191,15 @@ void WgHtmlAds::render()
 			m_advert_pic = new Picture(
 				(m_local_stub_path + "/" + m_stub_name).c_str()
 			);
-			m_image_scale_by_width = static_cast<float>(rectClient.width) / static_cast<float>(m_advert_pic->Get_width());
-			m_image_scale_by_height = static_cast<float>(rectClient.height) / static_cast<float>(m_advert_pic->Get_height());
+			m_image_scale_by_width = static_cast<float>(RectClient.width) / static_cast<float>(m_advert_pic->Get_width());
+			m_image_scale_by_height = static_cast<float>(RectClient.height) / static_cast<float>(m_advert_pic->Get_height());
 
 			std::cout << StrNow() << "\t" << "Stub was placed on the widget screen \n";
 		}
 	}
 
 	//render Advert
-	m_advert_pic->render(rectClient.left, rectClient.bottom, m_image_scale_by_width, m_image_scale_by_height, 0, 0, 0);
+	m_advert_pic->render(RectClient.left, RectClient.bottom, m_image_scale_by_width, m_image_scale_by_height, 0, 0, 0);
 
 	//~~~~~ render shadows
 	WgBackground::RenderOnlyShadows();
