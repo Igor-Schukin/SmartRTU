@@ -24,10 +24,6 @@ struct wgShadowPictures
 
 class CPicturesStorage
 {
-private:
-	void addPic();
-	void cleanStorage();
-
 public:
 	CPicturesStorage();
 	~CPicturesStorage();
@@ -42,6 +38,11 @@ public:
 	Picture *Logo;
 	Picture *Arrow;
 	wgShadowPictures *WgShadows;
+private:
+	void m_AddPic();
+	void m_CleanStorage();
+
+
 };
 
 extern CPicturesStorage *PicStorage;

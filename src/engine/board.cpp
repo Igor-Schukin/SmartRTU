@@ -104,11 +104,11 @@ void Board::render(bool Forced)
 			vgSetiv(VG_SCISSOR_RECTS, count * 4, clipRects);
 		}
 
-		float sbx = (float)desktop->screen_width / PicStorage->ScreenBackgroud->Get_width();
-		float sby = (float)desktop->screen_height / PicStorage->ScreenBackgroud->Get_height();
+		float sbx = static_cast<float>(desktop->screen_width) / static_cast<float>(PicStorage->ScreenBackgroud->Get_width());
+		float sby = static_cast<float>(desktop->screen_height) / static_cast<float>(PicStorage->ScreenBackgroud->Get_height());
 		PicStorage->ScreenBackgroud->render(0, 0, sbx, sby, 0, 0, 0);
 
-		float logo_scale = 0.9;
+		float logo_scale = 0.9F;
 		Picture *logo = PicStorage->Logo;
 		int h = desktop->screen_height - desktop->DwRect.top;
 		int x = desktop->DwRect.left;

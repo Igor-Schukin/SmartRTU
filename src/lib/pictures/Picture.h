@@ -1,23 +1,16 @@
 #pragma once
-#include "png.h"
-/*
-TODO 
-RESTYLE FULLY THIS MODULE
-*/
 
-
+//OpenVG stuff//VgImage
 extern "C"
 {
 #include "VG/openvg.h"
 #include "VG/vgu.h"
 #include "fontinfo.h"
 #include "shapes.h"
+   
 }
 
-#include <jpeglib.h>
-#include <cstdlib>
 
-#include <cstring> //+
 
 //#define ONDEBUG
 
@@ -35,23 +28,26 @@ public:
     ~Picture();
 
     void render(int x, int y);
-    void render(int x, int y, float scaleX, float scaleY, float shearX, float shearY, float rotate);
+    void render(int x, int y, float scaleX, 
+                float scaleY, float shearX, 
+                float shearY, float rotate
+               );
     //
 
     int Get_width();
     int Get_height();
 
-    void getPixels(int x, int y, int w, int h, unsigned long *pixels);
-    void setPixels(int x, int y, int w, int h, unsigned long *pixels);
+    void GetPixels(int x, int y, int w, int h, unsigned long *pixels);
+    void SetPixels(int x, int y, int w, int h, unsigned long *pixels);
 
-    void setScale(float scaleX, float scaleY);
+    void Set_Scale(float scaleX, float scaleY);
 
-    int getColor(float r, float g, float b, float alpha);
-    int getColor(int r, int g, int b, int alpha);
-    float getRed(int color);
-    float getGreen(int color);
-    float getBlue(int color);
-    float getAlpha(int color);
+    int GetColor(float r, float g, float b, float alpha);
+    int GetColor(int r, int g, int b, int alpha);
+    float GetRedColor(int color);
+    float GetGreenColor(int color);
+    float GetBlueColor(int color);
+    float GetAlphaColor(int color);
 private:
     int width, height;
     float scaleX, scaleY;
@@ -61,9 +57,9 @@ private:
 
     PictureType GetPictureType(const char *Path);
 
-    VGImage createImageFromPNG(const char *path);
-    void createImageFromJPG(const char *path);
-    VGImage createImageFromJpeg(const char *filename);
+    VGImage m_CreateImageFromPNG(const char *path);
+    void m_CreateImageFromJPG(const char *path);
+    VGImage m_CreateImageFromJpeg(const char *filename);
 
 };
 
@@ -96,19 +92,19 @@ private:
 
             //	if you want to use all pixels of image
             unsigned int *pixels = new unsigned int[image2->Get_width() * image2->Get_height()];
-            image2->getPixels(0, 0, image2->Get_width(), image2->Get_height(), pixels);
+            image2->GetPixels(0, 0, image2->Get_width(), image2->Get_height(), pixels);
 
             //	if just some part of image 150 X 150
             // unsigned int *pixels = new unsigned int[150 * 150];
-            // image2->getPixels(0, 0, 150, 150, pixels);
+            // image2->GetPixels(0, 0, 150, 150, pixels);
 
             //	change some pixel color
             for (int i = 0; i < image2->Get_width() * image2->Get_height(); i++)
             {
-                if (pixels[i] == Picture::getColor(252, 155, 16, 255)) pixels[i] = Picture::getColor(41, 128, 21, 255);
-                if (pixels[i] == Picture::getColor(255, 255, 255, 255)) pixels[i] = Picture::getColor(5, 32, 58, 255);
+                if (pixels[i] == Picture::GetColor(252, 155, 16, 255)) pixels[i] = Picture::GetColor(41, 128, 21, 255);
+                if (pixels[i] == Picture::GetColor(255, 255, 255, 255)) pixels[i] = Picture::GetColor(5, 32, 58, 255);
             }
-            image2->setPixels(0, 0, image2->Get_width(), image2->Get_height(), pixels);
+            image2->SetPixels(0, 0, image2->Get_width(), image2->Get_height(), pixels);
             delete[] pixels;
 
 

@@ -4,7 +4,7 @@
 #define SMART_RTU_SRC_LIB_FONTS_FTF_H_
 
 #include "ft2build.h"/*‘FT_Done_FreeType’*/
-//needed stuff for library work
+//needed stuff for library to work
 #include FT_FREETYPE_H
 #include FT_OUTLINE_H
 #define NGLYPHS 2000

@@ -29,15 +29,11 @@ const int SOCKETS_PINS[SOCKETS_COUNT] = {8, 9, 7, 0};
 class WgSockets 
 : public IWidget
 {
-private:
-    int m_widget_id;
-    bool m_current_states[SOCKETS_COUNT]; //holds current state of pin(on/off )
-
 public:
     ~WgSockets();
     WgSockets();
     bool update()override;
-    void render()override {}
+    void render()override;//empty
     bool IsVisible() override { return false; };
     void GetRect(int &x, int &y, int &w, int &h)
     {
@@ -50,6 +46,11 @@ public:
         this->m_widget_id = m_widget_id; 
         }
     int Get_widget_update_time()override { return 1000; } //1000ms = 1 time / sec
+
+private:
+    int m_widget_id;
+    bool m_current_states[SOCKETS_COUNT]; //holds current state of pin(on/off )
+
 };
 
 #endif /*SMART_RTU_SRC_WIDGETS_WGSOCKETS_H__*/

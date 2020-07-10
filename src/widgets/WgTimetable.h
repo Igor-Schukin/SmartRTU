@@ -16,8 +16,8 @@ class WgTimetable : public IWidget {
 public:
   ~WgTimetable();
   WgTimetable();
-  bool update();
-  void render() {}
+  bool update()override;
+  void render()override;
   bool IsVisible() override { return false; };
   void GetRect(int &x, int &y, int &w, int &h) {
     x = 0;

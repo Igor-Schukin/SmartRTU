@@ -28,3 +28,7 @@ bool WgWatchdog::update() {
              (watchdog_dest + "/" + watchdog_name).c_str()));
   return false;
 }
+
+void WgWatchdog::render() {
+//emty    
+}

@@ -36,7 +36,7 @@ public:
   void SetFillColor(WgColor c); // set m_color of block with command Fill
   void SetTextColor(WgColor c); // set m_color of text
 
-  void GetRect(int &left, int &bottom, int &width, int &height);
+  void GetRect(int &left, int &bottom, int &width, int &height)override;
   void render() override;
   bool update() override { return false; };
   bool IsVisible() override { return true; };

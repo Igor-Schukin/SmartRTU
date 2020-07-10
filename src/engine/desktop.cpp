@@ -16,7 +16,8 @@
 Desktop * desktop;
 
 Desktop::Desktop( int scr_width, int scr_height )
-:screen_width(scr_width),screen_height(scr_height)
+    :screen_width(scr_width),
+    screen_height(scr_height)
 {
     //screen_width = scr_width;
     //screen_height = scr_height;
@@ -32,10 +33,10 @@ Desktop::Desktop( int scr_width, int scr_height )
     config->Get("DESKTOP_LEFT_FIELD",left_field);
     config->Get("DESKTOP_RIGHT_FIELD",right_field);
 
-    DwRect.left = screen_width * left_field; 
-    DwRect.bottom = screen_height * bottom_field;
-    DwRect.right = screen_width * ( 1 - right_field );
-    DwRect.top = screen_height * ( 1 - top_field );
+    DwRect.left = static_cast<int>(screen_width * left_field); 
+    DwRect.bottom = static_cast<int>(screen_height * bottom_field);
+    DwRect.right = static_cast<int>(screen_width * ( 1 - right_field ));
+    DwRect.top = static_cast<int>(screen_height * ( 1 - top_field ));
     DwRect.width = DwRect.right - DwRect.left;
     DwRect.height = DwRect.top - DwRect.bottom;
 
@@ -47,7 +48,7 @@ Desktop::Desktop( int scr_width, int scr_height )
     std::cout<<StrNow()<<"\tDesktop size "
     <<screen_width<<" x "<<screen_height<<", widgets area size "
     <<DwRect.width<<" x "<<DwRect.height<<"\n";
-};
+}
 
 Desktop::~Desktop() { 
 

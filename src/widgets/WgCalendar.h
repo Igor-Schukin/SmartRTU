@@ -10,7 +10,9 @@
 #include "WgBackground.h"
 #include <string>/*string*/
 
-class WgCalendar : public WgBackground {
+class WgCalendar
+ : public WgBackground 
+ {
 
 public:
   WgCalendar(int AposX, int AposY, WgMode Amode);

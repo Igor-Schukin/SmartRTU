@@ -7,16 +7,30 @@
 #include "CPicturesStorage.h"  /*picture storage obj*/
 #include "configurator.h"      /*config*/
 
-WgBackground::WgBackground(int a_pos_x, int a_pos_y, WgMode Amode) 
-:m_pos_x(a_pos_x),
-m_pos_y(a_pos_y),
-m_widget_mode(Amode),
-m_shadows_on(true)
-{
 
- // m_pos_x = pos_x;          // horizontal position in the grid
- // m_pos_y = pos_y;          // vertical position in the grid
-  //m_widget_mode = Amode;
+const struct {
+  unsigned int r, g, b;
+} Colors[] = {
+    {255, 255, 255}, // clWhite
+    {0, 121, 194},   // clBlue
+    {37, 196, 166},  // clCyan
+    {139, 209, 93},  // clGreen
+    {0, 185, 241},   // clHighBlue
+    {139, 91, 164},  // clHighPurple
+    {201, 208, 34},  // clLazyYellow
+    {240, 115, 30},  // clOrange
+    {183, 46, 145},  // clPurple
+    {255, 200, 50},  // clYellow
+    {0, 85, 81}      // clHaki
+};
+
+
+WgBackground::WgBackground(int a_pos_x, int a_pos_y, WgMode Amode) 
+: m_pos_x(a_pos_x), // horizontal position in the grid
+  m_pos_y(a_pos_y),// vertical position in the grid
+  m_widget_mode(Amode),
+  m_shadows_on(true)
+{
   m_widget_update_time = 0; // never
   m_color = WgColor(1 + rand() % 10);//????????
 
@@ -70,22 +84,6 @@ m_shadows_on(true)
 WgBackground::~WgBackground() {
 
 }
-
-const struct {
-  unsigned int r, g, b;
-} Colors[] = {
-    {255, 255, 255}, // clWhite
-    {0, 121, 194},   // clBlue
-    {37, 196, 166},  // clCyan
-    {139, 209, 93},  // clGreen
-    {0, 185, 241},   // clHighBlue
-    {139, 91, 164},  // clHighPurple
-    {201, 208, 34},  // clLazyYellow
-    {240, 115, 30},  // clOrange
-    {183, 46, 145},  // clPurple
-    {255, 200, 50},  // clYellow
-    {0, 85, 81}      // clHaki
-};
 
 void WgBackground::SetTextColor(WgColor c) {
   

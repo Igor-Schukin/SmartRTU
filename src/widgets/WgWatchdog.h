@@ -10,8 +10,8 @@ class WgWatchdog : public IWidget {
 public:
   ~WgWatchdog();
   WgWatchdog();
-  bool update();
-  void render() {}
+  bool update()override;
+  void render()override;
   bool IsVisible() override { return false; };
   void GetRect(int &x, int &y, int &w, int &h) {
     x = 0;

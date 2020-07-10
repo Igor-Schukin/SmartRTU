@@ -1,10 +1,21 @@
 #include "Picture.h"
+
+#include <cstring> //strcpy
+#include <cstdio>//printf
+#include <cstdlib>//malloc
+
+extern "C"{
+#include "png.h"//need be above jpeglib.h otherwise compilating error #1
+#include <jpeglib.h>//need png.h be up or otherwise error mising <cstdef> lib #2 
+}
+
+
 #define MAX_SIGNATURE_LENGTH 10
 //#include <string.h> //FIX
 
 //#define BREV(b) ((b) >> 24 | (b) << 24 | ((b) & 0x00FF0000) >> 8 | ((b) & 0x0000FF00 ) << 8)
 
-VGImage Picture::createImageFromPNG(const char *path)
+VGImage Picture::m_CreateImageFromPNG(const char *path)
 {
     unsigned char header[8];
 
@@ -121,8 +132,8 @@ VGImage Picture::createImageFromPNG(const char *path)
     {
         for (int y = 0; y < height; y++)
         {
-            pixels[x + y * width] = getColor(getRed(pixels[x + y * width]),
-                                             getGreen(pixels[x + y * width]), getBlue(pixels[x + y * width]), getAlpha(pixels[x + y * width]));
+            pixels[x + y * width] = GetColor(GetRedColor(pixels[x + y * width]),
+                                             GetGreenColor(pixels[x + y * width]), GetBlueColor(pixels[x + y * width]), GetAlphaColor(pixels[x + y * width]));
         }
     }
 
@@ -134,12 +145,12 @@ VGImage Picture::createImageFromPNG(const char *path)
     return img;
 }
 
-float Picture::getBlue(int color) { return (0xff & (color >> 24)) / 255.0; } // vozvrat ot 0.0 do 1.0
-float Picture::getGreen(int color) { return (0xff & (color >> 16)) / 255.0; }
-float Picture::getRed(int color) { return (0xff & (color >> 8)) / 255.0; }
-float Picture::getAlpha(int color) { return (0xff & color) / 255.0; }
+float Picture::GetBlueColor(int color) { return (0xff & (color >> 24)) / 255.0; } // vozvrat ot 0.0 do 1.0
+float Picture::GetGreenColor(int color) { return (0xff & (color >> 16)) / 255.0; }
+float Picture::GetRedColor(int color) { return (0xff & (color >> 8)) / 255.0; }
+float Picture::GetAlphaColor(int color) { return (0xff & color) / 255.0; }
 
-int Picture::getColor(float r, float g, float b, float alpha) // vozvrat v 15-4noj sisteme
+int Picture::GetColor(float r, float g, float b, float alpha) // vozvrat v 15-4noj sisteme
 {
     return ((int)((float)r * 255.0 + 0.5) << 24 |
             (int)((float)g * 255.0 + 0.5) << 16 |
@@ -147,16 +158,16 @@ int Picture::getColor(float r, float g, float b, float alpha) // vozvrat v 15-4n
             (int)((float)alpha * 255.0 + 0.5));
 }
 
-void Picture::createImageFromJPG(const char *path)
+void Picture::m_CreateImageFromJPG(const char *path)
 {
-    finImg = createImageFromJpeg(path);
+    finImg = m_CreateImageFromJpeg(path);
     width = vgGetParameteri(finImg, VG_IMAGE_WIDTH);
     height = vgGetParameteri(finImg, VG_IMAGE_HEIGHT);
 }
 
-// createImageFromJpeg decompresses a JPEG image to the standard image format
+// m_CreateImageFromJpeg decompresses a JPEG image to the standard image format
 // source: https://github.com/ileben/ShivaVG/blob/master/examples/test_image.c
-VGImage Picture::createImageFromJpeg(const char *filename)
+VGImage Picture::m_CreateImageFromJpeg(const char *filename)
 {
     FILE *infile;
     struct jpeg_decompress_struct jdc;
@@ -234,11 +245,13 @@ VGImage Picture::createImageFromJpeg(const char *filename)
                 drow[3] = brow[3];
                 break;
             case 3:
+            {
                 drow[0] = brow[0];
                 drow[1] = brow[1];
                 drow[2] = brow[2];
                 drow[3] = 255;
                 break;
+            }
             }
         }
     }
@@ -359,7 +372,7 @@ Picture::Picture(const char *path)
     {
     case picJPG:
     {
-        createImageFromJPG(path);
+        m_CreateImageFromJPG(path);
 
 #ifdef ONDEBUG
         printf("File contains picture in JPG format\n");
@@ -368,7 +381,7 @@ Picture::Picture(const char *path)
     }
     case picPNG:
     {
-        finImg = createImageFromPNG(path);
+        finImg = m_CreateImageFromPNG(path);
 
 #ifdef ONDEBUG
         printf("File contains picture in PNG format\n");
@@ -401,7 +414,7 @@ int Picture::Get_height()
     return height;
 }
 
-void Picture::getPixels(int x, int y, int w, int h, unsigned long *pixels)
+void Picture::GetPixels(int x, int y, int w, int h, unsigned long *pixels)
 {
 
     if (finImg != VG_INVALID_HANDLE)
@@ -424,6 +437,7 @@ void Picture::getPixels(int x, int y, int w, int h, unsigned long *pixels)
         unsigned long *pix = new unsigned long[width * height];
         vgGetImageSubData(finImg, pix, width * 4, VG_lRGBA_8888, 0, 0, width, height);
 
+            //FIXME //left operand of comma operator has no effect [-Wunused-value]
         for (int i = x, a = 0; i < x + w, a < w; i++, a++)
         {
             for (int j = y, b = 0; j < y + h, b < h; j++, b++)
@@ -435,7 +449,7 @@ void Picture::getPixels(int x, int y, int w, int h, unsigned long *pixels)
     }
 }
 
-void Picture::setPixels(int x, int y, int w, int h, unsigned long *pixels)
+void Picture::SetPixels(int x, int y, int w, int h, unsigned long *pixels)
 {
     if (finImg != VG_INVALID_HANDLE)
     {
@@ -470,12 +484,12 @@ void Picture::setPixels(int x, int y, int w, int h, unsigned long *pixels)
     }
 }
 
-int Picture::getColor(int r, int g, int b, int alpha)
+int Picture::GetColor(int r, int g, int b, int alpha)
 {
     return (r << 24 | g << 16 | b << 8 | alpha);
 }
 
-void Picture::setScale(float scaleX, float scaleY)
+void Picture::Set_Scale(float scaleX, float scaleY)
 {
     this->scaleX = scaleX;
     this->scaleY = scaleY;

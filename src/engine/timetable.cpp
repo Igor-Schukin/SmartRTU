@@ -183,18 +183,21 @@ Timetable::Timetable()
         i >> sch;
 
         json &week = sch["week"];
-        for (int wd = 0; wd < 7; wd++)
+        for (int wd = 0; wd < 7; wd++){
             Week[wd] = new TimetableWeekDay(week[itoa(wd + 1)], sch["defaults"]);
+        }
 
         json &singles = sch["singles"];
         SinglesCount = singles.size();
         if (SinglesCount)
         {
             Singles = new TimetableDay *[SinglesCount];
-            for (int sd = 0; sd < SinglesCount; sd++)
+            for (int sd = 0; sd < SinglesCount; sd++){
                 Singles[sd] = nullptr;
-            for (int sd = 0; sd < SinglesCount; sd++)
+            }
+            for (int sd = 0; sd < SinglesCount; sd++){
                 Singles[sd] = new TimetableDay(singles[sd], sch["defaults"]);
+            }
         }
 
         json &holidays = sch["holidays"];
@@ -202,10 +205,12 @@ Timetable::Timetable()
         if (HolidaysCount)
         {
             Holidays = new TimetableDate *[HolidaysCount];
-            for (int i = 0; i < HolidaysCount; i++)
+            for (int i = 0; i < HolidaysCount; i++){
                 Holidays[i] = nullptr;
-            for (int i = 0; i < HolidaysCount; i++)
+            }
+            for (int i = 0; i < HolidaysCount; i++){
                 Holidays[i] = new TimetableDate(holidays[i]);
+            }
         }
 
         json &calendar = sch["calendar"];
@@ -232,19 +237,26 @@ Timetable::Timetable()
             for (int soc = 1, i = 0; soc <= 4; soc++)
                 if (sockets[std::to_string(soc).c_str()].size())
                 {
-                    Sockets[i++] = new TimetableSocket(sockets[std::to_string(soc).c_str()], soc);
+                    Sockets[i++] = new TimetableSocket(
+                        sockets[std::to_string(soc).c_str()], soc
+                        );
                 }
         }
-        std::cout<<StrNow()<<"\tTimetable is loaded from "<<(m_time_table_dest+"/"+m_time_table_name)<<":\n";
-        std::cout<<"\t\t\t\t"<<CalendarCount<<" date ranges of academic calendar\n";
+        std::cout<<StrNow()<<"\tTimetable is loaded from "
+            <<(m_time_table_dest+"/"+m_time_table_name)<<":\n";
+        std::cout<<"\t\t\t\t"<<CalendarCount
+            <<" date ranges of academic calendar\n";
         std::cout<<"\t\t\t\t"<<HolidaysCount<<" holidays\n";
         std::cout<<"\t\t\t\t7 lectures scheles for week days\n";
-        std::cout<<"\t\t\t\t"<<SinglesCount<<" lectures schedules for standalone dates\n";
-        std::cout<<"\t\t\t\t"<<SocketsCount<<" schedules for power sockets control\n";
+        std::cout<<"\t\t\t\t"<<SinglesCount
+            <<" lectures schedules for standalone dates\n";
+        std::cout<<"\t\t\t\t"<<SocketsCount
+            <<" schedules for power sockets control\n";
     }
     catch (...)
     {
-        std::cerr<<StrNow()<<"\tError loading timetable JSON from "<<(m_time_table_dest+"/"+m_time_table_name)<<"\n";
+        std::cerr<<StrNow()<<"\tError loading timetable JSON from "
+            <<(m_time_table_dest+"/"+m_time_table_name)<<"\n";
         throw;
     }
 }
@@ -253,36 +265,47 @@ Timetable::Timetable()
 
 Timetable::~Timetable()
 {
-    for (int i = 0; i < 7; i++)
-        if (Week[i])
+    for (int i = 0; i < 7; ++i){
+        if (Week[i]){
             delete Week[i];
+        }
+    }
+    
     if (Singles)
     {
-        for (int i = 0; i < SinglesCount; i++)
-            if (Singles[i])
+        for (int i = 0; i < SinglesCount; ++i){
+            if (Singles[i]){
                 delete Singles[i];
+            }
+        }
         delete[] Singles;
     }
 
     if (Holidays)
     {
-        for (int i = 0; i < HolidaysCount; i++)
-            if (Holidays[i])
+        for (int i = 0; i < HolidaysCount; ++i){
+            if (Holidays[i]){
                 delete Holidays[i];
+            }
+        }
         delete[] Holidays;
     }
     if (Calendar)
     {
-        for (int i = 0; i < CalendarCount; i++)
-            if (Calendar[i])
+        for (int i = 0; i < CalendarCount; ++i){
+            if (Calendar[i]){
                 delete Calendar[i];
+            }
+        }
         delete[] Calendar;
     }
     if (Sockets)
     {
-        for (int i = 0; i < SocketsCount; i++)
-            if (Sockets[i])
+        for (int i = 0; i < SocketsCount; i++){
+            if (Sockets[i]){
                 delete Sockets[i];
+            }
+        }
         delete[] Sockets;
     }
 }
@@ -299,10 +322,11 @@ TimeState Timetable::GetCurrentTimeState(int &secToEnd, int &lectNumber)
     int week;
     DateState day = GetCurrentDateState(week);
 
-    if (day == dsSession)
-        return tsSession;
-    if (day == dsVacation || day == dsHoliday)
+    if (day == dsSession){
+        return tsSession;}
+    if (day == dsVacation || day == dsHoliday){
         return tsFree;
+    }
 
     int count = 0;
     TimetableLecture **lectures = nullptr;
@@ -386,9 +410,11 @@ TimeState Timetable::GetCurrentTimeState(int &secToEnd, int &lectNumber)
 
 int Timetable::getHoliday(struct tm now)
 {
-    for (int i = 0; i < HolidaysCount; i++)
-        if (*Holidays[i] == now)
+    for (int i = 0; i < HolidaysCount; ++i){
+        if (*Holidays[i] == now){
             return i;
+        }
+    }
     return -1;
 }
 
@@ -440,8 +466,9 @@ DateState Timetable::GetCurrentDateState(int &weekNumber)
 
     //~~~ holidays
 
-    if (getHoliday(now) >= 0)
+    if (getHoliday(now) >= 0){
         return dsHoliday;
+    }
 
     //~~~ semesters and sessions
 
@@ -465,7 +492,7 @@ DateState Timetable::GetCurrentDateState(int &weekNumber)
                 return dsSemester;
             case TimetableDateRange::drSession:
                 return dsSession;
-            case TimetableDateRange::drUnknown:  //FIXME
+            case TimetableDateRange::drUnknown: 
                 return dsUnknown;
             }
         }
@@ -476,30 +503,44 @@ DateState Timetable::GetCurrentDateState(int &weekNumber)
     {
         weekNumber = m_GetWeekNumber(Calendar[CalendarCount - 1]->end, now);
     }
-    else
+    else {
+        for (int i = 1; i < CalendarCount; i++){
+            if (now > Calendar[i - 1]->end && now < Calendar[i]->begin){
+                weekNumber = m_GetWeekNumber(Calendar[i - 1]->end + 1, now);
+            }
+        }
+    }
+    return dsVacation;
+    /* //this crap was before
+        else
         for (int i = 1; i < CalendarCount; i++)
             if (now > Calendar[i - 1]->end && now < Calendar[i]->begin)
             {
                 weekNumber = m_GetWeekNumber(Calendar[i - 1]->end + 1, now);
             }
-    return dsVacation;
+        return dsVacation;
+    */
 }
 
 bool Timetable::GetCurrentSocketState(int Socket)
 {
-    if (!Sockets)
+    if (!Sockets){
         return false;
-    for (int i = 0; i < SocketsCount; i++)
+    }
+    for (int i = 0; i < SocketsCount; ++i){
         if (Sockets[i]->socket == Socket)
         {
             struct tm now = makeNow();
             int w;
-            if (GetCurrentDateState(w) == dsHoliday)
+            if (GetCurrentDateState(w) == dsHoliday){
                 return Sockets[i]->holidays ? Sockets[i]->holidays->isSwitchedOn(now) : false;
-            if (now.tm_wday == 0)
+            }
+            if (now.tm_wday == 0){
                 return Sockets[i]->sundays ? Sockets[i]->sundays->isSwitchedOn(now) : false;
+            }
             return Sockets[i]->weekdays ? Sockets[i]->weekdays->isSwitchedOn(now) : false;
-            ;
+            
         }
+    }
     return false;
 }

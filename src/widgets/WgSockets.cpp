@@ -40,3 +40,7 @@ bool WgSockets::update()
     }
     return false;
 }
+
+void WgSockets::render(){
+    
+}

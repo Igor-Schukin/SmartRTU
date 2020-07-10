@@ -5,7 +5,7 @@
 #include <cfloat>
 #include <cstring>
 
-Vector2::Vector2(){};
+Vector2::Vector2(){}
 Vector2::Vector2(float px, float py)
 {
 	x = px;
@@ -162,16 +162,20 @@ bool LoadFTFont(const char *FileName,
 				s = e;
 			}
 
-			for (std::size_t i = 0; i < pvec.size(); ++i) //changed int to std::size_t 
+			for (std::size_t i = 0; i < pvec.size(); ++i) 
 			{
-				if (pvec[i].x < minx)
+				if (pvec[i].x < minx){
 					minx = pvec[i].x;
-				if (pvec[i].x > maxx)
+				}
+				if (pvec[i].x > maxx){
 					maxx = pvec[i].x;
-				if (pvec[i].y < miny)
+				}
+				if (pvec[i].y < miny){
 					miny = pvec[i].y;
-				if (pvec[i].y > maxy)
+				}
+				if (pvec[i].y > maxy){
 					maxy = pvec[i].y;
+				}
 			}
 			if (!pvec.size())
 			{
@@ -215,8 +219,9 @@ bool LoadFTFont(const char *FileName,
 			Map[cc] = glyphs++;
 		}
 	}
-	if (!glyphs)
+	if (!glyphs){
 		return false;
+	}
 
 	//instructions
 	int givec_size = givec.size();

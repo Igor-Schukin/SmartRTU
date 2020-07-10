@@ -15,16 +15,16 @@ CPicturesStorage::CPicturesStorage()
 	config->Get("PIC_TITLE",m_title_pic_name);
 
 
-	this->addPic();
+	this->m_AddPic();
 	//arialBold = new TFont("lib/TFont/ArialBold.ttf");
 }
 
 CPicturesStorage::~CPicturesStorage()
 {
-	this->cleanStorage();
+	this->m_CleanStorage();
 }
 
-void CPicturesStorage::addPic()
+void CPicturesStorage::m_AddPic()
 {
 	Logo = new Picture((m_pictures_path+"/"+m_title_pic_name).c_str());
 	ScreenBackgroud = new Picture((m_pictures_path+"/"+m_background_pic_name).c_str());
@@ -40,7 +40,7 @@ void CPicturesStorage::addPic()
 	WgShadows->r = new Picture((m_shadows_path+"/"+"sRight.png").c_str());
 }
 
-void CPicturesStorage::cleanStorage()
+void CPicturesStorage::m_CleanStorage()
 {
 	delete ScreenBackgroud;
 	delete WgShadows->t;

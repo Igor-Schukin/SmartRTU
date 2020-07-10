@@ -16,9 +16,12 @@
 time_t WgTimetable::m_GetFileTime()
 {
     struct stat buff;
-    if (stat((m_timetable_dest+"/"+m_timetable_name).c_str(), &buff) == 0)
+    if (stat((m_timetable_dest+"/"+m_timetable_name).c_str(), &buff) == 0){
         return buff.st_mtime;
+    }
+    else{
     return 0;
+    }
 }
 
 WgTimetable::WgTimetable()
@@ -56,4 +59,8 @@ bool WgTimetable::update()
         engine->ForceUpdate();
     }
     return false;
+}
+
+void WgTimetable::render() {
+    //empty
 }
