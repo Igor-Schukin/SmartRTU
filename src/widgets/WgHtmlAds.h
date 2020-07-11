@@ -72,7 +72,7 @@ private:
   std::string m_full_path_to_project_exe; // cutycapt need full path to exe
                                           // otherwise it wont work
 
-  Picture *m_advert_pic;       // Pointer where image will be stored
+  Picture *m_advert_pic;       
   std::time_t m_file_time = 0; // last timestamp then file was edited
 
   float m_image_scale_by_width = 0;
@@ -81,6 +81,7 @@ private:
   //~thread variables
   std::future<void> m_future; // is handle of  new async thread //not so good to
                               // use void but....
+                              
   // stored status of thread //probably can avoid it
   std::future_status m_thread_status; 
 

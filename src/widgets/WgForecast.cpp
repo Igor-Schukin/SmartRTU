@@ -185,16 +185,7 @@ void WgForecast::m_RenderMode2()
 
 void WgForecast::m_RenderMode3() // need to debug
 {
-	/*
-	FontStorage->GetFont((char*)"arialBold")->Set_Size(desktop->row_height/5);
-	FontStorage->GetFont((char*)"arialBold")->TextMid("Veišs:", RectClient.left + (desktop->colum_width/2),
-		RectClient.top - desktop->row_height - (desktop->row_height/5/2));
-	SetTextColor(m_color);
-	FontStorage->GetFont((char*)"arialBold")->Set_Size(desktop->row_height/2.8);
-	FontStorage->GetFont((char*)"arialBold")->TextMid(m_wind_speed, RectClient.left + (desktop->colum_width/2.5),
-		RectClient.top - desktop->row_height - desktop->row_height/16*11);
-	PicStorage->Arrow->render(RectClient.left + (desktop->colum_width/1.3), RectClient.top - desktop->row_height - desktop->row_height/1.4, 1, 1, 0,0,-m_wind_degree);
-	*/
+
 }
 
 void WgForecast::render()

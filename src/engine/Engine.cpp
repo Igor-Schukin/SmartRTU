@@ -59,8 +59,7 @@ Engine::~Engine()
 
 void Engine::start()
 {
-	if (!m_is_running)
-		run();
+	if (!m_is_running)run();
 }
 
 void Engine::run()
@@ -71,7 +70,6 @@ void Engine::run()
 	LongTimeMs lastRender = 0;
 	LongTimeMs lastDebug = 0;
 	LongTimeMs lastFlush = 0;
-	//LongTimeMs t = 0; //not used variable
 	int fps = 0;
 
 	this->ForceUpdate();
@@ -168,32 +166,3 @@ void Engine::render(bool All)
 
 	End();
 }
-
-/*
-int Engine::kbhit(void)
-{
-	struct termios oldt, newt;
-	int ch;
-	int oldf;
-
-	tcgetattr(STDIN_FILENO, &oldt);
-	newt = oldt;
-	newt.c_lflag &= ~(ICANON | ECHO);
-	tcsetattr(STDIN_FILENO, TCSANOW, &newt);
-	oldf = fcntl(STDIN_FILENO, F_GETFL, 0);
-	fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);
-
-	ch = getchar();
-
-	tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
-	fcntl(STDIN_FILENO, F_SETFL, oldf);
-
-	if(ch != EOF)
-	{
-		ungetc(ch, stdin);	
-		m_is_running = false;		
-		return 1;
-	}
-	return 0;
-}
-*/

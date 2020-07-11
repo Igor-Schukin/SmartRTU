@@ -89,40 +89,11 @@ void WgBackground::SetTextColor(WgColor c) {
   
   FontStorage->GetFont(const_cast<char *>(m_base_font_name.c_str()))
       ->Set_Color(Colors[c].r, Colors[c].g, Colors[c].b);
-  /*
-  if (c==clBlue) FontStorage->GetFont((char*)"arialBold")->Set_Color(0,121,194);
-  else if (c==clCyan)
-  FontStorage->GetFont((char*)"arialBold")->Set_Color(37,196,166); else if
-  (c==clGreen) FontStorage->GetFont((char*)"arialBold")->Set_Color(139,209,93);
-  else if (c==clHighBlue)
-  FontStorage->GetFont((char*)"arialBold")->Set_Color(0,185,241); else if
-  (c==clHighPurple)
-  FontStorage->GetFont((char*)"arialBold")->Set_Color(139,91,164); else if
-  (c==clLazyYellow)
-  FontStorage->GetFont((char*)"arialBold")->Set_Color(201,208,34); else if
-  (c==clOrange) FontStorage->GetFont((char*)"arialBold")->Set_Color(240,115,30);
-  else if (c==clPurple)
-  FontStorage->GetFont((char*)"arialBold")->Set_Color(183,46,145); else if
-  (c==clYellow) FontStorage->GetFont((char*)"arialBold")->Set_Color(255,200,50);
-  else if (c==clHaki) FontStorage->GetFont((char*)"arialBold")->Set_Color(0, 85,
-  81);
-*/
+
 }
 
 void WgBackground::SetFillColor(WgColor c) {
   Fill(Colors[c].r, Colors[c].g, Colors[c].b, 1);
-  /*
-  if (c==clWhite) Fill(255,255,255,1);
-  else if (c==clBlue) Fill(0,121,194,1);
-  else if (c==clCyan) Fill(37,196,166,1);
-  else if (c==clGreen) Fill(139,209,93,1);
-  else if (c==clHighBlue) Fill(0,185,241,1);
-  else if (c==clHighPurple) Fill(139,91,164,1);
-  else if (c==clLazyYellow) Fill(201,208,34,1);
-  else if (c==clOrange) Fill(240,115,30,1);
-  else if (c==clPurple) Fill(183,46,145,1);
-  else if (c==clYellow) Fill(255,200,50,1);
-*/
 }
 
 void WgBackground::render() {

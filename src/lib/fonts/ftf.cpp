@@ -5,6 +5,12 @@
 #include <cfloat>
 #include <cstring>
 
+//https://en.wikipedia.org/wiki/16-bit_computing
+//https://www3.ntu.edu.sg/home/ehchua/programming/java/datarepresentation.html
+//http://www.cs.uu.nl/docs/vakken/mov/slides/lecture11%20-%20fixed%20point.pdf
+constexpr float  SIXTEEN_BITS_FR = 65536.0f;// FR- fractional
+constexpr float TWELWE_BITS_FR = 4096.0f;// FR- fractional
+
 Vector2::Vector2(){}
 Vector2::Vector2(float px, float py)
 {
@@ -16,7 +22,7 @@ Vector2 operator*(const Vector2 &a, float b) { return Vector2(a.x * b, a.y * b);
 
 float ConvertFTFixed(const FT_Pos &x)
 {
-	return (float)x / 4096.0f;
+	return (float)x / TWELWE_BITS_FR;
 }
 
 Vector2 ConvertFTVector(const FT_Vector &v)
@@ -110,7 +116,8 @@ bool LoadFTFont(const char *FileName,
 			FT_Outline &outline = face->glyph->outline;
 			std::vector<Vector2> pvec;
 			std::vector<unsigned char> ivec;
-			float minx = 10000000.0f, miny = 100000000.0f, maxx = -10000000.0f, maxy = -10000000.0f;
+			float minx = 10000000.0f, miny = 100000000.0f;
+			float maxx = -10000000.0f, maxy = -10000000.0f;
 			int s = 0, e;
 			bool on;
 			Vector2 last, v, nv;
@@ -226,49 +233,49 @@ bool LoadFTFont(const char *FileName,
 	//instructions
 	int givec_size = givec.size();
 	Ins = new unsigned char[givec_size];
-	for (int i = 0; i < givec_size; i++)
+	for (int i = 0; i < givec_size; ++i)
 	{
 		Ins[i] = givec[i];
 	}
 
 	int givecindices_size = givecindices.size();
 	InsInd = new int[givecindices_size];
-	for (int i = 0; i < givecindices_size; i++)
+	for (int i = 0; i < givecindices_size; ++i)
 	{
 		InsInd[i] = givecindices[i];
 	}
 
 	int givecsizes_size = givecsizes.size();
 	InsCnt = new int[givecsizes_size];
-	for (int i = 0; i < givecsizes_size; i++)
+	for (int i = 0; i < givecsizes_size; ++i)
 	{
 		InsCnt[i] = givecsizes[i];
 	}
 
 	int gpvecindices_size = gpvecindices.size();
 	PtInd = new int[gpvecindices_size];
-	for (int i = 0; i < gpvecindices_size; i++)
+	for (int i = 0; i < gpvecindices_size; ++i)
 	{
 		PtInd[i] = gpvecindices[i];
 	}
 
 	int gpvec_size = gpvec.size();
 	Pt = new int[gpvec_size * 2];
-	for (int i = 0; i < gpvec_size; i++)
+	for (int i = 0; i < gpvec_size; ++i)
 	{
-		Pt[i * 2] = 65536.0f * gpvec[i].x;
-		Pt[i * 2 + 1] = 65536.0f * gpvec[i].y;
+		Pt[i * 2] = SIXTEEN_BITS_FR * gpvec[i].x;
+		Pt[i * 2 + 1] = SIXTEEN_BITS_FR * gpvec[i].y;
 	}
 
 	int advances_size = advances.size();
 	Adv = new int[advances_size];
-	for (int i = 0; i < advances_size; i++)
+	for (int i = 0; i < advances_size; ++i)
 	{
-		Adv[i] = advances[i] * 65536.0f;
+		Adv[i] = advances[i] * SIXTEEN_BITS_FR;
 	}
 
-	DescenderHeight = 65536.0f * global_miny;
-	FontHeight = 65536.0f * global_maxy;
+	DescenderHeight = SIXTEEN_BITS_FR * global_miny;
+	FontHeight = SIXTEEN_BITS_FR * global_maxy;
 
 	Count = glyphs;
 

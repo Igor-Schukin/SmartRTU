@@ -4,24 +4,13 @@
 
 #include "Timer.h"/*strNow*/
 #include "configurator.h"//config
-/*
-#define GRID_VERTICAL   8 //10
-#define GRID_HORIZONTAL 4 //6
 
-#define TOP_FIELD       0.15
-#define BOTTOM_FIELD    0.05
-#define LEFT_FIELD      0.05
-#define RIGHT_FIELD     0.05
-*/
 Desktop * desktop;
 
 Desktop::Desktop( int scr_width, int scr_height )
     :screen_width(scr_width),
     screen_height(scr_height)
 {
-    //screen_width = scr_width;
-    //screen_height = scr_height;
-
     int grid_vertical,grid_horizontal;
     double top_field,bottom_field,left_field,right_field;
 

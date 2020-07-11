@@ -511,15 +511,6 @@ DateState Timetable::GetCurrentDateState(int &weekNumber)
         }
     }
     return dsVacation;
-    /* //this crap was before
-        else
-        for (int i = 1; i < CalendarCount; i++)
-            if (now > Calendar[i - 1]->end && now < Calendar[i]->begin)
-            {
-                weekNumber = m_GetWeekNumber(Calendar[i - 1]->end + 1, now);
-            }
-        return dsVacation;
-    */
 }
 
 bool Timetable::GetCurrentSocketState(int Socket)
