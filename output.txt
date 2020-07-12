@@ -1,29 +1,33 @@
-12.06.2020 17:35:10	***** INFOBORAD engine started
-12.06.2020 17:35:10	Config loaded successfully
-12.06.2020 17:35:10	Timetable is loaded from ./res/timetable.json:
+12.06.2020 20:00:53	***** INFOBORAD engine started
+12.06.2020 20:00:53	Config loaded successfully
+12.06.2020 20:00:53	Timetable is loaded from ./res/timetable.json:
 				5 date ranges of academic calendar
 				11 holidays
 				7 lectures scheles for week days
 				16 lectures schedules for standalone dates
 				1 schedules for power sockets control
-12.06.2020 17:35:10	Desktop size 1920 x 1080, widgets area size 1728 x 864
-12.06.2020 17:35:10	WgHtmlsAds widget object was created
-12.06.2020 17:35:10	WgForecast widget object was created
-12.06.2020 17:35:10	WgClock widget object was created
-12.06.2020 17:35:10	WgCalendar widget object was created
-12.06.2020 17:35:10	WgSockets widget object was created
-12.06.2020 17:35:10	WgTimetable widget object was created
-12.06.2020 17:35:10	WgWatchdog widget object was created
-12.06.2020 17:35:10	New current weather state was received
-12.06.2020 17:35:10	New weather icon was loaded 
-12.06.2020 17:35:10	Timetable is loaded from ./res/timetable.json:
+12.06.2020 20:00:54	Desktop size 1920 x 1080, widgets area size 1728 x 864
+12.06.2020 20:00:54	WgHtmlsAds widget object was created
+12.06.2020 20:00:54	WgForecast widget object was created
+12.06.2020 20:00:54	WgClock widget object was created
+12.06.2020 20:00:54	WgCalendar widget object was created
+12.06.2020 20:00:54	WgSockets widget object was created
+12.06.2020 20:00:54	WgTimetable widget object was created
+12.06.2020 20:00:54	WgWatchdog widget object was created
+12.06.2020 20:00:54	New current weather state was received
+12.06.2020 20:00:54	New weather icon was loaded 
+12.06.2020 20:00:54	Timetable is loaded from ./res/timetable.json:
 				5 date ranges of academic calendar
 				11 holidays
 				7 lectures scheles for week days
 				16 lectures schedules for standalone dates
 				1 schedules for power sockets control
-12.06.2020 17:35:10	New current weather state was received
-12.06.2020 17:35:10	Stub was placed on the widget screen 
-12.06.2020 17:35:11	Engine main circle  started
-12.06.2020 17:35:13	Cutycapt finished its work
-12.06.2020 17:35:14	Advert was placed on the advert widget screen 
+12.06.2020 20:00:54	New current weather state was received
+12.06.2020 20:00:54	Stub was placed on the widget screen 
+12.06.2020 20:00:55	Engine main circle  started
+12.06.2020 20:01:02	Cutycapt finished its work
+12.06.2020 20:01:03	Advert was placed on the advert widget screen 
+12.06.2020 20:08:35	Detected what advert's ->temp.png<- .html was edited
+12.06.2020 20:08:35	Cutycapt successfully lauched
+12.06.2020 20:08:38	Cutycapt finished its work
+12.06.2020 20:08:39	Advert was placed on the advert widget screen 

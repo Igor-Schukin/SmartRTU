@@ -4,6 +4,8 @@
 - [License](#license)  
 - [Contributors](#contributors)  
 # About project  
+Student bulletin board for displaying lectures, weather, time and real-time announcements. Written in C/C++ using the OpenVG graphics library, working machine is Raspberry Pi on Raspbian OS.  
+Maintained mostly by Daugavpils RTU students.
 # How to run project  
 How to run:  
 0)IMPORTANT!!! check if you did [THIS](https://github.com/RazdolbayOne/GuidesPull)   
@@ -32,7 +34,10 @@ inf)if needed "reliese" build ,uncomment  in ${PROJECT_DIR}/CMakeLists.txt line 
 UNDER MIT [license](LICENSE)  
 
 # Contributors  
-year then left project...............Name...............deserts  
+year when left project...............Name...............deserts  
 
 # Project_structure  
 <img src="https://imgur.com/b63PIkS.png" ></img> 
+
+# DEPENDECY lib GRAPH  
+<img src="https://imgur.com/Ofp4oJY.png" ></img> 
