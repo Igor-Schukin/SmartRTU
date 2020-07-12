@@ -1,8 +1,9 @@
 #include "Picture.h"
 
 #include <cstring> //strcpy
-#include <cstdio>//std::printf
+#include <cstdio>//std::printf,freed e.tc
 #include <cstdlib>//malloc
+#include<csetjmp>//setjmp
 
 extern "C"{
 #include "png.h"//need be above jpeglib.h otherwise compilating error #1
@@ -19,7 +20,7 @@ VGImage Picture::m_CreateImageFromPNG(const char *path)
 {
     unsigned char header[8];
 
-    FILE *file = fopen(path, "rb");
+    FILE *file = std::fopen(path, "rb");
     if (!file)
     {
 #ifdef ONDEBUG
@@ -27,7 +28,7 @@ VGImage Picture::m_CreateImageFromPNG(const char *path)
 #endif
         return VG_INVALID_HANDLE;
     }
-    fread(header, 1, 8, file);
+    std::fread(header, 1, 8, file);
     bool is_png = !png_sig_cmp(header, 0, 8);
     if (!is_png)
     {
@@ -52,7 +53,7 @@ VGImage Picture::m_CreateImageFromPNG(const char *path)
 #ifdef ONDEBUG
         std::printf("ONDEBUG: info_ptr error\n");
 #endif
-        fclose(file);
+        std::fclose(file);
         return VG_INVALID_HANDLE;
     }
 
@@ -89,8 +90,8 @@ VGImage Picture::m_CreateImageFromPNG(const char *path)
     int interlace_type = png_get_interlace_type(png_ptr, info_ptr);
     
     png_get_IHDR(png_ptr, info_ptr, &width1, &height1, &bit_depth, &color_type, &interlace_type, nullptr, nullptr);
-    width = (int)width1;
-    height = (int)height1;
+    width = static_cast<int>(width1);
+    height = static_cast<int>(height1);
 
     if (color_type == PNG_COLOR_TYPE_PALETTE)
         png_set_palette_to_rgb(png_ptr);
@@ -118,9 +119,9 @@ VGImage Picture::m_CreateImageFromPNG(const char *path)
 
     unsigned long *pixels = new unsigned long[width * height];
 
-    for (int y = 0; y < height; y++)
+    for (int y = 0; y < height; ++y){
         row_pointers[height - y - 1] = (png_byte *)&pixels[y * width];
-
+    }
     png_read_image(png_ptr, row_pointers);
 
     delete[] row_pointers;
@@ -128,12 +129,15 @@ VGImage Picture::m_CreateImageFromPNG(const char *path)
     png_read_end(png_ptr, end_info);
     png_destroy_read_struct(&png_ptr, &info_ptr, &end_info);
 
-    for (int x = 0; x < width; x++)
+    for (int x = 0; x < width; ++x)
     {
-        for (int y = 0; y < height; y++)
+        for (int y = 0; y < height; ++y)
         {
             pixels[x + y * width] = GetColor(GetRedColor(pixels[x + y * width]),
-                                             GetGreenColor(pixels[x + y * width]), GetBlueColor(pixels[x + y * width]), GetAlphaColor(pixels[x + y * width]));
+                                             GetGreenColor(pixels[x + y * width]), 
+                                             GetBlueColor(pixels[x + y * width]), 
+                                             GetAlphaColor(pixels[x + y * width])
+                                             );
         }
     }
 
@@ -196,7 +200,7 @@ VGImage Picture::m_CreateImageFromJpeg(const char *filename)
         rgbaFormat = VG_sRGBA_8888;
 
     // Try to open image file
-    infile = fopen(filename, "rb");
+    infile = std::fopen(filename, "rb");
     if (infile == nullptr)
     {
         std::fprintf(stderr,"Failed opening '%s' for reading!\n", filename);
@@ -223,7 +227,7 @@ VGImage Picture::m_CreateImageFromJpeg(const char *filename)
     // Allocate image data buffer
     dbpp = 4;
     dstride = width * dbpp;
-    data = (VGubyte *)malloc(dstride * height);
+    data = (VGubyte *)std::malloc(dstride * height);
 
     // Iterate until all scanlines processed
     while (jdc.output_scanline < height)
@@ -262,8 +266,8 @@ VGImage Picture::m_CreateImageFromJpeg(const char *filename)
 
     // Cleanup
     jpeg_destroy_decompress(&jdc);
-    fclose(infile);
-    free(data);
+    std::fclose(infile);
+    std::free(data);
 
     return img;
 }
@@ -343,16 +347,18 @@ PictureType Picture::GetPictureType(const char *Path)
         "\x89\x50\x4E\x47\x0D\x0A\x1A\x0A", // PNG signature
         ""                                  // end of list
     };
-    FILE *f = fopen(Path, "rb");
-    if (!f)
+    FILE *f = std::fopen(Path, "rb");
+    if (!f){
         return picUnknown;
+    }
     char sign[MAX_SIGNATURE_LENGTH] = {0};
-    fread(sign, 1, MAX_SIGNATURE_LENGTH, f);
-    fclose(f);
+    std::fread(sign, 1, MAX_SIGNATURE_LENGTH, f);
+    std::fclose(f);
     for (int i = 0; FileSignatures[i][0]; i++)
     {
-        if (memcmp(sign, FileSignatures[i], strlen(FileSignatures[i])) == 0)
+        if (std::memcmp(sign, FileSignatures[i], std::strlen(FileSignatures[i])) == 0){
             return PictureType(i);
+        }
     }
     return picUnknown;
 }
@@ -400,8 +406,9 @@ Picture::Picture(const char *path)
 Picture::~Picture()
 {
   // std::printf("Destroyed pic \n");
-    if (finImg != VG_INVALID_HANDLE)
+    if (finImg != VG_INVALID_HANDLE){
         vgDestroyImage(finImg);
+    }
 }
 
 //Getters

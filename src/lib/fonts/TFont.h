@@ -22,7 +22,6 @@ class TFont
 {
 public:
 	TFont(const char *FTFileName);
-	//TFont(TFont &BaseFont);
 	~TFont();
 	void TextOut(const char *str, int x, int y);
 	void TextMid(const char *str, int x, int y);

@@ -1,7 +1,7 @@
 #include "TFont.h"
 
 #include <cstring>/*strlen,memset e.tc*/
-
+#include<cwchar>
 
 #include "ftf.h"/*LoadFTFont()*/
 
@@ -25,11 +25,15 @@ bool TFont::m_CreateGlyphs(int *Pnt, int *PntInd, unsigned char *Ins, int *InsIn
 }
 
 TFont::TFont(const char *FTFileName)
+:m_font_size(0),R(0),G(0),B(0)
 {
 	int *Pnt, *PntInd, *InsInd, *InsCnt;
 	unsigned char *Ins;
 	m_char_map = new short[NGLYPHS];
-	LoadFTFont(FTFileName, Pnt, PntInd, Ins, InsInd, InsCnt, m_glyph_advances, m_char_map, m_glyphs_count, m_font_height, m_descender_height);
+	LoadFTFont(FTFileName, Pnt, PntInd, Ins,
+	 			InsInd, InsCnt, m_glyph_advances, m_char_map,
+				 m_glyphs_count, m_font_height, m_descender_height
+				);
 	m_glyphs = new VGPath[m_glyphs_count];
 	m_CreateGlyphs(Pnt, PntInd, Ins, InsInd, InsCnt);
 	delete[] Pnt;
@@ -37,46 +41,12 @@ TFont::TFont(const char *FTFileName)
 	delete[] Ins;
 	delete[] InsInd;
 	delete[] InsCnt;
-	m_font_size = R = G = B = 0;
 }
-
-//TFont::TFont(TFont &BaseFont)
-//{
-
-	//never ever used I assume // it means what this can be deleted
-	/*
-	m_glyphs_count = BaseFont.m_glyphs_count;
-	m_char_map = new short int[NGLYPHS];
-	m_glyphs = new VGPath[m_glyphs_count];
-	memset(m_glyphs, 0, m_glyphs_count * sizeof(VGPath));
-	m_glyph_advances = new int[m_glyphs_count];
-	for (int i = 0; i <= NGLYPHS; i++)
-	{
-		m_char_map[i] = BaseFont.m_char_map[i];
-	}
-	for (int i = 0; i <= BaseFont.m_glyphs_count; i++)
-	{
-		m_glyphs[i] = vgCreatePath(VG_PATH_FORMAT_STANDARD, VG_PATH_DATATYPE_S_32,
-						1.0f / 65536.0f, 0.0f, 0, 0,
-						VG_PATH_CAPABILITY_ALL);
-		vgAppendPath(m_glyphs[i], BaseFont.m_glyphs[i]);
-		m_glyph_advances[i] = BaseFont.m_glyph_advances[i];
-	}
-	m_font_height = BaseFont.m_font_height;
-	m_descender_height = BaseFont.m_descender_height;
-	m_font_size = BaseFont.m_font_size;
-	R = BaseFont.R;
-	G = BaseFont.G;
-	B = BaseFont.B;
-	A = BaseFont.A;
-	*/
-	//throw 0;
-//}
 
 TFont::~TFont()
 {
 	delete[] m_char_map;
-	for (int i = 0; i <= m_glyphs_count; i++)
+	for (int i = 0; i <= m_glyphs_count; ++i)
 	{
 		vgDestroyPath(m_glyphs[i]);
 	}
@@ -87,7 +57,7 @@ TFont::~TFont()
 unsigned char *TFont::m_NextUtf8Char(unsigned char *utf8, int *codepoint)
 {
 	int seqlen;
-	int datalen = (int)strlen((const char *)utf8);
+	int datalen = (int)std::strlen((const char *)utf8);
 	unsigned char *p = utf8;
 
 	if (datalen < 1 || *utf8 == 0)
@@ -96,7 +66,7 @@ unsigned char *TFont::m_NextUtf8Char(unsigned char *utf8, int *codepoint)
 	}
 	if (!(utf8[0] & 0x80))
 	{
-		*codepoint = (wchar_t)utf8[0];
+		*codepoint = static_cast<wchar_t>(utf8[0]);
 		seqlen = 1;
 	}
 	else if ((utf8[0] & 0xE0) == 0xC0)
@@ -121,7 +91,7 @@ void TFont::TextOut(const char *str, int x, int y)
 {
 
 	vgSeti(VG_MATRIX_MODE, VG_MATRIX_PATH_USER_TO_SURFACE);
-	Fill((int)R, (int)G, (int)B, A);
+	Fill(static_cast<int>(R), static_cast<int>(G), static_cast<int>(B), A);
 	VGfloat localsize = (VGfloat)m_font_size, xx = x, mm[9];
 	vgGetMatrix(mm);
 	int character;
@@ -178,7 +148,8 @@ void TFont::Set_Size(int localsize)
 	m_font_size = localsize;
 }
 
-void TFont::Set_Color(unsigned char local_R, unsigned char local_G, unsigned char local_B, VGfloat local_A)
+void TFont::Set_Color(unsigned char local_R, unsigned char local_G, 
+					  unsigned char local_B, VGfloat local_A)
 
 {
 	R = local_R;

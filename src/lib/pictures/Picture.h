@@ -1,4 +1,13 @@
+/*
+    Authors: Maksims Denisovs, Igors Sčukins.
+    RTU.
+    DAUGAVPILS, LATVIA.
+*/
+
 #pragma once
+#ifndef SMART_RTU_SRC_LIB_PICTURES_PICTURE_H_
+#define SMART_RTU_SRC_LIB_PICTURES_PICTURE_H_
+
 
 //OpenVG stuff//VgImage
 extern "C"
@@ -62,7 +71,7 @@ private:
     VGImage m_CreateImageFromJpeg(const char *filename);
 
 };
-
+#endif/*SMART_RTU_SRC_LIB_PICTURES_PICTURE_H_*/
 /*
     Authors: Maksims Denisovs, Igors Sčukins.
     RTU.
