@@ -1,7 +1,7 @@
 #include "Picture.h"
 
 #include <cstring> //strcpy
-#include <cstdio>//printf
+#include <cstdio>//std::printf
 #include <cstdlib>//malloc
 
 extern "C"{
@@ -23,7 +23,7 @@ VGImage Picture::m_CreateImageFromPNG(const char *path)
     if (!file)
     {
 #ifdef ONDEBUG
-        printf("ONDEBUG: no file\n");
+        std::printf("ONDEBUG: no file\n");
 #endif
         return VG_INVALID_HANDLE;
     }
@@ -32,7 +32,7 @@ VGImage Picture::m_CreateImageFromPNG(const char *path)
     if (!is_png)
     {
 #ifdef ONDEBUG
-        printf("ONDEBUG: it's not png file\n");
+        std::printf("ONDEBUG: it's not png file\n");
 #endif
         return VG_INVALID_HANDLE;
     }
@@ -40,7 +40,7 @@ VGImage Picture::m_CreateImageFromPNG(const char *path)
     if (!png_ptr)
     {
 #ifdef ONDEBUG
-        printf("ONDEBUG: ptr_error\n");
+        std::printf("ONDEBUG: ptr_error\n");
 #endif
         return VG_INVALID_HANDLE;
     }
@@ -50,7 +50,7 @@ VGImage Picture::m_CreateImageFromPNG(const char *path)
     {
         png_destroy_read_struct(&png_ptr, (png_infopp)nullptr, (png_infopp)nullptr);
 #ifdef ONDEBUG
-        printf("ONDEBUG: info_ptr error\n");
+        std::printf("ONDEBUG: info_ptr error\n");
 #endif
         fclose(file);
         return VG_INVALID_HANDLE;
@@ -66,7 +66,7 @@ VGImage Picture::m_CreateImageFromPNG(const char *path)
     if (setjmp(png_jmpbuf(png_ptr)))
     {
 #ifdef ONDEBUG
-        printf("ONDEBUG: Error during init_io\n");
+        std::printf("ONDEBUG: Error during init_io\n");
 #endif
         png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)nullptr);
         fclose(file);
@@ -199,7 +199,7 @@ VGImage Picture::m_CreateImageFromJpeg(const char *filename)
     infile = fopen(filename, "rb");
     if (infile == nullptr)
     {
-        fprintf(stderr,"Failed opening '%s' for reading!\n", filename);
+        std::fprintf(stderr,"Failed opening '%s' for reading!\n", filename);
         return VG_INVALID_HANDLE;
     }
     // Setup default error handling
@@ -291,7 +291,7 @@ void Picture::render(int x, int y)
     else
     {
 #ifdef ONDEBUG
-        printf("ONDEBUG: can't draw\n");
+        std::printf("ONDEBUG: can't draw\n");
 #endif
     }
 }
@@ -331,7 +331,7 @@ void Picture::render(int x, int y,
     else
     {
 #ifdef ONDEBUG
-        printf("ONDEBUG: can't draw\n");
+        std::printf("ONDEBUG: can't draw\n");
 #endif
     }
 }
@@ -375,7 +375,7 @@ Picture::Picture(const char *path)
         m_CreateImageFromJPG(path);
 
 #ifdef ONDEBUG
-        printf("File contains picture in JPG format\n");
+        std::printf("File contains picture in JPG format\n");
 #endif
         break;
     }
@@ -384,14 +384,14 @@ Picture::Picture(const char *path)
         finImg = m_CreateImageFromPNG(path);
 
 #ifdef ONDEBUG
-        printf("File contains picture in PNG format\n");
+        std::printf("File contains picture in PNG format\n");
 #endif
         break;
     }
     default:
     {
 #ifdef ONDEBUG
-        printf("File does not contain picture or file read error\n");
+        std::printf("File does not contain picture or file read error\n");
 #endif
     }
     }
@@ -399,7 +399,7 @@ Picture::Picture(const char *path)
 
 Picture::~Picture()
 {
-  // printf("Destroyed pic \n");
+  // std::printf("Destroyed pic \n");
     if (finImg != VG_INVALID_HANDLE)
         vgDestroyImage(finImg);
 }
@@ -422,14 +422,14 @@ void Picture::GetPixels(int x, int y, int w, int h, unsigned long *pixels)
         if (x + w > width || x < 0)
         {
 #ifdef ONDEBUG
-            printf("ONDEBUG: out of borders of image (width, get) : w: %i, h: %i \n", x + w, y + h);
+            std::printf("ONDEBUG: out of borders of image (width, get) : w: %i, h: %i \n", x + w, y + h);
 #endif
             return;
         }
         if (y + h > height || y < 0)
         {
 #ifdef ONDEBUG
-            printf("ONDEBUG: out of borders of image (height, get) : w: %i, h: %i \n", x + w, y + h);
+            std::printf("ONDEBUG: out of borders of image (height, get) : w: %i, h: %i \n", x + w, y + h);
 #endif
             return;
         }
@@ -456,14 +456,14 @@ void Picture::SetPixels(int x, int y, int w, int h, unsigned long *pixels)
         if (x + w > width || x < 0)
         {
 #ifdef ONDEBUG
-            printf("ONDEBUG: out of borders of image (width, set)\n");
+            std::printf("ONDEBUG: out of borders of image (width, set)\n");
 #endif
             return;
         }
         if (y + h > height || y < 0)
         {
 #ifdef ONDEBUG
-            printf("ONDEBUG: out of borders of image (height, set)\n");
+            std::printf("ONDEBUG: out of borders of image (height, set)\n");
 #endif
             return;
         }

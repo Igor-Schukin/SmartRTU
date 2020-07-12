@@ -1,5 +1,6 @@
-#include "iostream"
+
 #include "CPicturesStorage.h"
+
 
 #include "configurator.h"
 
@@ -16,7 +17,6 @@ CPicturesStorage::CPicturesStorage()
 
 
 	this->m_AddPic();
-	//arialBold = new TFont("lib/TFont/ArialBold.ttf");
 }
 
 CPicturesStorage::~CPicturesStorage()
@@ -29,7 +29,7 @@ void CPicturesStorage::m_AddPic()
 	Logo = new Picture((m_pictures_path+"/"+m_title_pic_name).c_str());
 	ScreenBackgroud = new Picture((m_pictures_path+"/"+m_background_pic_name).c_str());
 	Arrow = new Picture((m_pictures_path+"/"+"arrow_sm.png").c_str());
-	WgShadows = new wgShadowPictures;
+	WgShadows = new WgShadowPictures;
 	WgShadows->t = new Picture((m_shadows_path+"/"+"sTop.png").c_str());
 	WgShadows->lt = new Picture((m_shadows_path+"/"+"sLeftTop.png").c_str());
 	WgShadows->rt = new Picture((m_shadows_path+"/"+"sRightTop.png").c_str());

@@ -50,14 +50,13 @@ void WgHtmlAds::m_CleanPicture() {
 void WgHtmlAds::m_CutyCaptRequest() {
 
   // remember white spaces are important for cutycapt!!!
-  std::string request{"xvfb-run --server-args=\"-screen 0, 1920x1080x24\" "
+  std::system(("xvfb-run --server-args=\"-screen 0, 1920x1080x24\" "
                       "cutycapt  --url=file:" +
                       m_full_path_to_project_exe + "/" +
                       m_local_html_input_file_dest + "/" + m_html_name +
                       " --out=" + m_full_path_to_project_exe + "/" +
-                      m_local_ad_path + "/" + m_ad_name};
-
-  std::system(request.c_str());
+                      m_local_ad_path + "/" + m_ad_name).c_str()
+              );
 }
 
 WgHtmlAds::WgHtmlAds(int Ax, int Ay, WgMode Amode)
@@ -82,15 +81,13 @@ WgHtmlAds::WgHtmlAds(int Ax, int Ay, WgMode Amode)
   config->Get("ADVERT_PATH", m_local_ad_path);
   config->Get("ADVERT_NAME", m_ad_name);
   // stub part
-
-  // probably need diferent prm in config than
-  // ADVERT_PATH...
   config->Get("ADVERT_PATH",m_local_stub_path); 
   config->Get("ADVERT_STUB_NAME", m_stub_name);
 
+// get full path to exe
   char buff[PATH_MAX];
-  realpath(".", buff);               // get full path to exe
-  m_full_path_to_project_exe = buff; // sets full path
+  realpath(".", buff);               
+  m_full_path_to_project_exe = buff; 
 
   m_advert_on_screen = false;
 

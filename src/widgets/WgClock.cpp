@@ -38,16 +38,18 @@
 
 
 
-WgClock::WgClock(int Ax, int Ay, WgMode Amode) : WgBackground(Ax, Ay, Amode) {
+WgClock::WgClock(int Ax, int Ay, WgMode Amode) 
+: WgBackground(Ax, Ay, Amode) 
+{
   m_widget_update_time = 100; // 10 times per sec
 
   hour = -1;
   min = -1;
   sec = -1;
-  strcpy(strTime, STR_TIME_EMPTY);
-  strcpy(strLect, STR_LECT_EMPTY);
-  strcpy(strInfo, STR_INFO_EMPTY);
-  strcpy(strTimer, STR_TIMER_EMPTY);
+  std::strcpy(strTime, STR_TIME_EMPTY);
+  std::strcpy(strLect, STR_LECT_EMPTY);
+  std::strcpy(strInfo, STR_INFO_EMPTY);
+  std::strcpy(strTimer, STR_TIMER_EMPTY);
 
   config->Get("BASE_FONT_NAME", m_base_font_name);
 
@@ -71,7 +73,7 @@ bool WgClock::update() {
   min = now->tm_min;
   sec = now->tm_sec;
 
-  sprintf(strTime, "%02d:%02d", now->tm_hour, now->tm_min);
+  std::sprintf(strTime, "%02d:%02d", now->tm_hour, now->tm_min);
 
   int end, lect;
   TimeState ts;
@@ -84,69 +86,69 @@ bool WgClock::update() {
   }
 
   if (ts == tsUnknown) {
-    strcpy(strLect, STR_LECT_EMPTY);
-    strcpy(strInfo, STR_INFO_ERROR);
-    strcpy(strTimer, STR_TIMER_EMPTY);
+    std::strcpy(strLect, STR_LECT_EMPTY);
+    std::strcpy(strInfo, STR_INFO_ERROR);
+    std::strcpy(strTimer, STR_TIMER_EMPTY);
     return true;
   }
 
   switch (ts) {
   case tsLecture1h:
   case tsLecture2h:
-    sprintf(strLect, STR_LECT_LECTURE, lect);
+    std::sprintf(strLect, STR_LECT_LECTURE, lect);
     break;
   case tsShortBreak:
-    sprintf(strLect, STR_LECT_SHORTBRAKE);
+    std::sprintf(strLect, STR_LECT_SHORTBRAKE);
     break;
   case tsBreak:
-    sprintf(strLect, STR_LECT_BRAKE);
+    std::sprintf(strLect, STR_LECT_BRAKE);
     break;
   case tsFree:
-    sprintf(strLect, STR_LECT_FREETIME);
+    std::sprintf(strLect, STR_LECT_FREETIME);
     break;
   case tsSession:
-    sprintf(strLect, STR_LECT_SESSION);
+    std::sprintf(strLect, STR_LECT_SESSION);
     break;
   case tsUnknown:
-    sprintf(strLect, "It's me the UNKNOWN!");
+    std::sprintf(strLect, "It's me the UNKNOWN!");
     break;
   default:
-    sprintf(strLect, STR_LECT_ERROR);
+    std::sprintf(strLect, STR_LECT_ERROR);
     break;
   }
 
   switch (ts) {
   case tsLecture1h:
-    strcpy(strInfo, STR_INFO_HOUREND);
+    std::strcpy(strInfo, STR_INFO_HOUREND);
     break;
   case tsLecture2h:
-    strcpy(strInfo, STR_INFO_LECTEND);
+    std::strcpy(strInfo, STR_INFO_LECTEND);
     break;
   case tsShortBreak:
-    strcpy(strInfo, STR_INFO_BRAKEEND);
+    std::strcpy(strInfo, STR_INFO_BRAKEEND);
     break;
   case tsBreak:
-    strcpy(strInfo, STR_INFO_LECTBEG);
+    std::strcpy(strInfo, STR_INFO_LECTBEG);
     break;
   case tsSession:
     break;
   case tsFree:
-    strcpy(strInfo, end >= 0 ? STR_INFO_DAYBEG : STR_INFO_EMPTYDAY);
+    std::strcpy(strInfo, end >= 0 ? STR_INFO_DAYBEG : STR_INFO_EMPTYDAY);
     break;
   case tsUnknown:
-     strcpy(strInfo, "UFO stole the lecture");
+     std::strcpy(strInfo, "UFO stole the lecture");
     break;
   default:
-  strcpy(strInfo, "Undefined behavoir");
+  std::strcpy(strInfo, "Undefined behavoir");
     break;
   }
 
   if (end < 0)
-    strcpy(strTimer, STR_TIMER_EMPTY);
+    std::strcpy(strTimer, STR_TIMER_EMPTY);
   else if (end > 60 * 60)
-    strcpy(strTimer, STR_TIMER_LONG);
+    std::strcpy(strTimer, STR_TIMER_LONG);
   else
-    sprintf(strTimer, "%02d:%02d", end / 60, end % 60);
+    std::sprintf(strTimer, "%02d:%02d", end / 60, end % 60);
 
   return true;
 }
@@ -155,7 +157,7 @@ bool WgClock::update() {
 
 void WgClock::m_RenderMode1() { 
   RenderWidgetHeader(strTime); 
-  }
+}
 
 void WgClock::m_RenderMode2() {
   SetTextColor(clHaki);

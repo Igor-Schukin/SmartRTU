@@ -86,9 +86,9 @@ private:
             #include "lib/Pictures.h"
 
             Picture *image1 = new Picture("png.png");
-            printf("width: %i, height: %i\n", image1->Get_width(), image1->Get_height());
+            std::printf("width: %i, height: %i\n", image1->Get_width(), image1->Get_height());
             Picture *image2 = new Picture("rad.jpg");
-            printf("width: %i, height: %i\n", image2->Get_width(), image2->Get_height());
+            std::printf("width: %i, height: %i\n", image2->Get_width(), image2->Get_height());
 
             //	if you want to use all pixels of image
             unsigned int *pixels = new unsigned int[image2->Get_width() * image2->Get_height()];

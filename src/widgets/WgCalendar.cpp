@@ -19,13 +19,15 @@ WgCalendar::WgCalendar(int Ax, int Ay, WgMode Amode)
 	strcpy(bufWeekDay, "-");
 	strcpy(bufWeekInfo, "- - -");
 	strcpy(bufWeek, "-");
+
 	config->Get("BASE_FONT_NAME",m_base_font_name); 
+
 	std::cout<<StrNow()<<"\tWgCalendar widget object was created\n";
 }
 
 WgCalendar::~WgCalendar()
 {
-	fprintf(stdout,"%s\tWgCalendar widget object was deleted\n", StrNow());
+	std::cout<<StrNow()<<"\tWgCalendar widget object was deleted\n";
 }
 
 const char *WgCalendar::m_ConvertWeekDayFromInt(int wday)
@@ -89,9 +91,9 @@ bool WgCalendar::update()
 	std::time_t lt = time(nullptr);
 	struct tm *now = localtime(&lt);
 
-	sprintf(bufDate, "%i.%s", now->tm_mday, m_ConvertMonthFromInt(now->tm_mon));
+	std::sprintf(bufDate, "%i.%s", now->tm_mday, m_ConvertMonthFromInt(now->tm_mon));
 
-	sprintf(bufWeekDay, "%s", m_ConvertWeekDayFromInt(now->tm_wday));
+	std::sprintf(bufWeekDay, "%s", m_ConvertWeekDayFromInt(now->tm_wday));
 
 	int week = 0;
 	switch (timetable->GetCurrentDateState(week))
@@ -118,10 +120,10 @@ bool WgCalendar::update()
 	week += 1;
 
 	if (week >= 1)
-		sprintf(bufWeek, "%d.", week);
-	else
-		strcpy(bufWeek, "--");
-
+		std::sprintf(bufWeek, "%d.", week);
+	else{
+		std::strcpy(bufWeek, "--");
+	}
 	return true;
 }
 

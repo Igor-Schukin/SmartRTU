@@ -3,7 +3,7 @@
 #include <unistd.h>/*usleep() e.tc*/
 
 // C++
-#include <cstdio>/*fprintf*/
+#include <cstdio>/*std::fprintf*/
 
 //libshape stuff probably can cut some not used
 /*OpenVG stuff like vgLoadIdenty*/
@@ -75,7 +75,7 @@ void Engine::run()
 	this->ForceUpdate();
 	render(true);
 
-	fprintf(stdout,"%s\tEngine main circle  started\n", StrNow());
+	std::fprintf(stdout,"%s\tEngine main circle  started\n", StrNow());
 
 	while (m_is_running && !m_is_terminated)
 	{
@@ -104,7 +104,7 @@ void Engine::run()
 			unsigned int tm_m = tsec / 60;
 			tsec %= 60;
 			unsigned int tm_s = tsec;
-			fprintf(stdout,
+			std::fprintf(stdout,
 				"%s\tStatus: on time: %u:%02u:%02u:%02u, idle: %llu%%, fps: %.0f\n",
 				StrNow(), tm_d, tm_h, tm_m, tm_s,
 				idleTime * 100 / (time - lastDebug),
@@ -131,7 +131,7 @@ void Engine::run()
 		idleTime += 1;
 	}
 
-	fprintf(stdout,"%s\tEngine main circle  finished\n", StrNow());
+	std::fprintf(stdout,"%s\tEngine main circle  finished\n", StrNow());
 }
 
 void Engine::update()

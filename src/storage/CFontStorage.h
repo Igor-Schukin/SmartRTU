@@ -16,16 +16,16 @@
 constexpr auto MAX_FONTS_COUNT = 4;
 //#define ONDEBUG
 
-struct sFont
+struct FontStruct
 {
 	char *font_name;
 	TFont *font_file;
-	sFont(const char *AName, TFont *AFont)
+	FontStruct(const char *AName, TFont *AFont)
 	{
-		font_name = strcpy(new char[strlen(AName) + 1], AName);
+		font_name = std::strcpy(new char[std::strlen(AName) + 1], AName);
 		font_file = AFont;
 	}
-	~sFont()
+	~FontStruct()
 	{
 		delete[] font_name;
 		delete font_file; //quit
@@ -41,11 +41,11 @@ public:
 	bool SetFont(char *font_name, char *font_file);
 	TFont *GetFont(char *font_name);
 private:
-	sFont *fonts[MAX_FONTS_COUNT];
+	FontStruct *fonts[MAX_FONTS_COUNT];
 	
  	//retunt font position in fonts massive; return -1 if name not found
 	int m_FindFontName(char *font_name);
-	sFont m_NewFont(char *font_name, char *font_file);
+	FontStruct m_NewFont(char *font_name, char *font_file);
 
 };
 

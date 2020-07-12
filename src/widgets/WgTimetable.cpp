@@ -2,7 +2,7 @@
 
 #include <sys/types.h>/*stat sctruct*/
 
-#include<iostream>
+#include<iostream>//cout
 
 
 #include "Engine.h"/*engine obj*/
@@ -13,7 +13,7 @@
 #include"configurator.h"/*config*/
 
 
-time_t WgTimetable::m_GetFileTime()
+std::time_t WgTimetable::m_GetFileTime()
 {
     struct stat buff;
     if (stat((m_timetable_dest+"/"+m_timetable_name).c_str(), &buff) == 0){

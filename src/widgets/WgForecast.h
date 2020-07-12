@@ -23,7 +23,7 @@
 
 
 #include<string>/*string*/
-
+#include <cstddef>//std::size_t
 #include "WgBackground.h"
 #include "Picture.h"/*for creating Pics*/
 #include "json.h"/*parsing jsons*/
@@ -55,7 +55,7 @@ private:
 	bool m_is_data_received; //flag about received or not data from web /*isConnection*/
 
 	//needed stuff for curl request
-	static size_t m_WriteCallback(void *contents, size_t size, size_t nmemb, void *userp);
+	static std::size_t m_WriteCallback(void *contents, std::size_t size, std::size_t nmemb, void *userp);
 	//uses curl request to get from server weather data in json form
 	void m_GetWeatherFromWeb(const char *site, json &weather_data);
 

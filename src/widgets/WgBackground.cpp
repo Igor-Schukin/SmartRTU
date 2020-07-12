@@ -39,25 +39,30 @@ WgBackground::WgBackground(int a_pos_x, int a_pos_y, WgMode Amode)
 
   // -- select widget size from m_widget_mode
   switch (m_widget_mode) {
-  case md1x1:
+  case md1x1:{
     m_widget_width = 1;
     m_widget_height = 1;
     break;
-  case md1x2:
+  }
+  case md1x2:{
     m_widget_width = 1;
     m_widget_height = 2;
     break;
-  case md1x3:
+  }
+  case md1x3:{
     m_widget_width = 1;
     m_widget_height = 3;
     break;
-  case md3x8:
+  }
+  case md3x8:{
     m_widget_width = 3;
     m_widget_height = 8;
     break;
-  default:
+  }
+  default:{
     m_widget_width = Get_width();
     m_widget_height = Get_height();
+  }
   }
 
   ShadowSize.left = PicStorage->WgShadows->l->Get_width();

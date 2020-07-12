@@ -6,11 +6,16 @@
  * --Here uses library Picture.h frow Denisovs Maksims 
  */
 #pragma once
-#include "Picture.h"
-#include<string>
-//#include "./lib/TFont/TFont.h"
+#ifndef SMART_RTU_SRC_STORAGE_CPICTURES_STORAGE_H_
+#define SMART_RTU_SRC_STORAGE_CPICTURES_STORAGE_H_
 
-struct wgShadowPictures
+#include<string>
+
+#include "Picture.h"//Picture class
+
+
+
+struct WgShadowPictures
 {
 	Picture *t;
 	Picture *b;
@@ -37,7 +42,7 @@ public:
 	Picture *ScreenBackgroud;
 	Picture *Logo;
 	Picture *Arrow;
-	wgShadowPictures *WgShadows;
+	WgShadowPictures *WgShadows;
 private:
 	void m_AddPic();
 	void m_CleanStorage();
@@ -46,3 +51,5 @@ private:
 };
 
 extern CPicturesStorage *PicStorage;
+
+#endif /*SMART_RTU_SRC_STORAGE_CPICTURES_STORAGE_H_*/

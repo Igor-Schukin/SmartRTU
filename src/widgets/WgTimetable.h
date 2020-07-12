@@ -7,12 +7,14 @@
     restyled by RazdolbayOne
 */
 #include <sys/stat.h>/*time_t*/
-
+#include<ctime> //time_t
 #include <string>/*string*/
 
 #include "IWidget.h"
 
-class WgTimetable : public IWidget {
+class WgTimetable 
+: public IWidget 
+{
 public:
   ~WgTimetable();
   WgTimetable();
@@ -31,9 +33,9 @@ public:
   int Get_widget_update_time() override { return 1000; } // 1000ms = 1 time /
                                                          // sec
 private:
-  time_t m_GetFileTime(); // get time then file was edited
+  std::time_t m_GetFileTime(); // get time then file was edited
   int m_widget_id;
-  time_t m_file_time;
+  std::time_t m_file_time;
   std::string m_timetable_dest;
   std::string m_timetable_name;
 };

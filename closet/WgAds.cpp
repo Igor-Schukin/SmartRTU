@@ -15,7 +15,7 @@ WgAds::WgAds(int Ax, int Ay, WgMode Amode) : WgBackground(Ax, Ay, Amode)
 	//HtmlPic=new Picture("res/tmp/temp.png");
 	//printf("width: %i, height: %i\n", HtmlPic->Get_width(), HtmlPic->Get_height());
 
-	fprintf(stdout,"%s\tWgAds widget object was created\n", StrNow());
+	std::fprintf(stdout,"%s\tWgAds widget object was created\n", StrNow());
 }
 
 WgAds::~WgAds()
@@ -28,7 +28,7 @@ WgAds::~WgAds()
 	if (adsPeace){
 		delete[] adsPeace;
 	}
-	fprintf(stdout,"%s\tWgAds widget object was deleted\n", StrNow());
+	std::fprintf(stdout,"%s\tWgAds widget object was deleted\n", StrNow());
 }
 
 time_t WgAds::getFileTime()
@@ -124,7 +124,7 @@ bool WgAds::update()
 		for (int i = 0; i < lineCount; i++)
 			adsPeace[i] = NULL;
 		Separate(ads, adsPeace);
-		fprintf(stdout,"%s\tNew %d-lines advertisement text is loaded\n", StrNow(), lineCount);
+		std::fprintf(stdout,"%s\tNew %d-lines advertisement text is loaded\n", StrNow(), lineCount);
 		return true;
 	}
 	return false;

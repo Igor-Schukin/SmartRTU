@@ -1,6 +1,7 @@
 #include "WgWatchdog.h"
 
 #include <iostream>/*cout*/
+#include <cstdlib>//system
 
 #include "Engine.h"       /*fmt*/
 #include "Timer.h"        /*StrNow()*/
@@ -24,7 +25,7 @@ void WgWatchdog::Set_widget_id(int m_widget_id) {
 }
 
 bool WgWatchdog::update() {
-  system(fmt("rm -rf %s 2> /dev/null",
+  std::system(fmt("rm -rf %s 2> /dev/null",
              (watchdog_dest + "/" + watchdog_name).c_str()));
   return false;
 }

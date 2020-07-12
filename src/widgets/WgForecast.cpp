@@ -39,7 +39,8 @@ WgForecast::~WgForecast()
 	std::cout << StrNow() << "\tWgForecast widget object was deleted\n";
 }
 
-size_t WgForecast::m_WriteCallback(void *contents, size_t size, size_t nmemb, void *userp) //???
+std::size_t WgForecast::m_WriteCallback(void *contents, std::size_t size, 
+										std::size_t nmemb, void *userp) //???
 {
 	((std::string *)userp)->append((char *)contents, size * nmemb); // ???
 	return size * nmemb;											// ???
@@ -84,22 +85,22 @@ bool WgForecast::update()
 	if (m_is_data_received && weather_data["main"]["temp"].is_number())
 	{
 		int buf_temp = weather_data["main"]["temp"];
-		sprintf(m_temp_degree, "%+d°%c", buf_temp, TEMPERATURE_SYMBOL);
+		std::sprintf(m_temp_degree, "%+d°%c", buf_temp, TEMPERATURE_SYMBOL);
 	}
 	else
 	{
-		sprintf(m_temp_degree, "---");
+		std::sprintf(m_temp_degree, "---");
 	}
 
 	if (m_is_data_received && weather_data["wind"]["deg"].is_number())
 	{
 		m_wind_degree = weather_data["wind"]["deg"];
 		float buf_speed = weather_data["wind"]["speed"];
-		sprintf(m_wind_speed, "%.0f m/s", buf_speed);
+		std::sprintf(m_wind_speed, "%.0f m/s", buf_speed);
 	}
 	else
 	{
-		sprintf(m_wind_speed, "---");
+		std::sprintf(m_wind_speed, "---");
 		m_wind_degree = 0;
 	}
 
@@ -171,11 +172,11 @@ void WgForecast::m_RenderMode2()
 	//~~~ wind speed
 
 	SetTextColor(clHaki);
+
 	TFont *font = FontStorage->GetFont(
 		const_cast<char *>(m_base_font_name.c_str())
 	);
 	font->Set_Size(desktop->row_height / 3);
-	//int wind_width = static_cast<int>(font->TextWidth(m_wind_speed));//not used var
 	int wind_height = static_cast<int>(font->TextHeight());
 	font->TextMid(
 		m_wind_speed,
