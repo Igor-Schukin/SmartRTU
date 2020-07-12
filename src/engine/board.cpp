@@ -16,13 +16,9 @@ extern "C"
 }
 
 //widgets
-
-#include "WgBackground.h"//testing 
-
 #include "WgClock.h"
 #include "WgCalendar.h"
 #include "WgForecast.h"
-//#include "WgAds.h"
 #include "WgSockets.h"
 #include "WgTimetable.h"
 #include "WgWatchdog.h"
@@ -171,6 +167,6 @@ IWidget *Board::FindNext() {
 }
 
 IWidget *Board::FindFirst() {
-     	current = widgets;
-		return current ? current->widget : nullptr; 
+    current = widgets;
+	return current ? current->widget : nullptr; 
 }

@@ -25,9 +25,9 @@ LongTimeMs Timer::GetTime()
 const char *StrNow()
 {
 	static char buf[75];//changed from 25
-	time_t time_now = std::time(nullptr);
-	struct tm *now = localtime(&time_now);
-	sprintf(
+	std::time_t time_now = std::time(nullptr);
+	struct tm *now = std::localtime(&time_now);
+	std::sprintf(
 		buf,
 		"%02d.%02d.%04d %02d:%02d:%02d",
 		now->tm_mday, now->tm_mon, now->tm_year + 1900,

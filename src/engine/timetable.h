@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef SMART_RTU_SRC_ENGINE_TIMETABLE_H_
+#define SMART_RTU_SRC_ENGINE_TIMETABLE_H_
+
 #include <string>
 #include <ctime>/*time_t*/
 
@@ -98,7 +101,7 @@ struct TimetableLecture
 
 struct TimetableWeekDay
 {
-    int count;
+    int lectures_count;
     TimetableLecture **lectures;
     TimetableWeekDay(json &tt, json &defs);
     ~TimetableWeekDay();
@@ -208,3 +211,5 @@ private:
 };
 
 extern Timetable *timetable;
+
+#endif /*SMART_RTU_SRC_ENGINE_TIMETABLE_H_*/

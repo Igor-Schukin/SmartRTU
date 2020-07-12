@@ -1,4 +1,7 @@
 #pragma once
+#ifndef SMART_RTU_SRC_ENGINE_TIMER_H_
+#define SMART_RTU_SRC_ENGINE_TIMER_H_
+
 
 #include <ctime>/*timespec*/
 
@@ -22,3 +25,5 @@ private:
 
 extern Timer timer;
 extern const char *StrNow();
+
+#endif/*SMART_RTU_SRC_ENGINE_TIMER_H_*/

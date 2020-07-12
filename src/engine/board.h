@@ -1,4 +1,7 @@
 #pragma once
+#ifndef SMART_RTU_SRC_ENGINE_BOARD_H_
+#define SMART_RTU_SRC_ENGINE_BOARD_H_
+
 
 #include "IWidget.h"/*interface*/
 #include "Timer.h"/*LongTimeMs*/
@@ -11,8 +14,10 @@ struct WidgetInfo {
 	bool needRender;
 	WidgetInfo * next;
 	WidgetInfo(IWidget * w) { 
-		widget = w; next = nullptr;  
-		lastUpdate = 0; needRender = true; 
+		widget = w;
+		next = nullptr;  
+		lastUpdate = 0;
+		needRender = true; 
 		}
 	~WidgetInfo() { delete widget; }
 };
@@ -37,7 +42,7 @@ public:
 private:
 
 	WidgetInfo *widgets, *current;
-	//m_AddWidget
+
 	void m_AddWidget(WidgetInfo* & list, IWidget * w); 
 	void m_FreeWidgets(WidgetInfo* & list);
 	
@@ -45,3 +50,5 @@ private:
 	
 	
 };
+
+#endif/*SMART_RTU_SRC_ENGINE_BOARD_H_*/

@@ -25,7 +25,7 @@ extern "C"
 const char *fmt(const char *f, const char *s1, const char *s2, const char *s3)
 {
 	static char buf[100];
-	sprintf(buf, f, s1, s2, s3);
+	std::sprintf(buf, f, s1, s2, s3);
 	return buf;
 }
 
@@ -59,7 +59,9 @@ Engine::~Engine()
 
 void Engine::start()
 {
-	if (!m_is_running)run();
+	if (!m_is_running){
+		this->run();
+	}
 }
 
 void Engine::run()
@@ -73,7 +75,7 @@ void Engine::run()
 	int fps = 0;
 
 	this->ForceUpdate();
-	render(true);
+	this->render(true);
 
 	std::fprintf(stdout,"%s\tEngine main circle  started\n", StrNow());
 
@@ -83,11 +85,11 @@ void Engine::run()
 
 		//kbhit();  //?
 
-		update();
+		this->update();
 
 		if ((time - lastRender) >= static_cast<long long unsigned int>(m_frame_capacity))
 		{
-			render(false);
+			this->render(false);
 			lastRender = time;
 			fps++;
 		}
@@ -121,7 +123,7 @@ void Engine::run()
 
 		if (time - lastFlush >= FLUSH_LOG_PRD)
 		{
-			fflush(stdout);
+			std::fflush(stdout);
 			lastFlush = time;
 		}
 
