@@ -2,6 +2,16 @@
 
 #include<cstdlib>//rand()
 
+//libshape stuff probably can cut some not used
+/*OpenVG stuff like Rect(),Fill*/
+extern "C"
+{
+#include "VG/openvg.h"
+#include "VG/vgu.h"
+#include "fontinfo.h"
+#include "shapes.h"
+}
+
 #include "../engine/desktop.h" /*desktop obj*/
 #include "CFontStorage.h"      /*font obj*/
 #include "CPicturesStorage.h"  /*picture storage obj*/
@@ -28,40 +38,40 @@ const struct {
 WgBackground::WgBackground(int a_pos_x, int a_pos_y, WgMode Amode) 
 : m_pos_x(a_pos_x), // horizontal position in the grid
   m_pos_y(a_pos_y),// vertical position in the grid
-  m_widget_mode(Amode),
-  m_shadows_on(true)
+  widget_mode_(Amode),
+  shadows_on_(true)
 {
-  m_widget_update_time = 0; // never
-  m_color = WgColor(1 + rand() % 10);//????????
+  widget_update_time_ = 0; // never
+  color_ = WgColor(1 + rand() % 10);//????????
 
-  //m_shadows_on = true; // shadows on
-  config->Get("BASE_FONT_NAME", m_base_font_name);
+  //shadows_on_ = true; // shadows on
+  config->Get("BASE_FONT_NAME", base_font_name_);
 
-  // -- select widget size from m_widget_mode
-  switch (m_widget_mode) {
+  // -- select widget size from widget_mode_
+  switch (widget_mode_) {
   case md1x1:{
-    m_widget_width = 1;
-    m_widget_height = 1;
+    widget_width_ = 1;
+    widget_height_ = 1;
     break;
   }
   case md1x2:{
-    m_widget_width = 1;
-    m_widget_height = 2;
+    widget_width_ = 1;
+    widget_height_ = 2;
     break;
   }
   case md1x3:{
-    m_widget_width = 1;
-    m_widget_height = 3;
+    widget_width_ = 1;
+    widget_height_ = 3;
     break;
   }
   case md3x8:{
-    m_widget_width = 3;
-    m_widget_height = 8;
+    widget_width_ = 3;
+    widget_height_ = 8;
     break;
   }
   default:{
-    m_widget_width = Get_width();
-    m_widget_height = Get_height();
+    widget_width_ = Get_width();
+    widget_height_ = Get_height();
   }
   }
 
@@ -71,11 +81,11 @@ WgBackground::WgBackground(int a_pos_x, int a_pos_y, WgMode Amode)
   ShadowSize.bottom = PicStorage->WgShadows->b->Get_height();
 
   RectWidget.left = desktop->DwRect.left + desktop->colum_width * m_pos_x;
-  RectWidget.right = RectWidget.left + desktop->colum_width * m_widget_width;
+  RectWidget.right = RectWidget.left + desktop->colum_width * widget_width_;
   RectWidget.top = desktop->DwRect.bottom + desktop->row_height * m_pos_y;
-  RectWidget.bottom = RectWidget.top - desktop->row_height * m_widget_height;
-  RectWidget.width = desktop->colum_width * m_widget_width;
-  RectWidget.height = desktop->row_height * m_widget_height;
+  RectWidget.bottom = RectWidget.top - desktop->row_height * widget_height_;
+  RectWidget.width = desktop->colum_width * widget_width_;
+  RectWidget.height = desktop->row_height * widget_height_;
 
   RectHeader = RectWidget;
   RectHeader.bottom = RectWidget.top - desktop->row_height;
@@ -92,7 +102,7 @@ WgBackground::~WgBackground() {
 
 void WgBackground::SetTextColor(WgColor c) {
   
-  FontStorage->GetFont(const_cast<char *>(m_base_font_name.c_str()))
+  FontStorage->GetFont(const_cast<char *>(base_font_name_.c_str()))
       ->Set_Color(Colors[c].r, Colors[c].g, Colors[c].b);
 
 }
@@ -104,14 +114,14 @@ void WgBackground::SetFillColor(WgColor c) {
 void WgBackground::render() {
   // -- render widget background blocks
 
-  SetFillColor(clWhite);
+  this->SetFillColor(clWhite);
   Rect(RectClient.left, RectClient.bottom, RectClient.width, RectClient.height);
-  SetFillColor(m_color);
+  this->SetFillColor(color_);
   Rect(RectHeader.left, RectHeader.bottom, RectHeader.width, RectHeader.height);
 
-  if (m_shadows_on) // -- render widget shadows
+  if (shadows_on_) // -- render widget shadows
   {
-    RenderOnlyShadows();
+    this->RenderOnlyShadows();
   }
 }
 
@@ -122,20 +132,23 @@ void WgBackground::GetRect(int &left, int &bottom, int &width, int &height) {
   height = RectWidget.height;
 }
 
-void WgBackground::RenderWidgetHeader(const char *header_text) {
-  int maxw = RectHeader.width * 0.8;
+void WgBackground::RenderWidgetHeader(const char *a_header_text) {
+  int font_width = RectHeader.width * 0.8;
   TFont *font =
-      FontStorage->GetFont(const_cast<char *>(m_base_font_name.c_str()));
+      FontStorage->GetFont(const_cast<char *>(base_font_name_.c_str()));
+  
   font->Set_Color(255, 255, 255);
-  int fh = RectHeader.height * 0.6;
-  font->Set_Size(fh);
-  if (font->TextWidth(header_text) > maxw) {
-    fh = (fh * maxw) / font->TextWidth(header_text);
-    font->Set_Size(fh);
+
+  int font_height = RectHeader.height * 0.6;
+  font->Set_Size(font_height);
+
+  if (font->TextWidth(a_header_text) > font_width) {
+    font_height = (font_height * font_width) / font->TextWidth(a_header_text);
+    font->Set_Size(font_height);
   }
 
-  font->TextMid(header_text, RectHeader.left + RectHeader.width / 2,
-                RectHeader.bottom + (RectHeader.height - fh) / 2);
+  font->TextMid(a_header_text, RectHeader.left + RectHeader.width / 2,
+                RectHeader.bottom + (RectHeader.height - font_height) / 2);
 }
 
 void WgBackground::RenderOnlyShadows() {

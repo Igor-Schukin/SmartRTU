@@ -14,25 +14,26 @@
 WgCalendar::WgCalendar(int Ax, int Ay, WgMode Amode) 
 : WgBackground(Ax, Ay, Amode)
 {
-	m_widget_update_time = 60 * 60 * 1000; // 1 hour
-	strcpy(bufDate, "- -");
-	strcpy(bufWeekDay, "-");
-	strcpy(bufWeekInfo, "- - -");
-	strcpy(bufWeek, "-");
+	widget_update_time_ = 60 * 60 * 1000; // 1 hour
+	std::strcpy(bufDate, "- -");
+	std::strcpy(bufWeekDay, "-");
+	std::strcpy(bufWeekInfo, "- - -");
+	std::strcpy(bufWeek, "-");
 
-	config->Get("BASE_FONT_NAME",m_base_font_name); 
+	config->Get("BASE_FONT_NAME",base_font_name_); 
 
 	std::cout<<StrNow()<<"\tWgCalendar widget object was created\n";
 }
+
 
 WgCalendar::~WgCalendar()
 {
 	std::cout<<StrNow()<<"\tWgCalendar widget object was deleted\n";
 }
 
-const char *WgCalendar::m_ConvertWeekDayFromInt(int wday)
+const char *WgCalendar::ConvertWeekDayFromInt_(int a_week_day)
 {
-	switch (wday)
+	switch (a_week_day)
 	{
 	case 0:
 		return "svētdiena";
@@ -53,9 +54,9 @@ const char *WgCalendar::m_ConvertWeekDayFromInt(int wday)
 	}
 }
 
-const char *WgCalendar::m_ConvertMonthFromInt(int mon)
+const char *WgCalendar::ConvertMonthFromInt_(int a_month)
 {
-	switch (mon)
+	switch (a_month)
 	{
 	case 0:
 		return "jan";
@@ -88,33 +89,33 @@ const char *WgCalendar::m_ConvertMonthFromInt(int mon)
 
 bool WgCalendar::update()
 {
-	std::time_t lt = time(nullptr);
-	struct tm *now = localtime(&lt);
+	std::time_t lt = std::time(nullptr);
+	struct tm *now = std::localtime(&lt);
 
-	std::sprintf(bufDate, "%i.%s", now->tm_mday, m_ConvertMonthFromInt(now->tm_mon));
+	std::sprintf(bufDate, "%i.%s", now->tm_mday, ConvertMonthFromInt_(now->tm_mon));
 
-	std::sprintf(bufWeekDay, "%s", m_ConvertWeekDayFromInt(now->tm_wday));
+	std::sprintf(bufWeekDay, "%s", ConvertWeekDayFromInt_(now->tm_wday));
 
 	int week = 0;
 	switch (timetable->GetCurrentDateState(week))
 	{
 	case dsSemester:
-		strcpy(bufWeekInfo, "nedēļa semestrī");
+		std::strcpy(bufWeekInfo, "nedēļa semestrī");
 		break;
 	case dsSession:
-		strcpy(bufWeekInfo, "sesijas nedēļa");
+		std::strcpy(bufWeekInfo, "sesijas nedēļa");
 		break;
 	case dsVacation:
-		strcpy(bufWeekInfo, "brīvlaika nedēļa");
+		std::strcpy(bufWeekInfo, "brīvlaika nedēļa");
 		break;
 	case dsHoliday:
-		strcpy(bufWeekInfo, "svētki");
+		std::strcpy(bufWeekInfo, "svētki");
 		break;
 	case dsUnknown:
-		strcpy(bufWeekInfo, "Nezinams");
+		std::strcpy(bufWeekInfo, "Nezinams");
 		break;
 	default:
-		strcpy(bufWeekInfo, "...");
+		std::strcpy(bufWeekInfo, "...");
 		break;
 	}
 	week += 1;
@@ -127,15 +128,15 @@ bool WgCalendar::update()
 	return true;
 }
 
-void WgCalendar::m_RenderMode1()
+void WgCalendar::RenderMode1_()
 {
 	RenderWidgetHeader(bufDate);
 }
 
-void WgCalendar::m_RenderMode2()
+void WgCalendar::RenderMode2_()
 {
 	TFont *font = FontStorage->GetFont(
-		const_cast<char*>(m_base_font_name.c_str())
+		const_cast<char*>(base_font_name_.c_str())
 		);
 	SetTextColor(clHaki);
 	font->Set_Size(desktop->row_height / 3);
@@ -145,10 +146,10 @@ void WgCalendar::m_RenderMode2()
 		RectClient.top - desktop->row_height / 16 * 11);
 }
 
-void WgCalendar::m_RenderMode3()
+void WgCalendar::RenderMode3_()
 {
 	TFont *font = FontStorage->GetFont(
-		const_cast<char*>(m_base_font_name.c_str())
+		const_cast<char*>(base_font_name_.c_str())
 		);
 	font->Set_Size(desktop->row_height / 4.5);
 	font->TextMid(
@@ -156,7 +157,7 @@ void WgCalendar::m_RenderMode3()
 		RectClient.left + RectClient.width / 2,
 		RectClient.top - desktop->row_height - desktop->row_height / 5 / 2);
 
-	SetTextColor(m_color);
+	SetTextColor(color_);
 	font->Set_Size(desktop->row_height / 2.2);
 	font->TextMid(
 		bufWeek,
@@ -168,24 +169,24 @@ void WgCalendar::render()
 {
 	WgBackground::render();
 
-	switch (m_widget_mode)
+	switch (widget_mode_)
 	{
 		case md1x1:
 		{
-			m_RenderMode1();
+			RenderMode1_();
 			break;
 		}
 		case md1x2:
 		{
-			m_RenderMode1();
-			m_RenderMode2();
+			RenderMode1_();
+			RenderMode2_();
 			break;
 		}
 		case md1x3:
 		{
-			m_RenderMode1();
-			m_RenderMode2();
-			m_RenderMode3();
+			RenderMode1_();
+			RenderMode2_();
+			RenderMode3_();
 			break;
 		}
 		case md3x8:

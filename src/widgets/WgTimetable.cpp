@@ -13,10 +13,10 @@
 #include"configurator.h"/*config*/
 
 
-std::time_t WgTimetable::m_GetFileTime()
+std::time_t WgTimetable::GetFileTime_()
 {
     struct stat buff;
-    if (stat((m_timetable_dest+"/"+m_timetable_name).c_str(), &buff) == 0){
+    if (stat((timetable_path_+"/"+timetable_name_).c_str(), &buff) == 0){
         return buff.st_mtime;
     }
     else{
@@ -26,10 +26,10 @@ std::time_t WgTimetable::m_GetFileTime()
 
 WgTimetable::WgTimetable()
 {
-    m_file_time = m_GetFileTime();
+    file_time_ = this->GetFileTime_();
 
-    config->Get("TIME_TABLE_DEST",m_timetable_dest);
-    config->Get("TIME_TABLE_NAME",m_timetable_name);
+    config->Get("TIME_TABLE_PATH",timetable_path_);
+    config->Get("TIME_TABLE_NAME",timetable_name_);
 
     std::cout<<StrNow()<<"\tWgTimetable widget object was created\n";
 }
@@ -41,7 +41,7 @@ WgTimetable::~WgTimetable()
 
 bool WgTimetable::update()
 {
-    if (m_file_time != m_GetFileTime())
+    if (file_time_ != GetFileTime_())
     {
         if (timetable){
             delete timetable;
@@ -55,7 +55,7 @@ bool WgTimetable::update()
         {
             timetable = nullptr;
         }
-        m_file_time = m_GetFileTime();
+        file_time_ = GetFileTime_();
         engine->ForceUpdate();
     }
     return false;
@@ -63,4 +63,8 @@ bool WgTimetable::update()
 
 void WgTimetable::render() {
     //empty
+}
+
+void WgTimetable::Set_widget_id(int a_widget_id){
+    this->widget_id_ = a_widget_id;
 }

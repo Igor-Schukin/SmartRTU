@@ -7,8 +7,8 @@ class IWidget
 {
 
 protected:
-	int m_widget_update_time;
-	int m_widget_id;
+	int widget_update_time_;
+	int widget_id_;
 
 public:
 	virtual ~IWidget() {};
@@ -20,8 +20,8 @@ public:
 	virtual void GetRect(
 		int &x, int &y, int &widget_width, int &widget_height) = 0; 			
 	
-	virtual void Set_widget_id(int m_widget_id) { this->m_widget_id = m_widget_id; }						
-	virtual int Get_widget_update_time() { return this->m_widget_update_time; } 			
+	virtual void Set_widget_id(int widget_id_) { this->widget_id_ = widget_id_; }						
+	virtual int Get_widget_update_time() { return this->widget_update_time_; } 			
 	virtual int Get_width() { return 0; }  // for custom mode 			
 	virtual int Get_height() { return 0; } // for custom mode 			
 	virtual bool IsVisible() { return true; };  				

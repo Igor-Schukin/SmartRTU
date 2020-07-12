@@ -16,13 +16,13 @@
 WgForecast::WgForecast(int Ax, int Ay, WgMode Amode)
 	: WgBackground(Ax, Ay, Amode)
 {
-	m_widget_update_time = 60 * 60 * 1000; // 1 hour
+	widget_update_time_ = 60 * 60 * 1000; // 1 hour
 	m_weather_icon_picture = nullptr;
-	m_weather_icon_name = "";
+	weather_icon_name_ = "";
 
 	//get destination of weather icon
-	config->Get("PIC_WEATHER_ICONS_PATH", m_weather_icons_path);
-	config->Get("BASE_FONT_NAME", m_base_font_name);
+	config->Get("PIC_WEATHER_ICONS_PATH", weather_icons_path_);
+	config->Get("BASE_FONT_NAME", base_font_name_);
 
 	m_is_data_received = false;
 
@@ -109,15 +109,15 @@ bool WgForecast::update()
 	if (m_is_data_received && weather_data["weather"][0]["icon"].is_string())
 	{
 		std::string icon_name = weather_data["weather"][0]["icon"];
-		if (icon_name != m_weather_icon_name)
+		if (icon_name != weather_icon_name_)
 		{
 			if (m_weather_icon_picture) {
 				delete m_weather_icon_picture;
 			}
 			m_weather_icon_picture = new Picture(
-				(m_weather_icons_path + "/" + icon_name + ".png").c_str()
+				(weather_icons_path_ + "/" + icon_name + ".png").c_str()
 			);
-			m_weather_icon_name = icon_name;
+			weather_icon_name_ = icon_name;
 			std::cout << StrNow() << "\tNew weather icon was loaded \n";
 		}
 	}
@@ -132,12 +132,12 @@ bool WgForecast::update()
 	return true;
 }
 
-void WgForecast::m_RenderMode1()
+void WgForecast::RenderMode1_()
 {
 	RenderWidgetHeader(m_temp_degree);
 }
 
-void WgForecast::m_RenderMode2()
+void WgForecast::RenderMode2_()
 {
 	float field = RectClient.width * 0.07;
 
@@ -174,7 +174,7 @@ void WgForecast::m_RenderMode2()
 	SetTextColor(clHaki);
 
 	TFont *font = FontStorage->GetFont(
-		const_cast<char *>(m_base_font_name.c_str())
+		const_cast<char *>(base_font_name_.c_str())
 	);
 	font->Set_Size(desktop->row_height / 3);
 	int wind_height = static_cast<int>(font->TextHeight());
@@ -184,7 +184,7 @@ void WgForecast::m_RenderMode2()
 		RectClient.bottom + (RectClient.height - wind_height) / 2);
 }
 
-void WgForecast::m_RenderMode3() // need to debug
+void WgForecast::RenderMode3_() // need to debug
 {
 
 }
@@ -194,24 +194,24 @@ void WgForecast::render()
 	if (m_is_data_received)
 	{
 		WgBackground::render();
-		switch (m_widget_mode)
+		switch (widget_mode_)
 		{
 		case md1x1:
 		{
-			m_RenderMode1();
+			RenderMode1_();
 			break;
 		}
 		case md1x2:
 		{
-			m_RenderMode1();
-			m_RenderMode2();
+			RenderMode1_();
+			RenderMode2_();
 			break;
 		}
 		case md1x3:
 		{
-			m_RenderMode1();
-			m_RenderMode2();
-			m_RenderMode3();
+			RenderMode1_();
+			RenderMode2_();
+			RenderMode3_();
 			break;
 		}
 		case md3x8:{

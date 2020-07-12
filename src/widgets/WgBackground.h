@@ -33,8 +33,8 @@ public:
   WgBackground(int a_pos_x, int a_pos_y, WgMode Amode);
   ~WgBackground();
 
-  void SetFillColor(WgColor c); // set m_color of block with command Fill
-  void SetTextColor(WgColor c); // set m_color of text
+  void SetFillColor(WgColor c); // set color_ of block with command Fill
+  void SetTextColor(WgColor c); // set color_ of text
 
   void GetRect(int &left, int &bottom, int &width, int &height)override;
   void render() override;
@@ -43,15 +43,15 @@ public:
 
 protected:
   int m_pos_x, m_pos_y; // position in the grid
-  WgMode m_widget_mode;          // widget_mode
-  WgColor m_color;
-  bool m_shadows_on;              // on/off shadows
+  WgMode widget_mode_;          // widget_mode
+  WgColor color_;
+  bool shadows_on_;              // on/off shadows
 
-  // widget size in the grid, example: m_widget_width=1; m_widget_height=1;
+  // widget size in the grid, example: widget_width_=1; widget_height_=1;
   // fill only one block in the grid
-  int m_widget_width, m_widget_height; 
+  int widget_width_, widget_height_; 
   
-  std::string m_base_font_name; // mean name of font without extension
+  std::string base_font_name_; // mean name of font without extension
 
   struct {
     int left, right, top, bottom, width, height;
@@ -61,7 +61,7 @@ protected:
   } ShadowSize;
 
   //renders text at widget header
-  void RenderWidgetHeader(const char *header_text);
+  void RenderWidgetHeader(const char *a_header_text);
   void RenderOnlyShadows(); // renders only all shadows //kastil
 };
 

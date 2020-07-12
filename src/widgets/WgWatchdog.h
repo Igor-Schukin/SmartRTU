@@ -19,12 +19,12 @@ public:
     w = 0;
     h = 0;
   }
-  void Set_widget_id(int m_widget_id) override;
+  void Set_widget_id(int a_widget_id) override;
   int Get_widget_update_time() override { return 10 * 60 * 1000; } // 10min
 
 private:
-  int m_widget_id;
-  std::string watchdog_name;
-  std::string watchdog_dest;
+  int widget_id_;
+  std::string watchdog_name_;
+  std::string watchdog_path_;
 };
 #endif /*SMART_RTU_SRC_WIDGETS_WGWATCHDOG_H_*/

@@ -35,21 +35,21 @@ public:
     bool update()override;
     void render()override;//empty
     bool IsVisible() override { return false; };
-    void GetRect(int &x, int &y, int &w, int &h)
+    void GetRect(int &x, int &y, int &w, int &h)override
     {
         x = 0;
         y = 0;
         w = 0;
         h = 0;
     }
-    void Set_widget_id(int m_widget_id)override { 
-        this->m_widget_id = m_widget_id; 
+    void Set_widget_id(int a_widget_id)override { 
+        this->widget_id_ = a_widget_id; 
         }
     int Get_widget_update_time()override { return 1000; } //1000ms = 1 time / sec
 
 private:
-    int m_widget_id;
-    bool m_current_states[SOCKETS_COUNT]; //holds current state of pin(on/off )
+    int widget_id_;
+    bool current_states_[SOCKETS_COUNT]; //holds current state of pin(on/off )
 
 };
 

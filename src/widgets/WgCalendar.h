@@ -24,13 +24,13 @@ public:
 private:
   char bufDate[32], bufWeekDay[32], bufWeekInfo[50], bufWeek[32];
 
-  const char *m_ConvertWeekDayFromInt(int wday);
-  const char *m_ConvertMonthFromInt(int mon);
+  const char *ConvertWeekDayFromInt_(int a_week_day);
+  const char *ConvertMonthFromInt_(int a_month);
 
-  std::string m_base_font_name; // mean name of font without extension
+  std::string base_font_name; // mean name of font without extension
 
-  void m_RenderMode1();
-  void m_RenderMode2();
-  void m_RenderMode3();
+  void RenderMode1_();
+  void RenderMode2_();
+  void RenderMode3_();
 };
 #endif /*SMART_RTU_SRC_WIDGETS_WGCALENDAR_H_*/

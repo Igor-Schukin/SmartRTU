@@ -28,11 +28,11 @@ public:
 private:
 	int hour, min, sec; // last update time
 	char strTime[10], strLect[20], strInfo[100], strTimer[15];
-	std::string m_base_font_name;//mean name of font without extension
+	std::string base_font_name_;//mean name of font without extension
 
-	void m_RenderMode1();
-	void m_RenderMode2();
-	void m_RenderMode3();
+	void RenderMode1_();
+	void RenderMode2_();
+	void RenderMode3_();
 
 };
 #endif /*SMART_RTU_SRC_WIDGETS_WGCLOCK_H_*/

@@ -44,9 +44,9 @@ public:
 	void render()override;
 private:
 	Picture *m_weather_icon_picture;
-	std::string m_weather_icon_name;
-	std::string m_weather_icons_path;
-	std::string m_base_font_name;
+	std::string weather_icon_name_;
+	std::string weather_icons_path_;
+	std::string base_font_name_;
 
 	char m_temp_degree[8]; //temperature string buf
 	char m_wind_speed[10]; //wind speed string buf
@@ -59,9 +59,9 @@ private:
 	//uses curl request to get from server weather data in json form
 	void m_GetWeatherFromWeb(const char *site, json &weather_data);
 
-	void m_RenderMode1();
-	void m_RenderMode2();
-	void m_RenderMode3(); // need debugging
+	void RenderMode1_();
+	void RenderMode2_();
+	void RenderMode3_(); // need debugging
 };
 
 #endif /*SMART_RTU_SRC_WIDGETS_WGFORECAST_H_*/

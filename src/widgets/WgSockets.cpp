@@ -13,7 +13,7 @@ WgSockets::WgSockets()
     wiringPiSetup();
     for (int i = 0; i < SOCKETS_COUNT; ++i)
     {
-        m_current_states[i] = false;
+        current_states_[i] = false;
         pinMode(SOCKETS_PINS[i], OUTPUT);
     }
     std::cout << StrNow() << "\t" << "WgSockets widget object was created\n";
@@ -31,11 +31,11 @@ bool WgSockets::update()
     {
         state = timetable->GetCurrentSocketState(i + 1);
         digitalWrite(SOCKETS_PINS[i], state ? HIGH : LOW);
-        if (state != m_current_states[i])
+        if (state != current_states_[i])
         {
             std::cout<<StrNow()<<"\tSocket "
             <<i + 1<<" is turned "<<(state ? "on" : "off")<<" \n";
-            m_current_states[i] = state;
+            current_states_[i] = state;
         }
     }
     return false;

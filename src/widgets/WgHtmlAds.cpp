@@ -19,20 +19,20 @@
 
 #include "configurator.h" //config
 
-std::time_t WgHtmlAds::m_GetFileTime() {
+std::time_t WgHtmlAds::GetFileTime_() {
   struct stat buff;
   // check if it can touch file and read last edit time of file
-  if (stat(fmt("%s/%s", m_local_html_input_file_dest.c_str(),
-               m_html_name.c_str()),
+  if (stat(fmt("%s/%s", local_html_input_file_dest_.c_str(),
+               html_name_.c_str()),
            &buff) == 0) // fmt is not in standart library of C or C++
     return buff.st_mtime;
   return 0;
 }
 
-bool WgHtmlAds::m_NeedRenew() {
-  std::time_t ft = WgHtmlAds::m_GetFileTime();
-  if ((ft != 0) && (ft != m_file_time)) {
-    m_file_time = ft;
+bool WgHtmlAds::NeedRenew_() {
+  std::time_t ft = WgHtmlAds::GetFileTime_();
+  if ((ft != 0) && (ft != file_time_)) {
+    file_time_ = ft;
     return true;
   }
   else{
@@ -40,92 +40,92 @@ bool WgHtmlAds::m_NeedRenew() {
   }
 }
 
-void WgHtmlAds::m_CleanPicture() {
-  if (m_advert_pic) {
-    delete m_advert_pic;
-    m_advert_pic = nullptr;
+void WgHtmlAds::CleanPicture_() {
+  if (advert_pic_) {
+    delete advert_pic_;
+    advert_pic_ = nullptr;
   }
 }
 
-void WgHtmlAds::m_CutyCaptRequest() {
+void WgHtmlAds::CutyCaptRequest_() {
 
   // remember white spaces are important for cutycapt!!!
   std::system(("xvfb-run --server-args=\"-screen 0, 1920x1080x24\" "
                       "cutycapt  --url=file:" +
-                      m_full_path_to_project_exe + "/" +
-                      m_local_html_input_file_dest + "/" + m_html_name +
-                      " --out=" + m_full_path_to_project_exe + "/" +
-                      m_local_ad_path + "/" + m_ad_name).c_str()
+                      full_path_to_project_exe_ + "/" +
+                      local_html_input_file_dest_ + "/" + html_name_ +
+                      " --out=" + full_path_to_project_exe_ + "/" +
+                      local_ad_path_ + "/" + ad_name_).c_str()
               );
 }
 
 WgHtmlAds::WgHtmlAds(int Ax, int Ay, WgMode Amode)
     : WgBackground(Ax, Ay, Amode) 
 {
-  m_shadows_on = false; // default render of shadows off
+  shadows_on_ = false; // default render of shadows off
   int update_time;
   config->Get("ADVERT_UPDATE_TIME", update_time); // converts string into int
 
   if (update_time <= 0) {
-    m_widget_update_time = 3000; // sets 3 seconds update time  //int data type
+    widget_update_time_ = 3000; // sets 3 seconds update time  //int data type
   } else {
-    m_widget_update_time = (update_time * 1000); // sets update time in seconds
+    widget_update_time_ = (update_time * 1000); // sets update time in seconds
   }
 
   // string part
-  config->Get("HEADER_TEXT", m_header_text);
+  config->Get("HEADER_TEXT", header_text_);
   // .html part
-  config->Get("ADVERT_INPUT_FILE_DEST", m_local_html_input_file_dest);
-  config->Get("ADVERT_INPUT_FILE", m_html_name);
+  config->Get("ADVERT_INPUT_FILE_DEST", local_html_input_file_dest_);
+  config->Get("ADVERT_INPUT_FILE", html_name_);
   // advert part
-  config->Get("ADVERT_PATH", m_local_ad_path);
-  config->Get("ADVERT_NAME", m_ad_name);
+  config->Get("ADVERT_PATH", local_ad_path_);
+  config->Get("ADVERT_NAME", ad_name_);
   // stub part
-  config->Get("ADVERT_PATH",m_local_stub_path); 
-  config->Get("ADVERT_STUB_NAME", m_stub_name);
+  config->Get("ADVERT_PATH",local_stub_path_); 
+  config->Get("ADVERT_STUB_NAME", stub_name_);
 
 // get full path to exe
   char buff[PATH_MAX];
   realpath(".", buff);               
-  m_full_path_to_project_exe = buff; 
+  full_path_to_project_exe_ = buff; 
 
-  m_advert_on_screen = false;
+  advert_on_screen_ = false;
 
-  m_advert_pic = nullptr;
-  m_file_time = m_GetFileTime();
+  advert_pic_ = nullptr;
+  file_time_ = GetFileTime_();
 
   // run async cutycapt request
-  m_future =std::async(std::launch::async, &WgHtmlAds::m_CutyCaptRequest, this);
+  future_ =std::async(std::launch::async, &WgHtmlAds::CutyCaptRequest_, this);
 
   std::cout << StrNow() << "\t"
             << "WgHtmlsAds widget object was created\n";
 }
 
-WgHtmlAds::~WgHtmlAds() { this->m_CleanPicture(); }
+WgHtmlAds::~WgHtmlAds() { this->CleanPicture_(); }
 
 bool WgHtmlAds::update() {
   // get status of thread//it actually freezes it for under 1 milisecond to get
   // status of thread
-  m_thread_status = m_future.wait_for(std::chrono::milliseconds(0));
+  thread_status_ = future_.wait_for(std::chrono::milliseconds(0));
 
   // check if thread finished
-  if (m_thread_status == std::future_status::ready) {
+  if (thread_status_ == std::future_status::ready) {
 
     // needed if thread done its job
-    if (m_advert_on_screen == false) {
+    if (advert_on_screen_ == false) {
       return true;
 	  
-    } else if (m_NeedRenew() == true) {
+    } else if (NeedRenew_() == true) {
       std::cout << StrNow() << "\t"
-                << "Detected what advert's ->" << m_ad_name
+                << "Detected what advert's ->" << ad_name_
                 << "<- .html was edited\n";
 
-      m_future =
-          std::async(std::launch::async, &WgHtmlAds::m_CutyCaptRequest, this);
+      future_ =
+          std::async(std::launch::async, &WgHtmlAds::CutyCaptRequest_, this);
       std::cout << StrNow() << "\t"
                 << "Cutycapt successfully lauched\n";
 
-      m_advert_on_screen = false;
+      advert_on_screen_ = false;
 
       return true;
 
@@ -142,48 +142,48 @@ void WgHtmlAds::render() {
                           // tranperent
 
   //~~~ render header
-  RenderWidgetHeader(m_header_text.c_str());
+  RenderWidgetHeader(header_text_.c_str());
 
   // Use wait_for() with zero milliseconds to check thread status.
-  m_thread_status =
-      m_future.wait_for(std::chrono::milliseconds(0)); // get status of thread
+  thread_status_ =
+      future_.wait_for(std::chrono::milliseconds(0)); // get status of thread
 
   // check if thread finished.
-  if (m_thread_status == std::future_status::ready) {
+  if (thread_status_ == std::future_status::ready) {
     std::cout << StrNow() << "\t"
               << "Cutycapt finished its work\n";
-    if (m_advert_on_screen != true) {
+    if (advert_on_screen_ != true) {
       // std::cout << StrNow() << "\t" << "Cutycapt finished its work\n";
-      this->m_CleanPicture();
+      this->CleanPicture_();
       try {
-        m_advert_pic = new Picture((m_local_ad_path + "/" + m_ad_name).c_str());
+        advert_pic_ = new Picture((local_ad_path_ + "/" + ad_name_).c_str());
       } catch (...) {
         std::cerr << StrNow() << "\t"
                   << "Something bad happened  with loading advert, STUB placed "
                      "instead!!! \n";
-        this->m_CleanPicture();
+        this->CleanPicture_();
         // stub placed instead
-        m_advert_pic =
-            new Picture((m_local_stub_path + "/" + m_stub_name).c_str());
+        advert_pic_ =
+            new Picture((local_stub_path_ + "/" + stub_name_).c_str());
       }
 
-      m_image_scale_by_width = static_cast<float>(RectClient.width) /
-                               static_cast<float>(m_advert_pic->Get_width());
-      m_image_scale_by_height = static_cast<float>(RectClient.height) /
-                                static_cast<float>(m_advert_pic->Get_height());
+      image_scale_by_width_ = static_cast<float>(RectClient.width) /
+                               static_cast<float>(advert_pic_->Get_width());
+      image_scale_by_height_ = static_cast<float>(RectClient.height) /
+                                static_cast<float>(advert_pic_->Get_height());
 
-      m_advert_on_screen = true;
+      advert_on_screen_ = true;
       std::cout << StrNow() << "\t"
                 << "Advert was placed on the advert widget screen \n";
     }
   } else {
-    if (m_advert_pic == nullptr) {
-      m_advert_pic =
-          new Picture((m_local_stub_path + "/" + m_stub_name).c_str());
-      m_image_scale_by_width = static_cast<float>(RectClient.width) /
-                               static_cast<float>(m_advert_pic->Get_width());
-      m_image_scale_by_height = static_cast<float>(RectClient.height) /
-                                static_cast<float>(m_advert_pic->Get_height());
+    if (advert_pic_ == nullptr) {
+      advert_pic_ =
+          new Picture((local_stub_path_ + "/" + stub_name_).c_str());
+      image_scale_by_width_ = static_cast<float>(RectClient.width) /
+                               static_cast<float>(advert_pic_->Get_width());
+      image_scale_by_height_ = static_cast<float>(RectClient.height) /
+                                static_cast<float>(advert_pic_->Get_height());
 
       std::cout << StrNow() << "\t"
                 << "Stub was placed on the widget screen \n";
@@ -191,8 +191,8 @@ void WgHtmlAds::render() {
   }
 
   // render Advert
-  m_advert_pic->render(RectClient.left, RectClient.bottom,
-                       m_image_scale_by_width, m_image_scale_by_height, 0, 0,
+  advert_pic_->render(RectClient.left, RectClient.bottom,
+                       image_scale_by_width_, image_scale_by_height_, 0, 0,
                        0);
 
   //~~~~~ render shadows

@@ -164,7 +164,7 @@ bool TimeTableSocketTime::isSwitchedOn(struct tm time) { return time >= on && ti
 //Timetable::Timetable(const char *FileName)
 Timetable::Timetable()
 {
-    config->Get("TIME_TABLE_DEST",m_time_table_dest);
+    config->Get("TIME_TABLE_PATH",m_time_table_dest);
     config->Get("TIME_TABLE_NAME",m_time_table_name);
 
     for (int wd = 0; wd < 7; wd++){

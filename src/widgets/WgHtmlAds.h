@@ -53,39 +53,40 @@ public:
   ~WgHtmlAds();
 
 private:
-  void m_CutyCaptRequest(); // run in another thread combining strings to make
-                            // request and transform .html page into png
+  void CutyCaptRequest_(); // run in another thread combining strings to make
+                            // request and transform 
+                            //.html page into png using Cutycapt
 
   //~~detect if advert.html file was changed
-  std::time_t m_GetFileTime(); // gets last edited time of file(.html)
-  bool m_NeedRenew();          // check if file(.html) was changed/edited
-  void m_CleanPicture(); // cleans what inside m_advert_pic and sets nullptr
+  std::time_t GetFileTime_(); // gets last edited time of file(.html)
+  bool NeedRenew_();          // check if file(.html) was changed/edited
+  void CleanPicture_(); // cleans what inside advert_pic_ and sets nullptr
   
   //~~~stored strings
-  std::string m_header_text; 
-  std::string m_local_html_input_file_dest;
-  std::string m_html_name;
-  std::string m_local_ad_path;
-  std::string m_ad_name;
-  std::string m_stub_name;
-  std::string m_local_stub_path;
-  std::string m_full_path_to_project_exe; // cutycapt need full path to exe
+  std::string header_text_; 
+  std::string local_html_input_file_dest_;
+  std::string html_name_;
+  std::string local_ad_path_;
+  std::string ad_name_;
+  std::string stub_name_;
+  std::string local_stub_path_;
+  std::string full_path_to_project_exe_; // cutycapt need full path to exe
                                           // otherwise it wont work
 
-  Picture *m_advert_pic;       
-  std::time_t m_file_time = 0; // last timestamp then file was edited
+  Picture *advert_pic_;       
+  std::time_t file_time_ = 0; // last timestamp then file was edited
 
-  float m_image_scale_by_width = 0;
-  float m_image_scale_by_height = 0;
+  float image_scale_by_width_ = 0;
+  float image_scale_by_height_ = 0;
 
   //~thread variables
-  std::future<void> m_future; // is handle of  new async thread //not so good to
+  std::future<void> future_; // is handle of  new async thread //not so good to
                               // use void but....
                               
   // stored status of thread //probably can avoid it
-  std::future_status m_thread_status; 
+  std::future_status thread_status_; 
 
-  bool m_advert_on_screen;
+  bool advert_on_screen_;
 };
 
 #endif /*SMART_RTU_SRC_WIDGETS_WGHTMLADS_H_*/

@@ -3,7 +3,7 @@
 WgAds::WgAds(int Ax, int Ay, WgMode Amode) : WgBackground(Ax, Ay, Amode)
 {
 	system(fmt("touch %s%s", ADS_FILES_PATH, FLAG_FILE_NAME));
-	m_widget_update_time = 1000; // 1s
+	widget_update_time_ = 1000; // 1s
 	ads = NULL;
 	adsPeace = NULL;
 	lineCount = 0;

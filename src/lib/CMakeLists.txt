@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 3.0.0)
 
-
-
 ##add libs
 add_subdirectory(json)
 add_subdirectory(fonts)
