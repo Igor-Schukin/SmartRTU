@@ -43,21 +43,21 @@ public:
 	bool update()override;
 	void render()override;
 private:
-	Picture *m_weather_icon_picture;
+	Picture *weather_icon_picture_;
 	std::string weather_icon_name_;
 	std::string weather_icons_path_;
-	std::string base_font_name_;
+	std::string base_font_base_name_;
 
-	char m_temp_degree[8]; //temperature string buf
-	char m_wind_speed[10]; //wind speed string buf
-	int m_wind_degree;	//wind degree
+	char temp_degree_[8]; //temperature string buf
+	char wind_speed_[10]; //wind speed string buf
+	int wind_degree_;	//wind degree
 
-	bool m_is_data_received; //flag about received or not data from web /*isConnection*/
+	bool is_data_received_; //flag about received or not data from web /*isConnection*/
 
 	//needed stuff for curl request
-	static std::size_t m_WriteCallback(void *contents, std::size_t size, std::size_t nmemb, void *userp);
+	static std::size_t WriteCallback_(void *contents, std::size_t size, std::size_t nmemb, void *userp);
 	//uses curl request to get from server weather data in json form
-	void m_GetWeatherFromWeb(const char *site, json &weather_data);
+	void GetWeatherFromWeb_(const char *site, json &weather_data);
 
 	void RenderMode1_();
 	void RenderMode2_();

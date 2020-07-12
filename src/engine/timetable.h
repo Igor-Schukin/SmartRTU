@@ -191,12 +191,12 @@ public:
     ~Timetable();
 private:
 
-    int m_GetWeekNumber(const TimetableDate &origin, struct tm now = makeNow());
-    int m_GetWeeksCount(const TimetableDateRange *dates);
+    int GetWeekNumber_(const TimetableDate &origin, struct tm now = makeNow());
+    int GetWeeksCount_(const TimetableDateRange *dates);
 
     //all about desyianation/name of timetabl.json
-    std::string m_time_table_dest;
-    std::string m_time_table_name;
+    std::string time_table_path_;
+    std::string time_table_name_;
 
     TimetableWeekDay *Week[7];
     int SinglesCount;

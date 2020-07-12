@@ -45,7 +45,7 @@ WgBackground::WgBackground(int a_pos_x, int a_pos_y, WgMode Amode)
   color_ = WgColor(1 + rand() % 10);//????????
 
   //shadows_on_ = true; // shadows on
-  config->Get("BASE_FONT_NAME", base_font_name_);
+  config->Get("BASE_FONT_BASE_NAME", base_font_base_name_);
 
   // -- select widget size from widget_mode_
   switch (widget_mode_) {
@@ -102,7 +102,7 @@ WgBackground::~WgBackground() {
 
 void WgBackground::SetTextColor(WgColor c) {
   
-  FontStorage->GetFont(const_cast<char *>(base_font_name_.c_str()))
+  FontStorage->GetFont(const_cast<char *>(base_font_base_name_.c_str()))
       ->Set_Color(Colors[c].r, Colors[c].g, Colors[c].b);
 
 }
@@ -135,7 +135,7 @@ void WgBackground::GetRect(int &left, int &bottom, int &width, int &height) {
 void WgBackground::RenderWidgetHeader(const char *a_header_text) {
   int font_width = RectHeader.width * 0.8;
   TFont *font =
-      FontStorage->GetFont(const_cast<char *>(base_font_name_.c_str()));
+      FontStorage->GetFont(const_cast<char *>(base_font_base_name_.c_str()));
   
   font->Set_Color(255, 255, 255);
 

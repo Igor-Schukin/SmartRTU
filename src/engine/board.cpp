@@ -38,7 +38,7 @@ Board::Board()
 	AddWidget(
 		new WgHtmlAds(0, 8,md3x8)
 		);
-	 //m_AddWidget( widgets, new WgHtmlAds(0, 8, md3x8));
+	 //AddWidget_( widgets, new WgHtmlAds(0, 8, md3x8));
 
 	AddWidget(new WgForecast(3, 8, md1x2));
 	AddWidget(new WgClock(3, 6, md1x3));
@@ -133,26 +133,26 @@ void Board::render(bool Forced)
 	vgSeti(VG_SCISSORING, VG_FALSE);
 }
 
-void Board::m_AddWidget(WidgetInfo* & list, IWidget * w) {
+void Board::AddWidget_(WidgetInfo* & list, IWidget * w) {
     if (list){ 
-		m_AddWidget(list->next, w);
+		AddWidget_(list->next, w);
 	} 
 	else{ 
 		list = new WidgetInfo(w);
 	}
 }
 
-void Board::m_FreeWidgets(WidgetInfo* & list) {
+void Board::FreeWidgets_(WidgetInfo* & list) {
     if (list) {
-		 m_FreeWidgets(list->next); 
+		 FreeWidgets_(list->next); 
 		 delete(list); 
 		 list = nullptr; 
 	}
 }
 
-int Board::m_CntWidgets(WidgetInfo* list) {
+int Board::CntWidgets_(WidgetInfo* list) {
     if (list){
-		 return m_CntWidgets(list->next) + 1;
+		 return CntWidgets_(list->next) + 1;
 	} 
 	else{
 		 return 0;

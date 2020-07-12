@@ -40,16 +40,16 @@ Engine *engine = nullptr;
 
 Engine::Engine()
 {
-	m_is_terminated = false;
-	board = new Board;
-	m_is_running = false;
-	m_frame_capacity = 1000 / FRAMES_PER_SECOND;
+	is_terminated_ = false;
+	board_ = new Board;
+	is_running_ = false;
+	frame_capacity_ = 1000 / FRAMES_PER_SECOND;
 }
 
 Engine::~Engine()
 {
-	if (board){
-		delete board;
+	if (board_){
+		delete board_;
 	}
 	
 	if (timetable){
@@ -59,14 +59,14 @@ Engine::~Engine()
 
 void Engine::start()
 {
-	if (!m_is_running){
-		this->run();
+	if (!is_running_){
+		this->run_();
 	}
 }
 
-void Engine::run()
+void Engine::run_()
 {
-	m_is_running = true;
+	is_running_ = true;
 
 	LongTimeMs idleTime = 0;
 	LongTimeMs lastRender = 0;
@@ -79,15 +79,13 @@ void Engine::run()
 
 	std::fprintf(stdout,"%s\tEngine main circle  started\n", StrNow());
 
-	while (m_is_running && !m_is_terminated)
+	while (is_running_ && !is_terminated_)
 	{
 		LongTimeMs time = timer.GetTime();
 
-		//kbhit();  //?
-
 		this->update();
 
-		if ((time - lastRender) >= static_cast<long long unsigned int>(m_frame_capacity))
+		if ((time - lastRender) >= static_cast<long long unsigned int>(frame_capacity_))
 		{
 			this->render(false);
 			lastRender = time;
@@ -138,33 +136,30 @@ void Engine::run()
 
 void Engine::update()
 {
-	board->update(false);
+	board_->update(false);
 }
 
 void Engine::ForceUpdate()
 {
-	board->update(true);
+	board_->update(true);
 }
 
 void Engine::render(bool All)
 {
-	//Start(width, height);
+
 	VGfloat color[4] = {1, 1, 1, 1};
-	//vgSetfv(VG_CLEAR_COLOR, 4, color);
-	//vgClear(0, 0, width, height);
+
 	color[0] = 0, color[1] = 0, color[2] = 0;
 	setfill(color);
 	setstroke(color);
 	StrokeWidth(0);
 	vgLoadIdentity();
 
-	//Background(0, 0, 0);
 	VGfloat colour[4];
 	RGB(0, 0, 0, colour);
 	vgSetfv(VG_CLEAR_COLOR, 4, colour);
-	//	vgClear(0, 0, state->window_width, state->window_height);
 
-	board->render(All);
+	board_->render(All);
 
 	End();
 }

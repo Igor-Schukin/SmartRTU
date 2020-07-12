@@ -1,6 +1,6 @@
 /*CFontStorage
  * --This is a Font Storage
- * 		You can add here fonts and
+ * 		You can add here fonts_ and
  * 		and use it anywhere in project,
  * 		just add #include "CFontStorage.h" 
  * --Here uses library TFont.h frow Georgiy Gamarnik
@@ -12,6 +12,7 @@
 
 #include "TFont.h"/*TFont obj*/
 #include <cstring>/*strcpy*/
+#include<array>
 
 constexpr auto MAX_FONTS_COUNT = 4;
 //#define ONDEBUG
@@ -20,10 +21,12 @@ struct FontStruct
 {
 	char *font_name;
 	TFont *font_file;
-	FontStruct(const char *AName, TFont *AFont)
+	FontStruct(const char *a_font_name, TFont *A_font)
 	{
-		font_name = std::strcpy(new char[std::strlen(AName) + 1], AName);
-		font_file = AFont;
+		font_name = std::strcpy(
+			new char[std::strlen(a_font_name) + 1], a_font_name
+			);
+		font_file = A_font;
 	}
 	~FontStruct()
 	{
@@ -41,12 +44,10 @@ public:
 	bool SetFont(char *font_name, char *font_file);
 	TFont *GetFont(char *font_name);
 private:
-	FontStruct *fonts[MAX_FONTS_COUNT];
+	FontStruct *fonts_[MAX_FONTS_COUNT];
 	
- 	//retunt font position in fonts massive; return -1 if name not found
-	int m_FindFontName(char *font_name);
-	FontStruct m_NewFont(char *font_name, char *font_file);
-
+ 	//retunt font position in fonts_ massive; return -1 if name not found
+	int FindFontName_(char *font_name);
 };
 
 extern CFontStorage *FontStorage;

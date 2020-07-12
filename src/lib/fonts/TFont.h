@@ -33,21 +33,21 @@ public:
 	void Set_Color(unsigned char local_R, unsigned char local_G, unsigned char local_B, VGfloat local_A = 1.0);
 
 private:
-	short *m_char_map;
-	VGPath *m_glyphs;
-	int m_glyphs_count;
-	int *m_glyph_advances;
-	int m_font_height;
-	int m_descender_height;
-	int m_font_size;
+	short *char_map_;
+	VGPath *glyphs_;
+	int glyphs_count_;
+	int *glyph_advances_;
+	int font_height_;
+	int descender_height_;
+	int m_font_size_;
 
 	unsigned char R;
 	unsigned char G;
 	unsigned char B;
 	VGfloat A;
 
-	bool m_CreateGlyphs(int *Pnt, int *PntInd, unsigned char *Ins, int *InsInd, int *InsCnt);
-	unsigned char *m_NextUtf8Char(unsigned char *utf8, int *codepoint);
+	bool CreateGlyphs_(int *Pnt, int *PntInd, unsigned char *Ins, int *InsInd, int *InsCnt);
+	unsigned char *NextUtf8Char_(unsigned char *utf8, int *codepoint);
 
 };
 

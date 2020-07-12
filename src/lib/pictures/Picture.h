@@ -58,17 +58,17 @@ public:
     float GetBlueColor(int color);
     float GetAlphaColor(int color);
 private:
-    int width, height;
+    int picture_width_, picture_height_;
     float scaleX, scaleY;
     float shearX, shearY;
     float rotate;
     VGImage finImg;
 
-    PictureType GetPictureType(const char *Path);
+    PictureType GetPictureType_(const char *Path);
 
-    VGImage m_CreateImageFromPNG(const char *path);
-    void m_CreateImageFromJPG(const char *path);
-    VGImage m_CreateImageFromJpeg(const char *filename);
+    VGImage CreateImageFromPng_(const char *path);
+    void CreateImageFromJpg_(const char *path);
+    VGImage CreateImageFromJpeg_(const char *filename);
 
 };
 #endif/*SMART_RTU_SRC_LIB_PICTURES_PICTURE_H_*/
@@ -95,9 +95,9 @@ private:
             #include "lib/Pictures.h"
 
             Picture *image1 = new Picture("png.png");
-            std::printf("width: %i, height: %i\n", image1->Get_width(), image1->Get_height());
+            std::printf("picture_width_: %i, height: %i\n", image1->Get_width(), image1->Get_height());
             Picture *image2 = new Picture("rad.jpg");
-            std::printf("width: %i, height: %i\n", image2->Get_width(), image2->Get_height());
+            std::printf("picture_width_: %i, height: %i\n", image2->Get_width(), image2->Get_height());
 
             //	if you want to use all pixels of image
             unsigned int *pixels = new unsigned int[image2->Get_width() * image2->Get_height()];
@@ -118,7 +118,7 @@ private:
 
 
             //	drawing on the screen
-            Start(width, height);
+            Start(picture_width_, height);
             Background(100, 100, 120);
             image2->drawImage(100, 100);
             image1->drawImage(105, 105);

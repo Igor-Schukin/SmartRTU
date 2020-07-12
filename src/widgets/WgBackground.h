@@ -51,7 +51,7 @@ protected:
   // fill only one block in the grid
   int widget_width_, widget_height_; 
   
-  std::string base_font_name_; // mean name of font without extension
+  std::string base_font_base_name_; // mean name of font without extension
 
   struct {
     int left, right, top, bottom, width, height;

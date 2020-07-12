@@ -1,6 +1,6 @@
 
 #include "CPicturesStorage.h"
-
+#include<string>
 
 #include "configurator.h"
 
@@ -10,37 +10,39 @@ CPicturesStorage *PicStorage;
 CPicturesStorage::CPicturesStorage()
 {
 	//adds needed paths
-	config->Get("PIC_SHADOW_PATH",m_shadows_path);
-	config->Get("PIC_PATH",m_pictures_path);
-	config->Get("PIC_BACKGROUND",m_background_pic_name);
-	config->Get("PIC_TITLE",m_title_pic_name);
+	config->Get("PIC_SHADOW_PATH",shadows_path_);
+	config->Get("PIC_PATH",pictures_path_);
+	config->Get("PIC_BACKGROUND",background_picture_name_);
+	config->Get("PIC_TITLE",title_picture_name_);
 
 
-	this->m_AddPic();
+	this->CreatPictures_();
 }
 
 CPicturesStorage::~CPicturesStorage()
 {
-	this->m_CleanStorage();
+	this->CleanStorage_();
 }
 
-void CPicturesStorage::m_AddPic()
+void CPicturesStorage::CreatPictures_()
 {
-	Logo = new Picture((m_pictures_path+"/"+m_title_pic_name).c_str());
-	ScreenBackgroud = new Picture((m_pictures_path+"/"+m_background_pic_name).c_str());
-	Arrow = new Picture((m_pictures_path+"/"+"arrow_sm.png").c_str());
+	Logo = new Picture((pictures_path_+"/"+title_picture_name_).c_str());
+	ScreenBackgroud = new Picture(
+		(pictures_path_+"/"+background_picture_name_).c_str()
+	);
+	Arrow = new Picture((pictures_path_+"/"+"arrow_sm.png").c_str());
 	WgShadows = new WgShadowPictures;
-	WgShadows->t = new Picture((m_shadows_path+"/"+"sTop.png").c_str());
-	WgShadows->lt = new Picture((m_shadows_path+"/"+"sLeftTop.png").c_str());
-	WgShadows->rt = new Picture((m_shadows_path+"/"+"sRightTop.png").c_str());
-	WgShadows->b = new Picture((m_shadows_path+"/"+"sBot.png").c_str());
-	WgShadows->lb = new Picture((m_shadows_path+"/"+"sLeftBot.png").c_str());
-	WgShadows->rb = new Picture((m_shadows_path+"/"+"sRightBot.png").c_str());
-	WgShadows->l = new Picture((m_shadows_path+"/"+"sLeft.png").c_str());
-	WgShadows->r = new Picture((m_shadows_path+"/"+"sRight.png").c_str());
+	WgShadows->t = new Picture((shadows_path_+"/"+"sTop.png").c_str());
+	WgShadows->lt = new Picture((shadows_path_+"/"+"sLeftTop.png").c_str());
+	WgShadows->rt = new Picture((shadows_path_+"/"+"sRightTop.png").c_str());
+	WgShadows->b = new Picture((shadows_path_+"/"+"sBot.png").c_str());
+	WgShadows->lb = new Picture((shadows_path_+"/"+"sLeftBot.png").c_str());
+	WgShadows->rb = new Picture((shadows_path_+"/"+"sRightBot.png").c_str());
+	WgShadows->l = new Picture((shadows_path_+"/"+"sLeft.png").c_str());
+	WgShadows->r = new Picture((shadows_path_+"/"+"sRight.png").c_str());
 }
 
-void CPicturesStorage::m_CleanStorage()
+void CPicturesStorage::CleanStorage_()
 {
 	delete ScreenBackgroud;
 	delete WgShadows->t;

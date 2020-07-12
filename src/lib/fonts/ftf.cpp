@@ -11,7 +11,9 @@
 constexpr float  SIXTEEN_BITS_FR = 65536.0f;// FR- fractional
 constexpr float TWELWE_BITS_FR = 4096.0f;// FR- fractional
 
-Vector2::Vector2(){}
+Vector2::Vector2(){
+
+}
 Vector2::Vector2(float px, float py)
 {
 	x = px;
@@ -83,7 +85,7 @@ bool LoadFTFont(const char *FileName,
 	float global_maxy = -10000000.0f;
 
 	int glyphs = 0;
-	for (int cc = 0; cc < NGLYPHS; cc++)
+	for (int cc = 0; cc < NGLYPHS; ++cc)
 	{
 		Map[cc] = -1;
 		if (cc < 32)

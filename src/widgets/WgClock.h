@@ -26,9 +26,9 @@ public:
 	bool update()override;
 	void render()override;
 private:
-	int hour, min, sec; // last update time
-	char strTime[10], strLect[20], strInfo[100], strTimer[15];
-	std::string base_font_name_;//mean name of font without extension
+	int hour_, min_, second_; // last update time
+	char str_time_[10], str_lecture_[20], str_info_[100], str_timer_[15];
+	std::string base_font_base_name_;//mean name of font without extension
 
 	void RenderMode1_();
 	void RenderMode2_();

@@ -7,6 +7,7 @@
 //needed stuff for library to work
 #include FT_FREETYPE_H
 #include FT_OUTLINE_H
+
 #define NGLYPHS 2000
 
 class Vector2

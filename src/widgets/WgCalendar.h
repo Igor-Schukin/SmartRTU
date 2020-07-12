@@ -22,12 +22,13 @@ public:
   void render() override;
 
 private:
-  char bufDate[32], bufWeekDay[32], bufWeekInfo[50], bufWeek[32];
+  char bufer_for_date_[32], buffer_week_day_[32];
+  char buffer_week_info_[50], bufer_week_[32];
 
   const char *ConvertWeekDayFromInt_(int a_week_day);
   const char *ConvertMonthFromInt_(int a_month);
 
-  std::string base_font_name; // mean name of font without extension
+  std::string BASE_FONT_BASE_NAME; // mean name of font without extension
 
   void RenderMode1_();
   void RenderMode2_();

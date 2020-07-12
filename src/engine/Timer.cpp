@@ -10,7 +10,7 @@ Timer::Timer()
 	clock_gettime(CLOCK_REALTIME, &tmStart);
 }
 
-LongTimeMs Timer::TimeToMs(const timespec aTime)
+LongTimeMs Timer::TimeToMs_(const timespec aTime)
 {
 	return aTime.tv_sec * 1000LLU + aTime.tv_nsec / 1000000LLU;
 }
@@ -19,7 +19,7 @@ LongTimeMs Timer::GetTime()
 {
 	timespec now;
 	clock_gettime(CLOCK_REALTIME, &now);
-	return TimeToMs(now) - TimeToMs(tmStart);
+	return TimeToMs_(now) - TimeToMs_(tmStart);
 }
 
 const char *StrNow()

@@ -164,10 +164,10 @@ bool TimeTableSocketTime::isSwitchedOn(struct tm time) { return time >= on && ti
 //Timetable::Timetable(const char *FileName)
 Timetable::Timetable()
 {
-    config->Get("TIME_TABLE_PATH",m_time_table_dest);
-    config->Get("TIME_TABLE_NAME",m_time_table_name);
+    config->Get("TIME_TABLE_PATH",time_table_path_);
+    config->Get("TIME_TABLE_NAME",time_table_name_);
 
-    for (int wd = 0; wd < 7; wd++){
+    for (int wd = 0; wd < 7; ++wd){
         Week[wd] = nullptr;
     }
     Singles = nullptr;
@@ -182,7 +182,7 @@ Timetable::Timetable()
     try
     {
         json sch;
-        std::ifstream i(m_time_table_dest+"/"+m_time_table_name);
+        std::ifstream i(time_table_path_+"/"+time_table_name_);
         i >> sch;
 
         json &week = sch["week"];
@@ -254,7 +254,7 @@ Timetable::Timetable()
             }
         }
         std::cout<<StrNow()<<"\tTimetable is loaded from "
-            <<(m_time_table_dest+"/"+m_time_table_name)<<":\n";
+            <<(time_table_path_+"/"+time_table_name_)<<":\n";
         std::cout<<"\t\t\t\t"<<CalendarCount
             <<" date ranges of academic calendar\n";
         std::cout<<"\t\t\t\t"<<HolidaysCount<<" holidays\n";
@@ -267,7 +267,7 @@ Timetable::Timetable()
     catch (...)
     {
         std::cerr<<StrNow()<<"\tError loading timetable JSON from "
-                 <<(m_time_table_dest+"/"+m_time_table_name)<<"\n";
+                 <<(time_table_path_+"/"+time_table_name_)<<"\n";
         throw;
     }
 }
@@ -428,7 +428,7 @@ int Timetable::getHoliday(struct tm now)
     return -1;
 }
 
-int Timetable::m_GetWeekNumber(const TimetableDate &origin, struct tm now)
+int Timetable::GetWeekNumber_(const TimetableDate &origin, struct tm now)
 {
     struct tm org = {};
     org.tm_year = origin.y - 1900;
@@ -442,7 +442,7 @@ int Timetable::m_GetWeekNumber(const TimetableDate &origin, struct tm now)
     return (now.tm_yday - start.tm_yday) / 7;
 }
 
-int Timetable::m_GetWeeksCount(const TimetableDateRange *dates)
+int Timetable::GetWeeksCount_(const TimetableDateRange *dates)
 {
     std::time_t t;
 
@@ -490,12 +490,12 @@ DateState Timetable::GetCurrentDateState(int &weekNumber)
                 continue;
             }
 
-            weekNumber = m_GetWeekNumber(Calendar[i]->begin, now);
+            weekNumber = GetWeekNumber_(Calendar[i]->begin, now);
 
             for (int j = i - 1; j >= 0; --j)
                 if (Calendar[i]->type == Calendar[j]->type && Calendar[i]->number == Calendar[j]->number)
                 {
-                    weekNumber += m_GetWeeksCount(Calendar[j]);
+                    weekNumber += GetWeeksCount_(Calendar[j]);
                 }
 
             switch (Calendar[i]->type)
@@ -513,12 +513,12 @@ DateState Timetable::GetCurrentDateState(int &weekNumber)
 
     if (CalendarCount > 0 && now > Calendar[CalendarCount - 1]->end)
     {
-        weekNumber = m_GetWeekNumber(Calendar[CalendarCount - 1]->end, now);
+        weekNumber = GetWeekNumber_(Calendar[CalendarCount - 1]->end, now);
     }
     else {
         for (int i = 1; i < CalendarCount; ++i){
             if (now > Calendar[i - 1]->end && now < Calendar[i]->begin){
-                weekNumber = m_GetWeekNumber(Calendar[i - 1]->end + 1, now);
+                weekNumber = GetWeekNumber_(Calendar[i - 1]->end + 1, now);
             }
         }
     }

@@ -15,12 +15,12 @@ WgCalendar::WgCalendar(int Ax, int Ay, WgMode Amode)
 : WgBackground(Ax, Ay, Amode)
 {
 	widget_update_time_ = 60 * 60 * 1000; // 1 hour
-	std::strcpy(bufDate, "- -");
-	std::strcpy(bufWeekDay, "-");
-	std::strcpy(bufWeekInfo, "- - -");
-	std::strcpy(bufWeek, "-");
+	std::strcpy(bufer_for_date_, "- -");
+	std::strcpy(buffer_week_day_, "-");
+	std::strcpy(buffer_week_info_, "- - -");
+	std::strcpy(bufer_week_, "-");
 
-	config->Get("BASE_FONT_NAME",base_font_name_); 
+	config->Get("BASE_FONT_BASE_NAME",base_font_base_name_); 
 
 	std::cout<<StrNow()<<"\tWgCalendar widget object was created\n";
 }
@@ -92,56 +92,56 @@ bool WgCalendar::update()
 	std::time_t lt = std::time(nullptr);
 	struct tm *now = std::localtime(&lt);
 
-	std::sprintf(bufDate, "%i.%s", now->tm_mday, ConvertMonthFromInt_(now->tm_mon));
+	std::sprintf(bufer_for_date_, "%i.%s", now->tm_mday, ConvertMonthFromInt_(now->tm_mon));
 
-	std::sprintf(bufWeekDay, "%s", ConvertWeekDayFromInt_(now->tm_wday));
+	std::sprintf(buffer_week_day_, "%s", ConvertWeekDayFromInt_(now->tm_wday));
 
 	int week = 0;
 	switch (timetable->GetCurrentDateState(week))
 	{
 	case dsSemester:
-		std::strcpy(bufWeekInfo, "nedēļa semestrī");
+		std::strcpy(buffer_week_info_, "nedēļa semestrī");
 		break;
 	case dsSession:
-		std::strcpy(bufWeekInfo, "sesijas nedēļa");
+		std::strcpy(buffer_week_info_, "sesijas nedēļa");
 		break;
 	case dsVacation:
-		std::strcpy(bufWeekInfo, "brīvlaika nedēļa");
+		std::strcpy(buffer_week_info_, "brīvlaika nedēļa");
 		break;
 	case dsHoliday:
-		std::strcpy(bufWeekInfo, "svētki");
+		std::strcpy(buffer_week_info_, "svētki");
 		break;
 	case dsUnknown:
-		std::strcpy(bufWeekInfo, "Nezinams");
+		std::strcpy(buffer_week_info_, "Nezinams");
 		break;
 	default:
-		std::strcpy(bufWeekInfo, "...");
+		std::strcpy(buffer_week_info_, "...");
 		break;
 	}
 	week += 1;
 
 	if (week >= 1)
-		std::sprintf(bufWeek, "%d.", week);
+		std::sprintf(bufer_week_, "%d.", week);
 	else{
-		std::strcpy(bufWeek, "--");
+		std::strcpy(bufer_week_, "--");
 	}
 	return true;
 }
 
 void WgCalendar::RenderMode1_()
 {
-	RenderWidgetHeader(bufDate);
+	RenderWidgetHeader(bufer_for_date_);
 }
 
 void WgCalendar::RenderMode2_()
 {
 	TFont *font = FontStorage->GetFont(
-		const_cast<char*>(base_font_name_.c_str())
+		const_cast<char*>(base_font_base_name_.c_str())
 		);
 	SetTextColor(clHaki);
 	font->Set_Size(desktop->row_height / 3);
 	font->TextMid(
-		bufWeekDay,
+		buffer_week_day_,
 		RectClient.left + RectClient.width / 2,
 		RectClient.top - desktop->row_height / 16 * 11);
 }
@@ -149,18 +149,18 @@ void WgCalendar::RenderMode2_()
 void WgCalendar::RenderMode3_()
 {
 	TFont *font = FontStorage->GetFont(
-		const_cast<char*>(base_font_name_.c_str())
+		const_cast<char*>(base_font_base_name_.c_str())
 		);
 	font->Set_Size(desktop->row_height / 4.5);
 	font->TextMid(
-		bufWeekInfo,
+		buffer_week_info_,
 		RectClient.left + RectClient.width / 2,
 		RectClient.top - desktop->row_height - desktop->row_height / 5 / 2);
 
 	SetTextColor(color_);
 	font->Set_Size(desktop->row_height / 2.2);
 	font->TextMid(
-		bufWeek,
+		bufer_week_,
 		RectClient.left + RectClient.width / 2,
 		RectClient.top - desktop->row_height - desktop->row_height * 3 / 4);
 }

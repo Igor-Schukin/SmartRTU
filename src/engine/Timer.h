@@ -19,7 +19,7 @@ public:
 	Timer();
 private:
 	timespec tmStart;
-	LongTimeMs TimeToMs(const timespec aTime);
+	LongTimeMs TimeToMs_(const timespec aTime);
 
 };
 

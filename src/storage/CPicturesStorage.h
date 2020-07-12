@@ -33,19 +33,18 @@ public:
 	CPicturesStorage();
 	~CPicturesStorage();
 
-	std::string m_shadows_path;
-	std::string m_pictures_path;
-	std::string m_background_pic_name;
-	std::string m_title_pic_name;
-
-	//TFont *arialBold;
 	Picture *ScreenBackgroud;
 	Picture *Logo;
 	Picture *Arrow;
 	WgShadowPictures *WgShadows;
 private:
-	void m_AddPic();
-	void m_CleanStorage();
+	void CreatPictures_();
+	void CleanStorage_();
+
+	std::string shadows_path_; //path to where shadows are stored
+	std::string pictures_path_;// path to where pictures are stored
+	std::string background_picture_name_;
+	std::string title_picture_name_;
 
 
 };

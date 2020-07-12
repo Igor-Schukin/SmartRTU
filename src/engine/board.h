@@ -30,23 +30,23 @@ public:
 	~Board();
 	void update(bool Forced);
 	void render(bool Forced);
-	void CleanWidgets() { m_FreeWidgets( widgets ); }
-	void AddWidget(IWidget *widget) { m_AddWidget( widgets, widget ); }
+	void CleanWidgets() { FreeWidgets_( widgets ); }
+	void AddWidget(IWidget *widget) { AddWidget_( widgets, widget ); }
 	
 	IWidget *FindFirst(); 
 	IWidget *FindNext();
 	WidgetInfo * CurrentWidget() { return current; }
 	
-	int CountWidgets() { return m_CntWidgets( widgets ); }
+	int CountWidgets() { return CntWidgets_( widgets ); }
 
 private:
 
 	WidgetInfo *widgets, *current;
 
-	void m_AddWidget(WidgetInfo* & list, IWidget * w); 
-	void m_FreeWidgets(WidgetInfo* & list);
+	void AddWidget_(WidgetInfo* & list, IWidget * w); 
+	void FreeWidgets_(WidgetInfo* & list);
 	
-	int m_CntWidgets(WidgetInfo* list); 
+	int CntWidgets_(WidgetInfo* list); 
 	
 	
 };

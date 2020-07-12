@@ -17,22 +17,21 @@ public:
 	Engine();
 	~Engine();
 	void start();
-	void terminate() { m_is_terminated = true; }
+	void terminate() { is_terminated_ = true; }
 	void ForceUpdate();
 	
 private:
-	int m_frame_capacity;
-	bool m_is_running;
-	bool m_is_terminated;
+	int frame_capacity_;
+	bool is_running_;
+	bool is_terminated_;
 
-	Board *board;
+	Board *board_;
 	IWidget *w;
 
-	void run();
+	void run_();
 	void update();
 	void render(bool All);
 	void ShowFrames();
-	//int kbhit(void);
 };
 
 extern Engine *engine;
