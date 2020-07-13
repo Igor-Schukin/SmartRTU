@@ -5,14 +5,13 @@
 #include <cstdlib>//malloc
 #include<csetjmp>//setjmp
 
-//extern "C"{
+extern "C"{
 #include "png.h"//need be above jpeglib.h otherwise compilating error #1
 #include <jpeglib.h>//need png.h be up or otherwise error mising <cstdef> lib #2 
-//}
+}
 
 
 #define MAX_SIGNATURE_LENGTH 10
-//#include <string.h> //FIX
 
 //#define BREV(b) ((b) >> 24 | (b) << 24 | ((b) & 0x00FF0000) >> 8 | ((b) & 0x0000FF00 ) << 8)
 
@@ -34,7 +33,7 @@ VGImage Picture::CreateImageFromPng_(const char *path)
     if (!is_png)
     {
 #ifdef ONDEBUG
-        printf("ONDEBUG: it's not png file\n");
+        std::printf("ONDEBUG: it's not png file\n");
 #endif
         return VG_INVALID_HANDLE;
     }
@@ -86,8 +85,8 @@ VGImage Picture::CreateImageFromPng_(const char *path)
     
     int bit_depth = png_get_bit_depth(png_ptr, info_ptr);
     int color_type = png_get_color_type(png_ptr, info_ptr);
-    //int filter_method = png_get_filter_type(png_ptr, info_ptr);
-    //int compression_type = png_get_compression_type(png_ptr, info_ptr);
+    ////int filter_method = png_get_filter_type(png_ptr, info_ptr);//unused
+    ////int compression_type = png_get_compression_type(png_ptr, info_ptr);//unused
     int interlace_type = png_get_interlace_type(png_ptr, info_ptr);
     
     png_get_IHDR(png_ptr, info_ptr, &width1, &height1, &bit_depth, &color_type, &interlace_type, NULL, NULL);
@@ -149,7 +148,8 @@ VGImage Picture::CreateImageFromPng_(const char *path)
     }
 
     VGImage img;
-    img = vgCreateImage(VG_sRGBA_8888, picture_width_, picture_height_, VG_IMAGE_QUALITY_BETTER);
+    img = vgCreateImage(VG_sRGBA_8888, picture_width_,
+                         picture_height_, VG_IMAGE_QUALITY_BETTER);
     vgImageSubData(img, pixels, picture_width_ * 4, VG_sRGBA_8888, 0, 0, picture_width_, picture_height_);
     delete[] pixels;
     std::fclose(file);
@@ -236,7 +236,7 @@ VGImage Picture::CreateImageFromJpeg_(const char *filename)
     // Allocate image data buffer
     dbpp = 4;
     dstride = picture_width_ * dbpp;
-    data = (VGubyte *)malloc(dstride * picture_height_);
+    data = (VGubyte *)std::malloc(dstride * picture_height_);
 
     // Iterate until all scanlines processed
     while (jdc.output_scanline < picture_height_)
@@ -309,7 +309,8 @@ void Picture::render(int x, int y)
     }
 }
 
-void Picture::render(int x, int y, float scaleX, float scaleY, float shearX, float shearY, float rotate)
+void Picture::render(int x, int y, float scaleX, float scaleY, 
+                    float shearX, float shearY, float rotate)
 {
     this->scaleX = scaleX;
     this->scaleY = scaleY;
@@ -320,28 +321,32 @@ void Picture::render(int x, int y, float scaleX, float scaleY, float shearX, flo
     if (finImg != VG_INVALID_HANDLE)
     {
         vgSeti(VG_MATRIX_MODE, VG_MATRIX_IMAGE_USER_TO_SURFACE);
-
-        float w = this->picture_width_ * this->scaleX;
-        float h = this->picture_height_ * this->scaleY;
+        //w
+        float horizontal_scale = this->picture_width_ * this->scaleX;
+        //h
+        float vertical_scale = this->picture_height_ * this->scaleY;
 
         vgTranslate(x, y);
-        vgTranslate(w / 2, h / 2);
+        vgTranslate(horizontal_scale / 2, vertical_scale / 2);
+        
         vgRotate(this->rotate);
-        vgTranslate(-w / 2, -h / 2);
+        vgTranslate(-horizontal_scale / 2, -vertical_scale / 2);
         vgShear(this->shearX, this->shearY);
         vgScale(this->scaleX, this->scaleY);
+       
         vgDrawImage(finImg);
         vgScale(1 / this->scaleX, 1 / this->scaleY);
         vgShear(-shearX, -shearY);
-        vgTranslate(w / 2, h / 2);
+        vgTranslate(horizontal_scale / 2, vertical_scale / 2);
         vgRotate(-this->rotate);
-        vgTranslate(-w / 2, -h / 2);
+        
+        vgTranslate(-horizontal_scale / 2, -vertical_scale / 2);
         vgTranslate(-x, -y);
     }
     else
     {
 #ifdef ONDEBUG
-        printf("ONDEBUG: can't draw\n");
+        std::printf("ONDEBUG: can't draw\n");
 #endif
     }
 }
@@ -362,8 +367,9 @@ PictureType Picture::GetPictureType_(const char *Path)
     std::fclose(f);
     for (int i = 0; FileSignatures[i][0]; i++)
     {
-        if (memcmp(sign, FileSignatures[i], strlen(FileSignatures[i])) == 0)
+        if (std::memcmp(sign, FileSignatures[i], std::strlen(FileSignatures[i])) == 0){
             return PictureType(i);
+        }
     }
     return picUnknown;
 }

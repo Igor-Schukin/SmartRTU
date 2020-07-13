@@ -14,15 +14,16 @@
 #define CONFIG_DESTINATION "./res/config.cfg"
 
 void termSignalHandler(int signal) {
-  if (engine)
+  if (engine){
     engine->terminate();
+  }
 }
 
 int main() {
 
   std::signal(SIGTERM, termSignalHandler);
   // all about fonts
-  std::string BASE_FONT_BASE_NAME;
+  std::string base_font_name;
   std::string base_font_path;
   std::string base_font_full_name;
   try {
@@ -47,20 +48,20 @@ int main() {
       timetable = nullptr;
     }
 
-    config->Get("BASE_FONT_BASE_NAME", BASE_FONT_BASE_NAME);
+    config->Get("BASE_FONT_BASE_NAME", base_font_name);
     config->Get("BASE_FONT_PATH", base_font_path);
     config->Get("BASE_FONT", base_font_full_name);
 
-    int width, height;
-    init(&width, &height); // get display/monitor width and height
+    int display_width, display_height;
+    init(&display_width, &display_height); //get display/monitor width and height
 
-    desktop = new Desktop(width, height);
+    desktop = new Desktop(display_width, display_height);
 
     PicStorage = new CPicturesStorage();
     FontStorage = new CFontStorage();
     // set MAIN font to project
     FontStorage->SetFont(
-        const_cast<char *>(BASE_FONT_BASE_NAME.c_str()),
+        const_cast<char *>(base_font_name.c_str()),
         const_cast<char *>(
             (base_font_path + "/" + base_font_full_name).c_str()));
 
