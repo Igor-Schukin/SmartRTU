@@ -39,7 +39,7 @@ private:
 	int *glyph_advances_;
 	int font_height_;
 	int descender_height_;
-	int m_font_size_;
+	int font_size_;
 
 	unsigned char R;
 	unsigned char G;

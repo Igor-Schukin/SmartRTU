@@ -27,10 +27,12 @@ CPicturesStorage::~CPicturesStorage()
 void CPicturesStorage::CreatPictures_()
 {
 	Logo = new Picture((pictures_path_+"/"+title_picture_name_).c_str());
+	
 	ScreenBackgroud = new Picture(
 		(pictures_path_+"/"+background_picture_name_).c_str()
 	);
 	Arrow = new Picture((pictures_path_+"/"+"arrow_sm.png").c_str());
+	
 	WgShadows = new WgShadowPictures;
 	WgShadows->t = new Picture((shadows_path_+"/"+"sTop.png").c_str());
 	WgShadows->lt = new Picture((shadows_path_+"/"+"sLeftTop.png").c_str());

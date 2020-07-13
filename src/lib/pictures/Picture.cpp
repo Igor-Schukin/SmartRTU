@@ -5,16 +5,17 @@
 #include <cstdlib>//malloc
 #include<csetjmp>//setjmp
 
-extern "C"{
+//extern "C"{
 #include "png.h"//need be above jpeglib.h otherwise compilating error #1
 #include <jpeglib.h>//need png.h be up or otherwise error mising <cstdef> lib #2 
-}
+//}
 
 
 #define MAX_SIGNATURE_LENGTH 10
 //#include <string.h> //FIX
 
 //#define BREV(b) ((b) >> 24 | (b) << 24 | ((b) & 0x00FF0000) >> 8 | ((b) & 0x0000FF00 ) << 8)
+
 
 VGImage Picture::CreateImageFromPng_(const char *path)
 {
@@ -33,11 +34,11 @@ VGImage Picture::CreateImageFromPng_(const char *path)
     if (!is_png)
     {
 #ifdef ONDEBUG
-        std::printf("ONDEBUG: it's not png file\n");
+        printf("ONDEBUG: it's not png file\n");
 #endif
         return VG_INVALID_HANDLE;
     }
-    png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
+    png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
     if (!png_ptr)
     {
 #ifdef ONDEBUG
@@ -49,7 +50,7 @@ VGImage Picture::CreateImageFromPng_(const char *path)
     png_infop info_ptr = png_create_info_struct(png_ptr);
     if (!info_ptr)
     {
-        png_destroy_read_struct(&png_ptr, (png_infopp)nullptr, (png_infopp)nullptr);
+        png_destroy_read_struct(&png_ptr, (png_infopp)NULL, (png_infopp)NULL);
 #ifdef ONDEBUG
         std::printf("ONDEBUG: info_ptr error\n");
 #endif
@@ -67,9 +68,9 @@ VGImage Picture::CreateImageFromPng_(const char *path)
     if (setjmp(png_jmpbuf(png_ptr)))
     {
 #ifdef ONDEBUG
-        std::printf("ONDEBUG: Error during init_io\n");
+        printf("ONDEBUG: Error during init_io\n");
 #endif
-        png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)nullptr);
+        png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
         std::fclose(file);
         png_destroy_read_struct(&png_ptr, &info_ptr, &end_info);
         std::fclose(file);
@@ -82,46 +83,55 @@ VGImage Picture::CreateImageFromPng_(const char *path)
 
     png_uint_32 width1 = png_get_image_width(png_ptr, info_ptr);
     png_uint_32 height1 = png_get_image_height(png_ptr, info_ptr);
-
+    
     int bit_depth = png_get_bit_depth(png_ptr, info_ptr);
     int color_type = png_get_color_type(png_ptr, info_ptr);
-   // int filter_method = png_get_filter_type(png_ptr, info_ptr); //UNUSED VAR  FIXME
-    //int compression_type = png_get_compression_type(png_ptr, info_ptr);//UNUSED VAR  FIXME
+    //int filter_method = png_get_filter_type(png_ptr, info_ptr);
+    //int compression_type = png_get_compression_type(png_ptr, info_ptr);
     int interlace_type = png_get_interlace_type(png_ptr, info_ptr);
     
-    png_get_IHDR(png_ptr, info_ptr, &width1, &height1, &bit_depth, &color_type, &interlace_type, nullptr, nullptr);
+    png_get_IHDR(png_ptr, info_ptr, &width1, &height1, &bit_depth, &color_type, &interlace_type, NULL, NULL);
     picture_width_ = static_cast<int>(width1);
     picture_height_ = static_cast<int>(height1);
 
-    if (color_type == PNG_COLOR_TYPE_PALETTE)
+    if (color_type == PNG_COLOR_TYPE_PALETTE){
         png_set_palette_to_rgb(png_ptr);
-    if (color_type == PNG_COLOR_TYPE_GRAY &&
-        bit_depth < 8)
+    }
+    if (color_type == PNG_COLOR_TYPE_GRAY && bit_depth < 8){
         png_set_expand_gray_1_2_4_to_8(png_ptr);
-    if (png_get_valid(png_ptr, info_ptr,
-                      PNG_INFO_tRNS))
+    }
+    if (png_get_valid(png_ptr, info_ptr,PNG_INFO_tRNS)){
         png_set_tRNS_to_alpha(png_ptr);
-    if (bit_depth == 16)
+    }
+    if (bit_depth == 16){
         png_set_strip_16(png_ptr);
-    if (bit_depth < 8)
+    }
+    if (bit_depth < 8){
         png_set_packing(png_ptr);
+    }
+
     png_color_8p sig_bit;
-    if (png_get_sBIT(png_ptr, info_ptr, &sig_bit))
+
+    if (png_get_sBIT(png_ptr, info_ptr, &sig_bit)){
         png_set_shift(png_ptr, sig_bit);
-    if (color_type == PNG_COLOR_TYPE_GRAY || color_type == PNG_COLOR_TYPE_GRAY_ALPHA)
+    }
+    if (color_type == PNG_COLOR_TYPE_GRAY || color_type == PNG_COLOR_TYPE_GRAY_ALPHA){
         png_set_gray_to_rgb(png_ptr);
-    if (bit_depth == 16)
+    }
+    if (bit_depth == 16){
         png_set_swap(png_ptr);
-    if (color_type == PNG_COLOR_TYPE_RGB_ALPHA)
+    }
+    if (color_type == PNG_COLOR_TYPE_RGB_ALPHA){
         png_set_swap_alpha(png_ptr);
+    }
 
     png_bytep *row_pointers = new png_bytep[picture_height_];
 
     unsigned long *pixels = new unsigned long[picture_width_ * picture_height_];
 
-    for (int y = 0; y < picture_height_; ++y){
+    for (int y = 0; y < picture_height_; ++y)
         row_pointers[picture_height_ - y - 1] = (png_byte *)&pixels[y * picture_width_];
-    }
+
     png_read_image(png_ptr, row_pointers);
 
     delete[] row_pointers;
@@ -134,10 +144,7 @@ VGImage Picture::CreateImageFromPng_(const char *path)
         for (int y = 0; y < picture_height_; ++y)
         {
             pixels[x + y * picture_width_] = GetColor(GetRedColor(pixels[x + y * picture_width_]),
-                                             GetGreenColor(pixels[x + y * picture_width_]), 
-                                             GetBlueColor(pixels[x + y * picture_width_]), 
-                                             GetAlphaColor(pixels[x + y * picture_width_])
-                                             );
+                                             GetGreenColor(pixels[x + y * picture_width_]), GetBlueColor(pixels[x + y * picture_width_]), GetAlphaColor(pixels[x + y * picture_width_]));
         }
     }
 
@@ -164,12 +171,12 @@ int Picture::GetColor(float r, float g, float b, float alpha) // vozvrat v 15-4n
 
 void Picture::CreateImageFromJpg_(const char *path)
 {
-    finImg = CreateImageFromJpeg_(path);
+    finImg = createImageFromJpeg(path);
     picture_width_ = vgGetParameteri(finImg, VG_IMAGE_WIDTH);
     picture_height_ = vgGetParameteri(finImg, VG_IMAGE_HEIGHT);
 }
 
-// CreateImageFromJpeg_ decompresses a JPEG image to the standard image format
+// createImageFromJpeg decompresses a JPEG image to the standard image format
 // source: https://github.com/ileben/ShivaVG/blob/master/examples/test_image.c
 VGImage Picture::CreateImageFromJpeg_(const char *filename)
 {
@@ -194,14 +201,16 @@ VGImage Picture::CreateImageFromJpeg_(const char *filename)
     VGImageFormat rgbaFormat;
 
     // Check for endianness
-    if (((unsigned char *)&lilEndianTest)[0] == 1)
+    if (((unsigned char *)&lilEndianTest)[0] == 1){
         rgbaFormat = VG_sABGR_8888;
-    else
+    }
+    else{
         rgbaFormat = VG_sRGBA_8888;
+    }
 
     // Try to open image file
     infile = std::fopen(filename, "rb");
-    if (infile == nullptr)
+    if (infile == NULL)
     {
         std::fprintf(stderr,"Failed opening '%s' for reading!\n", filename);
         return VG_INVALID_HANDLE;
@@ -227,7 +236,7 @@ VGImage Picture::CreateImageFromJpeg_(const char *filename)
     // Allocate image data buffer
     dbpp = 4;
     dstride = picture_width_ * dbpp;
-    data = (VGubyte *)std::malloc(dstride * picture_height_);
+    data = (VGubyte *)malloc(dstride * picture_height_);
 
     // Iterate until all scanlines processed
     while (jdc.output_scanline < picture_height_)
@@ -242,14 +251,14 @@ VGImage Picture::CreateImageFromJpeg_(const char *filename)
         {
             switch (bbpp)
             {
-            case 4:
+            case 4:{
                 drow[0] = brow[0];
                 drow[1] = brow[1];
                 drow[2] = brow[2];
                 drow[3] = brow[3];
                 break;
-            case 3:
-            {
+            }
+            case 3:{
                 drow[0] = brow[0];
                 drow[1] = brow[1];
                 drow[2] = brow[2];
@@ -300,10 +309,7 @@ void Picture::render(int x, int y)
     }
 }
 
-void Picture::render(int x, int y, 
-                    float scaleX, float scaleY, 
-                    float shearX, float shearY, float rotate
-)
+void Picture::render(int x, int y, float scaleX, float scaleY, float shearX, float shearY, float rotate)
 {
     this->scaleX = scaleX;
     this->scaleY = scaleY;
@@ -335,7 +341,7 @@ void Picture::render(int x, int y,
     else
     {
 #ifdef ONDEBUG
-        std::printf("ONDEBUG: can't draw\n");
+        printf("ONDEBUG: can't draw\n");
 #endif
     }
 }
@@ -356,9 +362,8 @@ PictureType Picture::GetPictureType_(const char *Path)
     std::fclose(f);
     for (int i = 0; FileSignatures[i][0]; i++)
     {
-        if (std::memcmp(sign, FileSignatures[i], std::strlen(FileSignatures[i])) == 0){
+        if (memcmp(sign, FileSignatures[i], strlen(FileSignatures[i])) == 0)
             return PictureType(i);
-        }
     }
     return picUnknown;
 }
@@ -378,7 +383,7 @@ Picture::Picture(const char *path)
     {
     case picJPG:
     {
-        CreateImageFromJpeg_(path);
+        CreateImageFromJpg_(path);
 
 #ifdef ONDEBUG
         std::printf("File contains picture in JPG format\n");
@@ -405,7 +410,7 @@ Picture::Picture(const char *path)
 
 Picture::~Picture()
 {
-  // std::printf("Destroyed pic \n");
+  // printf("Destroyed pic \n");
     if (finImg != VG_INVALID_HANDLE){
         vgDestroyImage(finImg);
     }
@@ -436,7 +441,7 @@ void Picture::GetPixels(int x, int y, int w, int h, unsigned long *pixels)
         if (y + h > picture_height_ || y < 0)
         {
 #ifdef ONDEBUG
-            std::printf("ONDEBUG: out of borders of image (picture_height_, get) : w: %i, h: %i \n", x + w, y + h);
+            printf("ONDEBUG: out of borders of image (picture_height_, get) : w: %i, h: %i \n", x + w, y + h);
 #endif
             return;
         }
@@ -444,7 +449,6 @@ void Picture::GetPixels(int x, int y, int w, int h, unsigned long *pixels)
         unsigned long *pix = new unsigned long[picture_width_ * picture_height_];
         vgGetImageSubData(finImg, pix, picture_width_ * 4, VG_lRGBA_8888, 0, 0, picture_width_, picture_height_);
 
-            //FIXME //left operand of comma operator has no effect [-Wunused-value]
         for (int i = x, a = 0; i < x + w, a < w; i++, a++)
         {
             for (int j = y, b = 0; j < y + h, b < h; j++, b++)

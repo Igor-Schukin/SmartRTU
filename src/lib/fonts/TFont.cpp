@@ -25,7 +25,7 @@ bool TFont::CreateGlyphs_(int *Pnt, int *PntInd, unsigned char *Ins, int *InsInd
 }
 
 TFont::TFont(const char *FTFileName)
-:m_font_size_(0),R(0),G(0),B(0)
+:font_size_(0),R(0),G(0),B(0)
 {
 	int *Pnt, *PntInd, *InsInd, *InsCnt;
 	unsigned char *Ins;
@@ -92,7 +92,7 @@ void TFont::TextOut(const char *str, int x, int y)
 
 	vgSeti(VG_MATRIX_MODE, VG_MATRIX_PATH_USER_TO_SURFACE);
 	Fill(static_cast<int>(R), static_cast<int>(G), static_cast<int>(B), A);
-	VGfloat localsize = (VGfloat)m_font_size_, xx = x, mm[9];
+	VGfloat localsize = (VGfloat)font_size_, xx = x, mm[9];
 	vgGetMatrix(mm);
 	int character;
 	unsigned char *ss = (unsigned char *)str;
@@ -118,7 +118,7 @@ void TFont::TextOut(const char *str, int x, int y)
 VGfloat TFont::TextWidth(const char *str)
 {
 	VGfloat tw = 0.0;
-	VGfloat localsize = (VGfloat)m_font_size_;
+	VGfloat localsize = (VGfloat)font_size_;
 	int character;
 	unsigned char *ss = (unsigned char *)str;
 	while ((ss = NextUtf8Char_(ss, &character)) != nullptr)
@@ -135,17 +135,17 @@ VGfloat TFont::TextWidth(const char *str)
 
 VGfloat TFont::TextHeight()
 {
-	return (font_height_ * m_font_size_) / 65536;
+	return (font_height_ * font_size_) / 65536;
 }
 
 VGfloat TFont::TextDepth()
 {
-	return (-descender_height_ * m_font_size_) / 65536;
+	return (-descender_height_ * font_size_) / 65536;
 }
 
 void TFont::Set_Size(int localsize)
 {
-	m_font_size_ = localsize;
+	font_size_ = localsize;
 }
 
 void TFont::Set_Color(unsigned char local_R, unsigned char local_G, 
