@@ -44,7 +44,7 @@ WgClock::WgClock(int Ax, int Ay, WgMode Amode)
  min_(-1),
  second_(-1)
 {
-  widget_update_time_ = 100; // 10 times per second
+  Set_widget_update_time(100); // 10 times per second
   std::strcpy(str_time_, STR_TIME_EMPTY);
   std::strcpy(str_lecture_, STR_LECT_EMPTY);
   std::strcpy(str_info_, STR_INFO_EMPTY);

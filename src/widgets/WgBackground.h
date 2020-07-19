@@ -41,7 +41,7 @@ public:
   bool update() override { return false; };
   bool IsVisible() override { return true; };
 
-protected:
+
   int m_pos_x, m_pos_y; // position in the grid
   WgMode widget_mode_;          // widget_mode
   WgColor color_;
@@ -52,7 +52,7 @@ protected:
   int widget_width_, widget_height_; 
   
   std::string base_font_base_name_; // mean name of font without extension
-
+protected:
   struct {
     int left, right, top, bottom, width, height;
   } RectWidget, RectHeader, RectClient;

@@ -12,11 +12,13 @@
 #include "CFontStorage.h"/*font obj*/
 #include "configurator.h"/*config*/
 
+constexpr int FORECAST_UPDATE_TIME=3600000;//1 hour
+
 
 WgForecast::WgForecast(int Ax, int Ay, WgMode Amode)
 	: WgBackground(Ax, Ay, Amode)
 {
-	widget_update_time_ = 60 * 60 * 1000; // 1 hour
+	Set_widget_update_time( FORECAST_UPDATE_TIME); // 1 hour
 	weather_icon_picture_ = nullptr;
 	weather_icon_name_ = "";
 

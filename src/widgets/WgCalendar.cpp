@@ -14,7 +14,7 @@
 WgCalendar::WgCalendar(int Ax, int Ay, WgMode Amode) 
 : WgBackground(Ax, Ay, Amode)
 {
-	widget_update_time_ = 60 * 60 * 1000; // 1 hour
+	Set_widget_update_time(60 * 60 * 1000); // 1 hour
 	std::strcpy(bufer_for_date_, "- -");
 	std::strcpy(buffer_week_day_, "-");
 	std::strcpy(buffer_week_info_, "- - -");

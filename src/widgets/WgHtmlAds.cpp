@@ -24,7 +24,7 @@ std::time_t WgHtmlAds::GetFileTime_() {
   // check if it can touch file and read last edit time of file
   if (stat(fmt("%s/%s", local_html_input_file_dest_.c_str(),
                html_name_.c_str()),
-           &buff) == 0) // fmt is not in standart library of C or C++
+           &buff) == 0) 
     return buff.st_mtime;
   return 0;
 }
@@ -63,13 +63,15 @@ WgHtmlAds::WgHtmlAds(int Ax, int Ay, WgMode Amode)
     : WgBackground(Ax, Ay, Amode) 
 {
   shadows_on_ = false; // default render of shadows off
+  
   int update_time;
   config->Get("ADVERT_UPDATE_TIME", update_time); // converts string into int
 
   if (update_time <= 0) {
-    widget_update_time_ = 3000; // sets 3 seconds update time  //int data type
+    Set_widget_update_time(3000);
+   // widget_update_time_ = 3000; // sets 3 seconds update time  //int data type
   } else {
-    widget_update_time_ = (update_time * 1000); // sets update time in seconds
+    Set_widget_update_time(update_time * 1000); // sets update time in seconds
   }
 
   // string part

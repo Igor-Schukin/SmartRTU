@@ -5,8 +5,7 @@
 
 class IWidget
 {
-
-protected:
+private:
 	int widget_update_time_;
 	int widget_id_;
 
@@ -21,6 +20,9 @@ public:
 		int &x, int &y, int &widget_width, int &widget_height) = 0; 			
 	
 	virtual void Set_widget_id(int widget_id_) { this->widget_id_ = widget_id_; }						
+	virtual void Set_widget_update_time(int a_widget_update_time ){
+		widget_update_time_=a_widget_update_time;
+		}
 	virtual int Get_widget_update_time() { return this->widget_update_time_; } 			
 	virtual int Get_width() { return 0; }  // for custom mode 			
 	virtual int Get_height() { return 0; } // for custom mode 			

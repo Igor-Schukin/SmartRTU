@@ -1,6 +1,9 @@
 #build dir
 #exclude all except Dummy.txt
 /build/**
-!Dummy.txt
+!Dummy.txt 
 
+#exclude .exe files
+*.exe
+infoboard
 #Normal exclude of dir is dirname/

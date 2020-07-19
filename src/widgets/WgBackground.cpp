@@ -41,7 +41,7 @@ WgBackground::WgBackground(int a_pos_x, int a_pos_y, WgMode Amode)
   widget_mode_(Amode),
   shadows_on_(true)
 {
-  widget_update_time_ = 0; // never
+  Set_widget_update_time(0); // never
   color_ = WgColor(1 + rand() % 10);//????????
 
   //shadows_on_ = true; // shadows on
