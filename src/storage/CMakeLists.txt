@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.0.0)
 
 set(SRC CPicturesStorage.cpp 
         CFontStorage.cpp 
+        CFantik.cpp
         )
 
 add_library(BoardStorage ${SRC})

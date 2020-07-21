@@ -75,7 +75,7 @@ WgHtmlAds::WgHtmlAds(int Ax, int Ay, WgMode Amode)
   }
 
   // string part
-  config->Get("HEADER_TEXT", header_text_);
+  config->Get("header_text_", header_text_);
   // .html part
   config->Get("ADVERT_INPUT_FILE_DEST", local_html_input_file_dest_);
   config->Get("ADVERT_INPUT_FILE", html_name_);
