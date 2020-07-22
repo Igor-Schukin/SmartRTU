@@ -5,5 +5,5 @@
 
 #exclude .exe files
 *.exe
-infoboard
+./infoboard
 #Normal exclude of dir is dirname/
