@@ -10,6 +10,7 @@ set(SRC IWidget.cpp
     WgSockets.cpp 
     WgTimetable.cpp 
     WgWatchdog.cpp
+    #CFantik.cpp
     )
 
 add_library(BoardWidgets ${SRC})

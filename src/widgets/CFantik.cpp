@@ -38,6 +38,11 @@ Fantik::Fantik(int a_rect_client_left,int a_rect_client_bottom,
 			pos--;
 		}
 		advert_picture_name_ = a_advert_url.substr(pos)+".png";
+
+    //run async thread
+    if(is_hidden!=true){
+    future_ = std::async(std::launch::async, &Fantik::CutyCaptRequest_, this);
+    }
 }
 
 Fantik::~Fantik(){
@@ -109,7 +114,18 @@ void  Fantik::CleanPicture_(){
 }
 
 void Fantik::RenderAdvert(){
-    if( advert_pic_!=nullptr){
+
+    if(this->IsThreadReady()&&advert_pic_==nullptr){
+        picture_width_scale_ = static_cast<float>(display_width_) /
+                               static_cast<float>(advert_pic_->Get_width());
+        picture_height_scale_ = static_cast<float>(display_height_) /
+                                static_cast<float>(advert_pic_->Get_height());
+        
+         advert_pic_->render(rect_client_left_, rect_client_bottom_,
+                       picture_width_scale_, picture_height_scale_, 
+                       0, 0,0);
+    }
+    else{
     // render Advert
         advert_pic_->render(rect_client_left_, rect_client_bottom_,
                        picture_width_scale_, picture_height_scale_, 
