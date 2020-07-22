@@ -64,18 +64,10 @@ target_link_libraries(infoboard ${OBJ} BoardConfig
 )
 
 #where compiler to search PATHS
-target_include_directories(infoboard PUBLIC /src/engine
-	 				     	/src/storage
-						 	/src
-							 /src/configurator
-							 ./src/widgets
-							 /home/pi/openvg
-                            /opt/vc/include
-                            /opt/vc/include/VG
-                            /src/widgets
-                            /src/lib/fonts
-                            /src/lib/json
-                            /src/lib/pictures
+target_include_directories(infoboard PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
+							./src/engine
+	 				     	./src/storage
+							 ./src/configurator
 )
 
 #cmake stuff                                            

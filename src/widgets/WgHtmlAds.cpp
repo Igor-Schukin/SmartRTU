@@ -75,13 +75,13 @@ WgHtmlAds::WgHtmlAds(int Ax, int Ay, WgMode Amode)
   }
 
   // string part
-  config->Get("header_text_", header_text_);
+  config->Get("HEADER_TEXT", header_text_);
   // .html part
   config->Get("ADVERT_INPUT_FILE_DEST", local_html_input_file_dest_);
   config->Get("ADVERT_INPUT_FILE", html_name_);
   // advert part
   config->Get("ADVERT_PATH", local_ad_path_);
-  config->Get("ADVERT_NAME", ad_name_);
+  ad_name_=html_name_+".png";
   // stub part
   config->Get("ADVERT_PATH",local_stub_path_); 
   config->Get("ADVERT_STUB_NAME", stub_name_);
@@ -98,6 +98,8 @@ WgHtmlAds::WgHtmlAds(int Ax, int Ay, WgMode Amode)
 
   // run async cutycapt request
   future_ =std::async(std::launch::async, &WgHtmlAds::CutyCaptRequest_, this);
+
+  
 
   std::cout << StrNow() << "\t"
             << "WgHtmlsAds widget object was created\n";
