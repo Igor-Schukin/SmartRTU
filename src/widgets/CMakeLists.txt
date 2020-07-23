@@ -10,6 +10,7 @@ set(SRC IWidget.cpp
     WgSockets.cpp 
     WgTimetable.cpp 
     WgWatchdog.cpp
+    advert_shell.cpp
     )
 
 add_library(BoardWidgets ${SRC})
