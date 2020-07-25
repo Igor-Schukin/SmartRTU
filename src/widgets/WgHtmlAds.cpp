@@ -52,15 +52,15 @@ WgHtmlAds::WgHtmlAds(int Ax, int Ay, WgMode Amode)
   adverts_.reserve(3);
   adverts_.push_back(new AdvertShell(RectClient.left,RectClient.bottom,
                                    RectClient.width,RectClient.height,
-                                   local_ad_path_,"HtmlAd.html.png",(18-update_time)));
+                                   local_ad_path_,"HtmlAd.html.png",(243-update_time)));
 
   adverts_.push_back(new AdvertShell(RectClient.left,RectClient.bottom,
                                    RectClient.width,RectClient.height,
-                                   local_ad_path_,"derp.png",(27-update_time)));
+                                   local_ad_path_,"derp.png",(81-update_time)));
                                    
   adverts_.push_back(new AdvertShell(RectClient.left,RectClient.bottom,
                                    RectClient.width,RectClient.height,
-                                   local_ad_path_,"cnn.png",(36-update_time)));
+                                   local_ad_path_,"cnn.png",(27-update_time)));
 
 
   timestamp_=std::time(0);
@@ -74,17 +74,17 @@ WgHtmlAds::~WgHtmlAds() {  }
 bool WgHtmlAds::update() {
   std::time_t current_time;
   current_time=std::time(0);
-  std::cout<<" "<<std::asctime(std::localtime(&current_time))<<current_time<<std::endl;
+  //std::cout<<" "<<std::asctime(std::localtime(&current_time))<<current_time<<std::endl;
   if((current_time-timestamp_)>adverts_.at(current_advert_index_)->Get_show_time()){
    
-    std::cout<<"Advert changed "<<current_time-timestamp_<<std::endl;
+    
    
     timestamp_=current_time;
     current_advert_index_++;
     if(current_advert_index_>static_cast<int>(adverts_.size()-1)){
       current_advert_index_=0;
     }
-   
+   std::cout<<"Advert changed advert is"<<current_advert_index_<<std::endl;
     return true;
   }
  return false;
