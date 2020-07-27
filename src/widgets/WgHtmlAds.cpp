@@ -97,7 +97,7 @@ WgHtmlAds::WgHtmlAds(int Ax, int Ay, WgMode Amode)
   file_time_ = GetFileTime_();
 
   // run async cutycapt request
-  future_ =std::async(std::launch::async, &WgHtmlAds::CutyCaptRequest_, this);
+  cutycapt_thread_ =std::async(std::launch::async, &WgHtmlAds::CutyCaptRequest_, this);
 
   
 
@@ -110,7 +110,7 @@ WgHtmlAds::~WgHtmlAds() { this->CleanPicture_(); }
 bool WgHtmlAds::update() {
   // get status of thread//it actually freezes it for under 1 milisecond to get
   // status of thread
-  thread_status_ = future_.wait_for(std::chrono::milliseconds(0));
+  thread_status_ = cutycapt_thread_.wait_for(std::chrono::milliseconds(0));
 
   // check if thread finished
   if (thread_status_ == std::future_status::ready) {
@@ -124,8 +124,13 @@ bool WgHtmlAds::update() {
                 << "Detected what advert's ->" << ad_name_
                 << "<- .html was edited\n";
 
-      future_ =
+        if(cutycapt_thread_.valid()){
+            cutycapt_thread_.get();
+        }
+
+      cutycapt_thread_ =
           std::async(std::launch::async, &WgHtmlAds::CutyCaptRequest_, this);
+     
       std::cout << StrNow() << "\t"
                 << "Cutycapt successfully lauched\n";
 
@@ -150,10 +155,11 @@ void WgHtmlAds::render() {
 
   // Use wait_for() with zero milliseconds to check thread status.
   thread_status_ =
-      future_.wait_for(std::chrono::milliseconds(0)); // get status of thread
+      cutycapt_thread_.wait_for(std::chrono::milliseconds(0)); // get status of thread
 
   // check if thread finished.
   if (thread_status_ == std::future_status::ready) {
+
     std::cout << StrNow() << "\t"
               << "Cutycapt finished its work\n";
     if (advert_on_screen_ != true) {

@@ -84,7 +84,7 @@ struct TimetableTime
 
 struct TimetableLecture
 {
-    TimetableTime begin, beginBreak, endBreak, end;
+    TimetableTime begin, end, beginBreak, endBreak;
     TimetableLecture(json &tt) : begin(tt["begin"]),
                                  end(tt["end"]),
                                  beginBreak(tt["begin-break"]),

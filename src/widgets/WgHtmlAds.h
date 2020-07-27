@@ -80,7 +80,7 @@ private:
   float image_scale_by_height_ = 0;
 
   //~thread variables
-  std::future<void> future_; // is handle of  new async thread //not so good to
+  std::future<void> cutycapt_thread_; // is obj of  new async thread //not so good to
                               // use void but....
                               
   // stored status of thread //probably can avoid it
