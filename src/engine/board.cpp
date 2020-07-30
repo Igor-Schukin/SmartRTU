@@ -23,7 +23,7 @@ extern "C"
 #include "WgTimetable.h"
 #include "WgWatchdog.h"
 
-#include "../widgets/WgHtmlAds.h"  
+#include "../widgets/WgHtmlAds/WgHtmlAds.h"  
 
 //#define MAX_WIDGETS 50
 constexpr int MAX_WIDGETS = 50;

@@ -455,12 +455,21 @@ void Picture::GetPixels(int x, int y, int w, int h, unsigned long *pixels)
         unsigned long *pix = new unsigned long[picture_width_ * picture_height_];
         vgGetImageSubData(finImg, pix, picture_width_ * 4, VG_lRGBA_8888, 0, 0, picture_width_, picture_height_);
 
-        for (int i = x, a = 0; i < x + w, a < w; i++, a++)
-        {
-            for (int j = y, b = 0; j < y + h, b < h; j++, b++)
-            {
+        //Razdolbay
+        int a=0; 
+        int i=x;
+
+        while((i<(x+w)&&a<w)){
+            int j=y;
+            int b=0;
+            while(y<(y+h)&&b<h){
                 pixels[a + b * w] = pix[i + j * picture_width_];
+                j++;
+                b++;
             }
+
+            a++;
+            i++;
         }
         delete[] pix;
     }
@@ -488,13 +497,21 @@ void Picture::SetPixels(int x, int y, int w, int h, unsigned long *pixels)
         unsigned long *pix = new unsigned long[picture_width_ * picture_height_];
         vgGetImageSubData(finImg, pix, picture_width_ * 4, VG_lRGBA_8888, 0, 0, picture_width_, picture_height_);
 
-        for (int i = x, a = 0; i < x + w, a < w; i++, a++)
-        {
-            for (int j = y, b = 0; j < y + h, b < h; j++, b++)
-            {
-                pix[i + j * picture_width_] = pixels[a + b * w];
+        //RazdolbayOne
+            int i=x;
+            int a=0;
+            while((i<(x+w)) && a<w){
+                int j=y;
+                int b=0;
+                while(j<(y+h)&&b<h){
+
+                    pix[i + j * picture_width_] = pixels[a + b * w];
+                    j++;
+                    b++;
+                }
+                i++;
+                a++;
             }
-        }
 
         vgImageSubData(finImg, pix, picture_width_ * 4, VG_lRGBA_8888, 0, 0, picture_width_, picture_height_);
         delete[] pix;

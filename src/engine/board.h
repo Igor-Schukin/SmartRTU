@@ -5,7 +5,6 @@
 
 #include "IWidget.h"/*interface*/
 #include "Timer.h"/*LongTimeMs*/
-#include "../widgets/WgHtmlAds.h"  //still not working
 
 
 struct WidgetInfo {

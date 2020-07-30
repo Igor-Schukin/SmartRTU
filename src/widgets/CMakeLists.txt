@@ -1,8 +1,11 @@
 cmake_minimum_required(VERSION 3.0.0)
 
 
+
+##add libs
+add_subdirectory(WgHtmlAds)
+
 set(SRC IWidget.cpp
-    WgHtmlAds.cpp
     WgBackground.cpp
     WgCalendar.cpp 
     WgClock.cpp 
@@ -10,7 +13,6 @@ set(SRC IWidget.cpp
     WgSockets.cpp 
     WgTimetable.cpp 
     WgWatchdog.cpp
-    advert_shell.cpp
     )
 
 add_library(BoardWidgets ${SRC})
@@ -26,3 +28,5 @@ target_include_directories(BoardWidgets  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
 					                            /opt/vc/include
 					                            /usr/include/freetype2 
                                           )
+#linking WgHtmlAds.lib + BoardWidgets.lib = Public BoardWidgets.lib
+target_link_libraries(BoardWidgets PUBLIC WgHtmlAds)
