@@ -1,6 +1,12 @@
-#include<string>
-#include"Picture.h"
-#include<ctime>
+#pragma once
+
+#ifndef SMART_RTU_SRC_WIDGETS_WGHTMLADS_ADVERT_SHELL_H_
+#define SMART_RTU_SRC_WIDGETS_WGHTMLADS_ADVERT_SHELL_H_
+
+#include<string>//string
+#include<ctime>//time_t
+
+#include"Picture.h"//Picture
 
 class AdvertShell{
 public:
@@ -19,39 +25,39 @@ std::time_t a_watch_time,bool a_hidden_state);
 std::time_t Get_advert_show_time(){return advert_show_time_; }
 std::string Get_advert_title(){return advert_title_;}
 
-private:
+bool IsThreadReady();
 
+private:
+bool IsFileExist_(const std::string & a_file_name);
+void DeleteFile_(const std::string & a_file_name);
 //sets advert picture name 
 void SetAdvertPictureName_();
 void CutyCaptRequest_();
 
-
+//Constructor Initializer List
 int client_rect_left_pos_;
 int client_rect_bottom_pos_;
-
 //area of widget where avert will be placed
 int widget_screen_width_;
 int widget_screen_height_;
-
 //full path to project root dir neede for cutycapt to dump images there
 std::string project_root_path_;
 std::string adverts_dest_;
+std::string advert_url_;
+std::string advert_title_;//also the title of advert
+std::time_t advert_start_ts_;
+std::time_t advert_end_ts_;
+std::time_t advert_show_time_;
+bool hidden_;//is advert hidden
+//end of Constructor Initializer List
 
 std::string advert_picture_name_;//stores advert name
 std::string advert_pid_txt_name_;
-
-std::string advert_url_;
-std::string advert_title_;//also the title of advert
-
-std::time_t advert_start_ts_;
-std::time_t advert_end_ts_;
-
-std::time_t advert_show_time_;
-bool hidden_;//is advert hidden
+pid_t cutycapt_pid;//PID of cutycapt request in system(console)
 
 struct{float width;float height;}PictureScale;
-
 
 Picture *advert_picture_;
 
 };
+#endif /*SMART_RTU_SRC_WIDGETS_WGHTMLADS_ADVERT_SHELL_H_*/

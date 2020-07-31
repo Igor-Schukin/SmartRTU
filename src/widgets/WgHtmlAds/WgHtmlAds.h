@@ -1,7 +1,7 @@
 
 #pragma once
-#ifndef SMART_RTU_SRC_WIDGETS_WGHTMLADS_H_
-#define SMART_RTU_SRC_WIDGETS_WGHTMLADS_H_
+#ifndef SMART_RTU_SRC_WIDGETS_WGHTMLADS_WGHTMLADS_H_
+#define SMART_RTU_SRC_WIDGETS_WGHTMLADS_WGHTMLADS_H_
 
 /*
 Restyled by RazdolbayOne
@@ -33,7 +33,7 @@ NEW ADVERT WITH NEW ONE
 #include "WgBackground.h"     //inheritance
 
 #include"advert_shell.h"
-
+//TODO CLEAR NOT USED INCLUDES
 
 #include <sys/types.h>
 #include <unistd.h>
@@ -58,7 +58,6 @@ public:
 
 private:
   //~~~stored strings
-  std::string header_text_; 
   std::string local_ad_path_;
   std::string full_path_to_project_exe_; // cutycapt need full path to exe
                                           // otherwise it wont work
@@ -68,9 +67,10 @@ private:
   
   std::time_t timestamp_;
 
-  //std::vector<std::unique_ptr<AdvertShell>> adverts_;
+  std::vector<std::unique_ptr<AdvertShell>>::iterator current_advert_it;
+  std::vector<std::unique_ptr<AdvertShell>> adverts_;
 
 
 };
 
-#endif /*SMART_RTU_SRC_WIDGETS_WGHTMLADS_H_*/
+#endif /*SMART_RTU_SRC_WIDGETS_WGHTMLADS_WGHTMLADS_H_*/
