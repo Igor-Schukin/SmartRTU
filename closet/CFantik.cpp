@@ -19,7 +19,7 @@ Fantik::Fantik(int a_rect_client_left,int a_rect_client_bottom,
     rect_client_bottom_(a_rect_client_bottom),
     display_width_(a_widget_area_width),
     display_height_(a_widget_area_height),
-    full_path_to_project_exe_(a_realpath),
+    project_root_path_(a_realpath),
     advert_dest_(a_advert_dest),
     advert_url_(a_advert_url),
     header_text_(a_header_text),
@@ -91,7 +91,7 @@ void Fantik::CutyCaptRequest_(){
 
      std::system(("xvfb-run --server-args=\"-screen 0, 1920x1080x24\" "
                       "cutycapt  --url=" + advert_url_+
-                      " --out=" + full_path_to_project_exe_ + "/" +
+                      " --out=" + project_root_path_ + "/" +
                       advert_dest_ + "/" + advert_picture_name_).c_str()
               );
 

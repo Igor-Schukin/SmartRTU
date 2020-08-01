@@ -57,10 +57,12 @@ public:
   ~WgHtmlAds();
 
 private:
+
+  void InitilizeAdverts_();
+//json name,root_path,advert_dest,width,height,client top client buttom adcert//11/13
   //~~~stored strings
-  std::string local_ad_path_;
-  std::string full_path_to_project_exe_; // cutycapt need full path to exe
-                                          // otherwise it wont work
+  std::string advert_dest_;
+  std::string project_root_path_; 
 
   int current_advert_index_;//what advert is now on screen its index in vector
   
@@ -69,6 +71,15 @@ private:
 
   std::vector<std::unique_ptr<AdvertShell>>::iterator current_advert_it;
   std::vector<std::unique_ptr<AdvertShell>> adverts_;
+
+//TODO
+/*
+1.MAKE INITIZEADVERTS METHOD
+2.MAKE CYCLIC ITERATOR STUFF
+2.1 ROTATION OF ADVERRTS TEST
+3.DETECTION WHAT IF .JSON WAS EDITED
+
+*/
 
 
 };

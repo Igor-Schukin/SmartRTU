@@ -7,43 +7,71 @@
 #include <string>//string
 #include <fstream>//ifstream
 #include <iostream>//cerr
+#include<chrono>
 
 AdvertShell::~AdvertShell() {
     if(advert_picture_!=nullptr){
         delete advert_picture_;
     }
-
-    std::system(("kill "+std::to_string(cutycapt_pid)).c_str());
-    usleep(500);
+    if(IsAdvertThreadReady_()!=true){
+     std::system(("kill "+std::to_string(cutycapt_pid)).c_str());
+     usleep(500);
+    }
 
     // check if .txt exist if so delete it
     if(this->IsFileExist_(
-        project_root_path_+'/'+adverts_dest_+'/'+advert_pid_txt_name_
+        project_root_path_+'/'+advert_picture_dest_+'/'+advert_pid_txt_name_
                         )
       )
     {
         this->DeleteFile_(
-            project_root_path_+'/'+adverts_dest_+'/'+advert_pid_txt_name_
+            project_root_path_+'/'+advert_picture_dest_+'/'+advert_pid_txt_name_
             );
     }
 
     //check if .png exist if so delete it
     if(this->IsFileExist_(
-        project_root_path_+'/'+adverts_dest_+'/'+advert_picture_name_
+        project_root_path_+'/'+advert_picture_dest_+'/'+advert_picture_name_
                         )
       )
     {
         this->DeleteFile_(
-            project_root_path_+'/'+adverts_dest_+'/'+advert_picture_name_
+            project_root_path_+'/'+advert_picture_dest_+'/'+advert_picture_name_
             );
     }
-
+    //reliese future object if it was not reliesed???
+    if(cutycapt_thread_.valid()){
+        cutycapt_thread_.get();
+    }
 
 }
 
 
 void AdvertShell::RenderAdvert() {
-    if(advert_picture_!=nullptr){
+   
+   if(advert_picture_==nullptr){
+       try {
+        advert_picture_ = new Picture((advert_picture_dest_ + "/" + advert_picture_name_).c_str());
+        PictureScale.width = static_cast<float>(widget_screen_width_) /
+                               static_cast<float>(advert_picture_->Get_width());
+        PictureScale.height = static_cast<float>(widget_screen_height_) /
+                                static_cast<float>(advert_picture_->Get_height());
+      
+      } 
+      catch (...) {
+          //what to do if something bad will happen??
+          //now on next render try it will try again
+            std::cerr <<"\t"
+                  << "Something bad happened with initialising advert picture \n";
+        // StrNow() << 
+            if(advert_picture_){
+              delete advert_picture_;
+              advert_picture_=nullptr;
+            }
+      }
+   }
+    else{
+    
         advert_picture_->render(client_rect_left_pos_, client_rect_bottom_pos_,
                        PictureScale.width, PictureScale.height, 0, 0,
                        0);    
@@ -55,24 +83,31 @@ AdvertShell::AdvertShell(int client_rect_left_pos, int client_rect_bottom_pos,
     const std::string&project_root_path, const std::string adverts_dest, 
     const std::string&a_url, const std::string &a_title_text, 
     std::time_t start_ts, std::time_t end_ts, 
-    std::time_t a_show_time, bool a_hidden_state) 
-:client_rect_left_pos_(client_rect_left_pos),
-client_rect_bottom_pos_(client_rect_bottom_pos),
-widget_screen_width_(widget_screen_width),
-widget_screen_height_(widget_screen_height),
-project_root_path_(project_root_path),
-adverts_dest_(adverts_dest),
-advert_url_(a_url),
-advert_title_(a_title_text),
-advert_start_ts_(start_ts),
-advert_end_ts_(end_ts),
-advert_show_time_(a_show_time),
-hidden_(a_hidden_state)
+    std::time_t a_show_time, bool a_hidden_state,
+    bool is_valid) 
+ :client_rect_left_pos_(client_rect_left_pos),
+ client_rect_bottom_pos_(client_rect_bottom_pos),
+ widget_screen_width_(widget_screen_width),
+ widget_screen_height_(widget_screen_height),
+ project_root_path_(project_root_path),
+ advert_picture_dest_(adverts_dest),
+ advert_url_(a_url),
+ advert_title_(a_title_text),
+ advert_start_ts_(start_ts),
+ advert_end_ts_(end_ts),
+ advert_show_time_(a_show_time),
+ hidden_(a_hidden_state),
+ is_valid_(is_valid)
 {
     advert_picture_=nullptr;
     this->SetAdvertPictureName_();
     advert_pid_txt_name_=advert_picture_name_+".pid.txt";
 
+ //launch cutycapt asinc stuff
+ if(hidden_!=true && is_valid==true){
+ cutycapt_thread_=std::async(
+    std::launch::async, &AdvertShell::CutyCaptRequest_, this);
+ }
 }
 
 void AdvertShell::SetAdvertPictureName_() {
@@ -90,29 +125,29 @@ void AdvertShell::SetAdvertPictureName_() {
 }
 
 void AdvertShell::CutyCaptRequest_() {
-//runn cutycapt transformation stuff in system and writes its pid into txt file
-std::system(
-    ("xvfb-run -a --server-args=\"-screen 0, 1920x1080x24\" cutycapt --url="+
-    advert_url_ +"--out="+adverts_dest_+'/'+advert_picture_name_+
-    " & echo $! >"+adverts_dest_+'/'+advert_pid_txt_name_).c_str()
-    );
+ //runn cutycapt transformation stuff in system and writes its pid into txt file
+    std::system(
+        ("xvfb-run -a --server-args=\"-screen 0, 1920x1080x24\" cutycapt --url="+
+        advert_url_ +" --out="+advert_picture_dest_+'/'+advert_picture_name_+
+        " & echo $! >"+advert_picture_dest_+'/'+advert_pid_txt_name_).c_str()
+        );
 
-   //parse pid_txt_name file to get pid of process
-   std::string line;
-   std::ifstream myfile ((adverts_dest_+'/'+advert_pid_txt_name_));
-   if (myfile.is_open())
-   {
-        myfile>>line;
+    //parse pid_txt_name file to get pid of process
+    std::string line;
+    std::ifstream myfile ((advert_picture_dest_+'/'+advert_pid_txt_name_));
+    if (myfile.is_open())
+    {
+            myfile>>line;
 
-      myfile.close();
-   }
-   else{
-       std::cerr<<"Cutycapt transformation command pid was now written into or found in "
-       <<adverts_dest_+'/'+advert_pid_txt_name_<<"can not get PID!!! RETURN!\n";
-       return;  
-   }
+        myfile.close();
+    }
+    else{
+        std::cerr<<"Cutycapt transformation command pid was now written into or found in "
+        <<advert_picture_dest_+'/'+advert_pid_txt_name_<<"can not get PID!!! RETURN!\n";
+        return;  
+    }
 
-    cutycapt_pid=std::stoi(line);
+    this->cutycapt_pid=std::stoi(line);
 
     //about kill()
     /*
@@ -127,19 +162,19 @@ std::system(
 
     //check if thread is still valid/active 
     //output <0 means its dead/finished its work or troble happened
-    while(kill(cutycapt_pid,0)==0){
+    while(kill(this->cutycapt_pid,0)==0){
         usleep(1000);//sleep thraed on one milisecond
     }
 }
 
 bool AdvertShell::IsFileExist_(const std::string & a_file_name) {
-//check this for alternatives
-//https://stackoverflow.com/questions/12774207/fastest-way-to-check-if-a-file-exist-using-standard-c-c11-c    
+    //check this for alternatives
+    //https://stackoverflow.com/questions/12774207/fastest-way-to-check-if-a-file-exist-using-standard-c-c11-c    
 
-//function stat() filling data into statbuf struct
-// on pointer of filename info about file uses  #include<sys\stat.h>
-//on succes filling data into struct return 0(means also what file exist),
-//on failure returns -1 and errno becomes ENOENT 
+    //function stat() filling data into statbuf struct
+    // on pointer of filename info about file uses  #include<sys\stat.h>
+    //on succes filling data into struct return 0(means also what file exist),
+    //on failure returns -1 and errno becomes ENOENT 
 
 
   struct stat buffer;   
@@ -151,6 +186,64 @@ void AdvertShell::DeleteFile_(const std::string & a_file_name) {
     std::system(("rm "+a_file_name).c_str());
 }
 
-bool AdvertShell::IsThreadReady() {
-    
+bool AdvertShell::IsAdvertThreadReady_() {
+    if(hidden_)return false;
+    // get status of thread//it actually freezes it for under 1 milisecond to get
+  // status of thread
+cutycapt_thread_status_ = cutycapt_thread_.wait_for(
+                                                std::chrono::milliseconds(0)
+                                                );
+
+  // return if it ready true 
+  return (cutycapt_thread_status_ == std::future_status::ready);
+}
+
+bool AdvertShell::IsAdvertPictureReady_() {
+    if(this->IsAdvertThreadReady_()!=true){
+        return false;
+    }
+
+    if(advert_picture_==nullptr){
+       try {
+        advert_picture_ = new Picture((advert_picture_dest_ + "/" + advert_picture_name_).c_str());
+        PictureScale.width = static_cast<float>(widget_screen_width_) /
+                               static_cast<float>(advert_picture_->Get_width());
+        PictureScale.height = static_cast<float>(widget_screen_height_) /
+                                static_cast<float>(advert_picture_->Get_height());
+        return true;
+      } 
+      catch (...) {
+          //what to do if something bad will happen??
+          //now on next render try it will try again
+            std::cerr <<  "\t"
+                  << "Something bad happened with initialising advert picture \n";
+        //StrNow() <<
+            if(advert_picture_){
+              delete advert_picture_;
+              advert_picture_=nullptr;
+            }
+            return false;
+      }
+   }
+   else{
+       return true;
+   }
+}
+
+bool AdvertShell::isAdvertReady() {
+    if(this->IsAdvertThreadReady_()&&this->IsAdvertPictureReady_()){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+bool AdvertShell::IsTimeReady(std::time_t a_time_stamp) {
+    if(a_time_stamp>=advert_start_ts_&&a_time_stamp<advert_end_ts_){
+        return true;
+    }
+    else{
+        return false;
+    }
 }

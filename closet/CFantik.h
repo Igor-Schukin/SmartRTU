@@ -78,7 +78,7 @@ private:
 	int display_width_;
 	int display_height_;
 	
-	std::string full_path_to_project_exe_;//stroes full path to exe//neded for cutycapt
+	std::string project_root_path_;//stroes full path to exe//neded for cutycapt
 	std::string advert_dest_;//where picture will be stored
 
 
