@@ -22,30 +22,19 @@ NEW ADVERT WITH NEW ONE
 // <unistd.h>, <stdlib.h>
 
 // C++
-#include <ctime>  // for time_t type
+#include <ctime>  // for std::time_t type
 #include <string>
-#include<vector>
-#include <memory>
+#include<vector>//vector
+#include <memory>//unique_ptr
+
 // a11y libs
 
 // my headers
 #include "CPicturesStorage.h" //for Picture type
 #include "WgBackground.h"     //inheritance
 
-#include"advert_shell.h"
-//TODO CLEAR NOT USED INCLUDES
+#include"advert_shell.h"//here are stored adverts
 
-#include <sys/types.h>
-#include <unistd.h>
-#include <stdio.h>
-
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-
-#include <cstdlib>
-#include <fstream>
-#include <iostream>
 class WgHtmlAds 
 : public WgBackground 
 {
@@ -67,7 +56,7 @@ private:
   int current_advert_index_;//what advert is now on screen its index in vector
   
   
-  std::time_t timestamp_;
+  std::time_t current_timestamp_;
 
   std::vector<std::unique_ptr<AdvertShell>>::iterator current_advert_it;
   std::vector<std::unique_ptr<AdvertShell>> adverts_;

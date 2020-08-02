@@ -11,8 +11,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # if build type was changed using IDE make sure what in main CmakeLists.txt build type is same
 # other wise will be broken exe 
 
-#set(CMAKE_BUILD_TYPE Release)
-set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_BUILD_TYPE Release)
+#set(CMAKE_BUILD_TYPE Debug)
 
 
 #cmake debging stuff (something about testing)
@@ -27,13 +27,14 @@ set(OBJ /home/pi/openvg/libshapes.o /home/pi/openvg/oglinit.o)
 # -Wextra ads even more warnings if compiler will found them
 # -03 means max level of compiler optimization
 # -DNDEBUG  needed stuff but I do not know why(change build type in IDE on Release and check build/compile_comamands.json)
+# -Wno-psabi literly ignores gcc noting on json++ lib. That warning is telling you that there was a subtle ABI change (actually a conformance fix) between 6 and 7.1, As long as all your C++ code is built with GCC 7.1 or later, you can safely ignore this warning. 
 
 #diferent compiler flags for differnt builds
 if(CMAKE_BUILD_TYPE MATCHES Debug)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -Wextra ")
 else(CMAKE_BUILD_TYPE MATCHES Debug)
 	# if it not in Debug build when adds only -Wall
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -O3 -DNDEBUG")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -O3 -DNDEBUG -Wno-psabi")
 endif(CMAKE_BUILD_TYPE MATCHES Debug)
 
 #expand CXX flags with lib flags

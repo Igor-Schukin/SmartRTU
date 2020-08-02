@@ -7,7 +7,7 @@
 #include <string>//string
 #include <fstream>//ifstream
 #include <iostream>//cerr
-#include<chrono>
+#include<chrono>//for miliseconds
 
 AdvertShell::~AdvertShell() {
     if(advert_picture_!=nullptr){
@@ -240,7 +240,8 @@ bool AdvertShell::isAdvertReady() {
 }
 
 bool AdvertShell::IsTimeReady(std::time_t a_time_stamp) {
-    if(a_time_stamp>=advert_start_ts_&&a_time_stamp<advert_end_ts_){
+    return true;//temporary
+    if(a_time_stamp>=advert_start_ts_ && a_time_stamp<advert_end_ts_){
         return true;
     }
     else{

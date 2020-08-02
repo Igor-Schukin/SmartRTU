@@ -7,3 +7,6 @@
 *.exe
 ./infoboard
 #Normal exclude of dir is dirname/
+
+#exclude tmp folder content
+/res/tmp/*

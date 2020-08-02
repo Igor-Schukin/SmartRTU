@@ -35,6 +35,7 @@ bool isAdvertReady();
 bool IsTimeReady(std::time_t a_time_stamp);
 
 private:
+
 bool IsFileExist_(const std::string & a_file_name);
 void DeleteFile_(const std::string & a_file_name);
 //sets advert picture name 

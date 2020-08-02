@@ -6,12 +6,10 @@
 #include <sys/types.h> //needed for stat fucntion
 
 // C++
-#include <chrono>                 /*for milisecons for thread stuff */
 #include <climits> /* PATH_MAX */ //
 #include <cstdlib> // /*realpath*/ funtion for cutycapt also needed PATH_MAX from limits.h
 #include <iostream> // /*cout*/
-#include <memory>
-#include<string>
+#include <fstream>//ifstream
 // A11Y libs
 
 // own headers
@@ -52,12 +50,15 @@ WgHtmlAds::WgHtmlAds(int Ax, int Ay, WgMode Amode)
 
 
 
-  timestamp_=std::time(0);
+  current_timestamp_=std::time(0);
 
   InitilizeAdverts_();
 
 
   current_advert_it=adverts_.begin();
+
+  //auto end=adverts_.end();
+ // std::cout<<"Size of vector is "<<end->get()->Get_advert_title()<<std::endl;
   std::cout << StrNow() << "\t"
             << "WgHtmlsAds widget object was created\n";
 
@@ -69,11 +70,11 @@ WgHtmlAds::~WgHtmlAds() {  }
 
 void WgHtmlAds::InitilizeAdverts_()
 {
-  //probably need in try catch statement
+  //probably need in try catch statement//  
   std::ifstream i("./res/adverts.json");
 	json j;
 	i >> j;
-
+  std::cout<<"json size: "<<j.size()<<std::endl;
   adverts_.reserve(j.size());
 
   std::string url{};
@@ -151,34 +152,76 @@ void WgHtmlAds::InitilizeAdverts_()
 
 
 bool WgHtmlAds::update() {
-  std::cout<<"Inside update\n";
-  if(std::time(0)-timestamp_>30)return true;
+  //std::cout<<"Inside update\n";
+  
+  //TODO
+  //FIX ERROR adverts_.end();
 
- /* std::time_t current_time;
-  current_time=std::time(0);
-  //std::cout<<" "<<std::asctime(std::localtime(&current_time))<<current_time<<std::endl;
-  if((current_time-timestamp_)>adverts_.at(current_advert_index_)->Get_show_time()){
-   
-    
-   
-    timestamp_=current_time;
-    current_advert_index_++;
-    if(current_advert_index_>static_cast<int>(adverts_.size()-1)){
-      current_advert_index_=0;
+
+  //todo
+  //UPDATE CURRENT TIMESTAMP
+
+  //check if show time is okey and is advert ready of advert
+    //if all okey return true else:
+  //loop to next advert what is fully ready and place it on iterator
+    //cyclic loop
+  //if full loop i==vector.size() then place stub instead
+
+
+
+  std::time_t current_time=std::time(0);
+
+  
+   //check if advert ready to be shown
+    if(current_advert_it->get()->isAdvertReady() && 
+      current_advert_it->get()->IsTimeReady(current_timestamp_)&&
+      ((current_time-current_timestamp_)<current_advert_it->get()->Get_advert_show_time())
+      )
+    {
+      //std::cout<<"Advert is shown"<<current_advert_it->get()->Get_advert_title()<<"\n\n";
+     return false;
     }
-   std::cout<<"Advert changed advert is"<<current_advert_index_<<std::endl;
-    return true;
-  }*/
- return false;
+
+
+
+  unsigned int i=0;
+  while(i!=adverts_.size()){
+
+    if(current_advert_it==adverts_.end()-1){
+      current_advert_it=adverts_.begin();
+      
+    }
+    else{
+      ++current_advert_it;
+    }
+
+    
+    //check if advert ready to be shown
+    if(current_advert_it->get()->isAdvertReady() && 
+      current_advert_it->get()->IsTimeReady(std::time(0))
+      )
+    {
+    current_timestamp_=std::time(0);
+     return true;
+    }
+  
+
+    ++i;
+  }
+
+  if(i==adverts_.size()){
+    //load stub or mark it with flag
+    current_timestamp_=std::time(0);
+    std::cout<<"STUB must be shown now"<<std::endl;
+    return false;//false is here tmp
+  }
+  return false;
 }
 
 void WgHtmlAds::render() {
-  if(std::time(0)-timestamp_>30){
-  adverts_.clear();
-  }
-  return;
   WgBackground::render(); // if commented @ header and advert  block @ is
                           // tranperent
+
 
   //~~~ render header
   RenderWidgetHeader((current_advert_it->get()->Get_advert_title()).c_str());
