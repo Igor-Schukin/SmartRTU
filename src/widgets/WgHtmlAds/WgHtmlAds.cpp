@@ -1,21 +1,21 @@
 #include "WgHtmlAds.h"
 
 // C
-//#include <dirent.h> // in cpp ??? probably need to remove
 #include <sys/stat.h>  // /* stat */ function
 #include <sys/types.h> //needed for stat fucntion
+#include <unistd.h>//usleep()
 
 // C++
 #include <climits> /* PATH_MAX */ //
 #include <cstdlib> // /*realpath*/ funtion for cutycapt also needed PATH_MAX from limits.h
 #include <iostream> // /*cout*/
 #include <fstream>//ifstream
+
 // A11Y libs
 
 // own headers
 #include "Engine.h" // from here we need only "fmt" stuff
 #include "Timer.h"  ///* StrNow()*/
-
 #include "configurator.h" //config
 #include "json.h"
 
@@ -29,52 +29,82 @@ WgHtmlAds::WgHtmlAds(int Ax, int Ay, WgMode Amode)
   shadows_on_ = false; // default render of shadows off
   
   int update_time;
-  config->Get("ADVERT_UPDATE_TIME", update_time); // converts string into int
+  config->Get("ADVERT_UPDATE_TIME", update_time);
 
   if (update_time <= 0) {
     Set_widget_update_time(3000);
-   // widget_update_time_ = 3000; // sets 3 seconds update time  //int data type
   } else {
     Set_widget_update_time(update_time * 1000); // sets update time in seconds
   }
 
   // advert part
-  config->Get("ADVERT_PATH", advert_dest_);
- 
+  config->Get("ADVERT_DEST", advert_dest_);
 
+  config->Get("ADVERT_JSON_PATH", adverts_json_path_);
+  config->Get("ADVERT_JSON_FILE_NAME", adverts_json_name_);
+
+  config->Get("ADVERT_STUB_PATH", advert_stub_path_);
+  config->Get("ADVERT_STUB_NAME", advert_stub_name_);
 
 // get full path to exe
   char buff[PATH_MAX];
   realpath(".", buff);               
   project_root_path_ = buff; 
 
-
-
   current_timestamp_=std::time(0);
+  json_file_time_=this->GetJsonFileTime_();
 
   InitilizeAdverts_();
 
-
   current_advert_it=adverts_.begin();
 
-  //auto end=adverts_.end();
- // std::cout<<"Size of vector is "<<end->get()->Get_advert_title()<<std::endl;
   std::cout << StrNow() << "\t"
             << "WgHtmlsAds widget object was created\n";
 
 }
 
-
-
 WgHtmlAds::~WgHtmlAds() {  }
+
+std::time_t WgHtmlAds::GetJsonFileTime_(){
+   struct stat buff;
+  // check if it can touch file and read last edit time of file
+  if (stat(fmt("%s/%s", adverts_json_path_.c_str(),
+               adverts_json_name_.c_str()),
+           &buff) == 0)
+  { 
+    return buff.st_mtime;
+  }
+  else{
+    return 0;
+  }
+}
+
+bool WgHtmlAds::IsNeedRenewAdverts_(){
+  std::time_t ft = this->GetJsonFileTime_();
+  if ((ft != 0) && (ft != json_file_time_)) {
+    json_file_time_ = ft;
+    return true;
+  }
+  else{
+  	return false;
+  }
+}
+
+
+void WgHtmlAds::CleanAdverts_(){
+  adverts_.clear();
+  usleep(250);//get some time to destruct all previus ads
+  InitilizeAdverts_();
+}
+
 
 void WgHtmlAds::InitilizeAdverts_()
 {
   //probably need in try catch statement//  
-  std::ifstream i("./res/adverts.json");
+  std::ifstream i(adverts_json_path_+'/'+adverts_json_name_);
 	json j;
 	i >> j;
-  std::cout<<"json size: "<<j.size()<<std::endl;
+
   adverts_.reserve(j.size());
 
   std::string url{};
@@ -152,24 +182,15 @@ void WgHtmlAds::InitilizeAdverts_()
 
 
 bool WgHtmlAds::update() {
-  //std::cout<<"Inside update\n";
-  
-  //TODO
-  //FIX ERROR adverts_.end();
-
-
-  //todo
-  //UPDATE CURRENT TIMESTAMP
-
-  //check if show time is okey and is advert ready of advert
-    //if all okey return true else:
-  //loop to next advert what is fully ready and place it on iterator
-    //cyclic loop
-  //if full loop i==vector.size() then place stub instead
-
-
 
   std::time_t current_time=std::time(0);
+  if(this->IsNeedRenewAdverts_()==true){
+    this->CleanAdverts_();
+    //load stub
+    std::cout<<"Json was edited\n";
+    return true;
+  }
+
 
   
    //check if advert ready to be shown
@@ -178,7 +199,6 @@ bool WgHtmlAds::update() {
       ((current_time-current_timestamp_)<current_advert_it->get()->Get_advert_show_time())
       )
     {
-      //std::cout<<"Advert is shown"<<current_advert_it->get()->Get_advert_title()<<"\n\n";
      return false;
     }
 

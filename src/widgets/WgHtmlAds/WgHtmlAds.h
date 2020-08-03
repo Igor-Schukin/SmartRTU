@@ -46,29 +46,30 @@ public:
   ~WgHtmlAds();
 
 private:
+  std::time_t GetJsonFileTime_(); // gets last time then edited 
+  bool IsNeedRenewAdverts_(); // check if file(.json) was changed/edited
 
+  void CleanAdverts_();//cleans adverts and runs initilizeAdverts_
+  
   void InitilizeAdverts_();
-//json name,root_path,advert_dest,width,height,client top client buttom adcert//11/13
   //~~~stored strings
   std::string advert_dest_;
   std::string project_root_path_; 
+
+  std::string adverts_json_path_;
+  std::string adverts_json_name_;
+
+  std::string advert_stub_name_;
+  std::string advert_stub_path_;
 
   int current_advert_index_;//what advert is now on screen its index in vector
   
   
   std::time_t current_timestamp_;
+  std::time_t json_file_time_; // last timestamp then json file was edited
 
   std::vector<std::unique_ptr<AdvertShell>>::iterator current_advert_it;
   std::vector<std::unique_ptr<AdvertShell>> adverts_;
-
-//TODO
-/*
-1.MAKE INITIZEADVERTS METHOD
-2.MAKE CYCLIC ITERATOR STUFF
-2.1 ROTATION OF ADVERRTS TEST
-3.DETECTION WHAT IF .JSON WAS EDITED
-
-*/
 
 
 };

@@ -21,7 +21,7 @@ AdvertShell::~AdvertShell() {
     // check if .txt exist if so delete it
     if(this->IsFileExist_(
         project_root_path_+'/'+advert_picture_dest_+'/'+advert_pid_txt_name_
-                        )
+                         )              
       )
     {
         this->DeleteFile_(
