@@ -45,18 +45,18 @@ WgHtmlAds::WgHtmlAds(int Ax, int Ay, WgMode Amode)
 
   config->Get("ADVERT_STUB_PATH", advert_stub_path_);
   config->Get("ADVERT_STUB_NAME", advert_stub_name_);
+  config->Get("ADVERT_STUB_TITLE", advert_stub_title_);
 
 // get full path to exe
   char buff[PATH_MAX];
   realpath(".", buff);               
   project_root_path_ = buff; 
 
-  current_timestamp_=std::time(0);
   json_file_time_=this->GetJsonFileTime_();
-
+  stub_loaded_=false;
   InitilizeAdverts_();
-
-  current_advert_it=adverts_.begin();
+  current_advert_=adverts_.begin();
+  current_timestamp_=std::time(0);
 
   std::cout << StrNow() << "\t"
             << "WgHtmlsAds widget object was created\n";
@@ -92,7 +92,7 @@ bool WgHtmlAds::IsNeedRenewAdverts_(){
 
 
 void WgHtmlAds::CleanAdverts_(){
-  adverts_.clear();
+  adverts_.erase(adverts_.begin()+1,adverts_.end());
   usleep(250);//get some time to destruct all previus ads
   InitilizeAdverts_();
 }
@@ -114,6 +114,21 @@ void WgHtmlAds::InitilizeAdverts_()
   std::time_t show_time=0;
   bool hidden=true;
   
+
+  //place stub at first
+  if(stub_loaded_!=true){
+    adverts_.push_back(std::unique_ptr<AdvertShell>(std::move(new AdvertShell(
+      RectClient.left,RectClient.bottom,
+      RectClient.width,RectClient.height,
+      advert_stub_path_,advert_stub_name_,
+      advert_stub_title_
+    )
+    )));
+    stub_loaded_=true;
+  }
+
+
+
   //valid advert means without errors
   bool is_valid_advert=true;
 
@@ -180,61 +195,68 @@ void WgHtmlAds::InitilizeAdverts_()
 }
 
 
-
 bool WgHtmlAds::update() {
 
-  std::time_t current_time=std::time(0);
+//TODO 
+//MAKE SENSE LOGICK ON THIS STUFF
+//MAKE BETTER ADVERT READY
+//HIDDEN IS FOR MANAGER OR FOR SHELLADVERT ETC
+
+
+  //detection if adverts.json was edited if so 
   if(this->IsNeedRenewAdverts_()==true){
     this->CleanAdverts_();
-    //load stub
-    std::cout<<"Json was edited\n";
+    std::cout<< StrNow()<<" detected what update must be\n";
+    current_advert_=adverts_.begin();
     return true;
   }
 
 
-  
-   //check if advert ready to be shown
-    if(current_advert_it->get()->isAdvertReady() && 
-      current_advert_it->get()->IsTimeReady(current_timestamp_)&&
-      ((current_time-current_timestamp_)<current_advert_it->get()->Get_advert_show_time())
+    std::time_t current_time=std::time(0);
+
+    //if advert os okey and show time must go on return false
+    if(
+      current_advert_->get()->IsAdvertValid()&&
+      current_advert_->get()->IsAdvertReady() && 
+      current_advert_->get()->IsTimeReady(current_timestamp_)&&
+      ((current_time-current_timestamp_)<current_advert_->get()->Get_advert_show_time())
+
       )
     {
      return false;
     }
 
-
-
-  unsigned int i=0;
+  unsigned int i=1;//one because stub will always be
   while(i!=adverts_.size()){
 
-    if(current_advert_it==adverts_.end()-1){
-      current_advert_it=adverts_.begin();
+    //be awere what .end() point on nullptr element in vector
+    // not on last element???
+    if(current_advert_==adverts_.end()-1){
+      //point on second element in vector
+      //because first is always stub
+      current_advert_=adverts_.begin()+1;
       
     }
     else{
-      ++current_advert_it;
+      //std::next(current_advert_,1);
+      ++current_advert_;
     }
-
     
     //check if advert ready to be shown
-    if(current_advert_it->get()->isAdvertReady() && 
-      current_advert_it->get()->IsTimeReady(std::time(0))
+    if(current_advert_->get()->IsAdvertReady() && 
+      current_advert_->get()->IsTimeReady(std::time(0))
       )
     {
-    current_timestamp_=std::time(0);
+     current_timestamp_=std::time(0);
      return true;
     }
   
 
     ++i;
   }
-
-  if(i==adverts_.size()){
-    //load stub or mark it with flag
     current_timestamp_=std::time(0);
-    std::cout<<"STUB must be shown now"<<std::endl;
-    return false;//false is here tmp
-  }
+    //stub time to shown
+    current_advert_=adverts_.begin();
   return false;
 }
 
@@ -242,12 +264,13 @@ void WgHtmlAds::render() {
   WgBackground::render(); // if commented @ header and advert  block @ is
                           // tranperent
 
-
   //~~~ render header
-  RenderWidgetHeader((current_advert_it->get()->Get_advert_title()).c_str());
+  std::cout<<current_advert_->get()->Get_advert_title()<<std::endl;
+  RenderWidgetHeader((current_advert_->get()->Get_advert_title()).c_str());
 
-  current_advert_it->get()->RenderAdvert();
-
+  if(current_advert_->get()->RenderAdvert()!=true){
+    std::cerr<<"Stub did not loaded succesfully libshape text must be here\n";
+  }
 
   //~~~~~ render shadows
   WgBackground::RenderOnlyShadows();

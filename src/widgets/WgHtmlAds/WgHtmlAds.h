@@ -50,7 +50,8 @@ private:
   bool IsNeedRenewAdverts_(); // check if file(.json) was changed/edited
 
   void CleanAdverts_();//cleans adverts and runs initilizeAdverts_
-  
+
+
   void InitilizeAdverts_();
   //~~~stored strings
   std::string advert_dest_;
@@ -61,14 +62,14 @@ private:
 
   std::string advert_stub_name_;
   std::string advert_stub_path_;
+  std::string advert_stub_title_;
 
-  int current_advert_index_;//what advert is now on screen its index in vector
+  bool stub_loaded_;
   
-  
-  std::time_t current_timestamp_;
+  std::time_t current_timestamp_;//stores last time then entered update
   std::time_t json_file_time_; // last timestamp then json file was edited
 
-  std::vector<std::unique_ptr<AdvertShell>>::iterator current_advert_it;
+  std::vector<std::unique_ptr<AdvertShell>>::iterator current_advert_;
   std::vector<std::unique_ptr<AdvertShell>> adverts_;
 
 

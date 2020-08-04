@@ -13,7 +13,13 @@
 class AdvertShell{
 public:
 
-void RenderAdvert();
+bool RenderAdvert();//return true if rendered picture succesfully
+
+//This constructor if for stub not for adverts
+AdvertShell(int client_rect_left_pos, int client_rect_bottom_pos,
+int widget_screen_width,int widget_screen_height,
+const std::string&a_stub_path,const std::string&a_stub_name,
+const std::string&a_stub_title);
 
 AdvertShell(int client_rect_left_pos, int client_rect_bottom_pos,
 int widget_screen_width,int widget_screen_height,
@@ -30,9 +36,11 @@ std::string Get_advert_title(){return advert_title_;}
 
 
 //is advert ready to be shown/rendered
-bool isAdvertReady();
+bool IsAdvertReady();
 //detects if advert time has come to be shown
 bool IsTimeReady(std::time_t a_time_stamp);
+//checks if advert is valid or not
+bool IsAdvertValid();
 
 private:
 
@@ -44,8 +52,6 @@ void CutyCaptRequest_();
 
 //get status if advert ready to show aka cutycapt done its bussines
 bool IsAdvertThreadReady_();
-//is picture succesfully initialized if not return false
-bool IsAdvertPictureReady_();
 
 //Constructor Initializer List
 int client_rect_left_pos_;
@@ -70,7 +76,7 @@ bool is_valid_;
 
 std::string advert_picture_name_;//stores advert name
 std::string advert_pid_txt_name_;
-pid_t cutycapt_pid;//PID of cutycapt request in system(console)
+pid_t cutycapt_pid_;//PID of cutycapt request in system(console)
 
 struct{float width;float height;}PictureScale;
 

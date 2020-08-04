@@ -14,7 +14,7 @@ AdvertShell::~AdvertShell() {
         delete advert_picture_;
     }
     if(IsAdvertThreadReady_()!=true){
-     std::system(("kill "+std::to_string(cutycapt_pid)).c_str());
+     std::system(("kill "+std::to_string(cutycapt_pid_)).c_str());
      usleep(500);
     }
 
@@ -47,35 +47,42 @@ AdvertShell::~AdvertShell() {
 }
 
 
-void AdvertShell::RenderAdvert() {
+bool AdvertShell::RenderAdvert() {
    
-   if(advert_picture_==nullptr){
-       try {
+  if(advert_picture_==nullptr)
+  {
+       try 
+       {
         advert_picture_ = new Picture((advert_picture_dest_ + "/" + advert_picture_name_).c_str());
         PictureScale.width = static_cast<float>(widget_screen_width_) /
                                static_cast<float>(advert_picture_->Get_width());
         PictureScale.height = static_cast<float>(widget_screen_height_) /
                                 static_cast<float>(advert_picture_->Get_height());
-      
+        return true;
       } 
-      catch (...) {
+      catch (...) 
+      {
           //what to do if something bad will happen??
           //now on next render try it will try again
-            std::cerr <<"\t"
+            std::cerr <<  "\t"
                   << "Something bad happened with initialising advert picture \n";
-        // StrNow() << 
-            if(advert_picture_){
+        //StrNow() <<
+            if(advert_picture_)
+            {
               delete advert_picture_;
               advert_picture_=nullptr;
             }
+        return false;
       }
    }
-    else{
+  
+    advert_picture_->render(client_rect_left_pos_, client_rect_bottom_pos_,
+                     PictureScale.width, PictureScale.height, 0, 0,
+                      0);
+    return true;
+  
+
     
-        advert_picture_->render(client_rect_left_pos_, client_rect_bottom_pos_,
-                       PictureScale.width, PictureScale.height, 0, 0,
-                       0);    
-    }
 }
 
 AdvertShell::AdvertShell(int client_rect_left_pos, int client_rect_bottom_pos, 
@@ -101,14 +108,41 @@ AdvertShell::AdvertShell(int client_rect_left_pos, int client_rect_bottom_pos,
 {
     advert_picture_=nullptr;
     this->SetAdvertPictureName_();
-    advert_pid_txt_name_=advert_picture_name_+".pid.txt";
+    advert_pid_txt_name_=advert_picture_name_+"_pid.txt";
 
  //launch cutycapt asinc stuff
- if(hidden_!=true && is_valid==true){
+ if(hidden_!=true && is_valid_==true){
  cutycapt_thread_=std::async(
     std::launch::async, &AdvertShell::CutyCaptRequest_, this);
  }
 }
+
+//stub constructor
+AdvertShell::AdvertShell(int client_rect_left_pos, int client_rect_bottom_pos,
+                int widget_screen_width,int widget_screen_height,
+                const std::string&a_stub_path,const std::string&a_stub_name,
+                const std::string&a_stub_title)
+:client_rect_left_pos_(client_rect_left_pos),
+ client_rect_bottom_pos_(client_rect_bottom_pos),
+ widget_screen_width_(widget_screen_width),
+ widget_screen_height_(widget_screen_height),
+ advert_picture_dest_(a_stub_path),
+ advert_title_(a_stub_title)
+{
+    this->advert_picture_name_=a_stub_name;
+    advert_picture_=nullptr;
+    project_root_path_="";//must be emty to not delete stub picture
+     advert_url_="";
+    advert_start_ts_=0;
+    advert_end_ts_=0;
+    advert_show_time_=0;
+    hidden_=false;
+    is_valid_=false;//stub is always not valid
+    cutycapt_thread_status_=std::future_status::ready;
+}
+
+
+
 
 void AdvertShell::SetAdvertPictureName_() {
 	int pos = advert_url_.length();
@@ -147,7 +181,7 @@ void AdvertShell::CutyCaptRequest_() {
         return;  
     }
 
-    this->cutycapt_pid=std::stoi(line);
+    this->cutycapt_pid_=std::stoi(line);
 
     //about kill()
     /*
@@ -162,7 +196,7 @@ void AdvertShell::CutyCaptRequest_() {
 
     //check if thread is still valid/active 
     //output <0 means its dead/finished its work or troble happened
-    while(kill(this->cutycapt_pid,0)==0){
+    while(kill(this->cutycapt_pid_,0)==0){
         usleep(1000);//sleep thraed on one milisecond
     }
 }
@@ -187,57 +221,36 @@ void AdvertShell::DeleteFile_(const std::string & a_file_name) {
 }
 
 bool AdvertShell::IsAdvertThreadReady_() {
-    if(hidden_)return false;
     // get status of thread//it actually freezes it for under 1 milisecond to get
   // status of thread
 cutycapt_thread_status_ = cutycapt_thread_.wait_for(
                                                 std::chrono::milliseconds(0)
                                                 );
-
-  // return if it ready true 
-  return (cutycapt_thread_status_ == std::future_status::ready);
+  // return if thread ready true 
+  if(cutycapt_thread_status_ == std::future_status::ready){
+      return true;
+  }
+  else{
+      return false;
+  }
+ // return (cutycapt_thread_status_ == std::future_status::ready);
 }
 
-bool AdvertShell::IsAdvertPictureReady_() {
-    if(this->IsAdvertThreadReady_()!=true){
-        return false;
-    }
-
-    if(advert_picture_==nullptr){
-       try {
-        advert_picture_ = new Picture((advert_picture_dest_ + "/" + advert_picture_name_).c_str());
-        PictureScale.width = static_cast<float>(widget_screen_width_) /
-                               static_cast<float>(advert_picture_->Get_width());
-        PictureScale.height = static_cast<float>(widget_screen_height_) /
-                                static_cast<float>(advert_picture_->Get_height());
-        return true;
-      } 
-      catch (...) {
-          //what to do if something bad will happen??
-          //now on next render try it will try again
-            std::cerr <<  "\t"
-                  << "Something bad happened with initialising advert picture \n";
-        //StrNow() <<
-            if(advert_picture_){
-              delete advert_picture_;
-              advert_picture_=nullptr;
-            }
-            return false;
-      }
-   }
-   else{
-       return true;
-   }
-}
-
-bool AdvertShell::isAdvertReady() {
-    if(this->IsAdvertThreadReady_()&&this->IsAdvertPictureReady_()){
+bool AdvertShell::IsAdvertReady() {
+    if(this->IsAdvertThreadReady_()&&
+    &&hidden_!=true&&
+    this->IsFileExist_(advert_picture_dest_+'/'+advert_picture_name_)){
         return true;
     }
     else{
         return false;
     }
 }
+
+bool AdvertShell::IsAdvertValid() {
+    return is_valid_;
+}
+
 
 bool AdvertShell::IsTimeReady(std::time_t a_time_stamp) {
     return true;//temporary

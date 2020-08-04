@@ -31,7 +31,7 @@ set(OBJ /home/pi/openvg/libshapes.o /home/pi/openvg/oglinit.o)
 
 #diferent compiler flags for differnt builds
 if(CMAKE_BUILD_TYPE MATCHES Debug)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -Wextra ")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -Wextra -Wno-psabi")
 else(CMAKE_BUILD_TYPE MATCHES Debug)
 	# if it not in Debug build when adds only -Wall
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -O3 -DNDEBUG -Wno-psabi")
