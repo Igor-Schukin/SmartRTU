@@ -10,3 +10,6 @@
 
 #exclude tmp folder content
 /res/tmp/*
+
+#exclude vscode files
+/.vscode/*
