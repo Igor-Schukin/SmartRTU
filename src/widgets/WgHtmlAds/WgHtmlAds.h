@@ -64,8 +64,9 @@ private:
   std::string advert_stub_path_;
   std::string advert_stub_title_;
 
-  bool stub_loaded_;
-  
+  bool on_start_stub_showed_;
+
+  std::time_t widget_update_time_;
   std::time_t current_timestamp_;//stores last time then entered update
   std::time_t json_file_time_; // last timestamp then json file was edited
 

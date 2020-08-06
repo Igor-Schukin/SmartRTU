@@ -19,7 +19,7 @@ bool RenderAdvert();//return true if rendered picture succesfully
 AdvertShell(int client_rect_left_pos, int client_rect_bottom_pos,
 int widget_screen_width,int widget_screen_height,
 const std::string&a_stub_path,const std::string&a_stub_name,
-const std::string&a_stub_title);
+const std::string&a_stub_title,std::time_t show_time);
 
 AdvertShell(int client_rect_left_pos, int client_rect_bottom_pos,
 int widget_screen_width,int widget_screen_height,

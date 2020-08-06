@@ -1,38 +1,46 @@
-02.07.2020 15:21:56	***** INFOBORAD engine started
-02.07.2020 15:21:56	Config loaded successfully
-02.07.2020 15:21:58	Timetable is loaded from ./res/timetable.json:
+05.07.2020 15:52:45	***** INFOBORAD engine started
+05.07.2020 15:52:45	Config loaded successfully
+05.07.2020 15:52:45	Timetable is loaded from ./res/timetable.json:
 				5 date ranges of academic calendar
 				11 holidays
 				7 lectures scheles for week days
 				16 lectures schedules for standalone dates
 				1 schedules for power sockets control
-02.07.2020 15:21:58	Desktop size 1920 x 1080, widgets area size 1728 x 864
-json size: 3
-02.07.2020 15:21:59	WgHtmlsAds widget object was created
-02.07.2020 15:21:59	WgForecast widget object was created
-02.07.2020 15:21:59	WgClock widget object was created
-02.07.2020 15:21:59	WgCalendar widget object was created
-02.07.2020 15:21:59	WgSockets widget object was created
-02.07.2020 15:21:59	WgTimetable widget object was created
-02.07.2020 15:21:59	WgWatchdog widget object was created
-STUB must be shown now
-02.07.2020 15:21:59	New current weather state was received
-02.07.2020 15:21:59	New weather icon was loaded 
-02.07.2020 15:21:59	Timetable is loaded from ./res/timetable.json:
+05.07.2020 15:52:45	Desktop size 1920 x 1080, widgets area size 1728 x 864
+05.07.2020 15:52:46	WgHtmlsAds widget object was created
+05.07.2020 15:52:46	WgForecast widget object was created
+05.07.2020 15:52:46	WgClock widget object was created
+05.07.2020 15:52:46	WgCalendar widget object was created
+05.07.2020 15:52:46	WgSockets widget object was created
+05.07.2020 15:52:46	WgTimetable widget object was created
+05.07.2020 15:52:46	WgWatchdog widget object was created
+05.07.2020 15:52:46	New current weather state was received
+05.07.2020 15:52:46	New weather icon was loaded 
+05.07.2020 15:52:46	Socket 1 is turned on 
+05.07.2020 15:52:46	Timetable is loaded from ./res/timetable.json:
 				5 date ranges of academic calendar
 				11 holidays
 				7 lectures scheles for week days
 				16 lectures schedules for standalone dates
 				1 schedules for power sockets control
-STUB must be shown now
-02.07.2020 15:21:59	New current weather state was received
-02.07.2020 15:21:59	Engine main circle  started
-STUB must be shown now
-02.07.2020 16:21:56	Status: on time: 0:01:00:00, idle: 86%, fps: 25
-02.07.2020 16:21:59	New current weather state was received
-02.07.2020 17:21:56	Status: on time: 0:02:00:00, idle: 86%, fps: 25
-02.07.2020 17:21:59	New current weather state was received
-02.07.2020 18:21:56	Status: on time: 0:03:00:00, idle: 86%, fps: 25
-02.07.2020 18:21:59	New current weather state was received
-02.07.2020 19:21:56	Status: on time: 0:04:00:00, idle: 86%, fps: 25
-02.07.2020 19:21:59	New current weather state was received
+05.07.2020 15:52:46	New current weather state was received
+05.07.2020 15:52:47	Engine main circle  started
+05.07.2020 15:53:31 detected whatadverts.json was edited launched update
+05.07.2020 15:55:46 detected whatadverts.json was edited launched update
+05.07.2020 16:52:45	Status: on time: 0:01:00:00, idle: 86%, fps: 25
+05.07.2020 16:52:46	New current weather state was received
+05.07.2020 17:52:45	Status: on time: 0:02:00:00, idle: 86%, fps: 25
+05.07.2020 17:52:46	New current weather state was received
+05.07.2020 18:41:51 detected whatadverts.json was edited launched update
+05.07.2020 18:52:45	Status: on time: 0:03:00:00, idle: 86%, fps: 25
+05.07.2020 18:52:46	New current weather state was received
+05.07.2020 19:31:46 detected whatadverts.json was edited launched update
+05.07.2020 19:31:49 detected whatadverts.json was edited launched update
+05.07.2020 19:31:52 detected whatadverts.json was edited launched update
+05.07.2020 19:31:55 detected whatadverts.json was edited launched update
+05.07.2020 19:52:45	Status: on time: 0:04:00:00, idle: 86%, fps: 25
+05.07.2020 19:52:46	New current weather state was received
+05.07.2020 20:00:00	Socket 1 is turned off 
+05.07.2020 20:52:45	Status: on time: 0:05:00:00, idle: 86%, fps: 25
+05.07.2020 20:52:46	New current weather state was received
+05.07.2020 20:52:46	New weather icon was loaded 

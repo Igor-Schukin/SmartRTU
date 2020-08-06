@@ -58,10 +58,15 @@ bool AdvertShell::RenderAdvert() {
                                static_cast<float>(advert_picture_->Get_width());
         PictureScale.height = static_cast<float>(widget_screen_height_) /
                                 static_cast<float>(advert_picture_->Get_height());
+        
+         advert_picture_->render(client_rect_left_pos_, client_rect_bottom_pos_,
+                     PictureScale.width, PictureScale.height, 0, 0,
+                      0);
         return true;
       } 
       catch (...) 
       {
+          
           //what to do if something bad will happen??
           //now on next render try it will try again
             std::cerr <<  "\t"
@@ -121,13 +126,14 @@ AdvertShell::AdvertShell(int client_rect_left_pos, int client_rect_bottom_pos,
 AdvertShell::AdvertShell(int client_rect_left_pos, int client_rect_bottom_pos,
                 int widget_screen_width,int widget_screen_height,
                 const std::string&a_stub_path,const std::string&a_stub_name,
-                const std::string&a_stub_title)
+                const std::string&a_stub_title,std::time_t show_time)
 :client_rect_left_pos_(client_rect_left_pos),
  client_rect_bottom_pos_(client_rect_bottom_pos),
  widget_screen_width_(widget_screen_width),
  widget_screen_height_(widget_screen_height),
  advert_picture_dest_(a_stub_path),
- advert_title_(a_stub_title)
+ advert_title_(a_stub_title),
+ advert_show_time_(show_time)
 {
     this->advert_picture_name_=a_stub_name;
     advert_picture_=nullptr;
@@ -135,7 +141,6 @@ AdvertShell::AdvertShell(int client_rect_left_pos, int client_rect_bottom_pos,
      advert_url_="";
     advert_start_ts_=0;
     advert_end_ts_=0;
-    advert_show_time_=0;
     hidden_=false;
     is_valid_=false;//stub is always not valid
     cutycapt_thread_status_=std::future_status::ready;
@@ -238,7 +243,7 @@ cutycapt_thread_status_ = cutycapt_thread_.wait_for(
 
 bool AdvertShell::IsAdvertReady() {
     if(this->IsAdvertThreadReady_()&&
-    &&hidden_!=true&&
+    hidden_!=true&&
     this->IsFileExist_(advert_picture_dest_+'/'+advert_picture_name_)){
         return true;
     }

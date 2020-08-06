@@ -32,8 +32,10 @@ WgHtmlAds::WgHtmlAds(int Ax, int Ay, WgMode Amode)
   config->Get("ADVERT_UPDATE_TIME", update_time);
 
   if (update_time <= 0) {
+    widget_update_time_=static_cast<unsigned int>(update_time);
     Set_widget_update_time(3000);
   } else {
+    widget_update_time_=static_cast<unsigned int>(update_time);
     Set_widget_update_time(update_time * 1000); // sets update time in seconds
   }
 
@@ -53,11 +55,10 @@ WgHtmlAds::WgHtmlAds(int Ax, int Ay, WgMode Amode)
   project_root_path_ = buff; 
 
   json_file_time_=this->GetJsonFileTime_();
-  stub_loaded_=false;
   InitilizeAdverts_();
   current_advert_=adverts_.begin();
   current_timestamp_=std::time(0);
-
+  on_start_stub_showed_=false;
   std::cout << StrNow() << "\t"
             << "WgHtmlsAds widget object was created\n";
 
@@ -107,6 +108,19 @@ void WgHtmlAds::InitilizeAdverts_()
 
   adverts_.reserve(j.size());
 
+  //place stub at first
+  if(adverts_.size()==0){
+    adverts_.push_back(std::unique_ptr<AdvertShell>(std::move(new AdvertShell(
+      RectClient.left,RectClient.bottom,
+      RectClient.width,RectClient.height,
+      advert_stub_path_,advert_stub_name_,
+      advert_stub_title_,(widget_update_time_*2)
+    )
+    )));
+  }
+
+
+  
   std::string url{};
   std::string title{};
   std::time_t start_ts=0;
@@ -114,21 +128,6 @@ void WgHtmlAds::InitilizeAdverts_()
   std::time_t show_time=0;
   bool hidden=true;
   
-
-  //place stub at first
-  if(stub_loaded_!=true){
-    adverts_.push_back(std::unique_ptr<AdvertShell>(std::move(new AdvertShell(
-      RectClient.left,RectClient.bottom,
-      RectClient.width,RectClient.height,
-      advert_stub_path_,advert_stub_name_,
-      advert_stub_title_
-    )
-    )));
-    stub_loaded_=true;
-  }
-
-
-
   //valid advert means without errors
   bool is_valid_advert=true;
 
@@ -196,17 +195,16 @@ void WgHtmlAds::InitilizeAdverts_()
 
 
 bool WgHtmlAds::update() {
-
 //TODO 
 //MAKE SENSE LOGICK ON THIS STUFF
 //MAKE BETTER ADVERT READY
 //HIDDEN IS FOR MANAGER OR FOR SHELLADVERT ETC
 
-
   //detection if adverts.json was edited if so 
   if(this->IsNeedRenewAdverts_()==true){
     this->CleanAdverts_();
-    std::cout<< StrNow()<<" detected what update must be\n";
+    std::cout<< StrNow()<<" detected what"<<adverts_json_name_<<
+    " was edited launched update\n";
     current_advert_=adverts_.begin();
     return true;
   }
@@ -215,16 +213,18 @@ bool WgHtmlAds::update() {
     std::time_t current_time=std::time(0);
 
     //if advert os okey and show time must go on return false
-    if(
-      current_advert_->get()->IsAdvertValid()&&
-      current_advert_->get()->IsAdvertReady() && 
-      current_advert_->get()->IsTimeReady(current_timestamp_)&&
+    if(on_start_stub_showed_==false){
+      on_start_stub_showed_=true;
+      return true;
+    }
+    else if(
       ((current_time-current_timestamp_)<current_advert_->get()->Get_advert_show_time())
-
-      )
+          )
     {
      return false;
     }
+
+
 
   unsigned int i=1;//one because stub will always be
   while(i!=adverts_.size()){
@@ -235,29 +235,29 @@ bool WgHtmlAds::update() {
       //point on second element in vector
       //because first is always stub
       current_advert_=adverts_.begin()+1;
-      
     }
     else{
-      //std::next(current_advert_,1);
+
       ++current_advert_;
     }
-    
+
     //check if advert ready to be shown
-    if(current_advert_->get()->IsAdvertReady() && 
-      current_advert_->get()->IsTimeReady(std::time(0))
+    if(current_advert_->get()->IsAdvertValid()&&
+      current_advert_->get()->IsAdvertReady() && 
+      current_advert_->get()->IsTimeReady(current_time)
       )
     {
-     current_timestamp_=std::time(0);
+     current_timestamp_=current_time;//std::time(0);
      return true;
     }
   
 
     ++i;
   }
-    current_timestamp_=std::time(0);
+    current_timestamp_=current_time;//std::time(0);
     //stub time to shown
     current_advert_=adverts_.begin();
-  return false;
+  return true;
 }
 
 void WgHtmlAds::render() {
@@ -265,7 +265,6 @@ void WgHtmlAds::render() {
                           // tranperent
 
   //~~~ render header
-  std::cout<<current_advert_->get()->Get_advert_title()<<std::endl;
   RenderWidgetHeader((current_advert_->get()->Get_advert_title()).c_str());
 
   if(current_advert_->get()->RenderAdvert()!=true){
