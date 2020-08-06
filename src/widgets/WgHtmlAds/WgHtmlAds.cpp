@@ -203,8 +203,8 @@ bool WgHtmlAds::update() {
   //detection if adverts.json was edited if so 
   if(this->IsNeedRenewAdverts_()==true){
     this->CleanAdverts_();
-    std::cout<< StrNow()<<" detected what"<<adverts_json_name_<<
-    " was edited launched update\n";
+    std::cout<< StrNow()<<" detected what "<<adverts_json_name_<<
+    " was edited, launched update\n";
     current_advert_=adverts_.begin();
     return true;
   }
@@ -268,7 +268,7 @@ void WgHtmlAds::render() {
   RenderWidgetHeader((current_advert_->get()->Get_advert_title()).c_str());
 
   if(current_advert_->get()->RenderAdvert()!=true){
-    std::cerr<<"Stub did not loaded succesfully libshape text must be here\n";
+    std::cerr<< StrNow()<<" Libshape text must be here\n";
   }
 
   //~~~~~ render shadows

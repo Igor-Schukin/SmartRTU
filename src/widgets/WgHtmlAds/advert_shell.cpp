@@ -39,7 +39,7 @@ AdvertShell::~AdvertShell() {
             project_root_path_+'/'+advert_picture_dest_+'/'+advert_picture_name_
             );
     }
-    //reliese future object if it was not reliesed???
+    //reliese future object if it was not reliesed
     if(cutycapt_thread_.valid()){
         cutycapt_thread_.get();
     }
@@ -66,12 +66,12 @@ bool AdvertShell::RenderAdvert() {
       } 
       catch (...) 
       {
-          
+
           //what to do if something bad will happen??
           //now on next render try it will try again
             std::cerr <<  "\t"
-                  << "Something bad happened with initialising advert picture \n";
-        //StrNow() <<
+            << "Something bad happened with initialising advert_picture_ \n";
+
             if(advert_picture_)
             {
               delete advert_picture_;
@@ -84,10 +84,7 @@ bool AdvertShell::RenderAdvert() {
     advert_picture_->render(client_rect_left_pos_, client_rect_bottom_pos_,
                      PictureScale.width, PictureScale.height, 0, 0,
                       0);
-    return true;
-  
-
-    
+    return true;  
 }
 
 AdvertShell::AdvertShell(int client_rect_left_pos, int client_rect_bottom_pos, 
@@ -231,14 +228,8 @@ bool AdvertShell::IsAdvertThreadReady_() {
 cutycapt_thread_status_ = cutycapt_thread_.wait_for(
                                                 std::chrono::milliseconds(0)
                                                 );
-  // return if thread ready true 
-  if(cutycapt_thread_status_ == std::future_status::ready){
-      return true;
-  }
-  else{
-      return false;
-  }
- // return (cutycapt_thread_status_ == std::future_status::ready);
+
+  return (cutycapt_thread_status_ == std::future_status::ready);
 }
 
 bool AdvertShell::IsAdvertReady() {

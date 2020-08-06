@@ -3,12 +3,15 @@
 #ifndef SMART_RTU_SRC_WIDGETS_WGHTMLADS_ADVERT_SHELL_H_
 #define SMART_RTU_SRC_WIDGETS_WGHTMLADS_ADVERT_SHELL_H_
 
+#include <signal.h>//for pid_t()
+#include <unistd.h>//pid_t
+
 #include<string>//string
 #include<ctime>//time_t
 #include <future> //future
 #include <thread> //std::launc::async
 
-#include"Picture.h"//Picture
+#include"../../lib/pictures/Picture.h"//Picture
 
 class AdvertShell{
 public:
@@ -68,6 +71,7 @@ std::time_t advert_start_ts_;
 std::time_t advert_end_ts_;
 std::time_t advert_show_time_;
 bool hidden_;//is advert hidden
+
 //means its not broken by some means 
 //if so make advert hidden
 bool is_valid_;
@@ -81,10 +85,9 @@ pid_t cutycapt_pid_;//PID of cutycapt request in system(console)
 struct{float width;float height;}PictureScale;
 
 //~thread variables
-  std::future<void> cutycapt_thread_; // is obj of  new async thread //not so good to
-                              // use void but....                           
-  // stored status of thread //probably can avoid it
-  std::future_status cutycapt_thread_status_; 
+std::future<void> cutycapt_thread_; // is obj of  new async thread 
+// stored status of thread //probably can avoid it
+std::future_status cutycapt_thread_status_; 
 
 Picture *advert_picture_;
 
