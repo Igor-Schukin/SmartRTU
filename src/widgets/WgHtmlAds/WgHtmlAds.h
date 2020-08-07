@@ -30,7 +30,6 @@ NEW ADVERT WITH NEW ONE
 // a11y libs
 
 // my headers
-#include "CPicturesStorage.h" //for Picture type
 #include "WgBackground.h"     //inheritance
 
 #include"advert_shell.h"//here are stored adverts
@@ -72,7 +71,6 @@ private:
 
   std::vector<std::unique_ptr<AdvertShell>>::iterator current_advert_;
   std::vector<std::unique_ptr<AdvertShell>> adverts_;
-
 
 };
 

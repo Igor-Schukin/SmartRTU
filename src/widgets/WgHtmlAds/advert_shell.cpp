@@ -117,6 +117,9 @@ AdvertShell::AdvertShell(int client_rect_left_pos, int client_rect_bottom_pos,
  cutycapt_thread_=std::async(
     std::launch::async, &AdvertShell::CutyCaptRequest_, this);
  }
+ else{
+     cutycapt_thread_status_=std::future_status::ready;
+ }
 }
 
 //stub constructor
@@ -223,13 +226,20 @@ void AdvertShell::DeleteFile_(const std::string & a_file_name) {
 }
 
 bool AdvertShell::IsAdvertThreadReady_() {
-    // get status of thread//it actually freezes it for under 1 milisecond to get
-  // status of thread
+  
+  //if headen means what thread is already ready because it even do not started
+  if(hidden_==true){
+      return true;
+  }
+  else{
+// get status of thread//it actually freezes it for under 1 milisecond to get
+// status of thread
 cutycapt_thread_status_ = cutycapt_thread_.wait_for(
                                                 std::chrono::milliseconds(0)
                                                 );
 
   return (cutycapt_thread_status_ == std::future_status::ready);
+  }
 }
 
 bool AdvertShell::IsAdvertReady() {
@@ -248,12 +258,16 @@ bool AdvertShell::IsAdvertValid() {
 }
 
 
-bool AdvertShell::IsTimeReady(std::time_t a_time_stamp) {
-    return true;//temporary
+bool AdvertShell::IsTimeReady(const std::time_t a_time_stamp) {
+    //zeros end_ts and start_ts means what it always will be true to show
+    if(advert_start_ts_==0&&advert_end_ts_==0)return true;
+
     if(a_time_stamp>=advert_start_ts_ && a_time_stamp<advert_end_ts_){
+        hidden_=false;
         return true;
     }
     else{
+        hidden_=false;
         return false;
     }
 }

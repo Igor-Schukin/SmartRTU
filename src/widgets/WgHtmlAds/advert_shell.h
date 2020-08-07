@@ -11,7 +11,7 @@
 #include <future> //future
 #include <thread> //std::launc::async
 
-#include"../../lib/pictures/Picture.h"//Picture
+#include"Picture.h"//Picture
 
 class AdvertShell{
 public:
@@ -41,7 +41,7 @@ std::string Get_advert_title(){return advert_title_;}
 //is advert ready to be shown/rendered
 bool IsAdvertReady();
 //detects if advert time has come to be shown
-bool IsTimeReady(std::time_t a_time_stamp);
+bool IsTimeReady(const std::time_t a_time_stamp);
 //checks if advert is valid or not
 bool IsAdvertValid();
 

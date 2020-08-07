@@ -53,11 +53,11 @@ add_subdirectory(src/engine)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 
 #create exe
-add_executable(infoboard ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp )
+add_executable(infoboard.exe ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp )
 
 
 #link external .o and own libs TO EXE
-target_link_libraries(infoboard ${OBJ} BoardConfig
+target_link_libraries(infoboard.exe ${OBJ} BoardConfig
 							BoardLib
 							BoardWidgets
 							BoardStorage  
@@ -65,7 +65,7 @@ target_link_libraries(infoboard ${OBJ} BoardConfig
 )
 
 #where compiler to search PATHS
-target_include_directories(infoboard PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
+target_include_directories(infoboard.exe PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
 							./src/engine
 	 				     	./src/storage
 							 ./src/configurator

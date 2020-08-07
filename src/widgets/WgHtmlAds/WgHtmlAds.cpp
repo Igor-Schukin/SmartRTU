@@ -95,7 +95,6 @@ bool WgHtmlAds::IsNeedRenewAdverts_(){
 void WgHtmlAds::CleanAdverts_(){
   adverts_.erase(adverts_.begin()+1,adverts_.end());
   usleep(250);//get some time to destruct all previus ads
-  InitilizeAdverts_();
 }
 
 
@@ -106,7 +105,8 @@ void WgHtmlAds::InitilizeAdverts_()
 	json j;
 	i >> j;
 
-  adverts_.reserve(j.size());
+  //json objects count + stub
+  adverts_.reserve(j.size()+1);
 
   //place stub at first
   if(adverts_.size()==0){
@@ -202,9 +202,10 @@ bool WgHtmlAds::update() {
 
   //detection if adverts.json was edited if so 
   if(this->IsNeedRenewAdverts_()==true){
-    this->CleanAdverts_();
-    std::cout<< StrNow()<<" detected what "<<adverts_json_name_<<
+    std::cout<< StrNow()<<"\t detected what "<<adverts_json_name_<<
     " was edited, launched update\n";
+    this->CleanAdverts_();
+    this->InitilizeAdverts_();
     current_advert_=adverts_.begin();
     return true;
   }
@@ -264,11 +265,12 @@ void WgHtmlAds::render() {
   WgBackground::render(); // if commented @ header and advert  block @ is
                           // tranperent
 
+  std::cout<<current_advert_->get()->Get_advert_title()<<std::endl;
   //~~~ render header
   RenderWidgetHeader((current_advert_->get()->Get_advert_title()).c_str());
 
   if(current_advert_->get()->RenderAdvert()!=true){
-    std::cerr<< StrNow()<<" Libshape text must be here\n";
+    std::cerr<< StrNow()<<"\tLibshape text must be here\n";
   }
 
   //~~~~~ render shadows

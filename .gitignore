@@ -4,8 +4,7 @@
 !Dummy.txt 
 
 #exclude .exe files
-*.exe
-./infoboard
+infoboard.exe
 #Normal exclude of dir is dirname/
 
 #exclude tmp folder content
