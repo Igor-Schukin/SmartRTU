@@ -1,5 +1,16 @@
 #pragma once
 
+/*
+//Author:Dainis Verdins DF RTU
+//Year: 2020
+//Description:
+//is shell of Picture class,used to store as a container adverts
+// uses cutycapt and XVFB to work + async threads
+*/
+
+
+
+
 #ifndef SMART_RTU_SRC_WIDGETS_WGHTMLADS_ADVERT_SHELL_H_
 #define SMART_RTU_SRC_WIDGETS_WGHTMLADS_ADVERT_SHELL_H_
 
@@ -71,9 +82,7 @@ std::time_t advert_start_ts_;
 std::time_t advert_end_ts_;
 std::time_t advert_show_time_;
 bool hidden_;//is advert hidden
-
-//means its not broken by some means 
-//if so make advert hidden
+//state  of advert is broken one(wrong initializng parameters) or not
 bool is_valid_;
 
 //end of Constructor Initializer List

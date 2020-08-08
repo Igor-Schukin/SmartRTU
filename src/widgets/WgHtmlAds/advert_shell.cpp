@@ -14,8 +14,9 @@ AdvertShell::~AdvertShell() {
         delete advert_picture_;
     }
     if(IsAdvertThreadReady_()!=true){
-     std::system(("kill "+std::to_string(cutycapt_pid_)).c_str());
-     usleep(500);
+        //kill process and redirect output message into dev null console
+     std::system(("kill "+std::to_string(cutycapt_pid_)+" >/dev/null 2>/dev/null").c_str());
+     usleep(200);
     }
 
     // check if .txt exist if so delete it
@@ -40,8 +41,16 @@ AdvertShell::~AdvertShell() {
             );
     }
     //reliese future object if it was not reliesed
+    //future object must be reliesed using .get()
+    //can throw error std::future_error
     if(cutycapt_thread_.valid()){
-        cutycapt_thread_.get();
+        try {
+            cutycapt_thread_.get(); 
+        } catch (const std::future_error& e) {
+            std::cerr << "Caught a future_error with code \"" << e.code()
+                    << "\"\nMessage: \"" << e.what() << "\"\n";
+        }
+
     }
 
 }
@@ -113,13 +122,10 @@ AdvertShell::AdvertShell(int client_rect_left_pos, int client_rect_bottom_pos,
     advert_pid_txt_name_=advert_picture_name_+"_pid.txt";
 
  //launch cutycapt asinc stuff
- if(hidden_!=true && is_valid_==true){
+
  cutycapt_thread_=std::async(
     std::launch::async, &AdvertShell::CutyCaptRequest_, this);
- }
- else{
-     cutycapt_thread_status_=std::future_status::ready;
- }
+ 
 }
 
 //stub constructor
@@ -164,6 +170,11 @@ void AdvertShell::SetAdvertPictureName_() {
 }
 
 void AdvertShell::CutyCaptRequest_() {
+
+//otherwise will throw at destructor std::future_error stuff
+//dats why even hidden || is_valid adverts run async but returns emedently
+ if(hidden_==true || is_valid_==false)return;
+ 
  //runn cutycapt transformation stuff in system and writes its pid into txt file
     std::system(
         ("xvfb-run -a --server-args=\"-screen 0, 1920x1080x24\" cutycapt --url="+
@@ -226,12 +237,7 @@ void AdvertShell::DeleteFile_(const std::string & a_file_name) {
 }
 
 bool AdvertShell::IsAdvertThreadReady_() {
-  
-  //if headen means what thread is already ready because it even do not started
-  if(hidden_==true){
-      return true;
-  }
-  else{
+
 // get status of thread//it actually freezes it for under 1 milisecond to get
 // status of thread
 cutycapt_thread_status_ = cutycapt_thread_.wait_for(
@@ -239,7 +245,7 @@ cutycapt_thread_status_ = cutycapt_thread_.wait_for(
                                                 );
 
   return (cutycapt_thread_status_ == std::future_status::ready);
-  }
+  
 }
 
 bool AdvertShell::IsAdvertReady() {

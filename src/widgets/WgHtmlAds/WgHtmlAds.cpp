@@ -10,6 +10,7 @@
 #include <cstdlib> // /*realpath*/ funtion for cutycapt also needed PATH_MAX from limits.h
 #include <iostream> // /*cout*/
 #include <fstream>//ifstream
+#include <iterator>     // std::distance
 
 // A11Y libs
 
@@ -110,11 +111,13 @@ void WgHtmlAds::InitilizeAdverts_()
 
   //place stub at first
   if(adverts_.size()==0){
+    // std::move is not needed
+    unsigned int stub_show_time=widget_update_time_*2;
     adverts_.push_back(std::unique_ptr<AdvertShell>(std::move(new AdvertShell(
       RectClient.left,RectClient.bottom,
       RectClient.width,RectClient.height,
       advert_stub_path_,advert_stub_name_,
-      advert_stub_title_,(widget_update_time_*2)
+      advert_stub_title_,stub_show_time
     )
     )));
   }
@@ -132,20 +135,21 @@ void WgHtmlAds::InitilizeAdverts_()
   bool is_valid_advert=true;
 
   for (json::iterator it = j.begin(); it != j.end(); ++it) {
-    //probably better to just make one if
-    //what detects if fields are rigth type
-    //if not std::cerr it and set advert as not valid
+    is_valid_advert=true;
+
+
     if(it[0]["url"].is_string()){
       url=it[0]["url"];
     }
     else{
-      std::cerr<<"Do not detected url string!! advert is not valid\n";
+      std::cerr<<"Do not detected \"url\" string!! at index-> "<<std::distance(j.begin(),it)<<" advert is not valid\n";
       is_valid_advert=false;
     }
+
     if(it[0]["title"].is_string()){
       title=it[0]["title"];
     }else{
-      std::cerr<<"Do not detected title string!! advert is not valid\n";
+      std::cerr<<"Did not detected \"title\" string!! at index-> "<<std::distance(j.begin(),it)<<" advert is not valid\n";
       is_valid_advert=false;
     }
 
@@ -153,7 +157,7 @@ void WgHtmlAds::InitilizeAdverts_()
       start_ts=it[0]["start_ts"].get<std::time_t>();
     }
     else{
-      std::cerr<<"Do not detected start_ts number!! advert is not valid\n";
+      std::cerr<<"Did not detected \"start_ts\" number!! at index-> "<<std::distance(j.begin(),it)<<" advert is not valid\n";
       is_valid_advert=false;
     }
 
@@ -161,7 +165,7 @@ void WgHtmlAds::InitilizeAdverts_()
       end_ts=it[0]["end_ts"].get<std::time_t>();
     }
     else{
-      std::cerr<<"Do not detected end_ts number!! advert is not valid\n";
+      std::cerr<<"Did not detected \"end_ts\" number!! at index-> "<<std::distance(j.begin(),it)<<" advert is not valid\n";
       is_valid_advert=false;
     }
 
@@ -169,7 +173,7 @@ void WgHtmlAds::InitilizeAdverts_()
       show_time=it[0]["show_time"].get<std::time_t>();
     }
     else{
-      std::cerr<<"Do not detected show_time number!! advert is not valid\n";
+      std::cerr<<"Did not detected \"show_time\" number!! at index-> "<<std::distance(j.begin(),it)<<" advert is not valid\n";
       is_valid_advert=false;
     }
 
@@ -177,10 +181,11 @@ void WgHtmlAds::InitilizeAdverts_()
       hidden=it[0]["hidden"];
     }
     else{
-      std::cerr<<"Do not detected hidden boolean!! advert is not valid\n";
+      std::cerr<<"Did not detected \"hidden\" boolean!! at index-> "<<std::distance(j.begin(),it)<<" advert is not valid\n";
       is_valid_advert=false;
     }
-
+    //probably std::move is rudement here
+    //added it because i can
     adverts_.push_back(std::unique_ptr<AdvertShell>(std::move(new AdvertShell(
       RectClient.left,RectClient.bottom,
       RectClient.width,RectClient.height,
@@ -195,14 +200,11 @@ void WgHtmlAds::InitilizeAdverts_()
 
 
 bool WgHtmlAds::update() {
-//TODO 
-//MAKE SENSE LOGICK ON THIS STUFF
-//MAKE BETTER ADVERT READY
-//HIDDEN IS FOR MANAGER OR FOR SHELLADVERT ETC
+
 
   //detection if adverts.json was edited if so 
   if(this->IsNeedRenewAdverts_()==true){
-    std::cout<< StrNow()<<"\t detected what "<<adverts_json_name_<<
+    std::cout<< StrNow()<<"\t Detected what "<<adverts_json_name_<<
     " was edited, launched update\n";
     this->CleanAdverts_();
     this->InitilizeAdverts_();
@@ -265,7 +267,7 @@ void WgHtmlAds::render() {
   WgBackground::render(); // if commented @ header and advert  block @ is
                           // tranperent
 
-  std::cout<<current_advert_->get()->Get_advert_title()<<std::endl;
+  //std::cout<<current_advert_->get()->Get_advert_title()<<std::endl;
   //~~~ render header
   RenderWidgetHeader((current_advert_->get()->Get_advert_title()).c_str());
 

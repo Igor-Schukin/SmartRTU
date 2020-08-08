@@ -4,19 +4,19 @@
 #define SMART_RTU_SRC_WIDGETS_WGHTMLADS_WGHTMLADS_H_
 
 /*
-Restyled by RazdolbayOne
+//Author:Dainis Verdins DF RTU
+//Year: 2020
+//Description:
+// Widget what rotate adverts(controls their status e.t.c) and renders them
+// 
 */
 
-/*
-// MAIN PURPOSE TO ASYNC WAY TO CONVERT HTML PAGE INTO PIC/ADVERT
-// SHOW IT ON THE WIDGET SCREEN
-// DETECT IF .HTML PAGE WAS EDITED ASYNC WAY CONVERT IT TO ADVERT AND REPLACE
-NEW ADVERT WITH NEW ONE
+
 //
 // btw example of new code style of project
 //
 //
-*/
+
 
 // C (more precisely: headers in angle brackets with the .h extension), e.g.
 // <unistd.h>, <stdlib.h>
