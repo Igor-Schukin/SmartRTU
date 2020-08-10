@@ -199,7 +199,7 @@ void WgHtmlAds::InitilizeAdverts_()
 bool WgHtmlAds::update() {
   //detection if adverts.json was edited if so 
   if(this->IsNeedRenewAdverts_()==true){
-    std::cout<< StrNow()<<"\t Detected what "<<adverts_json_name_<<
+    std::cout<< StrNow()<<"\tDetected what "<<adverts_json_name_<<
     " was edited, launched update\n";
     this->CleanAdverts_();
     this->InitilizeAdverts_();
@@ -234,9 +234,8 @@ bool WgHtmlAds::update() {
       //because first is always stub
       current_advert_=adverts_.begin()+1;
     }
-    else{
-      //std::next to support all types of advert containers
-      std::next(current_advert_,1);
+    else{ 
+      ++current_advert_;
     }
 
     //check if advert ready to be shown
@@ -263,6 +262,7 @@ void WgHtmlAds::render() {
                           // tranperent
 
   //std::cout<<current_advert_->get()->Get_advert_title()<<std::endl;
+  
   //~~~ render header
   RenderWidgetHeader((current_advert_->get()->Get_advert_title()).c_str());
 
