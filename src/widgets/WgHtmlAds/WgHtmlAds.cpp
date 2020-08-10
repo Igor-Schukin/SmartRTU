@@ -50,7 +50,7 @@ WgHtmlAds::WgHtmlAds(int Ax, int Ay, WgMode Amode)
   config->Get("ADVERT_STUB_NAME", advert_stub_name_);
   config->Get("ADVERT_STUB_TITLE", advert_stub_title_);
 
-// get full path to exe
+ // get full path to exe
   char buff[PATH_MAX];
   realpath(".", buff);               
   project_root_path_ = buff; 
@@ -92,12 +92,10 @@ bool WgHtmlAds::IsNeedRenewAdverts_(){
   }
 }
 
-
 void WgHtmlAds::CleanAdverts_(){
   adverts_.erase(adverts_.begin()+1,adverts_.end());
   usleep(250);//get some time to destruct all previus ads
 }
-
 
 void WgHtmlAds::InitilizeAdverts_()
 {
@@ -198,10 +196,7 @@ void WgHtmlAds::InitilizeAdverts_()
   }                      
 }
 
-
 bool WgHtmlAds::update() {
-
-
   //detection if adverts.json was edited if so 
   if(this->IsNeedRenewAdverts_()==true){
     std::cout<< StrNow()<<"\t Detected what "<<adverts_json_name_<<
@@ -240,8 +235,8 @@ bool WgHtmlAds::update() {
       current_advert_=adverts_.begin()+1;
     }
     else{
-
-      ++current_advert_;
+      //std::next to support all types of advert containers
+      std::next(current_advert_,1);
     }
 
     //check if advert ready to be shown

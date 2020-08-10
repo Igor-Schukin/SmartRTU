@@ -43,6 +43,7 @@ AdvertShell::~AdvertShell() {
     //reliese future object if it was not reliesed
     //future object must be reliesed using .get()
     //can throw error std::future_error
+    //try catch statement here are not needed
     if(cutycapt_thread_.valid()){
         try {
             cutycapt_thread_.get(); 
@@ -89,11 +90,16 @@ bool AdvertShell::RenderAdvert() {
         return false;
       }
    }
-  
+   //in case render will break up with reality
+    try{
     advert_picture_->render(client_rect_left_pos_, client_rect_bottom_pos_,
                      PictureScale.width, PictureScale.height, 0, 0,
                       0);
-    return true;  
+    return true;
+  } 
+  catch(...){
+      return false;
+  } 
 }
 
 AdvertShell::AdvertShell(int client_rect_left_pos, int client_rect_bottom_pos, 
@@ -121,9 +127,9 @@ AdvertShell::AdvertShell(int client_rect_left_pos, int client_rect_bottom_pos,
     this->SetAdvertPictureName_();
     advert_pid_txt_name_=advert_picture_name_+"_pid.txt";
 
- //launch cutycapt asinc stuff
+  //launch cutycapt asinc stuff
 
- cutycapt_thread_=std::async(
+  cutycapt_thread_=std::async(
     std::launch::async, &AdvertShell::CutyCaptRequest_, this);
  
 }
@@ -149,11 +155,9 @@ AdvertShell::AdvertShell(int client_rect_left_pos, int client_rect_bottom_pos,
     advert_end_ts_=0;
     hidden_=false;
     is_valid_=false;//stub is always not valid
-    cutycapt_thread_status_=std::future_status::ready;
+    cutycapt_thread_=std::async(
+    std::launch::async, &AdvertShell::CutyCaptRequest_, this);
 }
-
-
-
 
 void AdvertShell::SetAdvertPictureName_() {
 	int pos = advert_url_.length();
@@ -171,8 +175,8 @@ void AdvertShell::SetAdvertPictureName_() {
 
 void AdvertShell::CutyCaptRequest_() {
 
-//otherwise will throw at destructor std::future_error stuff
-//dats why even hidden || is_valid adverts run async but returns emedently
+ //otherwise will throw at destructor std::future_error stuff
+ //dats why even hidden || is_valid adverts run async but returns emedently
  if(hidden_==true || is_valid_==false)return;
  
  //runn cutycapt transformation stuff in system and writes its pid into txt file
@@ -238,9 +242,9 @@ void AdvertShell::DeleteFile_(const std::string & a_file_name) {
 
 bool AdvertShell::IsAdvertThreadReady_() {
 
-// get status of thread//it actually freezes it for under 1 milisecond to get
-// status of thread
-cutycapt_thread_status_ = cutycapt_thread_.wait_for(
+ // get status of thread//it actually freezes it for under 1 milisecond to get
+ // status of thread
+ cutycapt_thread_status_ = cutycapt_thread_.wait_for(
                                                 std::chrono::milliseconds(0)
                                                 );
 
@@ -265,8 +269,11 @@ bool AdvertShell::IsAdvertValid() {
 
 
 bool AdvertShell::IsTimeReady(const std::time_t a_time_stamp) {
-    //zeros end_ts and start_ts means what it always will be true to show
-    if(advert_start_ts_==0&&advert_end_ts_==0)return true;
+    if(advert_start_ts_==ALWAYS_SHOW_TIMESTAMP &&
+    advert_end_ts_==ALWAYS_SHOW_TIMESTAMP)
+    {
+        return true;
+    }
 
     if(a_time_stamp>=advert_start_ts_ && a_time_stamp<advert_end_ts_){
         hidden_=false;
