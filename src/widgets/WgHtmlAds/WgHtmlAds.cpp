@@ -22,7 +22,10 @@
 
 using json = nlohmann::json;
 
-
+//stub show time is = (widgets update time) * STUB_TIME_MULTIPLY
+#define STUB_TIME_MULTIPLY 2
+//probably need to add into config or even use stub instead
+#define RENDERING_ERROR_HEADER_TEXT "O_o"
 
 WgHtmlAds::WgHtmlAds(int Ax, int Ay, WgMode Amode)
     : WgBackground(Ax, Ay, Amode) 
@@ -56,10 +59,12 @@ WgHtmlAds::WgHtmlAds(int Ax, int Ay, WgMode Amode)
   project_root_path_ = buff; 
 
   json_file_time_=this->GetJsonFileTime_();
+  InitStub_();
   InitilizeAdverts_();
   current_advert_=adverts_.begin();
   current_timestamp_=std::time(0);
   on_start_stub_showed_=false;
+
   std::cout << StrNow() << "\t"
             << "WgHtmlsAds widget object was created\n";
 
@@ -93,9 +98,23 @@ bool WgHtmlAds::IsNeedRenewAdverts_(){
 }
 
 void WgHtmlAds::CleanAdverts_(){
-  adverts_.erase(adverts_.begin()+1,adverts_.end());
-  usleep(250);//get some time to destruct all previus ads
+  //erase all from second element
+  adverts_.erase(std::next(adverts_.begin(),1),adverts_.end());
+  usleep(150);//get some time to destruct all previus ads
+  current_advert_=adverts_.begin();
 }
+
+void WgHtmlAds::InitStub_(){
+   unsigned int stub_show_time=widget_update_time_*STUB_TIME_MULTIPLY;
+    adverts_.push_back(std::unique_ptr<AdvertShell>(std::move(new AdvertShell(
+      RectClient.left,RectClient.bottom,
+      RectClient.width,RectClient.height,
+      advert_stub_path_,advert_stub_name_,
+      advert_stub_title_,stub_show_time
+    )
+    )));
+}
+
 
 void WgHtmlAds::InitilizeAdverts_()
 {
@@ -104,24 +123,6 @@ void WgHtmlAds::InitilizeAdverts_()
 	json j;
 	i >> j;
 
-  //json objects count + stub
-  adverts_.reserve(j.size()+1);
-
-  //place stub at first
-  if(adverts_.size()==0){
-    // std::move is not needed
-    unsigned int stub_show_time=widget_update_time_*2;
-    adverts_.push_back(std::unique_ptr<AdvertShell>(std::move(new AdvertShell(
-      RectClient.left,RectClient.bottom,
-      RectClient.width,RectClient.height,
-      advert_stub_path_,advert_stub_name_,
-      advert_stub_title_,stub_show_time
-    )
-    )));
-  }
-
-
-  
   std::string url{};
   std::string title{};
   std::time_t start_ts=0;
@@ -131,6 +132,11 @@ void WgHtmlAds::InitilizeAdverts_()
   
   //valid advert means without errors
   bool is_valid_advert=true;
+
+  if(j.size()==0){
+    std::cout<<StrNow()<<
+    "\tDetected what in \""<<adverts_json_name_<<"\" contains zero adverts\n";
+  }
 
   for (json::iterator it = j.begin(); it != j.end(); ++it) {
     is_valid_advert=true;
@@ -199,8 +205,8 @@ void WgHtmlAds::InitilizeAdverts_()
 bool WgHtmlAds::update() {
   //detection if adverts.json was edited if so 
   if(this->IsNeedRenewAdverts_()==true){
-    std::cout<< StrNow()<<"\tDetected what "<<adverts_json_name_<<
-    " was edited, launched update\n";
+    std::cout<< StrNow()<<"\tDetected what \""<<adverts_json_name_<<
+    "\" was edited, launched update\n";
     this->CleanAdverts_();
     this->InitilizeAdverts_();
     current_advert_=adverts_.begin();
@@ -227,15 +233,18 @@ bool WgHtmlAds::update() {
   unsigned int i=1;//one because stub will always be
   while(i!=adverts_.size()){
 
-    //be awere what .end() point on nullptr element in vector
-    // not on last element???
-    if(current_advert_==adverts_.end()-1){
+    //be awere what .end() point on nullptr element in list/vector
+    // need std::prev to decrement iterator
+    //BE AWERE on standart C++17 better use std::Advance for incrementing and
+    //decrement
+    if(current_advert_==std::prev(adverts_.end(),1)){
       //point on second element in vector
       //because first is always stub
-      current_advert_=adverts_.begin()+1;
+      current_advert_=std::next(adverts_.begin(),1);
     }
     else{ 
-      ++current_advert_;
+      //go to next element in colection
+      current_advert_=std::next(current_advert_,1);
     }
 
     //check if advert ready to be shown
@@ -244,7 +253,7 @@ bool WgHtmlAds::update() {
       current_advert_->get()->IsTimeReady(current_time)
       )
     {
-     current_timestamp_=current_time;//std::time(0);
+     current_timestamp_=current_time;
      return true;
     }
   
@@ -261,13 +270,16 @@ void WgHtmlAds::render() {
   WgBackground::render(); // if commented @ header and advert  block @ is
                           // tranperent
 
-  //std::cout<<current_advert_->get()->Get_advert_title()<<std::endl;
+ //std::cout<<current_advert_->get()->Get_advert_title()<<std::endl;
   
-  //~~~ render header
-  RenderWidgetHeader((current_advert_->get()->Get_advert_title()).c_str());
-
   if(current_advert_->get()->RenderAdvert()!=true){
-    std::cerr<< StrNow()<<"\tLibshape text must be here\n";
+    RenderWidgetHeader(RENDERING_ERROR_HEADER_TEXT);
+    std::cerr<<StrNow()
+    <<"\tLibshape text must be here about adverts picture rendering error\n";
+  }
+  else{
+      //~~~ render header
+  RenderWidgetHeader((current_advert_->get()->Get_advert_title()).c_str());
   }
 
   //~~~~~ render shadows

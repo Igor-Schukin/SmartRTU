@@ -58,7 +58,6 @@ AdvertShell::~AdvertShell() {
 
 
 bool AdvertShell::RenderAdvert() {
-   
   if(advert_picture_==nullptr)
   {
        try 
@@ -91,6 +90,7 @@ bool AdvertShell::RenderAdvert() {
       }
    }
    //in case render will break up with reality
+   //probably not needed
     try{
     advert_picture_->render(client_rect_left_pos_, client_rect_bottom_pos_,
                      PictureScale.width, PictureScale.height, 0, 0,

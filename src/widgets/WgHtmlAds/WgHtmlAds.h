@@ -24,7 +24,7 @@
 // C++
 #include <ctime>  // for std::time_t type
 #include <string>
-#include<vector>//vector
+#include<list>//list
 #include <memory>//unique_ptr
 
 // a11y libs
@@ -105,9 +105,6 @@ private:
    * 
    * Detailed: upload json file(adverts_json_path+/+adverts_json_name_) 
    * what stores adverts into json object j. 
-   * reserves in container adverts count +1(+1 because stub need also a place)
-   * checks if adverts container(adverts_) have size 0(means is empty) if so
-   * push.back stub into it(stu is first one in container).
    * then loops thru all ads in json object ,also checking if types are okey
    * if not sets is_valid to false and sends message to console 
    * where error appiered and advert is not valid, not valid advert 
@@ -115,6 +112,12 @@ private:
    */
   void InitilizeAdverts_();
   
+  /**
+   * @brief init stub and places it in first pos in colection
+   * 
+   */
+  void InitStub_();
+
   //~~~stored strings
   std::string advert_dest_;
   std::string project_root_path_; 
@@ -132,8 +135,9 @@ private:
   std::time_t current_timestamp_;//stores last time then entered update
   std::time_t json_file_time_; // last timestamp then json file was edited
 
-  std::vector<std::unique_ptr<AdvertShell>>::iterator current_advert_;
-  std::vector<std::unique_ptr<AdvertShell>> adverts_;
+  std::list<std::unique_ptr<AdvertShell>>::iterator current_advert_;
+  //colection
+  std::list<std::unique_ptr<AdvertShell>> adverts_;
 
 };
 
