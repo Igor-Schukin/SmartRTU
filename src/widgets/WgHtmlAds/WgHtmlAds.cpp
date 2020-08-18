@@ -63,7 +63,6 @@ WgHtmlAds::WgHtmlAds(int Ax, int Ay, WgMode Amode)
   InitilizeAdverts_();
   current_advert_=adverts_.begin();
   current_timestamp_=std::time(0);
-  on_start_stub_showed_=false;
 
   std::cout << StrNow() << "\t"
             << "WgHtmlsAds widget object was created\n";
@@ -216,18 +215,17 @@ bool WgHtmlAds::update() {
 
     std::time_t current_time=std::time(0);
 
-    //if advert os okey and show time must go on return false
-    if(on_start_stub_showed_==false){
-      on_start_stub_showed_=true;
-      return true;
-    }
-    else if(
+     if(
       ((current_time-current_timestamp_)<current_advert_->get()->Get_advert_show_time())
           )
     {
      return false;
     }
 
+  //if no adverts render all the time stub
+  if(adverts_.size()-1==0){
+    return false;
+  }
 
 
   unsigned int i=1;//one because stub will always be
@@ -260,7 +258,7 @@ bool WgHtmlAds::update() {
 
     ++i;
   }
-    current_timestamp_=current_time;//std::time(0);
+    current_timestamp_=current_time;
     //stub time to shown
     current_advert_=adverts_.begin();
   return true;

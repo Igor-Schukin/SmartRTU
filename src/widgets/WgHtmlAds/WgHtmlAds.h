@@ -43,15 +43,16 @@ public:
    * @brief checks if need rerender widget
    * 
    * Detailed: Check if json file was edited if so return true;
-   * Check if stub was placed once if not sets flag to true and return true;
+   * Checks colection contains adverts if not show stub until adverts update;
    * Loops thru adverts(cycling) to find working one
-   * (except first ad because it's stub) 
+   * (except first advert because it's stub) 
    * if found sets it as current_advert return true
-   * if loop passed places as current_advert_ stub iterator and return true 
+   * if loop passed places as current_advert_ the stub return true 
    *
-   * @return true if adverts json file was edited, if stub do not showed one,
+   * @return true if adverts json file was edited,
    * found working ad, or stub must be placed
-   * @return false adverts show time still do not expired
+   * @return false adverts show time still do not expired or zero adverts in 
+   * colection
    */
   bool update() override; // check if need update widget
   
@@ -59,12 +60,13 @@ public:
    * @brief renders advert on the widget screen
    * 
    * Detailed: first renders adverts header block ,
-   * second renders adverts header/title text,
-   * third renders current_advert advert a.ka picture and return true/false, 
-   * if returned false, renders on screen libshape text about what 
-   * something bad happened. 
+   * second trys to render advert(picture) to widget,
+   * if false then renders libshape msg about error and renders error header 
+   * if true renders also current adverts header
+   * and last renders shadows of all widgets (RenderOnlyShadows()) 
    *
    * @note libshape text is not done ,just prints in console about error.
+   * also RenderOnlyShadows later will be fixed its engine problem not widget
    */
   void render() override; // renders advert into screen
 
@@ -98,7 +100,7 @@ private:
    * usleeps main thread on 250 microseconds (to get time to kill all threads)
    * and avoiding what new thread has pid of not deleted advert
    */
-  void CleanAdverts_();//cleans adverts and runs initilizeAdverts_
+  void CleanAdverts_();//cleans adverts 
 
   /**
    * @brief init adverts 
@@ -128,8 +130,6 @@ private:
   std::string advert_stub_name_;
   std::string advert_stub_path_;
   std::string advert_stub_title_;
-
-  bool on_start_stub_showed_;
 
   std::time_t widget_update_time_;
   std::time_t current_timestamp_;//stores last time then entered update
