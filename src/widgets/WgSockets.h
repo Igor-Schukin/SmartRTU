@@ -12,36 +12,45 @@ Socket  RPi      GPIO    WiringPi
 
 #pragma once
 
-#include <wiringPi.h>
-#include <unistd.h>
+#ifndef SMART_RTU_SRC_WIDGETS_WGSOCKETS_H_
+#define SMART_RTU_SRC_WIDGETS_WGSOCKETS_H_
+
 
 #include "IWidget.h"
-#include "timetable.h"
-#include "Timer.h"
+/*
+Restyled by RazdolbayOne
+*/
 
-#define SOCKETS_COUNT 4
+constexpr int SOCKETS_COUNT =  4;
 
-const int socketsPins[SOCKETS_COUNT] = {8, 9, 7, 0};
+//what pins are used for socket
+const int SOCKETS_PINS[SOCKETS_COUNT] = {8, 9, 7, 0}; 
 
-class WgSockets : public IWidget
+class WgSockets 
+: public IWidget
 {
-private:
-    int id;
-    bool curStates[SOCKETS_COUNT];
-
 public:
     ~WgSockets();
     WgSockets();
-    bool update();
-    void render() {}
-    bool isVisible() { return false; };
-    void getRect(int &x, int &y, int &w, int &h)
+    bool update()override;
+    void render()override;//empty
+    bool IsVisible() override { return false; };
+    void GetRect(int &x, int &y, int &w, int &h)override
     {
         x = 0;
         y = 0;
         w = 0;
         h = 0;
     }
-    void setId(int id) { this->id = id; }
-    int getUpdateTime() { return 1000; } //1000ms = 1 time / sec
+    void Set_widget_id(int a_widget_id)override { 
+        this->widget_id_ = a_widget_id; 
+        }
+    int Get_widget_update_time()override { return 1000; } //1000ms = 1 time / sec
+
+private:
+    int widget_id_;
+    bool current_states_[SOCKETS_COUNT]; //holds current state of pin(on/off )
+
 };
+
+#endif /*SMART_RTU_SRC_WIDGETS_WGSOCKETS_H__*/

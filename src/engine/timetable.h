@@ -1,20 +1,15 @@
 #pragma once
 
-#include <iostream>
-#include <fstream>
-#include <cstring>
+#ifndef SMART_RTU_SRC_ENGINE_TIMETABLE_H_
+#define SMART_RTU_SRC_ENGINE_TIMETABLE_H_
+
 #include <string>
-#include <ctime>
+#include <ctime>/*time_t*/
 
-#include "json.h"
-#include "Timer.h"
+#include "json.h"//
 
-#include "../configurator/configurator.h"
-
-//using namespace std; //STRAUSTRUP IS MAD!!!
 using json = nlohmann::json;
 
-//#define DEFAULT_TIMETABLE_FILE (RES_DIR+"/timetable.json")
 
 struct TimetableDate
 {
@@ -24,7 +19,7 @@ struct TimetableDate
         y = tt.value("y", 0);
         if (y <= 0)
         {
-            std::time_t t = time(NULL);
+            std::time_t t = time(nullptr);
             struct tm *now = localtime(&t);
             y = now->tm_year + 1900;
         }
@@ -89,16 +84,16 @@ struct TimetableTime
 
 struct TimetableLecture
 {
-    TimetableTime begin, beginBreak, endBreak, end;
+    TimetableTime begin,end, beginBreak, endBreak ;
     TimetableLecture(json &tt) : begin(tt["begin"]),
                                  end(tt["end"]),
                                  beginBreak(tt["begin-break"]),
                                  endBreak(tt["end-break"])
     {
     }
-    bool isFinished(struct tm time);
+    bool IsFinished(struct tm time);
     bool isNotStarted(struct tm time);
-    bool isRunning(struct tm time);
+    bool IsRunning(struct tm time);
     bool isBreak(struct tm time);
     bool isFirstHour(struct tm time);
     bool isSecondHour(struct tm time);
@@ -106,7 +101,7 @@ struct TimetableLecture
 
 struct TimetableWeekDay
 {
-    int count;
+    int lectures_count;
     TimetableLecture **lectures;
     TimetableWeekDay(json &tt, json &defs);
     ~TimetableWeekDay();
@@ -138,24 +133,27 @@ struct TimetableSocket
         if (tt["weekdays"].size())
             weekdays = new TimeTableSocketTime(tt["weekdays"]);
         else
-            weekdays = NULL;
+            weekdays = nullptr;
         if (tt["sundays"].size())
             sundays = new TimeTableSocketTime(tt["sundays"]);
         else
-            sundays = NULL;
+            sundays = nullptr;
         if (tt["holidays"].size())
             holidays = new TimeTableSocketTime(tt["holidays"]);
         else
-            holidays = NULL;
+            holidays = nullptr;
     }
     ~TimetableSocket()
     {
-        if (weekdays)
+        if (weekdays){
             delete weekdays;
-        if (sundays)
+        }
+        if (sundays){
             delete sundays;
-        if (holidays)
+        }
+        if (holidays){
             delete holidays;
+        }
     }
 };
 
@@ -183,23 +181,22 @@ extern struct tm makeNow();
 class Timetable
 {
 public:
-    TimeState getCurrentTimeState(int &secToEnd, int &lectNumber);
-    DateState getCurrentDateState(int &weekNumber);
-    bool getCurrentSocketState(int Socket);
+    TimeState GetCurrentTimeState(int &secToEnd, int &lectNumber);
+    DateState GetCurrentDateState(int &weekNumber);
+    bool GetCurrentSocketState(int Socket);
 
     int getHoliday(struct tm now = makeNow());
 
-    Timetable();//now loading in constructor timetable.json //I redone this //
-    // Timetable(const char *FileName = "./res/timetable.json");
+    Timetable();
     ~Timetable();
 private:
 
-    int getWeekNumber(const TimetableDate &origin, struct tm now = makeNow());
-    int getWeeksCount(const TimetableDateRange *dates);
+    int GetWeekNumber_(const TimetableDate &origin, struct tm now = makeNow());
+    int GetWeeksCount_(const TimetableDateRange *dates);
 
     //all about desyianation/name of timetabl.json
-    std::string m_time_table_dest;
-    std::string m_time_table_name;
+    std::string time_table_path_;
+    std::string time_table_name_;
 
     TimetableWeekDay *Week[7];
     int SinglesCount;
@@ -214,3 +211,5 @@ private:
 };
 
 extern Timetable *timetable;
+
+#endif /*SMART_RTU_SRC_ENGINE_TIMETABLE_H_*/

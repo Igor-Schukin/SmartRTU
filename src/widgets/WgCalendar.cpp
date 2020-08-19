@@ -1,24 +1,39 @@
 #include "WgCalendar.h"
 
+#include <ctime>/*struct tm*/
+#include <iostream>/*cout*/
+#include <cstring>/*strcpy*/
 
-WgCalendar::WgCalendar(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amode)
+#include "CFontStorage.h"/*FontStorage obj*/
+#include "timetable.h"/*timetable obj*/
+#include "Timer.h"/*StrNow()*/
+#include "desktop.h"/*desktop obj*/
+#include "configurator.h"/*configurator*/
+
+
+WgCalendar::WgCalendar(int Ax, int Ay, WgMode Amode) 
+: WgBackground(Ax, Ay, Amode)
 {
-	updateTime = 60 * 60 * 1000; // 1 hour
-	strcpy(bufDate, "- -");
-	strcpy(bufWeekDay, "-");
-	strcpy(bufWeekInfo, "- - -");
-	strcpy(bufWeek, "-");
-	fprintf(stdout,"%s\tWgCalendar widget object is created\n", strNow());
+	Set_widget_update_time(60 * 60 * 1000); // 1 hour
+	std::strcpy(bufer_for_date_, "- -");
+	std::strcpy(buffer_week_day_, "-");
+	std::strcpy(buffer_week_info_, "- - -");
+	std::strcpy(bufer_week_, "-");
+
+	config->Get("BASE_FONT_BASE_NAME",base_font_base_name_); 
+
+	std::cout<<StrNow()<<"\tWgCalendar widget object was created\n";
 }
+
 
 WgCalendar::~WgCalendar()
 {
-	fprintf(stdout,"%s\tWgCalendar widget object is deleted\n", strNow());
+	std::cout<<StrNow()<<"\tWgCalendar widget object was deleted\n";
 }
 
-const char *WgCalendar::convertWeekDayFromInt(int wday)
+const char *WgCalendar::ConvertWeekDayFromInt_(int a_week_day)
 {
-	switch (wday)
+	switch (a_week_day)
 	{
 	case 0:
 		return "svētdiena";
@@ -39,9 +54,9 @@ const char *WgCalendar::convertWeekDayFromInt(int wday)
 	}
 }
 
-const char *WgCalendar::convertMounthFromInt(int mon)
+const char *WgCalendar::ConvertMonthFromInt_(int a_month)
 {
-	switch (mon)
+	switch (a_month)
 	{
 	case 0:
 		return "jan";
@@ -74,95 +89,114 @@ const char *WgCalendar::convertMounthFromInt(int mon)
 
 bool WgCalendar::update()
 {
-	std::time_t lt = time(NULL);
-	struct tm *now = localtime(&lt);
+	std::time_t lt = std::time(nullptr);
+	struct tm *now = std::localtime(&lt);
 
-	sprintf(bufDate, "%i.%s", now->tm_mday, convertMounthFromInt(now->tm_mon));
+	std::sprintf(bufer_for_date_, "%i.%s", now->tm_mday, ConvertMonthFromInt_(now->tm_mon));
 
-	sprintf(bufWeekDay, "%s", convertWeekDayFromInt(now->tm_wday));
+	std::sprintf(buffer_week_day_, "%s", ConvertWeekDayFromInt_(now->tm_wday));
 
 	int week = 0;
-	switch (timetable->getCurrentDateState(week))
+	switch (timetable->GetCurrentDateState(week))
 	{
 	case dsSemester:
-		strcpy(bufWeekInfo, "nedēļa semestrī");
+		std::strcpy(buffer_week_info_, "nedēļa semestrī");
 		break;
 	case dsSession:
-		strcpy(bufWeekInfo, "sesijas nedēļa");
+		std::strcpy(buffer_week_info_, "sesijas nedēļa");
 		break;
 	case dsVacation:
-		strcpy(bufWeekInfo, "brīvlaika nedēļa");
+		std::strcpy(buffer_week_info_, "brīvlaika nedēļa");
 		break;
 	case dsHoliday:
-		strcpy(bufWeekInfo, "svētki");
+		std::strcpy(buffer_week_info_, "svētki");
+		break;
+	case dsUnknown:
+		std::strcpy(buffer_week_info_, "Nezinams");
+		break;
+	default:
+		std::strcpy(buffer_week_info_, "...");
 		break;
 	}
 	week += 1;
 
 	if (week >= 1)
-		sprintf(bufWeek, "%d.", week);
-	else
-		strcpy(bufWeek, "--");
-
+		std::sprintf(bufer_week_, "%d.", week);
+	else{
+		std::strcpy(bufer_week_, "--");
+	}
 	return true;
 }
 
-void WgCalendar::renderMode1()
+void WgCalendar::RenderMode1_()
 {
-	renderHeader(bufDate);
+	RenderWidgetHeader(bufer_for_date_);
 }
 
-void WgCalendar::renderMode2()
+void WgCalendar::RenderMode2_()
 {
-	TFont *font = FontStorage->getFont((char *)"arialBold");
-	setTextColor(clHaki);
-	font->SetSize(desktop->rowHeight / 3);
+	TFont *font = FontStorage->GetFont(
+		const_cast<char*>(base_font_base_name_.c_str())
+		);
+	SetTextColor(clHaki);
+	font->Set_Size(desktop->row_height / 3);
 	font->TextMid(
-		bufWeekDay,
-		rectClient.left + rectClient.width / 2,
-		rectClient.top - desktop->rowHeight / 16 * 11);
+		buffer_week_day_,
+		RectClient.left + RectClient.width / 2,
+		RectClient.top - desktop->row_height / 16 * 11);
 }
 
-void WgCalendar::renderMode3()
+void WgCalendar::RenderMode3_()
 {
-	TFont *font = FontStorage->getFont((char *)"arialBold");
-	font->SetSize(desktop->rowHeight / 4.5);
+	TFont *font = FontStorage->GetFont(
+		const_cast<char*>(base_font_base_name_.c_str())
+		);
+	font->Set_Size(desktop->row_height / 4.5);
 	font->TextMid(
-		bufWeekInfo,
-		rectClient.left + rectClient.width / 2,
-		rectClient.top - desktop->rowHeight - desktop->rowHeight / 5 / 2);
+		buffer_week_info_,
+		RectClient.left + RectClient.width / 2,
+		RectClient.top - desktop->row_height - desktop->row_height / 5 / 2);
 
-	setTextColor(color);
-	font->SetSize(desktop->rowHeight / 2.2);
+	SetTextColor(color_);
+	font->Set_Size(desktop->row_height / 2.2);
 	font->TextMid(
-		bufWeek,
-		rectClient.left + rectClient.width / 2,
-		rectClient.top - desktop->rowHeight - desktop->rowHeight * 3 / 4);
+		bufer_week_,
+		RectClient.left + RectClient.width / 2,
+		RectClient.top - desktop->row_height - desktop->row_height * 3 / 4);
 }
 
 void WgCalendar::render()
 {
 	WgBackground::render();
 
-	switch (mode)
+	switch (widget_mode_)
 	{
-	case md1x1:
-	{
-		renderMode1();
-		break;
-	}
-	case md1x2:
-	{
-		renderMode1();
-		renderMode2();
-		break;
-	}
-	case md1x3:
-	{
-		renderMode1();
-		renderMode2();
-		renderMode3();
-		break;
-	}
+		case md1x1:
+		{
+			RenderMode1_();
+			break;
+		}
+		case md1x2:
+		{
+			RenderMode1_();
+			RenderMode2_();
+			break;
+		}
+		case md1x3:
+		{
+			RenderMode1_();
+			RenderMode2_();
+			RenderMode3_();
+			break;
+		}
+		case md3x8:
+		{
+			//probably need to cut it all
+			break;
+		}
+		case mdCustom:{
+			//probably need to cut it all
+			break;
+		}
 	}
 }

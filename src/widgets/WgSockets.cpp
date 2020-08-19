@@ -1,32 +1,46 @@
 #include "WgSockets.h"
 
+#include <wiringPi.h> /*for socket stuff*/
+
+#include<iostream> /*cout*/
+
+#include "timetable.h"/*needed timetable*/
+#include "Timer.h"/*StrNow()*/
+
+
 WgSockets::WgSockets()
 {
     wiringPiSetup();
-    for (int i = 0; i < SOCKETS_COUNT; i++)
+    for (int i = 0; i < SOCKETS_COUNT; ++i)
     {
-        curStates[i] = false;
-        pinMode(socketsPins[i], OUTPUT);
+        current_states_[i] = false;
+        pinMode(SOCKETS_PINS[i], OUTPUT);
     }
-    fprintf(stdout,"%s\tWgSockets widget object is created\n", strNow());
+    std::cout << StrNow() << "\t" << "WgSockets widget object was created\n";
 }
 
 WgSockets::~WgSockets()
 {
-    fprintf(stdout,"%s\tWgSockets widget object is deleted\n", strNow());
+    std::cout << StrNow() << "\t" << "WgSockets widget object was deleted\n";
 }
 
 bool WgSockets::update()
 {
-    for (int i = 0; i < SOCKETS_COUNT; i++)
+    bool state=false;
+    for (int i = 0; i < SOCKETS_COUNT; ++i)
     {
-        bool state = timetable->getCurrentSocketState(i + 1);
-        digitalWrite(socketsPins[i], state ? HIGH : LOW);
-        if (state != curStates[i])
+        state = timetable->GetCurrentSocketState(i + 1);
+        digitalWrite(SOCKETS_PINS[i], state ? HIGH : LOW);
+        if (state != current_states_[i])
         {
-            fprintf(stdout,"%s\tSocket %d is turned %s\n", strNow(), i + 1, state ? "on" : "off");
-            curStates[i] = state;
+            std::cout<<StrNow()<<"\tSocket "
+            <<i + 1<<" is turned "<<(state ? "on" : "off")<<" \n";
+            current_states_[i] = state;
         }
     }
     return false;
+}
+
+void WgSockets::render(){
+    
 }

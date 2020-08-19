@@ -1,39 +1,53 @@
 #pragma once
+#ifndef SMART_RTU_SRC_ENGINE_BOARD_H_
+#define SMART_RTU_SRC_ENGINE_BOARD_H_
 
-#include "WgClock.h"
-#include "IWidget.h"
-#include "Timer.h"
+
+#include "IWidget.h"/*interface*/
+#include "Timer.h"/*LongTimeMs*/
+
 
 struct WidgetInfo {
 	IWidget * widget;
 	LongTimeMs lastUpdate;
 	bool needRender;
 	WidgetInfo * next;
-	WidgetInfo(IWidget * w) { widget = w; next = NULL;  lastUpdate = 0; needRender = true; }
+	WidgetInfo(IWidget * w) { 
+		widget = w;
+		next = nullptr;  
+		lastUpdate = 0;
+		needRender = true; 
+		}
 	~WidgetInfo() { delete widget; }
 };
 
 class Board
 {
-private:
-
-	WidgetInfo *widgets, *current;
-
-	void _addWidget(WidgetInfo* & list, IWidget * w) { if (list) _addWidget(list->next, w); else list = new WidgetInfo(w); }
-	void _freeWidgets(WidgetInfo* & list) { if (list) { _freeWidgets(list->next); delete(list); list = NULL; } }
-	int _cntWidgets(WidgetInfo* list) { if (list) return _cntWidgets(list->next) + 1; return 0; }
-	
 public:	
 
 	Board();
 	~Board();
 	void update(bool Forced);
 	void render(bool Forced);
-	void cleanWidgets() { _freeWidgets( widgets ); }
-	void addWidget(IWidget *widget) { _addWidget( widgets, widget ); }
-	IWidget *findFirst() { 	current = widgets;	return current ? current->widget : NULL; }
-	IWidget *findNext() { if ( current ) current = current->next; return current ? current->widget : NULL; }
-	WidgetInfo * currentWidget() { return current; }
-	int countWidgets() { return _cntWidgets( widgets ); }
+	void CleanWidgets() { FreeWidgets_( widgets ); }
+	void AddWidget(IWidget *widget) { AddWidget_( widgets, widget ); }
+	
+	IWidget *FindFirst(); 
+	IWidget *FindNext();
+	WidgetInfo * CurrentWidget() { return current; }
+	
+	int CountWidgets() { return CntWidgets_( widgets ); }
+
+private:
+
+	WidgetInfo *widgets, *current;
+
+	void AddWidget_(WidgetInfo* & list, IWidget * w); 
+	void FreeWidgets_(WidgetInfo* & list);
+	
+	int CntWidgets_(WidgetInfo* list); 
+	
 	
 };
+
+#endif/*SMART_RTU_SRC_ENGINE_BOARD_H_*/

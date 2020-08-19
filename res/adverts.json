@@ -1,0 +1,26 @@
+[
+  {
+    "url": "http://politeh.lv/home/index.php",
+    "title": "I shut my eyes and all the world drops dead; #1",
+    "start_ts": 0,
+    "end_ts": 0,
+    "hidden": false,
+    "show_time": 15
+  },
+  {
+    "url": "http://www.typingme.com/touch-typing-amateur/typing-lesson-10.php",
+    "title": "I lift my lids and all is born again. # 2",
+    "start_ts": 0,
+    "end_ts": 0,
+    "hidden": false,
+    "show_time": 10
+  },
+  {
+    "url": "https://www.google.lv",
+    "title": "(I think I made you up inside my head.) # 3",
+    "start_ts": 0,
+    "end_ts": 0,
+    "hidden": false,
+    "show_time": 5
+  }
+]

@@ -1,19 +1,77 @@
+/*
+    Authors: Maksims Denisovs, Igors Sčukins.
+    RTU.
+    DAUGAVPILS, LATVIA.
+*/
+
 #pragma once
-#include "png.h"
+#ifndef SMART_RTU_SRC_LIB_PICTURES_PICTURE_H_
+#define SMART_RTU_SRC_LIB_PICTURES_PICTURE_H_
+
+
+//OpenVG stuff//VgImage
 extern "C"
 {
 #include "VG/openvg.h"
 #include "VG/vgu.h"
 #include "fontinfo.h"
 #include "shapes.h"
+   
 }
 
-#include <jpeglib.h>
-#include <stdlib.h>
 
-#include <string.h> //+
 
 //#define ONDEBUG
+
+enum PictureType
+{
+    picJPG,
+    picPNG,
+    picUnknown
+};
+
+class Picture
+{
+public:
+    Picture(const char *path);
+    ~Picture();
+
+    void render(int x, int y);
+    void render(int x, int y, float scaleX, 
+                float scaleY, float shearX, 
+                float shearY, float rotate
+               );
+    //
+
+    int Get_width();
+    int Get_height();
+
+    void GetPixels(int x, int y, int w, int h, unsigned long *pixels);
+    void SetPixels(int x, int y, int w, int h, unsigned long *pixels);
+
+    void Set_Scale(float scaleX, float scaleY);
+
+    int GetColor(float r, float g, float b, float alpha);
+    int GetColor(int r, int g, int b, int alpha);
+    float GetRedColor(int color);
+    float GetGreenColor(int color);
+    float GetBlueColor(int color);
+    float GetAlphaColor(int color);
+private:
+    int picture_width_, picture_height_;
+    float scaleX, scaleY;
+    float shearX, shearY;
+    float rotate;
+    VGImage finImg;
+
+    PictureType GetPictureType_(const char *Path);
+
+    VGImage CreateImageFromPng_(const char *path);
+    void CreateImageFromJpg_(const char *path);
+    VGImage CreateImageFromJpeg_(const char *filename);
+
+};
+#endif/*SMART_RTU_SRC_LIB_PICTURES_PICTURE_H_*/
 /*
     Authors: Maksims Denisovs, Igors Sčukins.
     RTU.
@@ -37,30 +95,30 @@ extern "C"
             #include "lib/Pictures.h"
 
             Picture *image1 = new Picture("png.png");
-            printf("width: %i, height: %i\n", image1->getWidth(), image1->getHeight());
+            std::printf("picture_width_: %i, height: %i\n", image1->Get_width(), image1->Get_height());
             Picture *image2 = new Picture("rad.jpg");
-            printf("width: %i, height: %i\n", image2->getWidth(), image2->getHeight());
+            std::printf("picture_width_: %i, height: %i\n", image2->Get_width(), image2->Get_height());
 
             //	if you want to use all pixels of image
-            unsigned int *pixels = new unsigned int[image2->getWidth() * image2->getHeight()];
-            image2->getPixels(0, 0, image2->getWidth(), image2->getHeight(), pixels);
+            unsigned int *pixels = new unsigned int[image2->Get_width() * image2->Get_height()];
+            image2->GetPixels(0, 0, image2->Get_width(), image2->Get_height(), pixels);
 
             //	if just some part of image 150 X 150
             // unsigned int *pixels = new unsigned int[150 * 150];
-            // image2->getPixels(0, 0, 150, 150, pixels);
+            // image2->GetPixels(0, 0, 150, 150, pixels);
 
             //	change some pixel color
-            for (int i = 0; i < image2->getWidth() * image2->getHeight(); i++)
+            for (int i = 0; i < image2->Get_width() * image2->Get_height(); i++)
             {
-                if (pixels[i] == Picture::getColor(252, 155, 16, 255)) pixels[i] = Picture::getColor(41, 128, 21, 255);
-                if (pixels[i] == Picture::getColor(255, 255, 255, 255)) pixels[i] = Picture::getColor(5, 32, 58, 255);
+                if (pixels[i] == Picture::GetColor(252, 155, 16, 255)) pixels[i] = Picture::GetColor(41, 128, 21, 255);
+                if (pixels[i] == Picture::GetColor(255, 255, 255, 255)) pixels[i] = Picture::GetColor(5, 32, 58, 255);
             }
-            image2->setPixels(0, 0, image2->getWidth(), image2->getHeight(), pixels);
+            image2->SetPixels(0, 0, image2->Get_width(), image2->Get_height(), pixels);
             delete[] pixels;
 
 
             //	drawing on the screen
-            Start(width, height);
+            Start(picture_width_, height);
             Background(100, 100, 120);
             image2->drawImage(100, 100);
             image1->drawImage(105, 105);
@@ -70,49 +128,3 @@ extern "C"
             delete image1;
             delete image2;
 */
-
-enum PictureType
-{
-    picJPG,
-    picPNG,
-    picUnknown
-};
-
-class Picture
-{
-private:
-    int width, height;
-    float scaleX, scaleY;
-    float shearX, shearY;
-    float rotate;
-    VGImage finImg;
-
-    PictureType GetPictureType(const char *Path);
-
-    VGImage createImageFromPNG(const char *path);
-    void createImageFromJPG(const char *path);
-    VGImage createImageFromJpeg(const char *filename);
-
-public:
-    Picture(const char *path);
-    ~Picture();
-
-    void render(int x, int y);
-    void render(int x, int y, float scaleX, float scaleY, float shearX, float shearY, float rotate);
-    //
-
-    int getWidth();
-    int getHeight();
-
-    void getPixels(int x, int y, int w, int h, unsigned long *pixels);
-    void setPixels(int x, int y, int w, int h, unsigned long *pixels);
-
-    void setScale(float scaleX, float scaleY);
-
-    int getColor(float r, float g, float b, float alpha);
-    int getColor(int r, int g, int b, int alpha);
-    float getRed(int color);
-    float getGreen(int color);
-    float getBlue(int color);
-    float getAlpha(int color);
-};

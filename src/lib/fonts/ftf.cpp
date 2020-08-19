@@ -1,8 +1,19 @@
 /* Based on font2openvg. See http://developer.hybrid.fi for more information. */
 #include "ftf.h"
-using namespace std;
 
-Vector2::Vector2(){};
+#include <vector>
+#include <cfloat>
+#include <cstring>
+
+//https://en.wikipedia.org/wiki/16-bit_computing
+//https://www3.ntu.edu.sg/home/ehchua/programming/java/datarepresentation.html
+//http://www.cs.uu.nl/docs/vakken/mov/slides/lecture11%20-%20fixed%20point.pdf
+constexpr float  SIXTEEN_BITS_FR = 65536.0f;// FR- fractional
+constexpr float TWELWE_BITS_FR = 4096.0f;// FR- fractional
+
+Vector2::Vector2(){
+
+}
 Vector2::Vector2(float px, float py)
 {
 	x = px;
@@ -11,17 +22,17 @@ Vector2::Vector2(float px, float py)
 Vector2 operator+(const Vector2 &a, const Vector2 &b) { return Vector2(a.x + b.x, a.y + b.y); }
 Vector2 operator*(const Vector2 &a, float b) { return Vector2(a.x * b, a.y * b); }
 
-float convFTFixed(const FT_Pos &x)
+float ConvertFTFixed(const FT_Pos &x)
 {
-	return (float)x / 4096.0f;
+	return (float)x / TWELWE_BITS_FR;
 }
 
-Vector2 convFTVector(const FT_Vector &v)
+Vector2 ConvertFTVector(const FT_Vector &v)
 {
-	return Vector2(convFTFixed(v.x), convFTFixed(v.y));
+	return Vector2(ConvertFTFixed(v.x), ConvertFTFixed(v.y));
 }
 
-bool isOn(char b)
+bool IsOn(char b)
 {
 	return b & 1 ? true : false;
 }
@@ -40,8 +51,8 @@ bool LoadFTFont(const char *FileName,
 {
 	FT_Library library;
 	FT_Face face;
-	Pt = PtInd = InsInd = InsCnt = Adv = NULL;
-	Ins = NULL;
+	Pt = PtInd = InsInd = InsCnt = Adv = nullptr;
+	Ins = nullptr;
 	Count = FontHeight = DescenderHeight = 0;
 
 	if (FT_Init_FreeType(&library))
@@ -74,7 +85,7 @@ bool LoadFTFont(const char *FileName,
 	float global_maxy = -10000000.0f;
 
 	int glyphs = 0;
-	for (int cc = 0; cc < NGLYPHS; cc++)
+	for (int cc = 0; cc < NGLYPHS; ++cc)
 	{
 		Map[cc] = -1;
 		if (cc < 32)
@@ -83,7 +94,7 @@ bool LoadFTFont(const char *FileName,
 
 		if (!FT_Load_Glyph(face, glyphIndex, FT_LOAD_NO_BITMAP | FT_LOAD_NO_HINTING | FT_LOAD_IGNORE_TRANSFORM))
 		{
-			float advance = convFTFixed(face->glyph->advance.x);
+			float advance = ConvertFTFixed(face->glyph->advance.x);
 			if (cc == ' ')
 			{ //space doesn't contain any data
 				gpvecindices.push_back(gpvec.size());
@@ -107,7 +118,8 @@ bool LoadFTFont(const char *FileName,
 			FT_Outline &outline = face->glyph->outline;
 			std::vector<Vector2> pvec;
 			std::vector<unsigned char> ivec;
-			float minx = 10000000.0f, miny = 100000000.0f, maxx = -10000000.0f, maxy = -10000000.0f;
+			float minx = 10000000.0f, miny = 100000000.0f;
+			float maxx = -10000000.0f, maxy = -10000000.0f;
 			int s = 0, e;
 			bool on;
 			Vector2 last, v, nv;
@@ -116,7 +128,7 @@ bool LoadFTFont(const char *FileName,
 			{
 				int pnts = 1;
 				e = outline.contours[con] + 1;
-				last = convFTVector(outline.points[s]);
+				last = ConvertFTVector(outline.points[s]);
 
 				//read the contour start point
 				ivec.push_back(2);
@@ -127,8 +139,8 @@ bool LoadFTFont(const char *FileName,
 				{
 					int c = (i == e) ? s : i;
 					int n = (i == e - 1) ? s : (i + 1);
-					v = convFTVector(outline.points[c]);
-					on = isOn(outline.tags[c]);
+					v = ConvertFTVector(outline.points[c]);
+					on = IsOn(outline.tags[c]);
 					if (on)
 					{ //line
 						++i;
@@ -138,14 +150,14 @@ bool LoadFTFont(const char *FileName,
 					}
 					else
 					{ //spline
-						if (isOn(outline.tags[n]))
+						if (IsOn(outline.tags[n]))
 						{ //next on
-							nv = convFTVector(outline.points[n]);
+							nv = ConvertFTVector(outline.points[n]);
 							i += 2;
 						}
 						else
 						{ //next off, use middle point
-							nv = (v + convFTVector(outline.points[n])) * 0.5f;
+							nv = (v + ConvertFTVector(outline.points[n])) * 0.5f;
 							++i;
 						}
 						ivec.push_back(10);
@@ -159,16 +171,20 @@ bool LoadFTFont(const char *FileName,
 				s = e;
 			}
 
-			for (std::size_t i = 0; i < pvec.size(); ++i) //changed int to std::size_t 
+			for (std::size_t i = 0; i < pvec.size(); ++i) 
 			{
-				if (pvec[i].x < minx)
+				if (pvec[i].x < minx){
 					minx = pvec[i].x;
-				if (pvec[i].x > maxx)
+				}
+				if (pvec[i].x > maxx){
 					maxx = pvec[i].x;
-				if (pvec[i].y < miny)
+				}
+				if (pvec[i].y < miny){
 					miny = pvec[i].y;
-				if (pvec[i].y > maxy)
+				}
+				if (pvec[i].y > maxy){
 					maxy = pvec[i].y;
+				}
 			}
 			if (!pvec.size())
 			{
@@ -212,55 +228,56 @@ bool LoadFTFont(const char *FileName,
 			Map[cc] = glyphs++;
 		}
 	}
-	if (!glyphs)
+	if (!glyphs){
 		return false;
+	}
 
 	//instructions
 	int givec_size = givec.size();
 	Ins = new unsigned char[givec_size];
-	for (int i = 0; i < givec_size; i++)
+	for (int i = 0; i < givec_size; ++i)
 	{
 		Ins[i] = givec[i];
 	}
 
 	int givecindices_size = givecindices.size();
 	InsInd = new int[givecindices_size];
-	for (int i = 0; i < givecindices_size; i++)
+	for (int i = 0; i < givecindices_size; ++i)
 	{
 		InsInd[i] = givecindices[i];
 	}
 
 	int givecsizes_size = givecsizes.size();
 	InsCnt = new int[givecsizes_size];
-	for (int i = 0; i < givecsizes_size; i++)
+	for (int i = 0; i < givecsizes_size; ++i)
 	{
 		InsCnt[i] = givecsizes[i];
 	}
 
 	int gpvecindices_size = gpvecindices.size();
 	PtInd = new int[gpvecindices_size];
-	for (int i = 0; i < gpvecindices_size; i++)
+	for (int i = 0; i < gpvecindices_size; ++i)
 	{
 		PtInd[i] = gpvecindices[i];
 	}
 
 	int gpvec_size = gpvec.size();
 	Pt = new int[gpvec_size * 2];
-	for (int i = 0; i < gpvec_size; i++)
+	for (int i = 0; i < gpvec_size; ++i)
 	{
-		Pt[i * 2] = 65536.0f * gpvec[i].x;
-		Pt[i * 2 + 1] = 65536.0f * gpvec[i].y;
+		Pt[i * 2] = SIXTEEN_BITS_FR * gpvec[i].x;
+		Pt[i * 2 + 1] = SIXTEEN_BITS_FR * gpvec[i].y;
 	}
 
 	int advances_size = advances.size();
 	Adv = new int[advances_size];
-	for (int i = 0; i < advances_size; i++)
+	for (int i = 0; i < advances_size; ++i)
 	{
-		Adv[i] = advances[i] * 65536.0f;
+		Adv[i] = advances[i] * SIXTEEN_BITS_FR;
 	}
 
-	DescenderHeight = 65536.0f * global_miny;
-	FontHeight = 65536.0f * global_maxy;
+	DescenderHeight = SIXTEEN_BITS_FR * global_miny;
+	FontHeight = SIXTEEN_BITS_FR * global_maxy;
 
 	Count = glyphs;
 

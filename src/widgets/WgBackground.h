@@ -1,67 +1,68 @@
 /* WgBackground Author: Igors Kolcins
-*-- This is visual widget.
-*		This widget render only backgroud of widget with shadows
-*		and have empety update.
-*/
+ *-- This is visual widget.
+ *		This widget render only backgroud of widget with shadows
+ *		and have empety update.
+ */
 
 #pragma once
+#ifndef SMART_RTU_SRC_WIDGETS_WGBACKGROUND_H_
+#define SMART_RTU_SRC_WIDGETS_WGBACKGROUND_H_
 
 #include "IWidget.h"
-#include "../engine/desktop.h"
+#include <string>
 
-enum wgColor
-{
-	clWhite = 0,
-	clBlue,
-	clCyan,
-	clGreen,
-	clHighBlue,
-	clHighPurple,
-	clLazyYellow,
-	clOrange,
-	clPurple,
-	clYellow,
-	clHaki
+enum WgColor {
+  clWhite = 0,
+  clBlue,
+  clCyan,
+  clGreen,
+  clHighBlue,
+  clHighPurple,
+  clLazyYellow,
+  clOrange,
+  clPurple,
+  clYellow,
+  clHaki
 };
-enum wgMode
-{
-	md1x1 = 1,
-	md1x2,
-	md1x3,
-	md3x8,
-	mdCustom
-};
+enum WgMode { md1x1 = 1, md1x2, md1x3, md3x8, mdCustom };
 
-class WgBackground : public IWidget
-{
-private:
-protected:
-	int posX, posY;	  // position in the grid
-	wgMode mode;	  // widget mode
-	int sizeX, sizeY; // widget size in the grid, example: sizeX=1; sizeY=1; fill only one block in the grid
-	wgColor color;
-	bool isShadows; // on/off shadows
-
-	struct
-	{
-		int left, right, top, bottom, width, height;
-	} rectWidget, rectHeader, rectClient;
-	struct
-	{
-		int left, right, top, bottom;
-	} shadowSize;
-
-	void renderHeader(const char *headerText);
-	void renderOnlyShadows(); //renders only all shadows
+class WgBackground :
+ public IWidget 
+ {
 public:
-	WgBackground(int AposX, int AposY, wgMode Amode);
-	~WgBackground();
+  WgBackground(int a_pos_x, int a_pos_y, WgMode Amode);
+  ~WgBackground();
 
-	void setFillColor(wgColor c); //set color of block with command Fill
-	void setTextColor(wgColor c); //set color of text
+  void SetFillColor(WgColor c); // set color_ of block with command Fill
+  void SetTextColor(WgColor c); // set color_ of text
 
-	void getRect(int &left, int &bottom, int &width, int &height);
-	void render();
-	bool update() { return false; };
-	bool isVisible() { return true; };
+  void GetRect(int &left, int &bottom, int &width, int &height)override;
+  void render() override;
+  bool update() override { return false; };
+  bool IsVisible() override { return true; };
+
+
+  int m_pos_x, m_pos_y; // position in the grid
+  WgMode widget_mode_;          // widget_mode
+  WgColor color_;
+  bool shadows_on_;              // on/off shadows
+
+  // widget size in the grid, example: widget_width_=1; widget_height_=1;
+  // fill only one block in the grid
+  int widget_width_, widget_height_; 
+  
+  std::string base_font_base_name_; // mean name of font without extension
+protected:
+  struct {
+    int left, right, top, bottom, width, height;
+  } RectWidget, RectHeader, RectClient;
+  struct {
+    int left, right, top, bottom;
+  } ShadowSize;
+
+  //renders text at widget header
+  void RenderWidgetHeader(const char *a_header_text);
+  void RenderOnlyShadows(); // renders only all shadows //kastil
 };
+
+#endif /*SMART_RTU_SRC_WIDGETS_WGBACKGROUND_H__*/

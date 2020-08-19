@@ -1,9 +1,9 @@
 #include "WgAds.h"
 
-WgAds::WgAds(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amode)
+WgAds::WgAds(int Ax, int Ay, WgMode Amode) : WgBackground(Ax, Ay, Amode)
 {
 	system(fmt("touch %s%s", ADS_FILES_PATH, FLAG_FILE_NAME));
-	updateTime = 1000; // 1s
+	widget_update_time_ = 1000; // 1s
 	ads = NULL;
 	adsPeace = NULL;
 	lineCount = 0;
@@ -13,9 +13,9 @@ WgAds::WgAds(int Ax, int Ay, wgMode Amode) : WgBackground(Ax, Ay, Amode)
 
 	//std::system(request.c_str());
 	//HtmlPic=new Picture("res/tmp/temp.png");
-	//printf("width: %i, height: %i\n", HtmlPic->getWidth(), HtmlPic->getHeight());
+	//printf("width: %i, height: %i\n", HtmlPic->Get_width(), HtmlPic->Get_height());
 
-	fprintf(stdout,"%s\tWgAds widget object is created\n", strNow());
+	std::fprintf(stdout,"%s\tWgAds widget object was created\n", StrNow());
 }
 
 WgAds::~WgAds()
@@ -28,7 +28,7 @@ WgAds::~WgAds()
 	if (adsPeace){
 		delete[] adsPeace;
 	}
-	fprintf(stdout,"%s\tWgAds widget object is deleted\n", strNow());
+	std::fprintf(stdout,"%s\tWgAds widget object was deleted\n", StrNow());
 }
 
 time_t WgAds::getFileTime()
@@ -124,7 +124,7 @@ bool WgAds::update()
 		for (int i = 0; i < lineCount; i++)
 			adsPeace[i] = NULL;
 		Separate(ads, adsPeace);
-		fprintf(stdout,"%s\tNew %d-lines advertisement text is loaded\n", strNow(), lineCount);
+		std::fprintf(stdout,"%s\tNew %d-lines advertisement text is loaded\n", StrNow(), lineCount);
 		return true;
 	}
 	return false;
@@ -141,16 +141,16 @@ void WgAds::render()
 
 	//~~~ render header
 
-	//renderHeader( "Sludinājums" );
-	renderHeader("Par mums");
+	//RenderWidgetHeader( "Sludinājums" );
+	RenderWidgetHeader("Par mums");
 
 	/*
-	int width=(float) rectClient.width * 0.9;	
-	int height = (float) rectClient.height * 0.9;
+	int width=(float) RectClient.width * 0.9;	
+	int height = (float) RectClient.height * 0.9;
 
 	
 	//~~~~~ render back shadows
-	WgBackground::renderOnlyShadows();
+	WgBackground::RenderOnlyShadows();
 */
 
 	//~~~ calculate line count without last empy strings
@@ -165,15 +165,15 @@ void WgAds::render()
 
 	if ( lc == 0 ) return;
 
-	TFont * font = FontStorage->getFont((char*)"arialBold");
+	TFont * font = FontStorage->GetFont((char*)"arialBold");
 	
 	const float lineSpacing = 0.4;
-	int width = (float) rectClient.width * 0.9;	
-	int height = (float) rectClient.height * 0.9;
+	int width = (float) RectClient.width * 0.9;	
+	int height = (float) RectClient.height * 0.9;
 
 	float lh = (float) height / lc;
 	float fh = lh * (1. - lineSpacing);
-	font->SetSize( (int)fh );
+	font->Set_Size( (int)fh );
 
 	int tw = 0;
 	for (int i = 0; i < lc; i++) 
@@ -186,15 +186,15 @@ void WgAds::render()
 		fh = lh * (1. - lineSpacing);
 	}
 
-	int ofsY = ( rectClient.height - lh * lc - lh * lineSpacing ) / 2 - lh * 0.1;
-	setTextColor(clHaki);
-	font->SetSize( fh )	;
+	int ofsY = ( RectClient.height - lh * lc - lh * lineSpacing ) / 2 - lh * 0.1;
+	SetTextColor(clHaki);
+	font->Set_Size( fh )	;
 	for (int i = 0; i < lc; i++) 
 	{
 		font->TextMid(
 			adsPeace[i], 
-			rectClient.left + rectClient.width / 2, 
-			rectClient.top - ofsY - lh * (i + 1)
+			RectClient.left + RectClient.width / 2, 
+			RectClient.top - ofsY - lh * (i + 1)
 		);
 	}
 	*/

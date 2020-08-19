@@ -1,6 +1,14 @@
 #build dir
 #exclude all except Dummy.txt
 /build/**
-!Dummy.txt
+!Dummy.txt 
 
+#exclude .exe files
+infoboard.exe
 #Normal exclude of dir is dirname/
+
+#exclude tmp folder content
+/res/tmp/*
+
+#exclude vscode files
+/.vscode/*

@@ -9,33 +9,30 @@
 *			md1x3: show time, current lecture and show timer to the next lecture
 */
 #pragma once
+#ifndef SMART_RTU_SRC_WIDGETS_WGCLOCK_H_
+#define SMART_RTU_SRC_WIDGETS_WGCLOCK_H_
 
-#include <iostream>
-#include <fstream>
-#include <cstring>
+#include <string>/*string*/
 
 #include "WgBackground.h"
-#include "timetable.h"
-#include "desktop.h"
-#include "Timer.h"
 
-//using namespace std;
-using json = nlohmann::json;
-
-class WgClock : public WgBackground
+class WgClock :
+public WgBackground
 {
-private:
-	int hour, min, sec; // last update time
-	char strTime[10], strLect[20], strInfo[100], strTimer[15];
-
-	void renderMode1();
-	void renderMode2();
-	void renderMode3();
-
 public:
-	WgClock(int AposX, int AposY, wgMode Amode);
+	WgClock(int AposX, int AposY, WgMode Amode);
 	~WgClock();
 
-	bool update();
-	void render();
+	bool update()override;
+	void render()override;
+private:
+	int hour_, min_, second_; // last update time
+	char str_time_[10], str_lecture_[20], str_info_[100], str_timer_[15];
+	std::string base_font_base_name_;//mean name of font without extension
+
+	void RenderMode1_();
+	void RenderMode2_();
+	void RenderMode3_();
+
 };
+#endif /*SMART_RTU_SRC_WIDGETS_WGCLOCK_H_*/

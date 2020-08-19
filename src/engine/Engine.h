@@ -1,17 +1,10 @@
 #pragma once
 
-//  basic
-#include <stdio.h>
-#include <cstdlib>
-#include <ctime>
-#include <cmath>
-#include <unistd.h>
-#include <fcntl.h>
+#ifndef SMART_RTU_SRC_ENGINE_ENGINE_H_
+#define SMART_RTU_SRC_ENGINE_ENGINE_H_
 
-//  our classes
-#include "board.h"
-#include "Picture.h"
-#include "Timer.h"
+#include "board.h"/*for board var*/
+#include "IWidget.h"/*for IWidget var*/
 
 //  includes to kbhit function
 // #include <termios.h>
@@ -19,28 +12,30 @@
 #define FRAMES_PER_SECOND 25
 
 class Engine
-{
-private:
-	int frameCap;
-	bool isRunning;
-	bool terminated;
-
-	Board *board;
-	IWidget *w;
-
-	void run();
-	void update();
-	void render(bool All);
-	void showFrames();
-	//int kbhit(void);
-
+{	
 public:
 	Engine();
 	~Engine();
 	void start();
-	void terminate() { terminated = true; }
-	void forcedUpdate();
+	void terminate() { is_terminated_ = true; }
+	void ForceUpdate();
+	
+private:
+	int frame_capacity_;
+	bool is_running_;
+	bool is_terminated_;
+
+	Board *board_;
+	IWidget *w;
+
+	void run_();
+	void update();
+	void render(bool All);
+	void ShowFrames();
 };
 
 extern Engine *engine;
-extern const char *fmt(const char *f, const char *s1, const char *s2 = NULL, const char *s3 = NULL);
+extern const char *fmt(const char *f, const char *s1, 
+					   const char *s2 = nullptr, const char *s3 = nullptr
+					   );
+#endif /*SMART_RTU_SRC_ENGINE_ENGINE_H_*/

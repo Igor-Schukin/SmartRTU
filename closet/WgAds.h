@@ -40,7 +40,7 @@ private:
 	bool readFile(char *&text);
 
 public:
-	WgAds(int AposX, int AposY, wgMode Amode);
+	WgAds(int AposX, int AposY, WgMode Amode);
 	~WgAds();
 
 	bool update();

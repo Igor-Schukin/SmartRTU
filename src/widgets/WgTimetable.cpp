@@ -1,44 +1,70 @@
 #include "WgTimetable.h"
 
-time_t WgTimetable::getFileTime()
+#include <sys/types.h>/*stat sctruct*/
+
+#include<iostream>//cout
+
+
+#include "Engine.h"/*engine obj*/
+#include "timetable.h"/*tiemtable obj*/
+
+#include "Timer.h"/*StrNow()*/
+
+#include"configurator.h"/*config*/
+
+
+std::time_t WgTimetable::GetFileTime_()
 {
     struct stat buff;
-    if (stat((m_timetable_dest+"/"+m_timetable_name).c_str(), &buff) == 0)
+    if (stat((timetable_path_+"/"+timetable_name_).c_str(), &buff) == 0){
         return buff.st_mtime;
+    }
+    else{
     return 0;
+    }
 }
 
 WgTimetable::WgTimetable()
 {
-    fileTime = getFileTime();
+    file_time_ = this->GetFileTime_();
 
-    config->Get("TIME_TABLE_DEST",m_timetable_dest);
-    config->Get("TIME_TABLE_NAME",m_timetable_name);
+    config->Get("TIME_TABLE_PATH",timetable_path_);
+    config->Get("TIME_TABLE_NAME",timetable_name_);
 
-    fprintf(stdout,"%s\tWgTimetable widget object is created\n", strNow());
+    std::cout<<StrNow()<<"\tWgTimetable widget object was created\n";
 }
 
 WgTimetable::~WgTimetable()
 {
-    fprintf(stdout,"%s\tWgTimetable widget object is deleted\n", strNow());
+    std::cout<<StrNow()<<"\tWgTimetable widget object was deleted\n";
 }
 
 bool WgTimetable::update()
 {
-    if (fileTime != getFileTime())
+    if (file_time_ != GetFileTime_())
     {
-        if (timetable)
+        if (timetable){
             delete timetable;
+        }
+        
         try
         {
             timetable = new Timetable;
         }
         catch (...)
         {
-            timetable = NULL;
+            timetable = nullptr;
         }
-        fileTime = getFileTime();
-        engine->forcedUpdate();
+        file_time_ = GetFileTime_();
+        engine->ForceUpdate();
     }
     return false;
+}
+
+void WgTimetable::render() {
+    //empty
+}
+
+void WgTimetable::Set_widget_id(int a_widget_id){
+    this->widget_id_ = a_widget_id;
 }
