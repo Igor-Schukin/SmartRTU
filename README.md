@@ -35,7 +35,8 @@ UNDER MIT [license](LICENSE)
 
 # Contributors  
 year when left project...............Name...............deserts  
-
+2020 - RazdolbayOne - Check v1.1.0 reliese to see its work 
+2020 - Alfred.L - Creator of REST server (now server on toddler state)  
 # Project_structure  
 <img src="https://imgur.com/b63PIkS.png" ></img> 
 
