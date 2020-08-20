@@ -5,7 +5,7 @@
 - [Contributors](#contributors)  
 # About project  
 Student bulletin board for displaying lectures, weather, time and real-time announcements. Written in C/C++ using the OpenVG graphics library, working machine is Raspberry Pi on Raspbian OS.  
-Maintained mostly by Daugavpils RTU students.
+Maintained mostly by DF RTU students.
 # How to run project  
 How to run:  
 0)IMPORTANT!!! check if you did [THIS](https://github.com/RazdolbayOne/GuidesPull)   

@@ -1,6 +1,6 @@
 
 cmake_minimum_required(VERSION 3.0.0)
-project(Smart_RTU VERSION 0.1.0)
+project(Smart_RTU VERSION 1.1.0)
 
 #set c++ 11 standart
 set (CMAKE_CXX_STANDARD 14)
